@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="uz" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Lawinate.uz</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        lawBlue: '#0066FF',
+                        lawDark: '#050505',
+                        lawCard: '#0F1115',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #050505;
+            color: white;
+            background-image:
+                radial-gradient(circle at 20% 20%, rgba(0, 102, 255, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 80% 80%, rgba(0, 102, 255, 0.1) 0%, transparent 40%);
+        }
+        .glass-nav {
+            background: rgba(5, 5, 5, 0.7);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .glass-card {
+            background: rgba(15, 17, 21, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass-nav">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <a href="index.html" class="flex items-center gap-2 cursor-pointer">
+                    <i class="ph-fill ph-scales text-3xl text-lawBlue"></i>
+                    <span class="text-2xl font-bold tracking-tight">Lawinate<span class="text-lawBlue">.uz</span></span>
+                </a>
+                <div class="hidden md:flex space-x-8 text-sm font-medium text-gray-300">
+                    <a href="reyting.html" class="hover:text-white transition">Reyting</a>
+                    <a href="kutubxona.html" class="hover:text-white transition">Kutubxona</a>
+                    <a href="testlar.html" class="hover:text-white transition">Testlar</a>
+                    <a href="community.html" class="hover:text-white transition">Community</a>
+                </div>
+                <div class="flex items-center gap-4">
+                    <div class="hidden md:flex items-center gap-3 glass-card px-4 py-2 rounded-full">
+                        <img id="navAvatar" src="" alt="Avatar" class="w-8 h-8 rounded-full">
+                        <span id="navName" class="text-sm font-semibold"></span>
+                    </div>
+                    <button onclick="handleLogout()" class="text-sm font-medium hover:text-white text-gray-300 transition">
+                        <i class="ph-bold ph-sign-out"></i> Chiqish
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Dashboard Content -->
+    <section class="pt-32 pb-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Header -->
+            <div class="mb-12">
+                <h1 class="text-4xl font-black mb-2">Dashboard</h1>
+                <p class="text-gray-400">Xush kelibsiz, <span id="welcomeName" class="text-white font-semibold"></span>!</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                
+                <!-- Left Sidebar - Profile -->
+                <div class="space-y-6">
+                    <!-- Profile Card -->
+                    <div class="glass-card rounded-3xl p-8">
+                        <div class="flex flex-col items-center text-center">
+                            <img id="profileAvatar" src="" alt="Profile" class="w-32 h-32 rounded-full border-4 border-lawBlue mb-4">
+                            <h2 id="profileName" class="text-2xl font-bold mb-1"></h2>
+                            <p id="profileEmail" class="text-sm text-gray-400 mb-4"></p>
+                            
+                            <div class="w-full space-y-3 mb-6">
+                                <div class="flex items-center justify-between text-sm">
+                                    <span class="text-gray-400">Universitet:</span>
+                                    <span id="profileUniversity" class="font-semibold"></span>
+                                </div>
+                                <div class="flex items-center justify-between text-sm">
+                                    <span class="text-gray-400">Kurs:</span>
+                                    <span id="profileCourse" class="font-semibold"></span>
+                                </div>
+                                <div class="flex items-center justify-between text-sm">
+                                    <span class="text-gray-400">Shahar:</span>
+                                    <span id="profileCity" class="font-semibold"></span>
+                                </div>
+                            </div>
+
+                            <a href="#" class="w-full py-3 glass-card rounded-xl hover:bg-white/5 transition text-center font-semibold">
+                                <i class="ph-bold ph-pencil mr-2"></i>
+                                Profilni tahrirlash
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Estimated Rank Card -->
+                    <div class="glass-card rounded-3xl p-6">
+                        <h3 class="text-lg font-bold mb-4 flex items-center gap-2">
+                            <i class="ph-fill ph-trophy text-yellow-500"></i>
+                            Taxminiy Reyting
+                        </h3>
+                        <div class="text-center py-6">
+                            <div class="text-5xl font-black text-lawBlue mb-2" id="estimatedRank">
+                                #---
+                            </div>
+                            <p class="text-sm text-gray-400 mb-4">O'zbekiston bo'yicha</p>
+                            <div class="glass-card rounded-xl p-3 text-xs text-gray-400">
+                                <i class="ph-bold ph-info mr-1"></i>
+                                Testlar yechilgandan keyin aniqlanadi
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Streak Card -->
+                    <div class="glass-card rounded-3xl p-6">
+                        <h3 class="text-lg font-bold mb-4 flex items-center gap-2">
+                            <i class="ph-fill ph-fire text-orange-500"></i>
+                            Faollik
+                        </h3>
+                        <div class="text-center">
+                            <div class="text-4xl font-black text-orange-500 mb-2" id="streakDays">0</div>
+                            <p class="text-sm text-gray-400">kunlik strike</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main Content -->
+                <div class="lg:col-span-2 space-y-6">
+                    
+                    <!-- Stats Cards -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="glass-card rounded-2xl p-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-12 h-12 bg-blue-600/20 rounded-xl flex items-center justify-center">
+                                    <i class="ph-fill ph-exam text-2xl text-blue-400"></i>
+                                </div>
+                                <span class="text-xs font-semibold text-blue-400 px-3 py-1 bg-blue-500/20 rounded-full">+0</span>
+                            </div>
+                            <div class="text-3xl font-bold mb-1" id="totalTests">0</div>
+                            <div class="text-sm text-gray-400">Ishlangan testlar</div>
+                        </div>
+
+                        <div class="glass-card rounded-2xl p-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-12 h-12 bg-green-600/20 rounded-xl flex items-center justify-center">
+                                    <i class="ph-fill ph-check-circle text-2xl text-green-400"></i>
+                                </div>
+                                <span class="text-xs font-semibold text-green-400 px-3 py-1 bg-green-500/20 rounded-full">0%</span>
+                            </div>
+                            <div class="text-3xl font-bold mb-1" id="correctAnswers">0</div>
+                            <div class="text-sm text-gray-400">To'g'ri javoblar</div>
+                        </div>
+
+                        <div class="glass-card rounded-2xl p-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-12 h-12 bg-purple-600/20 rounded-xl flex items-center justify-center">
+                                    <i class="ph-fill ph-star text-2xl text-purple-400"></i>
+                                </div>
+                                <span class="text-xs font-semibold text-purple-400 px-3 py-1 bg-purple-500/20 rounded-full">+0</span>
+                            </div>
+                            <div class="text-3xl font-bold mb-1" id="totalPoints">0</div>
+                            <div class="text-sm text-gray-400">Umumiy ball</div>
+                        </div>
+                    </div>
+
+                    <!-- Progress Chart -->
+                    <div class="glass-card rounded-3xl p-8">
+                        <h3 class="text-2xl font-bold mb-6">Taraqqiyot</h3>
+                        <div class="h-64">
+                            <canvas id="progressChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Recent Tests -->
+                    <div class="glass-card rounded-3xl p-8">
+                        <div class="flex items-center justify-between mb-6">
+                            <h3 class="text-2xl font-bold">So'nggi testlar</h3>
+                            <a href="testlar.html" class="text-lawBlue hover:text-blue-400 font-semibold text-sm flex items-center gap-2">
+                                Barchasini ko'rish <i class="ph-bold ph-arrow-right"></i>
+                            </a>
+                        </div>
+                        
+                        <div id="recentTestsContainer" class="space-y-4">
+                            <!-- Tests will be dynamically inserted -->
+                            <div class="text-center py-12 text-gray-400">
+                                <i class="ph-fill ph-clipboard-text text-5xl mb-4 opacity-50"></i>
+                                <p>Hali testlar yechilmagan</p>
+                                <a href="testlar.html" class="inline-block mt-4 px-6 py-3 bg-lawBlue hover:bg-blue-600 rounded-xl font-semibold transition">
+                                    Birinchi testni boshlash
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recommendations -->
+                    <div class="glass-card rounded-3xl p-8">
+                        <h3 class="text-2xl font-bold mb-6">Tavsiya etiladigan testlar</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            
+                            <a href="testlar.html" class="glass-card p-6 rounded-2xl hover:border-lawBlue/50 transition cursor-pointer">
+                                <div class="flex items-center gap-4 mb-4">
+                                    <div class="w-12 h-12 bg-blue-600/20 rounded-xl flex items-center justify-center">
+                                        <i class="ph-fill ph-flag text-2xl text-blue-400"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold">Konstitutsiya</h4>
+                                        <p class="text-xs text-gray-400">30 savol • 45 daqiqa</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center justify-between text-sm">
+                                    <span class="text-gray-400">Qiyinlik:</span>
+                                    <div class="flex gap-1">
+                                        <div class="w-2 h-2 rounded-full bg-green-500"></div>
+                                        <div class="w-2 h-2 rounded-full bg-green-500"></div>
+                                        <div class="w-2 h-2 rounded-full bg-gray-700"></div>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <a href="testlar.html" class="glass-card p-6 rounded-2xl hover:border-lawBlue/50 transition cursor-pointer">
+                                <div class="flex items-center gap-4 mb-4">
+                                    <div class="w-12 h-12 bg-green-600/20 rounded-xl flex items-center justify-center">
+                                        <i class="ph-fill ph-graduation-cap text-2xl text-green-400"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold">DTM Tayyorgarlik</h4>
+                                        <p class="text-xs text-gray-400">30 savol • 40 daqiqa</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center justify-between text-sm">
+                                    <span class="text-gray-400">Qiyinlik:</span>
+                                    <div class="flex gap-1">
+                                        <div class="w-2 h-2 rounded-full bg-green-500"></div>
+                                        <div class="w-2 h-2 rounded-full bg-green-500"></div>
+                                        <div class="w-2 h-2 rounded-full bg-gray-700"></div>
+                                    </div>
+                                </div>
+                            </a>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-white/5 bg-black">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <div class="flex items-center justify-center gap-2 mb-6">
+                <i class="ph-fill ph-scales text-2xl text-lawBlue"></i>
+                <span class="text-xl font-bold">Lawinate.uz</span>
+            </div>
+            <p class="text-gray-500 text-sm">© 2025 Lawinate. Barcha huquqlar himoyalangan.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Load user data
+        function loadUserData() {
+            const userData = localStorage.getItem('lawinateUser');
+            
+            if (!userData) {
+                alert('Iltimos, avval tizimga kiring!');
+                window.location.href = 'auth.html';
+                return;
+            }
+
+            const user = JSON.parse(userData);
+
+            // Populate profile
+            document.getElementById('navAvatar').src = user.profileImage || '';
+            document.getElementById('navName').textContent = user.fullName.split(' ')[0];
+            document.getElementById('welcomeName').textContent = user.fullName.split(' ')[0];
+            document.getElementById('profileAvatar').src = user.profileImage || '';
+            document.getElementById('profileName').textContent = user.fullName;
+            document.getElementById('profileEmail').textContent = user.email;
+            document.getElementById('profileUniversity').textContent = getUniversityName(user.university);
+            document.getElementById('profileCourse').textContent = user.course + '-kurs';
+            document.getElementById('profileCity').textContent = capitalize(user.city);
+
+            // Populate stats
+            document.getElementById('totalTests').textContent = user.totalTests || 0;
+            document.getElementById('correctAnswers').textContent = user.correctAnswers || 0;
+            document.getElementById('totalPoints').textContent = user.points || 0;
+            document.getElementById('streakDays').textContent = user.streakDays || 0;
+
+            // Calculate and show estimated rank
+            calculateEstimatedRank(user);
+
+            // Load test history
+            loadTestHistory(user);
+
+            // Initialize progress chart
+            initProgressChart(user);
+        }
+
+        function getUniversityName(code) {
+            const universities = {
+                'tdyu': 'TDYU',
+                'toshkent_dti': 'ToshDTU',
+                'toshkent_iqtisod': 'O\'zMU',
+                'samarqand_dti': 'SamDU',
+                'buxoro': 'BuxDU',
+                'andijon': 'AndDU',
+                'namangan': 'NamDU',
+                'fargona': 'FarDU',
+                'urgench': 'UrDU',
+                'qarshi': 'QarDU',
+                'termiz': 'TermDU',
+                'nukus': 'NDPI',
+                'guliston': 'GulDU',
+                'jizzax': 'JizDPI',
+                'navoiy': 'NDKI',
+                'other': 'Boshqa'
+            };
+            return universities[code] || code;
+        }
+
+        function capitalize(str) {
+            return str.charAt(0).toUpperCase() + str.slice(1);
+        }
+
+        function calculateEstimatedRank(user) {
+            const totalTests = user.totalTests || 0;
+            const correctAnswers = user.correctAnswers || 0;
+            const points = user.points || 0;
+
+            if (totalTests === 0) {
+                document.getElementById('estimatedRank').textContent = '#---';
+                return;
+            }
+
+            // Simple ranking algorithm
+            // Based on: tests completed, accuracy, total points
+            const accuracy = totalTests > 0 ? (correctAnswers / (totalTests * 30)) * 100 : 0;
+            const score = (totalTests * 10) + (accuracy * 5) + (points / 10);
+
+            // Estimate rank (this would come from backend in real app)
+            let estimatedRank = Math.max(1, Math.floor(5247 - (score * 10)));
+            
+            user.estimatedRank = estimatedRank;
+            localStorage.setItem('lawinateUser', JSON.stringify(user));
+
+            document.getElementById('estimatedRank').textContent = '#' + estimatedRank;
+        }
+
+        function loadTestHistory(user) {
+            const tests = user.testHistory || [];
+            const container = document.getElementById('recentTestsContainer');
+
+            if (tests.length === 0) {
+                return;
+            }
+
+            container.innerHTML = tests.map(test => `
+                <div class="glass-card rounded-2xl p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <div>
+                            <h4 class="font-bold">${test.name}</h4>
+                            <p class="text-sm text-gray-400">${test.date}</p>
+                        </div>
+                        <span class="px-4 py-2 ${test.score >= 90 ? 'bg-green-500/20 text-green-400' : test.score >= 70 ? 'bg-blue-500/20 text-blue-400' : 'bg-orange-500/20 text-orange-400'} rounded-xl font-bold">
+                            ${test.score}%
+                        </span>
+                    </div>
+                    <div class="flex items-center gap-6 text-sm">
+                        <span class="text-gray-400">
+                            <i class="ph-bold ph-check-circle text-green-400 mr-1"></i>
+                            ${test.correct}/${test.total} to'g'ri
+                        </span>
+                        <span class="text-gray-400">
+                            <i class="ph-bold ph-star text-yellow-400 mr-1"></i>
+                            +${test.points} ball
+                        </span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function initProgressChart(user) {
+            const ctx = document.getElementById('progressChart').getContext('2d');
+            
+            // Sample data (in real app, this comes from user's test history)
+            const data = {
+                labels: ['Dush', 'Sesh', 'Chor', 'Pay', 'Juma', 'Shan', 'Yak'],
+                datasets: [{
+                    label: 'Kunlik ball',
+                    data: [0, 0, 0, 0, 0, 0, 0],
+                    borderColor: '#0066FF',
+                    backgroundColor: 'rgba(0, 102, 255, 0.1)',
+                    borderWidth: 2,
+                    tension: 0.4,
+                    fill: true
+                }]
+            };
+
+            new Chart(ctx, {
+                type: 'line',
+                data: data,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                color: 'rgba(255, 255, 255, 0.05)'
+                            },
+                            ticks: {
+                                color: '#9CA3AF'
+                            }
+                        },
+                        x: {
+                            grid: {
+                                color: 'rgba(255, 255, 255, 0.05)'
+                            },
+                            ticks: {
+                                color: '#9CA3AF'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function handleLogout() {
+            if (confirm('Hisobdan chiqmoqchimisiz?')) {
+                localStorage.removeItem('lawinateUser');
+                window.location.href = 'auth.html';
+            }
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', loadUserData);
+    </script>
+</body>
+</html>

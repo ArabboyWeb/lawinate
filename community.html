@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="uz" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community | Lawinate.uz</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        lawBlue: '#0066FF',
+                        lawDark: '#050505',
+                        lawCard: '#0F1115',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #050505;
+            color: white;
+            background-image:
+                radial-gradient(circle at 20% 20%, rgba(0, 102, 255, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 80% 80%, rgba(0, 102, 255, 0.1) 0%, transparent 40%);
+        }
+        .glass-nav {
+            background: rgba(5, 5, 5, 0.7);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .glass-card {
+            background: rgba(15, 17, 21, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+        .glass-card:hover {
+            border-color: rgba(0, 102, 255, 0.3);
+        }
+        .topic-card:hover {
+            transform: translateX(5px);
+        }
+        .user-avatar {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        #newPostModal {
+            display: none;
+        }
+        #newPostModal.active {
+            display: flex;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass-nav">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <a href="index.html" class="flex items-center gap-2 cursor-pointer">
+                    <i class="ph-fill ph-scales text-3xl text-lawBlue"></i>
+                    <span class="text-2xl font-bold tracking-tight">Lawinate<span class="text-lawBlue">.uz</span></span>
+                </a>
+                <div class="hidden md:flex space-x-8 text-sm font-medium text-gray-300">
+                    <a href="reyting.html" class="hover:text-white transition">Reyting</a>
+                    <a href="kutubxona.html" class="hover:text-white transition">Kutubxona</a>
+                    <a href="testlar.html" class="hover:text-white transition">Testlar</a>
+                    <a href="community.html" class="text-white transition">Community</a>
+                </div>
+                <div class="hidden md:flex gap-4">
+                    <button class="text-sm font-medium hover:text-white text-gray-300 transition">Kirish</button>
+                    <button class="bg-lawBlue hover:bg-blue-600 text-white px-5 py-2 rounded-full text-sm font-semibold transition">
+                        Ro'yxatdan o'tish
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h1 class="text-4xl md:text-6xl font-black mb-4">
+                    <i class="ph-fill ph-users-three text-purple-500"></i> Community
+                </h1>
+                <p class="text-gray-400 text-lg mb-8">Yuristlar jamiyati — savol bering, tajriba almashing</p>
+                
+                <button onclick="openNewPost()" class="bg-lawBlue hover:bg-blue-600 text-white px-8 py-4 rounded-full font-bold text-lg transition inline-flex items-center gap-2">
+                    <i class="ph-bold ph-plus-circle"></i>
+                    Yangi mavzu yaratish
+                </button>
+            </div>
+
+            <!-- Stats -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+                <div class="glass-card p-6 rounded-2xl text-center">
+                    <div class="text-3xl font-bold text-lawBlue mb-1">1,247</div>
+                    <div class="text-sm text-gray-400">A'zolar</div>
+                </div>
+                <div class="glass-card p-6 rounded-2xl text-center">
+                    <div class="text-3xl font-bold text-purple-400 mb-1">342</div>
+                    <div class="text-sm text-gray-400">Mavzular</div>
+                </div>
+                <div class="glass-card p-6 rounded-2xl text-center">
+                    <div class="text-3xl font-bold text-green-400 mb-1">2,891</div>
+                    <div class="text-sm text-gray-400">Xabarlar</div>
+                </div>
+                <div class="glass-card p-6 rounded-2xl text-center">
+                    <div class="text-3xl font-bold text-yellow-400 mb-1">156</div>
+                    <div class="text-sm text-gray-400">Onlayn</div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Main Content -->
+                <div class="lg:col-span-2 space-y-6">
+                    <!-- Filter Tabs -->
+                    <div class="glass-card rounded-2xl p-6">
+                        <div class="flex flex-wrap gap-3">
+                            <button class="filter-btn px-6 py-3 rounded-xl font-medium transition bg-lawBlue text-white">
+                                Eng yangi
+                            </button>
+                            <button class="filter-btn px-6 py-3 rounded-xl font-medium transition glass-card hover:bg-white/5">
+                                Mashhur
+                            </button>
+                            <button class="filter-btn px-6 py-3 rounded-xl font-medium transition glass-card hover:bg-white/5">
+                                Javobsiz
+                            </button>
+                            <button class="filter-btn px-6 py-3 rounded-xl font-medium transition glass-card hover:bg-white/5">
+                                Hal qilingan
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Topics List -->
+                    <div class="space-y-4" id="topicsList">
+                        <!-- Topic 1 -->
+                        <div class="glass-card rounded-2xl p-6 cursor-pointer topic-card transition">
+                            <div class="flex gap-4">
+                                <div class="user-avatar w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0 text-xl">
+                                    A
+                                </div>
+                                <div class="flex-1">
+                                    <div class="flex items-start justify-between mb-2">
+                                        <div>
+                                            <h3 class="text-lg font-bold mb-1 hover:text-lawBlue transition">
+                                                Fuqarolik shartnomalarida majburiyatlar
+                                            </h3>
+                                            <div class="flex items-center gap-3 text-xs text-gray-400">
+                                                <span class="font-semibold text-white">Aziza Rahimova</span>
+                                                <span>•</span>
+                                                <span>2 soat oldin</span>
+                                            </div>
+                                        </div>
+                                        <span class="px-3 py-1 bg-blue-500/20 text-blue-400 rounded-full text-xs font-semibold whitespace-nowrap">
+                                            Savol
+                                        </span>
+                                    </div>
+                                    <p class="text-sm text-gray-400 mb-4 line-clamp-2">
+                                        Assalomu alaykum! Shartnoma tuzishda majburiyatlarning amal qilish muddati qanday belgilanadi? Konstitutsiyada bu haqda qanday ma'lumot bor?
+                                    </p>
+                                    <div class="flex items-center gap-6 text-sm">
+                                        <div class="flex items-center gap-2 text-gray-400">
+                                            <i class="ph-bold ph-chat-circle-dots"></i>
+                                            <span>12 javob</span>
+                                        </div>
+                                        <div class="flex items-center gap-2 text-gray-400">
+                                            <i class="ph-bold ph-eye"></i>
+                                            <span>234 ko'rildi</span>
+                                        </div>
+                                        <div class="flex items-center gap-2 text-green-400">
+                                            <i class="ph-bold ph-check-circle"></i>
+                                            <span>Hal qilindi</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Topic 2 -->
+                        <div class="glass-card rounded-2xl p-6 cursor-pointer topic-card transition">
+                            <div class="flex gap-4">
+                                <div class="user-avatar w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0 text-xl" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                                    J
+                                </div>
+                                <div class="flex-1">
+                                    <div class="flex items-start justify-between mb-2">
+                                        <div>
+                                            <h3 class="text-lg font-bold mb-1 hover:text-lawBlue transition">
+                                                Jinoyat kodeksida yangiliklar 2025
+                                            </h3>
+                                            <div class="flex items-center gap-3 text-xs text-gray-400">
+                                                <span class="font-semibold text-white">Jahongir Umarov</span>
+                                                <span>•</span>
+                                                <span>5 soat oldin</span>
+                                            </div>
+                                        </div>
+                                        <span class="px-3 py-1 bg-purple-500/20 text-purple-400 rounded-full text-xs font-semibold whitespace-nowrap">
+                                            Muhokama
+                                        </span>
+                                    </div>
+                                    <p class="text-sm text-gray-400 mb-4 line-clamp-2">
+                                        Yangi yilda jinoyat kodeksiga qo'shilgan o'zgarishlar haqida kimda ma'lumot bor? Ayniqsa jinoyat javobgarlik yoshiga oid...
+                                    </p>
+                                    <div class="flex items-center gap-6 text-sm">
+                                        <div class="flex items-center gap-2 text-gray-400">
+                                            <i class="ph-bold ph-chat-circle-dots"></i>
+                                            <span>28 javob</span>
+                                        </div>
+                                        <div class="flex items-center gap-2 text-gray-400">
+                                            <i class="ph-bold ph-eye"></i>
+                                            <span>567 ko'rildi</span>
+                                        </div>
+                                        <div class="flex items-center gap-2 text-yellow-400">
+                                            <i class="ph-bold ph-fire"></i>
+                                            <span>Issiq</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Topic 3 -->
+                        <div class="glass-card rounded-2xl p-6 cursor-pointer topic-card transition">
+                            <div class="flex gap-4">
+                                <div class="user-avatar w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0 text-xl" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                                    M
+                                </div>
+                                <div class="flex-1">
+                                    <div class="flex items-start justify-between mb-2">
+                                        <div>
+                                            <h3 class="text-lg font-bold mb-1 hover:text-lawBlue transition">
+                                                DTM imtihoniga tayyorgarlik - tajriba
+                                            </h3>
+                                            <div class="flex items-center gap-3 text-xs text-gray-400">
+                                                <span class="font-semibold text-white">Malika Yusupova</span>
+                                                <span>•</span>
+                                                <span>1 kun oldin</span>
+                                            </div>
+                                        </div>
+                                        <span class="px-3 py-1 bg-green-500/20 text-green-400 rounded-full text-xs font-semibold whitespace-nowrap">
+                                            Tajriba
+                                        </span>
+                                    </div>
+                                    <p class="text-sm text-gray-400 mb-4 line-clamp-2">
+                                        Salom barcha! Men DTM imtihonidan 189 ball oldim va Universitetga kirdim. O'z tajribamni baham ko'rmoqchiman...
+                                    </p>
+                                    <div class="flex items-center gap-6 text-sm">
+                                        <div class="flex items-center gap-2 text-gray-400">
+                                            <i class="ph-bold ph-chat-circle-dots"></i>
+                                            <span>45 javob</span>
+                                        </div>
+                                        <div class="flex items-center gap-2 text-gray-400">
+                                            <i class="ph-bold ph-eye"></i>
+                                            <span>1.2K ko'rildi</span>
+                                        </div>
+                                        <div class="flex items-center gap-2 text-lawBlue">
+                                            <i class="ph-bold ph-heart-fill"></i>
+                                            <span>89</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Topic 4 -->
+                        <div class="glass-card rounded-2xl p-6 cursor-pointer topic-card transition">
+                            <div class="flex gap-4">
+                                <div class="user-avatar w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0 text-xl" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+                                    D
+                                </div>
+                                <div class="flex-1">
+                                    <div class="flex items-start justify-between mb-2">
+                                        <div>
+                                            <h3 class="text-lg font-bold mb-1 hover:text-lawBlue transition">
+                                                Mehnat shartnomasi bekor qilish
+                                            </h3>
+                                            <div class="flex items-center gap-3 text-xs text-gray-400">
+                                                <span class="font-semibold text-white">Dilshod Karimov</span>
+                                                <span>•</span>
+                                                <span>2 kun oldin</span>
+                                            </div>
+                                        </div>
+                                        <span class="px-3 py-1 bg-orange-500/20 text-orange-400 rounded-full text-xs font-semibold whitespace-nowrap">
+                                            Yordam
+                                        </span>
+                                    </div>
+                                    <p class="text-sm text-gray-400 mb-4 line-clamp-2">
+                                        Ishchi tomonidan mehnat shartnomasini bekor qilishda qanday tartib saqlash kerak? Qonun bo'yicha necha kun oldin xabar qilish shart?
+                                    </p>
+                                    <div class="flex items-center gap-6 text-sm">
+                                        <div class="flex items-center gap-2 text-gray-400">
+                                            <i class="ph-bold ph-chat-circle-dots"></i>
+                                            <span>8 javob</span>
+                                        </div>
+                                        <div class="flex items-center gap-2 text-gray-400">
+                                            <i class="ph-bold ph-eye"></i>
+                                            <span>156 ko'rildi</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Topic 5 -->
+                        <div class="glass-card rounded-2xl p-6 cursor-pointer topic-card transition">
+                            <div class="flex gap-4">
+                                <div class="user-avatar w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0 text-xl" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);">
+                                    S
+                                </div>
+                                <div class="flex-1">
+                                    <div class="flex items-start justify-between mb-2">
+                                        <div>
+                                            <h3 class="text-lg font-bold mb-1 hover:text-lawBlue transition">
+                                                Maslahatlar: Yurist kasbini tanlayotganlarga
+                                            </h3>
+                                            <div class="flex items-center gap-3 text-xs text-gray-400">
+                                                <span class="font-semibold text-white">Sardor Rashidov</span>
+                                                <span>•</span>
+                                                <span>3 kun oldin</span>
+                                            </div>
+                                        </div>
+                                        <span class="px-3 py-1 bg-blue-500/20 text-blue-400 rounded-full text-xs font-semibold whitespace-nowrap">
+                                            Maslahat
+                                        </span>
+                                    </div>
+                                    <p class="text-sm text-gray-400 mb-4 line-clamp-2">
+                                        Men 5 yillik tajribali yuristman. Kasbni tanlayotgan yoshlarga o'z tavsiyalarimni bermoqchiman. Birinchidan...
+                                    </p>
+                                    <div class="flex items-center gap-6 text-sm">
+                                        <div class="flex items-center gap-2 text-gray-400">
+                                            <i class="ph-bold ph-chat-circle-dots"></i>
+                                            <span>34 javob</span>
+                                        </div>
+                                        <div class="flex items-center gap-2 text-gray-400">
+                                            <i class="ph-bold ph-eye"></i>
+                                            <span>892 ko'rildi</span>
+                                        </div>
+                                        <div class="flex items-center gap-2 text-lawBlue">
+                                            <i class="ph-bold ph-heart-fill"></i>
+                                            <span>156</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pagination -->
+                    <div class="flex items-center justify-center gap-2 pt-6">
+                        <button class="w-10 h-10 rounded-lg glass-card hover:bg-white/5 flex items-center justify-center transition">
+                            <i class="ph-bold ph-caret-left"></i>
+                        </button>
+                        <button class="w-10 h-10 rounded-lg bg-lawBlue text-white flex items-center justify-center font-semibold">1</button>
+                        <button class="w-10 h-10 rounded-lg glass-card hover:bg-white/5 flex items-center justify-center transition">2</button>
+                        <button class="w-10 h-10 rounded-lg glass-card hover:bg-white/5 flex items-center justify-center transition">3</button>
+                        <span class="px-2">...</span>
+                        <button class="w-10 h-10 rounded-lg glass-card hover:bg-white/5 flex items-center justify-center transition">10</button>
+                        <button class="w-10 h-10 rounded-lg glass-card hover:bg-white/5 flex items-center justify-center transition">
+                            <i class="ph-bold ph-caret-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Sidebar -->
+                <div class="space-y-6">
+                    <!-- Popular Tags -->
+                    <div class="glass-card rounded-2xl p-6">
+                        <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+                            <i class="ph-fill ph-hash text-lawBlue"></i>
+                            Mashhur teglar
+                        </h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-4 py-2 bg-lawBlue/20 text-lawBlue rounded-lg text-sm font-medium cursor-pointer hover:bg-lawBlue/30 transition">
+                                #konstitutsiya
+                            </span>
+                            <span class="px-4 py-2 bg-purple-500/20 text-purple-400 rounded-lg text-sm font-medium cursor-pointer hover:bg-purple-500/30 transition">
+                                #jinoyat
+                            </span>
+                            <span class="px-4 py-2 bg-green-500/20 text-green-400 rounded-lg text-sm font-medium cursor-pointer hover:bg-green-500/30 transition">
+                                #dtm
+                            </span>
+                            <span class="px-4 py-2 bg-orange-500/20 text-orange-400 rounded-lg text-sm font-medium cursor-pointer hover:bg-orange-500/30 transition">
+                                #mehnat
+                            </span>
+                            <span class="px-4 py-2 bg-pink-500/20 text-pink-400 rounded-lg text-sm font-medium cursor-pointer hover:bg-pink-500/30 transition">
+                                #fuqarolik
+                            </span>
+                            <span class="px-4 py-2 bg-blue-500/20 text-blue-400 rounded-lg text-sm font-medium cursor-pointer hover:bg-blue-500/30 transition">
+                                #savol
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Top Contributors -->
+                    <div class="glass-card rounded-2xl p-6">
+                        <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+                            <i class="ph-fill ph-trophy text-yellow-500"></i>
+                            TOP hissa qo'shuvchilar
+                        </h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-full bg-gradient-to-br from-yellow-400 to-yellow-600 flex items-center justify-center font-bold">
+                                    1
+                                </div>
+                                <div class="flex-1">
+                                    <div class="font-semibold">Aziza Rahimova</div>
+                                    <div class="text-xs text-gray-400">342 javob</div>
+                                </div>
+                                <div class="text-yellow-400">
+                                    <i class="ph-fill ph-medal text-2xl"></i>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-full bg-gradient-to-br from-gray-300 to-gray-500 flex items-center justify-center font-bold text-black">
+                                    2
+                                </div>
+                                <div class="flex-1">
+                                    <div class="font-semibold">Jahongir Umarov</div>
+                                    <div class="text-xs text-gray-400">289 javob</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-full bg-gradient-to-br from-orange-400 to-orange-600 flex items-center justify-center font-bold">
+                                    3
+                                </div>
+                                <div class="flex-1">
+                                    <div class="font-semibold">Dilshod Karimov</div>
+                                    <div class="text-xs text-gray-400">234 javob</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Community Rules -->
+                    <div class="glass-card rounded-2xl p-6">
+                        <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+                            <i class="ph-fill ph-info text-lawBlue"></i>
+                            Jamiyat qoidalari
+                        </h3>
+                        <ul class="space-y-3 text-sm text-gray-400">
+                            <li class="flex items-start gap-2">
+                                <i class="ph-bold ph-check text-green-400 mt-1"></i>
+                                <span>Hurmatli va odobli muloqot qiling</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="ph-bold ph-check text-green-400 mt-1"></i>
+                                <span>Spam va reklama qilmang</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="ph-bold ph-check text-green-400 mt-1"></i>
+                                <span>Aniq va tushunarli savollar bering</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="ph-bold ph-check text-green-400 mt-1"></i>
+                                <span>Boshqalarga yordam bering</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- New Post Modal -->
+    <div id="newPostModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 items-center justify-center p-4">
+        <div class="glass-card rounded-3xl max-w-3xl w-full">
+            <div class="p-6 border-b border-white/5 flex items-center justify-between">
+                <h2 class="text-2xl font-bold">Yangi mavzu yaratish</h2>
+                <button onclick="closeNewPost()" class="w-10 h-10 rounded-full hover:bg-white/5 flex items-center justify-center transition">
+                    <i class="ph-bold ph-x text-2xl"></i>
+                </button>
+            </div>
+            <div class="p-6 space-y-6">
+                <div>
+                    <label class="block text-sm font-medium mb-2">Sarlavha</label>
+                    <input type="text" placeholder="Mavzu sarlavhasini kiriting..." class="w-full bg-lawCard border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-lawBlue transition">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium mb-2">Kategoriya</label>
+                    <select class="w-full bg-lawCard border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-lawBlue transition">
+                        <option>Savol</option>
+                        <option>Muhokama</option>
+                        <option>Tajriba</option>
+                        <option>Yordam</option>
+                        <option>Maslahat</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium mb-2">Matn</label>
+                    <textarea rows="6" placeholder="Mavzu haqida batafsil yozing..." class="w-full bg-lawCard border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-lawBlue transition resize-none"></textarea>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium mb-2">Teglar</label>
+                    <input type="text" placeholder="#konstitutsiya #savol" class="w-full bg-lawCard border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-lawBlue transition">
+                </div>
+                <div class="flex gap-3">
+                    <button onclick="closeNewPost()" class="flex-1 px-6 py-3 glass-card rounded-xl hover:bg-white/5 transition font-semibold">
+                        Bekor qilish
+                    </button>
+                    <button class="flex-1 px-6 py-3 bg-lawBlue hover:bg-blue-600 rounded-xl transition font-semibold">
+                        E'lon qilish
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-white/5 bg-black mt-20">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <div class="flex items-center justify-center gap-2 mb-6">
+                <i class="ph-fill ph-scales text-2xl text-lawBlue"></i>
+                <span class="text-xl font-bold">Lawinate.uz</span>
+            </div>
+            <p class="text-gray-500 text-sm mb-8">© 2025 Lawinate. Barcha huquqlar himoyalangan.</p>
+            <div class="flex justify-center gap-6 text-gray-400">
+                <a href="#" class="hover:text-white transition"><i class="ph-fill ph-telegram-logo text-xl"></i></a>
+                <a href="#" class="hover:text-white transition"><i class="ph-fill ph-instagram-logo text-xl"></i></a>
+                <a href="#" class="hover:text-white transition"><i class="ph-fill ph-linkedin-logo text-xl"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function openNewPost() {
+            document.getElementById('newPostModal').classList.add('active');
+        }
+
+        function closeNewPost() {
+            document.getElementById('newPostModal').classList.remove('active');
+        }
+
+        // Filter functionality
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.filter-btn').forEach(b => {
+                    b.classList.remove('bg-lawBlue', 'text-white');
+                    b.classList.add('glass-card');
+                });
+                btn.classList.add('bg-lawBlue', 'text-white');
+                btn.classList.remove('glass-card');
+            });
+        });
+    </script>
+</body>
+</html>

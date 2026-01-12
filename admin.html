@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="uz" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel | Lawinate.uz</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        lawBlue: '#0066FF',
+                        lawDark: '#050505',
+                        lawCard: '#0F1115',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #050505;
+            color: white;
+            background-image:
+                radial-gradient(circle at 20% 20%, rgba(0, 102, 255, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 80% 80%, rgba(0, 102, 255, 0.1) 0%, transparent 40%);
+        }
+        .glass-nav {
+            background: rgba(5, 5, 5, 0.7);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .glass-card {
+            background: rgba(15, 17, 21, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .sidebar-link {
+            transition: all 0.3s ease;
+        }
+        .sidebar-link:hover, .sidebar-link.active {
+            background: rgba(0, 102, 255, 0.2);
+            border-left: 3px solid #0066FF;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass-nav">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <a href="index.html" class="flex items-center gap-2">
+                    <i class="ph-fill ph-scales text-3xl text-lawBlue"></i>
+                    <span class="text-2xl font-bold tracking-tight">Lawinate<span class="text-lawBlue">.uz</span></span>
+                    <span class="ml-2 px-3 py-1 bg-red-500/20 text-red-400 rounded-full text-xs font-bold">ADMIN</span>
+                </a>
+                <div class="flex items-center gap-4">
+                    <span class="text-sm text-gray-400">Admin: <span class="text-white font-semibold">Aziza</span></span>
+                    <button onclick="handleLogout()" class="text-sm font-medium hover:text-white text-gray-300 transition">
+                        <i class="ph-bold ph-sign-out"></i> Chiqish
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Admin Dashboard -->
+    <section class="pt-32 pb-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+                
+                <!-- Sidebar -->
+                <div class="lg:col-span-1">
+                    <div class="glass-card rounded-3xl p-6 sticky top-32">
+                        <h3 class="text-lg font-bold mb-4">Admin Menu</h3>
+                        <nav class="space-y-2">
+                            <button onclick="showTab('overview')" class="sidebar-link active w-full text-left px-4 py-3 rounded-xl flex items-center gap-3">
+                                <i class="ph-bold ph-house"></i>
+                                <span>Umumiy</span>
+                            </button>
+                            <button onclick="showTab('tests')" class="sidebar-link w-full text-left px-4 py-3 rounded-xl flex items-center gap-3">
+                                <i class="ph-bold ph-exam"></i>
+                                <span>Testlar</span>
+                            </button>
+                            <button onclick="showTab('users')" class="sidebar-link w-full text-left px-4 py-3 rounded-xl flex items-center gap-3">
+                                <i class="ph-bold ph-users"></i>
+                                <span>Foydalanuvchilar</span>
+                            </button>
+                            <button onclick="showTab('analytics')" class="sidebar-link w-full text-left px-4 py-3 rounded-xl flex items-center gap-3">
+                                <i class="ph-bold ph-chart-line"></i>
+                                <span>Analitika</span>
+                            </button>
+                            <button onclick="showTab('settings')" class="sidebar-link w-full text-left px-4 py-3 rounded-xl flex items-center gap-3">
+                                <i class="ph-bold ph-gear"></i>
+                                <span>Sozlamalar</span>
+                            </button>
+                        </nav>
+                    </div>
+                </div>
+
+                <!-- Main Content -->
+                <div class="lg:col-span-3">
+                    
+                    <!-- Overview Tab -->
+                    <div id="overview" class="tab-content active space-y-6">
+                        <h2 class="text-3xl font-black mb-6">Dashboard</h2>
+                        
+                        <!-- Stats Grid -->
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div class="glass-card rounded-2xl p-6">
+                                <div class="flex items-center justify-between mb-4">
+                                    <div class="w-12 h-12 bg-blue-600/20 rounded-xl flex items-center justify-center">
+                                        <i class="ph-fill ph-users text-2xl text-blue-400"></i>
+                                    </div>
+                                    <span class="text-xs font-semibold text-blue-400 px-3 py-1 bg-blue-500/20 rounded-full">+12%</span>
+                                </div>
+                                <div class="text-3xl font-bold mb-1">5,247</div>
+                                <div class="text-sm text-gray-400">Foydalanuvchilar</div>
+                            </div>
+
+                            <div class="glass-card rounded-2xl p-6">
+                                <div class="flex items-center justify-between mb-4">
+                                    <div class="w-12 h-12 bg-green-600/20 rounded-xl flex items-center justify-center">
+                                        <i class="ph-fill ph-exam text-2xl text-green-400"></i>
+                                    </div>
+                                    <span class="text-xs font-semibold text-green-400 px-3 py-1 bg-green-500/20 rounded-full">156</span>
+                                </div>
+                                <div class="text-3xl font-bold mb-1">1,234</div>
+                                <div class="text-sm text-gray-400">Bugun ishlangan testlar</div>
+                            </div>
+
+                            <div class="glass-card rounded-2xl p-6">
+                                <div class="flex items-center justify-between mb-4">
+                                    <div class="w-12 h-12 bg-purple-600/20 rounded-xl flex items-center justify-center">
+                                        <i class="ph-fill ph-books text-2xl text-purple-400"></i>
+                                    </div>
+                                    <span class="text-xs font-semibold text-purple-400 px-3 py-1 bg-purple-500/20 rounded-full">+5</span>
+                                </div>
+                                <div class="text-3xl font-bold mb-1">42</div>
+                                <div class="text-sm text-gray-400">Jami testlar</div>
+                            </div>
+                        </div>
+
+                        <!-- Recent Activity -->
+                        <div class="glass-card rounded-3xl p-8">
+                            <h3 class="text-2xl font-bold mb-6">So'nggi faoliyat</h3>
+                            <div class="space-y-4">
+                                <div class="flex items-center gap-4 p-4 glass-card rounded-xl">
+                                    <div class="w-10 h-10 bg-green-600/20 rounded-full flex items-center justify-center">
+                                        <i class="ph-fill ph-user-plus text-green-400"></i>
+                                    </div>
+                                    <div class="flex-1">
+                                        <p class="font-semibold">Yangi foydalanuvchi ro'yxatdan o'tdi</p>
+                                        <p class="text-sm text-gray-400">Malika Yusupova - 5 daqiqa oldin</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-4 p-4 glass-card rounded-xl">
+                                    <div class="w-10 h-10 bg-blue-600/20 rounded-full flex items-center justify-center">
+                                        <i class="ph-fill ph-exam text-blue-400"></i>
+                                    </div>
+                                    <div class="flex-1">
+                                        <p class="font-semibold">Test yakunlandi</p>
+                                        <p class="text-sm text-gray-400">Jahongir - Konstitutsiya (28/30) - 15 daqiqa oldin</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-4 p-4 glass-card rounded-xl">
+                                    <div class="w-10 h-10 bg-purple-600/20 rounded-full flex items-center justify-center">
+                                        <i class="ph-fill ph-chat-circle text-purple-400"></i>
+                                    </div>
+                                    <div class="flex-1">
+                                        <p class="font-semibold">Yangi forum mavzusi</p>
+                                        <p class="text-sm text-gray-400">Dilshod - Mehnat huquqi haqida - 1 soat oldin</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tests Tab -->
+                    <div id="tests" class="tab-content space-y-6">
+                        <div class="flex items-center justify-between mb-6">
+                            <h2 class="text-3xl font-black">Testlarni boshqarish</h2>
+                            <button onclick="openAddTestModal()" class="px-6 py-3 bg-lawBlue hover:bg-blue-600 rounded-xl font-bold transition flex items-center gap-2">
+                                <i class="ph-bold ph-plus"></i>
+                                Yangi test qo'shish
+                            </button>
+                        </div>
+
+                        <!-- Tests List -->
+                        <div class="space-y-4" id="testsList">
+                            <!-- Tests will be populated here -->
+                        </div>
+                    </div>
+
+                    <!-- Users Tab -->
+                    <div id="users" class="tab-content space-y-6">
+                        <h2 class="text-3xl font-black mb-6">Foydalanuvchilar</h2>
+                        
+                        <!-- Search and Filter -->
+                        <div class="glass-card rounded-2xl p-6">
+                            <div class="flex gap-4">
+                                <input 
+                                    type="text" 
+                                    placeholder="Foydalanuvchi qidirish..." 
+                                    class="flex-1 bg-lawCard border border-white/10 rounded-xl px-4 py-3"
+                                >
+                                <select class="bg-lawCard border border-white/10 rounded-xl px-4 py-3">
+                                    <option>Barcha universitetlar</option>
+                                    <option>TDYU</option>
+                                    <option>ToshDTU</option>
+                                    <option>O'zMU</option>
+                                </select>
+                                <button class="px-6 py-3 bg-lawBlue rounded-xl font-semibold">Qidirish</button>
+                            </div>
+                        </div>
+
+                        <!-- Users Table -->
+                        <div class="glass-card rounded-3xl overflow-hidden">
+                            <table class="w-full">
+                                <thead class="border-b border-white/5">
+                                    <tr class="text-left text-gray-400 text-sm">
+                                        <th class="p-4">Foydalanuvchi</th>
+                                        <th class="p-4">Email</th>
+                                        <th class="p-4">Universitet</th>
+                                        <th class="p-4">Testlar</th>
+                                        <th class="p-4">Reyting</th>
+                                        <th class="p-4">Amallar</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-sm">
+                                    <tr class="border-b border-white/5 hover:bg-white/5">
+                                        <td class="p-4">
+                                            <div class="flex items-center gap-3">
+                                                <div class="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center">A</div>
+                                                <span class="font-semibold">Aziza Rahimova</span>
+                                            </div>
+                                        </td>
+                                        <td class="p-4 text-gray-400">aziza@example.com</td>
+                                        <td class="p-4 text-gray-400">TDYU</td>
+                                        <td class="p-4 text-gray-400">45</td>
+                                        <td class="p-4 font-bold text-yellow-400">#1</td>
+                                        <td class="p-4">
+                                            <button class="text-gray-400 hover:text-white"><i class="ph-bold ph-pencil"></i></button>
+                                            <button class="text-gray-400 hover:text-red-400 ml-3"><i class="ph-bold ph-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Analytics Tab -->
+                    <div id="analytics" class="tab-content space-y-6">
+                        <h2 class="text-3xl font-black mb-6">Analitika</h2>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="glass-card rounded-3xl p-8">
+                                <h3 class="text-xl font-bold mb-4">Eng mashhur testlar</h3>
+                                <div class="space-y-4">
+                                    <div class="flex items-center justify-between">
+                                        <span>Konstitutsiya</span>
+                                        <span class="font-bold text-lawBlue">342</span>
+                                    </div>
+                                    <div class="flex items-center justify-between">
+                                        <span>DTM Tayyorgarlik</span>
+                                        <span class="font-bold text-lawBlue">289</span>
+                                    </div>
+                                    <div class="flex items-center justify-between">
+                                        <span>Jinoyat Huquqi</span>
+                                        <span class="font-bold text-lawBlue">234</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="glass-card rounded-3xl p-8">
+                                <h3 class="text-xl font-bold mb-4">Faol universitetlar</h3>
+                                <div class="space-y-4">
+                                    <div class="flex items-center justify-between">
+                                        <span>TDYU</span>
+                                        <span class="font-bold text-green-400">1,234</span>
+                                    </div>
+                                    <div class="flex items-center justify-between">
+                                        <span>ToshDTU</span>
+                                        <span class="font-bold text-green-400">892</span>
+                                    </div>
+                                    <div class="flex items-center justify-between">
+                                        <span>O'zMU</span>
+                                        <span class="font-bold text-green-400">745</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Settings Tab -->
+                    <div id="settings" class="tab-content space-y-6">
+                        <h2 class="text-3xl font-black mb-6">Sozlamalar</h2>
+                        
+                        <div class="glass-card rounded-3xl p-8">
+                            <h3 class="text-xl font-bold mb-6">Umumiy sozlamalar</h3>
+                            <div class="space-y-6">
+                                <div>
+                                    <label class="block text-sm font-medium mb-2">Sayt nomi</label>
+                                    <input type="text" value="Lawinate.uz" class="w-full bg-lawCard border border-white/10 rounded-xl px-4 py-3">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium mb-2">Admin email</label>
+                                    <input type="email" value="admin@lawinate.uz" class="w-full bg-lawCard border border-white/10 rounded-xl px-4 py-3">
+                                </div>
+                                <div>
+                                    <label class="flex items-center gap-3 cursor-pointer">
+                                        <input type="checkbox" class="w-5 h-5 rounded border-gray-600 text-lawBlue">
+                                        <span>Yangi foydalanuvchi ro'yxatdan o'tishiga ruxsat berish</span>
+                                    </label>
+                                </div>
+                                <div>
+                                    <label class="flex items-center gap-3 cursor-pointer">
+                                        <input type="checkbox" checked class="w-5 h-5 rounded border-gray-600 text-lawBlue">
+                                        <span>Email tasdiqlanishi talab qilinsin</span>
+                                    </label>
+                                </div>
+                                <button class="px-8 py-3 bg-lawBlue hover:bg-blue-600 rounded-xl font-bold transition">
+                                    Saqlash
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Add Test Modal -->
+    <div id="addTestModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+        <div class="glass-card rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+            <div class="p-6 border-b border-white/5 flex items-center justify-between">
+                <h2 class="text-2xl font-bold">Yangi test qo'shish</h2>
+                <button onclick="closeAddTestModal()" class="w-10 h-10 rounded-full hover:bg-white/5 flex items-center justify-center">
+                    <i class="ph-bold ph-x text-2xl"></i>
+                </button>
+            </div>
+            
+            <div class="p-8 space-y-6">
+                <div>
+                    <label class="block text-sm font-medium mb-2">Test nomi</label>
+                    <input 
+                        type="text" 
+                        id="testName"
+                        placeholder="Masalan: Konstitutsiya testi" 
+                        class="w-full bg-lawCard border border-white/10 rounded-xl px-4 py-3"
+                    >
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium mb-2">Kategoriya</label>
+                        <select id="testCategory" class="w-full bg-lawCard border border-white/10 rounded-xl px-4 py-3">
+                            <option>Konstitutsiya</option>
+                            <option>Jinoyat Huquqi</option>
+                            <option>Fuqarolik Huquqi</option>
+                            <option>Mehnat Huquqi</option>
+                            <option>Oila Huquqi</option>
+                            <option>DTM Tayyorgarlik</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-2">Qiyinlik darajasi</label>
+                        <select id="testDifficulty" class="w-full bg-lawCard border border-white/10 rounded-xl px-4 py-3">
+                            <option>Oson</option>
+                            <option>O'rta</option>
+                            <option>Qiyin</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium mb-2">Savollar soni</label>
+                        <input 
+                            type="number" 
+                            id="testQuestions"
+                            value="30" 
+                            class="w-full bg-lawCard border border-white/10 rounded-xl px-4 py-3"
+                        >
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-2">Vaqt (daqiqa)</label>
+                        <input 
+                            type="number" 
+                            id="testDuration"
+                            value="45" 
+                            class="w-full bg-lawCard border border-white/10 rounded-xl px-4 py-3"
+                        >
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium mb-2">Tavsif</label>
+                    <textarea 
+                        id="testDescription"
+                        rows="3" 
+                        placeholder="Test haqida qisqacha ma'lumot..." 
+                        class="w-full bg-lawCard border border-white/10 rounded-xl px-4 py-3 resize-none"
+                    ></textarea>
+                </div>
+
+                <div class="glass-card rounded-xl p-6">
+                    <h3 class="font-bold mb-4 flex items-center gap-2">
+                        <i class="ph-bold ph-question"></i>
+                        Savollar
+                    </h3>
+                    <div id="questionsContainer" class="space-y-4">
+                        <!-- Question 1 -->
+                        <div class="glass-card rounded-xl p-4">
+                            <div class="mb-3">
+                                <label class="block text-sm font-medium mb-2">Savol 1</label>
+                                <input 
+                                    type="text" 
+                                    placeholder="Savol matni..." 
+                                    class="w-full bg-lawCard border border-white/10 rounded-lg px-4 py-2"
+                                >
+                            </div>
+                            <div class="space-y-2">
+                                <input type="text" placeholder="A) Javob 1" class="w-full bg-lawCard border border-white/10 rounded-lg px-4 py-2 text-sm">
+                                <input type="text" placeholder="B) Javob 2" class="w-full bg-lawCard border border-white/10 rounded-lg px-4 py-2 text-sm">
+                                <input type="text" placeholder="C) Javob 3" class="w-full bg-lawCard border border-white/10 rounded-lg px-4 py-2 text-sm">
+                                <input type="text" placeholder="D) Javob 4" class="w-full bg-lawCard border border-white/10 rounded-lg px-4 py-2 text-sm">
+                            </div>
+                            <div class="mt-3">
+                                <label class="block text-sm font-medium mb-2">To'g'ri javob</label>
+                                <select class="w-full bg-lawCard border border-white/10 rounded-lg px-4 py-2 text-sm">
+                                    <option>A</option>
+                                    <option>B</option>
+                                    <option>C</option>
+                                    <option>D</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <button onclick="addQuestion()" class="mt-4 w-full py-3 glass-card hover:bg-white/5 rounded-xl font-semibold transition">
+                        <i class="ph-bold ph-plus mr-2"></i>
+                        Savol qo'shish
+                    </button>
+                </div>
+
+                <div class="flex gap-4">
+                    <button onclick="closeAddTestModal()" class="flex-1 py-3 glass-card hover:bg-white/5 rounded-xl font-semibold">
+                        Bekor qilish
+                    </button>
+                    <button onclick="saveTest()" class="flex-1 py-3 bg-lawBlue hover:bg-blue-600 rounded-xl font-semibold">
+                        Testni saqlash
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Tab management
+        function showTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Remove active class from all sidebar links
+            document.querySelectorAll('.sidebar-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            // Show selected tab
+            document.getElementById(tabName).classList.add('active');
+            
+            // Add active class to clicked link
+            event.target.closest('.sidebar-link').classList.add('active');
+        }
+
+        // Modal management
+        function openAddTestModal() {
+            document.getElementById('addTestModal').classList.remove('hidden');
+            document.getElementById('addTestModal').classList.add('flex');
+        }
+
+        function closeAddTestModal() {
+            document.getElementById('addTestModal').classList.add('hidden');
+            document.getElementById('addTestModal').classList.remove('flex');
+        }
+
+        let questionCount = 1;
+
+        function addQuestion() {
+            questionCount++;
+            const container = document.getElementById('questionsContainer');
+            const newQuestion = `
+                <div class="glass-card rounded-xl p-4">
+                    <div class="mb-3">
+                        <label class="block text-sm font-medium mb-2">Savol ${questionCount}</label>
+                        <input 
+                            type="text" 
+                            placeholder="Savol matni..." 
+                            class="w-full bg-lawCard border border-white/10 rounded-lg px-4 py-2"
+                        >
+                    </div>
+                    <div class="space-y-2">
+                        <input type="text" placeholder="A) Javob 1" class="w-full bg-lawCard border border-white/10 rounded-lg px-4 py-2 text-sm">
+                        <input type="text" placeholder="B) Javob 2" class="w-full bg-lawCard border border-white/10 rounded-lg px-4 py-2 text-sm">
+                        <input type="text" placeholder="C) Javob 3" class="w-full bg-lawCard border border-white/10 rounded-lg px-4 py-2 text-sm">
+                        <input type="text" placeholder="D) Javob 4" class="w-full bg-lawCard border border-white/10 rounded-lg px-4 py-2 text-sm">
+                    </div>
+                    <div class="mt-3">
+                        <label class="block text-sm font-medium mb-2">To'g'ri javob</label>
+                        <select class="w-full bg-lawCard border border-white/10 rounded-lg px-4 py-2 text-sm">
+                            <option>A</option>
+                            <option>B</option>
+                            <option>C</option>
+                            <option>D</option>
+                        </select>
+                    </div>
+                </div>
+            `;
+            container.insertAdjacentHTML('beforeend', newQuestion);
+        }
+
+        function saveTest() {
+            const testData = {
+                name: document.getElementById('testName').value,
+                category: document.getElementById('testCategory').value,
+                difficulty: document.getElementById('testDifficulty').value,
+                questions: parseInt(document.getElementById('testQuestions').value),
+                duration: parseInt(document.getElementById('testDuration').value),
+                description: document.getElementById('testDescription').value,
+                createdAt: new Date().toISOString()
+            };
+
+            // Get existing tests from localStorage
+            let tests = JSON.parse(localStorage.getItem('lawinateTests') || '[]');
+            tests.push(testData);
+            localStorage.setItem('lawinateTests', JSON.stringify(tests));
+
+            alert('Test muvaffaqiyatli qo\'shildi!');
+            closeAddTestModal();
+            loadTests();
+        }
+
+        function loadTests() {
+            const tests = JSON.parse(localStorage.getItem('lawinateTests') || '[]');
+            const container = document.getElementById('testsList');
+            
+            if (tests.length === 0) {
+                container.innerHTML = `
+                    <div class="glass-card rounded-2xl p-12 text-center">
+                        <i class="ph-fill ph-exam text-6xl text-gray-600 mb-4"></i>
+                        <p class="text-gray-400 mb-4">Hali testlar qo'shilmagan</p>
+                        <button onclick="openAddTestModal()" class="px-6 py-3 bg-lawBlue hover:bg-blue-600 rounded-xl font-bold transition">
+                            Birinchi testni qo'shish
+                        </button>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = tests.map((test, index) => `
+                <div class="glass-card rounded-2xl p-6">
+                    <div class="flex items-center justify-between">
+                        <div class="flex-1">
+                            <h3 class="text-xl font-bold mb-2">${test.name}</h3>
+                            <div class="flex items-center gap-4 text-sm text-gray-400">
+                                <span><i class="ph-bold ph-tag mr-1"></i>${test.category}</span>
+                                <span><i class="ph-bold ph-question mr-1"></i>${test.questions} savol</span>
+                                <span><i class="ph-bold ph-clock mr-1"></i>${test.duration} daqiqa</span>
+                                <span class="px-3 py-1 rounded-full ${
+                                    test.difficulty === 'Oson' ? 'bg-green-500/20 text-green-400' :
+                                    test.difficulty === 'O\'rta' ? 'bg-yellow-500/20 text-yellow-400' :
+                                    'bg-red-500/20 text-red-400'
+                                }">${test.difficulty}</span>
+                            </div>
+                        </div>
+                        <div class="flex gap-2">
+                            <button class="w-10 h-10 glass-card hover:bg-white/5 rounded-xl flex items-center justify-center">
+                                <i class="ph-bold ph-pencil"></i>
+                            </button>
+                            <button onclick="deleteTest(${index})" class="w-10 h-10 glass-card hover:bg-red-500/20 rounded-xl flex items-center justify-center text-red-400">
+                                <i class="ph-bold ph-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function deleteTest(index) {
+            if (confirm('Testni o\'chirmoqchimisiz?')) {
+                let tests = JSON.parse(localStorage.getItem('lawinateTests') || '[]');
+                tests.splice(index, 1);
+                localStorage.setItem('lawinateTests', JSON.stringify(tests));
+                loadTests();
+            }
+        }
+
+        function handleLogout() {
+            if (confirm('Admin paneldan chiqmoqchimisiz?')) {
+                window.location.href = 'auth.html';
+            }
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            loadTests();
+        });
+    </script>
+</body>
+</html>
