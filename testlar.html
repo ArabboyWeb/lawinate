@@ -49,25 +49,38 @@
         }
         .option-card {
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
         .option-card:hover {
             background: rgba(255, 255, 255, 0.05);
         }
         .option-card.selected {
-            background: rgba(0, 102, 255, 0.2);
+            background: rgba(0, 102, 255, 0.15);
             border-color: #0066FF;
+            box-shadow: 0 0 15px rgba(0, 102, 255, 0.1);
         }
-        .option-card.correct {
-            background: rgba(34, 197, 94, 0.2);
-            border-color: #22c55e;
+        /* Natija oynasi uchun */
+        .result-circle {
+            background: conic-gradient(#0066FF var(--percent), #1f2937 0);
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
         }
-        .option-card.incorrect {
-            background: rgba(239, 68, 68, 0.2);
-            border-color: #ef4444;
+        .result-circle::before {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: #0F1115; /* Card background color */
+            border-radius: 50%;
         }
         .progress-bar {
-            transition: width 0.3s ease;
+            transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
         #testModal {
             display: none;
@@ -75,11 +88,18 @@
         #testModal.active {
             display: flex;
         }
+        /* Hide scrollbar for modal content */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
     </style>
 </head>
 <body class="antialiased">
 
-    <!-- Navigation -->
     <nav class="fixed w-full z-50 glass-nav">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-20 items-center">
@@ -90,8 +110,10 @@
                 <div class="hidden md:flex space-x-8 text-sm font-medium text-gray-300">
                     <a href="reyting.html" class="hover:text-white transition">Reyting</a>
                     <a href="kutubxona.html" class="hover:text-white transition">Kutubxona</a>
-                    <a href="testlar.html" class="text-white transition">Testlar</a>
-                    <a href="community.html" class="hover:text-white transition">Community</a>
+                    <a href="testlar.html" class="text-white transition font-bold">Testlar</a>
+                    <a href="ai-assistant.html" class="hover:text-lawBlue transition flex items-center gap-1">
+                         <i class="ph-bold ph-sparkle"></i> AI Assistant
+                    </a>
                 </div>
                 <div class="hidden md:flex gap-4">
                     <button class="text-sm font-medium hover:text-white text-gray-300 transition">Kirish</button>
@@ -103,432 +125,377 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
     <section class="pt-32 pb-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
                 <h1 class="text-4xl md:text-6xl font-black mb-4">
-                    <i class="ph-fill ph-exam text-green-500"></i> Test Platformasi
+                    <i class="ph-fill ph-exam text-lawBlue"></i> Test Platformasi
                 </h1>
-                <p class="text-gray-400 text-lg">DTM standartidagi testlar, real imtihon tajribasi</p>
+                <p class="text-gray-400 text-lg">Bilimingizni sinang, reytingni egallang va yurist bo'ling</p>
             </div>
 
-            <!-- User Stats -->
-            <div class="glass-card rounded-3xl p-8 mb-12">
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-                    <div class="text-center">
-                        <div class="text-3xl font-bold text-lawBlue mb-1">45</div>
-                        <div class="text-sm text-gray-400">Ishlangan testlar</div>
-                    </div>
-                    <div class="text-center">
-                        <div class="text-3xl font-bold text-green-400 mb-1">89.5%</div>
-                        <div class="text-sm text-gray-400">O'rtacha ball</div>
-                    </div>
-                    <div class="text-center">
-                        <div class="text-3xl font-bold text-purple-400 mb-1">7</div>
-                        <div class="text-sm text-gray-400">Kunlik strike</div>
-                    </div>
-                    <div class="text-center">
-                        <div class="text-3xl font-bold text-yellow-400 mb-1">#156</div>
-                        <div class="text-sm text-gray-400">Reytingdagi o'rningiz</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Test Categories -->
             <div class="mb-12">
-                <h2 class="text-3xl font-bold mb-8">Test Kategoriyalari</h2>
+                <h2 class="text-3xl font-bold mb-8 flex items-center gap-2">
+                    <i class="ph-bold ph-squares-four text-lawBlue"></i> Kategoriyalar
+                </h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     
-                    <!-- Konstitutsiya Test -->
-                    <div class="glass-card p-8 rounded-3xl relative group cursor-pointer" onclick="openTest('konstitutsiya')">
+                    <div class="glass-card p-8 rounded-3xl relative group cursor-pointer" onclick="initTest('konstitutsiya')">
                         <div class="absolute top-6 right-6">
-                            <span class="px-3 py-1 bg-green-500/20 text-green-400 rounded-full text-xs font-semibold">
-                                Yangi
-                            </span>
+                            <span class="px-3 py-1 bg-green-500/20 text-green-400 rounded-full text-xs font-semibold">Yangi</span>
                         </div>
                         <div class="w-16 h-16 bg-blue-600/20 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-blue-600 transition">
                             <i class="ph-fill ph-flag text-3xl text-blue-400 group-hover:text-white"></i>
                         </div>
                         <h3 class="text-2xl font-bold mb-3">Konstitutsiya</h3>
-                        <p class="text-sm text-gray-400 mb-6">O'zbekiston Respublikasi Konstitutsiyasi bo'yicha test</p>
-                        <div class="flex items-center justify-between text-sm mb-4">
-                            <span class="text-gray-400"><i class="ph-bold ph-question"></i> 30 savol</span>
-                            <span class="text-gray-400"><i class="ph-bold ph-clock"></i> 45 daqiqa</span>
-                        </div>
-                        <div class="flex items-center justify-between">
-                            <div class="text-xs text-gray-500">Qiyinlik:</div>
-                            <div class="flex gap-1">
-                                <div class="w-2 h-2 rounded-full bg-green-500"></div>
-                                <div class="w-2 h-2 rounded-full bg-green-500"></div>
-                                <div class="w-2 h-2 rounded-full bg-gray-700"></div>
-                            </div>
-                        </div>
-                        <button class="w-full mt-6 bg-lawBlue hover:bg-blue-600 text-white py-3 rounded-xl font-semibold transition">
-                            Testni boshlash
+                        <p class="text-sm text-gray-400 mb-6">Asosiy qonun bo'yicha bilimlaringizni tekshiring.</p>
+                        <button class="w-full bg-lawBlue hover:bg-blue-600 text-white py-3 rounded-xl font-semibold transition">
+                            Boshlash
                         </button>
                     </div>
 
-                    <!-- Jinoyat Huquqi Test -->
-                    <div class="glass-card p-8 rounded-3xl relative group cursor-pointer" onclick="openTest('jinoyat')">
+                    <div class="glass-card p-8 rounded-3xl relative group cursor-pointer" onclick="initTest('jinoyat')">
                         <div class="w-16 h-16 bg-red-600/20 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-red-600 transition">
                             <i class="ph-fill ph-gavel text-3xl text-red-400 group-hover:text-white"></i>
                         </div>
                         <h3 class="text-2xl font-bold mb-3">Jinoyat Huquqi</h3>
-                        <p class="text-sm text-gray-400 mb-6">Jinoyat kodeksi va jazo muddatlari</p>
-                        <div class="flex items-center justify-between text-sm mb-4">
-                            <span class="text-gray-400"><i class="ph-bold ph-question"></i> 40 savol</span>
-                            <span class="text-gray-400"><i class="ph-bold ph-clock"></i> 60 daqiqa</span>
-                        </div>
-                        <div class="flex items-center justify-between">
-                            <div class="text-xs text-gray-500">Qiyinlik:</div>
-                            <div class="flex gap-1">
-                                <div class="w-2 h-2 rounded-full bg-yellow-500"></div>
-                                <div class="w-2 h-2 rounded-full bg-yellow-500"></div>
-                                <div class="w-2 h-2 rounded-full bg-yellow-500"></div>
-                            </div>
-                        </div>
-                        <button class="w-full mt-6 bg-lawBlue hover:bg-blue-600 text-white py-3 rounded-xl font-semibold transition">
-                            Testni boshlash
+                        <p class="text-sm text-gray-400 mb-6">Jinoyat kodeksi va jazo turlari bo'yicha testlar.</p>
+                        <button class="w-full bg-lawBlue hover:bg-blue-600 text-white py-3 rounded-xl font-semibold transition">
+                            Boshlash
                         </button>
                     </div>
 
-                    <!-- Fuqarolik Huquqi Test -->
-                    <div class="glass-card p-8 rounded-3xl relative group cursor-pointer" onclick="openTest('fuqarolik')">
+                    <div class="glass-card p-8 rounded-3xl relative group cursor-pointer" onclick="initTest('fuqarolik')">
                         <div class="w-16 h-16 bg-purple-600/20 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-purple-600 transition">
                             <i class="ph-fill ph-handshake text-3xl text-purple-400 group-hover:text-white"></i>
                         </div>
                         <h3 class="text-2xl font-bold mb-3">Fuqarolik Huquqi</h3>
-                        <p class="text-sm text-gray-400 mb-6">Shartnomalar, mulk va majburiyatlar</p>
-                        <div class="flex items-center justify-between text-sm mb-4">
-                            <span class="text-gray-400"><i class="ph-bold ph-question"></i> 35 savol</span>
-                            <span class="text-gray-400"><i class="ph-bold ph-clock"></i> 50 daqiqa</span>
-                        </div>
-                        <div class="flex items-center justify-between">
-                            <div class="text-xs text-gray-500">Qiyinlik:</div>
-                            <div class="flex gap-1">
-                                <div class="w-2 h-2 rounded-full bg-yellow-500"></div>
-                                <div class="w-2 h-2 rounded-full bg-yellow-500"></div>
-                                <div class="w-2 h-2 rounded-full bg-gray-700"></div>
-                            </div>
-                        </div>
-                        <button class="w-full mt-6 bg-lawBlue hover:bg-blue-600 text-white py-3 rounded-xl font-semibold transition">
-                            Testni boshlash
+                        <p class="text-sm text-gray-400 mb-6">Mulk, shartnomalar va majburiyatlar huquqi.</p>
+                        <button class="w-full bg-lawBlue hover:bg-blue-600 text-white py-3 rounded-xl font-semibold transition">
+                            Boshlash
                         </button>
                     </div>
 
-                    <!-- DTM Tayyorgarlik -->
-                    <div class="glass-card p-8 rounded-3xl relative group cursor-pointer" onclick="openTest('dtm')">
+                    <div class="glass-card p-8 rounded-3xl relative group cursor-pointer" onclick="initTest('dtm')">
                         <div class="absolute top-6 right-6">
-                            <span class="px-3 py-1 bg-yellow-500/20 text-yellow-400 rounded-full text-xs font-semibold">
-                                Mashhur
-                            </span>
+                            <span class="px-3 py-1 bg-yellow-500/20 text-yellow-400 rounded-full text-xs font-semibold">Mashhur</span>
                         </div>
                         <div class="w-16 h-16 bg-green-600/20 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-green-600 transition">
                             <i class="ph-fill ph-graduation-cap text-3xl text-green-400 group-hover:text-white"></i>
                         </div>
                         <h3 class="text-2xl font-bold mb-3">DTM Tayyorgarlik</h3>
-                        <p class="text-sm text-gray-400 mb-6">Abituriyentlar uchun maxsus testlar</p>
-                        <div class="flex items-center justify-between text-sm mb-4">
-                            <span class="text-gray-400"><i class="ph-bold ph-question"></i> 30 savol</span>
-                            <span class="text-gray-400"><i class="ph-bold ph-clock"></i> 40 daqiqa</span>
-                        </div>
-                        <div class="flex items-center justify-between">
-                            <div class="text-xs text-gray-500">Qiyinlik:</div>
-                            <div class="flex gap-1">
-                                <div class="w-2 h-2 rounded-full bg-green-500"></div>
-                                <div class="w-2 h-2 rounded-full bg-green-500"></div>
-                                <div class="w-2 h-2 rounded-full bg-gray-700"></div>
-                            </div>
-                        </div>
-                        <button class="w-full mt-6 bg-lawBlue hover:bg-blue-600 text-white py-3 rounded-xl font-semibold transition">
-                            Testni boshlash
+                        <p class="text-sm text-gray-400 mb-6">Universitetlarga kirish uchun huquqshunoslik testlari.</p>
+                        <button class="w-full bg-lawBlue hover:bg-blue-600 text-white py-3 rounded-xl font-semibold transition">
+                            Boshlash
                         </button>
                     </div>
 
-                    <!-- Mehnat Huquqi -->
-                    <div class="glass-card p-8 rounded-3xl relative group cursor-pointer" onclick="openTest('mehnat')">
+                    <div class="glass-card p-8 rounded-3xl relative group cursor-pointer" onclick="initTest('mehnat')">
                         <div class="w-16 h-16 bg-orange-600/20 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-orange-600 transition">
                             <i class="ph-fill ph-briefcase text-3xl text-orange-400 group-hover:text-white"></i>
                         </div>
                         <h3 class="text-2xl font-bold mb-3">Mehnat Huquqi</h3>
-                        <p class="text-sm text-gray-400 mb-6">Mehnat munosabatlari va kafolatlar</p>
-                        <div class="flex items-center justify-between text-sm mb-4">
-                            <span class="text-gray-400"><i class="ph-bold ph-question"></i> 25 savol</span>
-                            <span class="text-gray-400"><i class="ph-bold ph-clock"></i> 35 daqiqa</span>
-                        </div>
-                        <div class="flex items-center justify-between">
-                            <div class="text-xs text-gray-500">Qiyinlik:</div>
-                            <div class="flex gap-1">
-                                <div class="w-2 h-2 rounded-full bg-green-500"></div>
-                                <div class="w-2 h-2 rounded-full bg-gray-700"></div>
-                                <div class="w-2 h-2 rounded-full bg-gray-700"></div>
-                            </div>
-                        </div>
-                        <button class="w-full mt-6 bg-lawBlue hover:bg-blue-600 text-white py-3 rounded-xl font-semibold transition">
-                            Testni boshlash
+                        <p class="text-sm text-gray-400 mb-6">Xodim va ish beruvchi o'rtasidagi munosabatlar.</p>
+                        <button class="w-full bg-lawBlue hover:bg-blue-600 text-white py-3 rounded-xl font-semibold transition">
+                            Boshlash
                         </button>
                     </div>
 
-                    <!-- Mixed Test -->
-                    <div class="glass-card p-8 rounded-3xl relative group cursor-pointer" onclick="openTest('mixed')">
+                    <div class="glass-card p-8 rounded-3xl relative group cursor-pointer" onclick="initTest('mixed')">
                         <div class="w-16 h-16 bg-pink-600/20 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-pink-600 transition">
                             <i class="ph-fill ph-shuffle text-3xl text-pink-400 group-hover:text-white"></i>
                         </div>
                         <h3 class="text-2xl font-bold mb-3">Aralash Test</h3>
-                        <p class="text-sm text-gray-400 mb-6">Barcha mavzulardan tasodifiy savollar</p>
-                        <div class="flex items-center justify-between text-sm mb-4">
-                            <span class="text-gray-400"><i class="ph-bold ph-question"></i> 50 savol</span>
-                            <span class="text-gray-400"><i class="ph-bold ph-clock"></i> 70 daqiqa</span>
-                        </div>
-                        <div class="flex items-center justify-between">
-                            <div class="text-xs text-gray-500">Qiyinlik:</div>
-                            <div class="flex gap-1">
-                                <div class="w-2 h-2 rounded-full bg-red-500"></div>
-                                <div class="w-2 h-2 rounded-full bg-red-500"></div>
-                                <div class="w-2 h-2 rounded-full bg-red-500"></div>
-                            </div>
-                        </div>
-                        <button class="w-full mt-6 bg-lawBlue hover:bg-blue-600 text-white py-3 rounded-xl font-semibold transition">
-                            Testni boshlash
+                        <p class="text-sm text-gray-400 mb-6">Barcha mavzulardan tasodifiy savollar.</p>
+                        <button class="w-full bg-lawBlue hover:bg-blue-600 text-white py-3 rounded-xl font-semibold transition">
+                            Boshlash
                         </button>
                     </div>
 
-                </div>
-            </div>
-
-            <!-- Recent Results -->
-            <div class="mt-16">
-                <h2 class="text-3xl font-bold mb-8">Oxirgi Natijalaringiz</h2>
-                <div class="glass-card rounded-2xl overflow-hidden">
-                    <div class="overflow-x-auto">
-                        <table class="w-full">
-                            <thead class="border-b border-white/5">
-                                <tr class="text-left text-gray-400 text-sm">
-                                    <th class="p-4 font-medium">Sana</th>
-                                    <th class="p-4 font-medium">Test</th>
-                                    <th class="p-4 font-medium">Savollar</th>
-                                    <th class="p-4 font-medium">To'g'ri</th>
-                                    <th class="p-4 font-medium">Ball</th>
-                                    <th class="p-4 font-medium">Status</th>
-                                </tr>
-                            </thead>
-                            <tbody class="text-sm">
-                                <tr class="border-b border-white/5 hover:bg-white/5 transition">
-                                    <td class="p-4 text-gray-400">12.01.2025</td>
-                                    <td class="p-4 font-semibold">Konstitutsiya</td>
-                                    <td class="p-4 text-gray-400">30</td>
-                                    <td class="p-4 text-green-400 font-semibold">27</td>
-                                    <td class="p-4 font-bold">90%</td>
-                                    <td class="p-4">
-                                        <span class="px-3 py-1 bg-green-500/20 text-green-400 rounded-full text-xs font-semibold">
-                                            A'lo
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr class="border-b border-white/5 hover:bg-white/5 transition">
-                                    <td class="p-4 text-gray-400">11.01.2025</td>
-                                    <td class="p-4 font-semibold">Jinoyat Huquqi</td>
-                                    <td class="p-4 text-gray-400">40</td>
-                                    <td class="p-4 text-green-400 font-semibold">34</td>
-                                    <td class="p-4 font-bold">85%</td>
-                                    <td class="p-4">
-                                        <span class="px-3 py-1 bg-blue-500/20 text-blue-400 rounded-full text-xs font-semibold">
-                                            Yaxshi
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr class="border-b border-white/5 hover:bg-white/5 transition">
-                                    <td class="p-4 text-gray-400">10.01.2025</td>
-                                    <td class="p-4 font-semibold">DTM Tayyorgarlik</td>
-                                    <td class="p-4 text-gray-400">30</td>
-                                    <td class="p-4 text-green-400 font-semibold">29</td>
-                                    <td class="p-4 font-bold">96.7%</td>
-                                    <td class="p-4">
-                                        <span class="px-3 py-1 bg-green-500/20 text-green-400 rounded-full text-xs font-semibold">
-                                            A'lo
-                                        </span>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Test Modal -->
-    <div id="testModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 items-center justify-center p-4">
-        <div class="glass-card rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
-            <!-- Modal Header -->
-            <div class="sticky top-0 glass-nav p-6 border-b border-white/5 flex items-center justify-between">
+    <div id="testModal" class="fixed inset-0 bg-black/90 backdrop-blur-md z-50 items-center justify-center p-4 transition-opacity duration-300">
+        <div class="glass-card rounded-3xl max-w-4xl w-full max-h-[90vh] flex flex-col overflow-hidden relative border border-gray-800">
+            
+            <div class="glass-nav p-6 flex items-center justify-between shrink-0 z-10">
                 <div>
-                    <h2 class="text-2xl font-bold" id="modalTitle">Konstitutsiya Testi</h2>
-                    <p class="text-sm text-gray-400" id="modalSubtitle">Savol <span id="currentQuestion">1</span> / <span id="totalQuestions">30</span></p>
+                    <h2 class="text-xl md:text-2xl font-bold text-white flex items-center gap-2">
+                        <span id="modalTitle">Test</span>
+                    </h2>
+                    <p class="text-sm text-gray-400" id="questionCountDisplay">Savol 1 / 10</p>
                 </div>
                 <div class="flex items-center gap-4">
-                    <div class="flex items-center gap-2 text-sm">
-                        <i class="ph-bold ph-clock text-lawBlue"></i>
-                        <span id="timer" class="font-mono font-bold">45:00</span>
+                    <div class="flex items-center gap-2 text-sm bg-white/5 px-3 py-1.5 rounded-lg border border-white/5">
+                        <i class="ph-bold ph-clock text-lawBlue animate-pulse"></i>
+                        <span id="timer" class="font-mono font-bold text-white">00:00</span>
                     </div>
-                    <button onclick="closeTest()" class="w-10 h-10 rounded-full hover:bg-white/5 flex items-center justify-center transition">
-                        <i class="ph-bold ph-x text-2xl"></i>
+                    <button onclick="closeTest()" class="w-10 h-10 rounded-full hover:bg-white/10 flex items-center justify-center transition text-gray-400 hover:text-white">
+                        <i class="ph-bold ph-x text-xl"></i>
                     </button>
                 </div>
             </div>
 
-            <!-- Progress Bar -->
-            <div class="h-2 bg-gray-800">
-                <div id="progressBar" class="h-full bg-lawBlue progress-bar" style="width: 3.33%"></div>
+            <div class="h-1.5 bg-gray-800 w-full shrink-0">
+                <div id="progressBar" class="h-full bg-gradient-to-r from-blue-600 to-cyan-400 progress-bar" style="width: 0%"></div>
             </div>
 
-            <!-- Question Content -->
-            <div class="p-8">
-                <div class="mb-8">
-                    <h3 class="text-xl font-semibold mb-2" id="questionText">O'zbekiston Respublikasi mustaqilligini e'lon qilgan sana?</h3>
-                    <p class="text-sm text-gray-400">Bitta to'g'ri javobni tanlang</p>
+            <div class="flex-1 overflow-y-auto no-scrollbar p-6 md:p-10 relative">
+                
+                <div id="quizContent" class="max-w-3xl mx-auto transition-all duration-300">
+                    <div class="mb-8">
+                        <h3 class="text-xl md:text-2xl font-semibold mb-4 leading-relaxed" id="questionText">
+                            Savol yuklanmoqda...
+                        </h3>
+                        <p class="text-sm text-gray-400 flex items-center gap-2">
+                            <i class="ph-fill ph-info text-lawBlue"></i> Bitta to'g'ri javobni tanlang
+                        </p>
+                    </div>
+
+                    <div class="space-y-4" id="optionsContainer">
+                        </div>
                 </div>
 
-                <!-- Options -->
-                <div class="space-y-4" id="optionsContainer">
-                    <div class="option-card glass-card p-5 rounded-xl border border-white/10" onclick="selectOption(this, 'A')">
-                        <div class="flex items-center gap-4">
-                            <div class="w-8 h-8 rounded-full bg-lawBlue/20 flex items-center justify-center font-bold">A</div>
-                            <div class="flex-1">1 sentyabr, 1991-yil</div>
+                <div id="resultContent" class="hidden flex-col items-center justify-center text-center h-full py-10">
+                    <div class="relative mb-8">
+                        <div class="result-circle" id="scoreCircle">
+                            <span class="z-10 text-3xl font-black text-white" id="scorePercentage">0%</span>
+                        </div>
+                        <div class="absolute top-0 left-0 w-full h-full bg-blue-500 blur-[50px] opacity-20 rounded-full"></div>
+                    </div>
+                    
+                    <h3 class="text-3xl font-bold text-white mb-2" id="resultTitle">Natija</h3>
+                    <p class="text-gray-400 mb-8 max-w-md mx-auto" id="resultMessage">
+                        Test yakunlandi.
+                    </p>
+
+                    <div class="grid grid-cols-3 gap-4 w-full max-w-md mb-8">
+                        <div class="bg-white/5 p-4 rounded-2xl border border-white/5">
+                            <div class="text-gray-400 text-xs uppercase mb-1">Jami</div>
+                            <div class="text-xl font-bold text-white" id="totalQResult">0</div>
+                        </div>
+                        <div class="bg-green-500/10 p-4 rounded-2xl border border-green-500/20">
+                            <div class="text-green-400 text-xs uppercase mb-1">To'g'ri</div>
+                            <div class="text-xl font-bold text-green-400" id="correctQResult">0</div>
+                        </div>
+                        <div class="bg-red-500/10 p-4 rounded-2xl border border-red-500/20">
+                            <div class="text-red-400 text-xs uppercase mb-1">Xato</div>
+                            <div class="text-xl font-bold text-red-400" id="wrongQResult">0</div>
                         </div>
                     </div>
-                    <div class="option-card glass-card p-5 rounded-xl border border-white/10" onclick="selectOption(this, 'B')">
-                        <div class="flex items-center gap-4">
-                            <div class="w-8 h-8 rounded-full bg-lawBlue/20 flex items-center justify-center font-bold">B</div>
-                            <div class="flex-1">31 avgust, 1991-yil</div>
-                        </div>
-                    </div>
-                    <div class="option-card glass-card p-5 rounded-xl border border-white/10" onclick="selectOption(this, 'C')">
-                        <div class="flex items-center gap-4">
-                            <div class="w-8 h-8 rounded-full bg-lawBlue/20 flex items-center justify-center font-bold">C</div>
-                            <div class="flex-1">8 dekabr, 1992-yil</div>
-                        </div>
-                    </div>
-                    <div class="option-card glass-card p-5 rounded-xl border border-white/10" onclick="selectOption(this, 'D')">
-                        <div class="flex items-center gap-4">
-                            <div class="w-8 h-8 rounded-full bg-lawBlue/20 flex items-center justify-center font-bold">D</div>
-                            <div class="flex-1">18 may, 1991-yil</div>
-                        </div>
+
+                    <div class="flex gap-4">
+                        <button onclick="closeTest()" class="px-8 py-3 rounded-xl border border-white/10 hover:bg-white/5 transition font-medium">
+                            Chiqish
+                        </button>
+                        <button onclick="restartTest()" class="px-8 py-3 rounded-xl bg-lawBlue hover:bg-blue-600 transition font-bold text-white flex items-center gap-2">
+                            <i class="ph-bold ph-arrow-counter-clockwise"></i> Qayta ishlash
+                        </button>
                     </div>
                 </div>
 
-                <!-- Navigation -->
-                <div class="flex items-center justify-between mt-8 pt-6 border-t border-white/5">
-                    <button onclick="previousQuestion()" class="px-6 py-3 glass-card rounded-xl hover:bg-white/5 transition disabled:opacity-50" id="prevBtn" disabled>
-                        <i class="ph-bold ph-arrow-left mr-2"></i> Oldingi
-                    </button>
-                    <button onclick="nextQuestion()" class="px-6 py-3 bg-lawBlue hover:bg-blue-600 rounded-xl transition font-semibold" id="nextBtn">
-                        Keyingi <i class="ph-bold ph-arrow-right ml-2"></i>
-                    </button>
-                </div>
+            </div>
+
+            <div id="quizFooter" class="glass-nav p-6 shrink-0 flex justify-between items-center border-t border-white/5">
+                <button onclick="prevQuestion()" id="prevBtn" class="px-6 py-3 rounded-xl text-gray-400 hover:text-white hover:bg-white/5 transition disabled:opacity-30 disabled:cursor-not-allowed flex items-center gap-2" disabled>
+                    <i class="ph-bold ph-arrow-left"></i> Oldingi
+                </button>
+                <button onclick="nextQuestion()" id="nextBtn" class="px-8 py-3 bg-lawBlue hover:bg-blue-600 text-white rounded-xl transition font-semibold disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2" disabled>
+                    Keyingi <i class="ph-bold ph-arrow-right"></i>
+                </button>
             </div>
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="py-12 border-t border-white/5 bg-black mt-20">
-        <div class="max-w-7xl mx-auto px-4 text-center">
-            <div class="flex items-center justify-center gap-2 mb-6">
-                <i class="ph-fill ph-scales text-2xl text-lawBlue"></i>
-                <span class="text-xl font-bold">Lawinate.uz</span>
-            </div>
-            <p class="text-gray-500 text-sm mb-8">© 2025 Lawinate. Barcha huquqlar himoyalangan.</p>
-            <div class="flex justify-center gap-6 text-gray-400">
-                <a href="#" class="hover:text-white transition"><i class="ph-fill ph-telegram-logo text-xl"></i></a>
-                <a href="#" class="hover:text-white transition"><i class="ph-fill ph-instagram-logo text-xl"></i></a>
-                <a href="#" class="hover:text-white transition"><i class="ph-fill ph-linkedin-logo text-xl"></i></a>
-            </div>
-        </div>
-    </footer>
-
     <script>
-        let currentQuestionIndex = 0;
-        let selectedAnswer = null;
-        let timeRemaining = 2700; // 45 minutes in seconds
+        // --- 1. MA'LUMOTLAR BAZASI (DATABASE) ---
+        const testDatabase = {
+            konstitutsiya: [
+                { q: "O'zbekiston Respublikasi Konstitutsiyasi qachon qabul qilingan?", a: ["8-dekabr 1992-yil", "1-sentyabr 1991-yil", "31-avgust 1991-yil", "18-may 1992-yil"], c: 0 },
+                { q: "O'zbekiston Respublikasida davlat hokimiyatining yagona manbai kim?", a: ["Prezident", "Oliy Majlis", "Xalq", "Sud"], c: 2 },
+                { q: "Konstitutsiyaning yangi tahriri qachon referendum orqali qabul qilindi?", a: ["30-aprel 2023-yil", "1-may 2023-yil", "8-dekabr 2022-yil", "21-mart 2023-yil"], c: 0 },
+                { q: "O'zbekiston Respublikasi Konstitutsiyasi necha bobdan iborat?", a: ["26 bob", "27 bob", "28 bob", "128 bob"], c: 2 },
+                { q: "Sud hokimiyati qaysi organlar tomonidan amalga oshiriladi?", a: ["Faqat sudlar", "Prokuratura va sud", "Adliya vazirligi", "Ichki ishlar"], c: 0 }
+            ],
+            jinoyat: [
+                { q: "Jinoyat kodeksiga ko'ra, jinoiy javobgarlikka tortishning eng kichik yoshi necha yosh?", a: ["16 yosh", "14 yosh", "18 yosh", "13 yosh"], c: 1 },
+                { q: "Jinoyatning qasddan sodir etilishi nima?", a: ["Ehtiyotsizlik oqibati", "Shaxs o'z qilmishining ijtimoiy xavfliligini anglashi", "Majburlash ostida qilish", "Bilmasdan qilish"], c: 1 },
+                { q: "O'lim jazosi O'zbekistonda qachon bekor qilingan?", a: ["2005-yil", "2008-yil", "2010-yil", "1999-yil"], c: 1 },
+                { q: "Qilmishning jinoiyligini va jazoliligini nima belgilaydi?", a: ["Sud hukmi", "Prokuror qarori", "Faqat Jinoyat kodeksi", "Ichki ishlar buyrug'i"], c: 2 },
+                { q: "Takroran sodir etilgan jinoyat nima deb ataladi?", a: ["Retsidiv", "Jinoiy uyushma", "Bezori", "Og'ir jinoyat"], c: 0 }
+            ],
+            fuqarolik: [
+                { q: "Fuqarolik huquq layoqati qachon boshlanadi?", a: ["18 yoshda", "Tug'ilgan paytdan", "16 yoshda", "Nikohga kirganda"], c: 1 },
+                { q: "Ishonchnoma ko'pi bilan necha yil muddatga berilishi mumkin?", a: ["1 yil", "3 yil", "5 yil", "Cheksiz"], c: 1 },
+                { q: "Mulk huquqi nechta elementdan iborat?", a: ["2 ta (egalik, foydalanish)", "3 ta (egalik, foydalanish, tasarruf)", "4 ta", "1 ta"], c: 1 },
+                { q: "Shartnoma nima?", a: ["Bir tomonlama xohish", "Ikki yoki undan ortiq shaxsning kelishuvi", "Sud qarori", "Davlat buyrug'i"], c: 1 },
+                { q: "Ma'naviy zararni qoplash qanday amalga oshiriladi?", a: ["Faqat uzr so'rash", "Pul shaklida", "Qamoq jazosi", "Xizmat ko'rsatish"], c: 1 }
+            ],
+            dtm: [
+                { q: "Huquqiy davlatning asosiy belgisi nima?", a: ["Kuchli armiya", "Qonun ustuvorligi", "Katta hudud", "Boy iqtisod"], c: 1 },
+                { q: "BMT Bosh Assambleyasi Inson huquqlari umumjahon deklaratsiyasini qachon qabul qilgan?", a: ["1945 yil", "1948 yil 10 dekabr", "1950 yil", "1991 yil"], c: 1 },
+                { q: "O'zbekiston Respublikasining davlat bayrog'i qachon qabul qilingan?", a: ["1991 yil 18 noyabr", "1992 yil 8 dekabr", "1991 yil 31 avgust", "1992 yil 2 iyul"], c: 0 },
+                { q: "Mahalliy davlat hokimiyati organlariga kim rahbarlik qiladi?", a: ["Prokuror", "Hokim", "Sudya", "Xalq qabulxonasi"], c: 1 },
+                { q: "Voyaga yetmaganlarga nisbatan eng ko'p qamoq jazosi muddati qancha?", a: ["15 yil", "10 yil", "20 yil", "25 yil"], c: 1 }
+            ],
+            mehnat: [
+                { q: "Yangi Mehnat kodeksi qachon kuchga kirdi?", a: ["2023 yil 30 aprel", "2022 yil 1 yanvar", "2023 yil 1 yanvar", "2020 yil"], c: 0 },
+                { q: "Normal ish vaqti haftasiga necha soatdan oshmasligi kerak?", a: ["36 soat", "40 soat", "42 soat", "48 soat"], c: 1 },
+                { q: "Sinov muddati ko'pi bilan qancha bo'lishi mumkin?", a: ["1 oy", "3 oy (ayrim hollarda 6 oy)", "2 hafta", "1 yil"], c: 1 },
+                { q: "Mehnat ta'tili eng kamida necha ish kuni bo'lishi kerak?", a: ["15 kun", "21 kun", "24 kun", "30 kun"], c: 1 },
+                { q: "Xodim ishdan bo'shash haqida necha kun oldin ogohlantirishi kerak?", a: ["1 hafta", "2 hafta (14 kun)", "1 oy", "3 kun"], c: 1 }
+            ]
+        };
+
+        // Aralash testni hosil qilish
+        testDatabase.mixed = [
+            ...testDatabase.konstitutsiya,
+            ...testDatabase.jinoyat,
+            ...testDatabase.fuqarolik,
+            ...testDatabase.dtm
+        ].sort(() => Math.random() - 0.5).slice(0, 10); // 10 random questions
+
+        // --- 2. GLOBAL O'ZGARUVCHILAR ---
+        let currentQuestions = [];
+        let currentIndex = 0;
+        let userAnswers = []; // [null, 1, 3, null...]
         let timerInterval;
+        let timeRemaining = 0;
+        let currentCategory = '';
 
-        const sampleQuestions = [
-            {
-                question: "O'zbekiston Respublikasi mustaqilligini e'lon qilgan sana?",
-                options: ["1 sentyabr, 1991-yil", "31 avgust, 1991-yil", "8 dekabr, 1992-yil", "18 may, 1991-yil"],
-                correct: "B"
-            },
-            {
-                question: "O'zbekiston Konstitutsiyasi qachon qabul qilingan?",
-                options: ["8 dekabr, 1992-yil", "1 sentyabr, 1991-yil", "31 avgust, 1991-yil", "18 may, 1991-yil"],
-                correct: "A"
-            },
-            // Add more questions as needed
-        ];
+        // --- 3. ASOSIY FUNKSIYALAR ---
 
-        function openTest(category) {
-            document.getElementById('testModal').classList.add('active');
-            startTimer();
-        }
-
-        function closeTest() {
-            if (confirm("Testni tugatmoqchimisiz? Barcha natijalar yo'qoladi.")) {
-                document.getElementById('testModal').classList.remove('active');
-                clearInterval(timerInterval);
+        function initTest(category) {
+            currentCategory = category;
+            
+            // Agar mixed bo'lsa har safar yangilaymiz
+            if (category === 'mixed') {
+                 testDatabase.mixed = [
+                    ...testDatabase.konstitutsiya,
+                    ...testDatabase.jinoyat,
+                    ...testDatabase.fuqarolik,
+                    ...testDatabase.dtm
+                ].sort(() => Math.random() - 0.5).slice(0, 10);
             }
+
+            currentQuestions = testDatabase[category];
+            currentIndex = 0;
+            userAnswers = new Array(currentQuestions.length).fill(null);
+            
+            // Modalni ochish va UI ni tozalash
+            document.getElementById('testModal').classList.add('active');
+            document.getElementById('quizContent').classList.remove('hidden');
+            document.getElementById('quizFooter').classList.remove('hidden');
+            document.getElementById('resultContent').classList.add('hidden');
+            document.getElementById('resultContent').classList.remove('flex');
+            
+            // Sarlavha
+            const titles = {
+                'konstitutsiya': 'Konstitutsiya Testi',
+                'jinoyat': 'Jinoyat Huquqi',
+                'fuqarolik': 'Fuqarolik Huquqi',
+                'mehnat': 'Mehnat Huquqi',
+                'dtm': 'DTM Testlar',
+                'mixed': 'Aralash Test'
+            };
+            document.getElementById('modalTitle').textContent = titles[category] || 'Test';
+
+            // Timer (har bir savolga 1 daqiqadan)
+            timeRemaining = currentQuestions.length * 60;
+            startTimer();
+
+            // Birinchi savolni yuklash
+            renderQuestion();
         }
 
-        function selectOption(element, option) {
-            // Remove previous selection
-            document.querySelectorAll('.option-card').forEach(card => {
-                card.classList.remove('selected');
+        function renderQuestion() {
+            const qData = currentQuestions[currentIndex];
+            
+            // Matnlarni yangilash
+            document.getElementById('questionText').textContent = qData.q;
+            document.getElementById('questionCountDisplay').textContent = `Savol ${currentIndex + 1} / ${currentQuestions.length}`;
+            
+            // Progress bar
+            const percent = ((currentIndex + 1) / currentQuestions.length) * 100;
+            document.getElementById('progressBar').style.width = `${percent}%`;
+
+            // Variantlarni chizish
+            const container = document.getElementById('optionsContainer');
+            container.innerHTML = ''; // Tozalash
+
+            qData.a.forEach((optText, idx) => {
+                const div = document.createElement('div');
+                div.className = `option-card glass-card p-4 md:p-5 rounded-xl flex items-center gap-4 ${userAnswers[currentIndex] === idx ? 'selected' : ''}`;
+                div.onclick = () => selectOption(idx);
+                
+                div.innerHTML = `
+                    <div class="w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm shrink-0 
+                        ${userAnswers[currentIndex] === idx ? 'bg-lawBlue text-white' : 'bg-gray-700/50 text-gray-300'}">
+                        ${String.fromCharCode(65 + idx)}
+                    </div>
+                    <div class="flex-1 text-sm md:text-base font-medium text-gray-200">${optText}</div>
+                    ${userAnswers[currentIndex] === idx ? '<i class="ph-fill ph-check-circle text-lawBlue text-xl"></i>' : ''}
+                `;
+                container.appendChild(div);
             });
-            // Add selection to clicked option
-            element.classList.add('selected');
-            selectedAnswer = option;
-            document.getElementById('nextBtn').disabled = false;
+
+            // Tugmalarni boshqarish
+            document.getElementById('prevBtn').disabled = currentIndex === 0;
+            const nextBtn = document.getElementById('nextBtn');
+            
+            if (currentIndex === currentQuestions.length - 1) {
+                nextBtn.innerHTML = 'Tugatish <i class="ph-bold ph-check"></i>';
+                nextBtn.classList.add('bg-green-600', 'hover:bg-green-700');
+                nextBtn.classList.remove('bg-lawBlue', 'hover:bg-blue-600');
+            } else {
+                nextBtn.innerHTML = 'Keyingi <i class="ph-bold ph-arrow-right"></i>';
+                nextBtn.classList.add('bg-lawBlue', 'hover:bg-blue-600');
+                nextBtn.classList.remove('bg-green-600', 'hover:bg-green-700');
+            }
+            
+            // Agar javob tanlanmagan bo'lsa "Keyingi" tugmasini o'chirish (ixtiyoriy, hozir ochiq qoldiraman)
+             nextBtn.disabled = userAnswers[currentIndex] === null;
+        }
+
+        function selectOption(optionIndex) {
+            userAnswers[currentIndex] = optionIndex;
+            renderQuestion(); // UI ni yangilash (borderlar uchun)
         }
 
         function nextQuestion() {
-            if (currentQuestionIndex < 29) {
-                currentQuestionIndex++;
-                updateQuestion();
+            if (currentIndex < currentQuestions.length - 1) {
+                currentIndex++;
+                renderQuestion();
             } else {
                 finishTest();
             }
         }
 
-        function previousQuestion() {
-            if (currentQuestionIndex > 0) {
-                currentQuestionIndex--;
-                updateQuestion();
+        function prevQuestion() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                renderQuestion();
             }
         }
 
-        function updateQuestion() {
-            document.getElementById('currentQuestion').textContent = currentQuestionIndex + 1;
-            const progress = ((currentQuestionIndex + 1) / 30) * 100;
-            document.getElementById('progressBar').style.width = progress + '%';
-            
-            // Enable/disable prev button
-            document.getElementById('prevBtn').disabled = currentQuestionIndex === 0;
-            
-            // Clear selection
-            document.querySelectorAll('.option-card').forEach(card => {
-                card.classList.remove('selected');
-            });
-            selectedAnswer = null;
-        }
+        // --- 4. NATIJA VA TIMER ---
 
         function startTimer() {
+            clearInterval(timerInterval);
+            const timerEl = document.getElementById('timer');
+            
             timerInterval = setInterval(() => {
                 timeRemaining--;
-                const minutes = Math.floor(timeRemaining / 60);
-                const seconds = timeRemaining % 60;
-                document.getElementById('timer').textContent = 
-                    `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                const m = Math.floor(timeRemaining / 60).toString().padStart(2, '0');
+                const s = (timeRemaining % 60).toString().padStart(2, '0');
+                timerEl.textContent = `${m}:${s}`;
                 
+                // Vaqt tugaganda qizil rangga kirsin
+                if (timeRemaining < 60) timerEl.classList.add('text-red-500');
+                else timerEl.classList.remove('text-red-500');
+
                 if (timeRemaining <= 0) {
                     clearInterval(timerInterval);
                     finishTest();
@@ -538,8 +505,60 @@
 
         function finishTest() {
             clearInterval(timerInterval);
-            alert('Test tugadi! Natijalaringiz: 27/30 to\'g\'ri (90%)');
-            closeTest();
+            
+            // Hisoblash
+            let score = 0;
+            currentQuestions.forEach((q, idx) => {
+                if (userAnswers[idx] === q.c) score++;
+            });
+
+            // UI almashtirish
+            document.getElementById('quizContent').classList.add('hidden');
+            document.getElementById('quizFooter').classList.add('hidden');
+            
+            const resultContent = document.getElementById('resultContent');
+            resultContent.classList.remove('hidden');
+            resultContent.classList.add('flex');
+
+            // Ma'lumotlarni to'ldirish
+            const percent = Math.round((score / currentQuestions.length) * 100);
+            document.getElementById('scorePercentage').textContent = `${percent}%`;
+            document.getElementById('scoreCircle').style.setProperty('--percent', `${percent}%`);
+            
+            document.getElementById('totalQResult').textContent = currentQuestions.length;
+            document.getElementById('correctQResult').textContent = score;
+            document.getElementById('wrongQResult').textContent = currentQuestions.length - score;
+
+            // Xabar matni
+            const msgEl = document.getElementById('resultMessage');
+            const titleEl = document.getElementById('resultTitle');
+            
+            if (percent >= 90) {
+                titleEl.textContent = "Ajoyib Natija! 🎉";
+                msgEl.textContent = "Siz deyarli barcha savollarga to'g'ri javob berdingiz. Haqiqiy ekspert!";
+            } else if (percent >= 70) {
+                titleEl.textContent = "Yaxshi Natija 👍";
+                msgEl.textContent = "Bilimingiz yomon emas, lekin yana ozgina tayyorgarlik kerak.";
+            } else {
+                titleEl.textContent = "Harakat qiling 💪";
+                msgEl.textContent = "Natija past, lekin tushkunlikka tushmang. Qayta o'qib chiqing.";
+            }
+        }
+
+        function restartTest() {
+            initTest(currentCategory);
+        }
+
+        function closeTest() {
+            if(document.getElementById('resultContent').classList.contains('hidden')) {
+                 if(confirm("Testni yopmoqchimisiz? Natijalar saqlanmaydi.")) {
+                    document.getElementById('testModal').classList.remove('active');
+                    clearInterval(timerInterval);
+                 }
+            } else {
+                document.getElementById('testModal').classList.remove('active');
+                clearInterval(timerInterval);
+            }
         }
     </script>
 </body>
