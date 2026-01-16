@@ -79,16 +79,16 @@
                     <a href="testlar.html" class="hover:text-white transition">Testlar</a>
                     <a href="community.html" class="hover:text-white transition">Community</a>
                     
-                    <a href="aiassist.html" class="text-lawBlue font-bold hover:text-white transition flex items-center gap-1 border border-lawBlue/30 px-3 py-1.5 rounded-full bg-lawBlue/10 hover:bg-lawBlue hover:border-lawBlue">
+                    <a href="ai-assistant.html" class="text-lawBlue font-bold hover:text-white transition flex items-center gap-1 border border-lawBlue/30 px-3 py-1.5 rounded-full bg-lawBlue/10 hover:bg-lawBlue hover:border-lawBlue">
                         <i class="ph-bold ph-sparkle"></i> AI Assistant
                     </a>
                 </div>
 
                 <div class="hidden md:flex gap-4">
-                    <button class="text-sm font-medium hover:text-white text-gray-300 transition">Kirish</button>
-                    <button class="bg-lawBlue hover:bg-blue-600 text-white px-5 py-2 rounded-full text-sm font-semibold transition shadow-[0_0_20px_rgba(0,102,255,0.3)]">
+                    <a href="auth.html" class="text-sm font-medium hover:text-white text-gray-300 transition flex items-center">Kirish</a>
+                    <a href="auth.html" class="bg-lawBlue hover:bg-blue-600 text-white px-5 py-2 rounded-full text-sm font-semibold transition shadow-[0_0_20px_rgba(0,102,255,0.3)]">
                         Ro'yxatdan o'tish
-                    </button>
+                    </a>
                 </div>
 
                 <div class="md:hidden">
@@ -102,23 +102,23 @@
         </div>
     </nav>
 
-    <div id="mobile-menu" class="fixed top-20 left-0 w-full glass-nav md:hidden transform -translate-y-full transition-transform duration-300 ease-in-out z-40">
-        <div class="max-w-7xl mx-auto px-4 py-6">
-            <div class="flex flex-col space-y-4">
-                <a href="reyting.html" class="text-gray-300 hover:text-white transition py-2">Reyting</a>
-                <a href="kutubxona.html" class="text-gray-300 hover:text-white transition py-2">Kutubxona</a>
-                <a href="testlar.html" class="text-gray-300 hover:text-white transition py-2">Testlar</a>
-                <a href="community.html" class="text-gray-300 hover:text-white transition py-2">Community</a>
+    <div id="mobile-menu" class="fixed top-0 left-0 w-full h-screen bg-lawDark/95 backdrop-blur-xl md:hidden transform -translate-y-full transition-transform duration-500 ease-in-out z-40 flex items-center justify-center">
+        <div class="max-w-7xl mx-auto px-4 py-6 text-center">
+            <div class="flex flex-col space-y-6 text-xl font-bold">
+                <a href="reyting.html" class="text-gray-300 hover:text-white transition">Reyting</a>
+                <a href="kutubxona.html" class="text-gray-300 hover:text-white transition">Kutubxona</a>
+                <a href="testlar.html" class="text-gray-300 hover:text-white transition">Testlar</a>
+                <a href="community.html" class="text-gray-300 hover:text-white transition">Community</a>
                 
-                <a href="ai-assistant.html" class="text-lawBlue font-bold hover:text-white transition py-2 flex items-center gap-2">
+                <a href="ai-assistant.html" class="text-lawBlue flex items-center justify-center gap-2">
                     <i class="ph-bold ph-sparkle"></i> AI Assistant
                 </a>
 
-                <div class="border-t border-gray-700 pt-4 mt-4">
-                    <button class="w-full text-left text-gray-300 hover:text-white transition py-2">Kirish</button>
-                    <button class="w-full mt-2 bg-lawBlue hover:bg-blue-600 text-white px-5 py-3 rounded-full text-sm font-semibold transition">
+                <div class="border-t border-gray-700 pt-8 mt-4 flex flex-col gap-4">
+                    <a href="auth.html" class="text-gray-300 hover:text-white transition">Kirish</a>
+                    <a href="auth.html" class="bg-lawBlue hover:bg-blue-600 text-white px-8 py-4 rounded-full text-lg font-semibold transition">
                         Ro'yxatdan o'tish
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>
@@ -232,7 +232,7 @@
                 <i class="ph-fill ph-scales text-2xl text-lawBlue"></i>
                 <span class="text-xl font-bold">Lawinate.uz</span>
             </div>
-            <p class="text-gray-500 text-sm mb-8">© 2025 Lawinate. Barcha huquqlar himoyalangan.</p>
+            <p class="text-gray-500 text-sm mb-8">© 2026 Lawinate Digital. Barcha huquqlar himoyalangan.</p>
             <div class="flex justify-center gap-6 text-gray-400">
                 <a href="#" class="hover:text-white transition"><i class="ph-fill ph-telegram-logo text-xl"></i></a>
                 <a href="#" class="hover:text-white transition"><i class="ph-fill ph-instagram-logo text-xl"></i></a>
@@ -249,9 +249,11 @@
                 if (toggle.checked) {
                     menu.classList.remove('-translate-y-full');
                     menu.classList.add('translate-y-0');
+                    document.body.style.overflow = 'hidden'; // Menyu ochiqligida skrolni yopish
                 } else {
                     menu.classList.add('-translate-y-full');
                     menu.classList.remove('translate-y-0');
+                    document.body.style.overflow = 'auto';
                 }
             });
         }
