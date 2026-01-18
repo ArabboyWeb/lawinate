@@ -1,0 +1,957 @@
+[
+  {
+    "id": 1,
+    "savol": "Jinoyat ob’yekti nima. Uning ahamiyati nimadan iborat.",
+    "javob": "Jinoyat ob’yekti — jinoyat qonuni bilan muhofaza qilinadigan va jinoyat tajovuz qiladigan ijtimoiy munosabatlar, manfaatlar va qadriyatlar (shaxs, huquqlar, jamiyat va davlat manfaatlari). Ahamiyati: jinoyat tarkibining zaruriy elementi bo‘lib, qilmishning ijtimoiy xavfliligini belgilaydi va jinoyatlarni bir-biridan farqlash (kvalifikatsiya qilish) imkonini beradi."
+  },
+  {
+    "id": 2,
+    "savol": "Jinoiy javobgarlik kelib chiquvchi yoshning eng yuqori chegarasi mavjudmi?",
+    "javob": "Yo‘q, jinoiy javobgarlikka tortish uchun qonunchilikda eng yuqori yosh chegarasi belgilanmagan. Faqat jazo tayinlashda (masalan, 60 yoshdan oshgan erkaklarga nisbatan umrbod ozodlikdan mahrum qilish jazosi qo‘llanilmasligi kabi) ayrim cheklovlar mavjud."
+  },
+  {
+    "id": 3,
+    "savol": "Jinoiy xulqning akti sifatida harakatning mazmuni nimadan iborat.",
+    "javob": "Jinoiy harakat — shaxsning jinoyat qonuni bilan taqiqlangan, ongli va irodaviy ravishda amalga oshirilgan faol xulq-atvori. U ijtimoiy xavfli oqibatlarni keltirib chiqarishga qaratilgan jismoniy harakatlar majmuidan iborat bo‘ladi."
+  },
+  {
+    "id": 4,
+    "savol": "Ishtirokchilikda sodir etilgan jinoyatning yuqoriroq ijtimoiy xavfliligi nimada?",
+    "javob": "Ishtirokchilikda bir necha shaxsning kuchi birlashadi, bu esa og‘irroq oqibatlar kelib chiqish ehtimolini oshiradi, jinoyatni sodir etishni osonlashtiradi va uni yashirish imkoniyatini kengaytiradi. Shu sababli bunday qilmishlar yakka tartibda sodir etilgan jinoyatdan xavfliroq hisoblanadi."
+  },
+  {
+    "id": 5,
+    "savol": "Shaxsni o‘ta xavfli residivist deb topishning asoslari va tartibi, uning huquqiy oqibatlari.",
+    "javob": "Asos: ilgari og‘ir yoki o‘ta og‘ir jinoyatlar uchun sudlangan shaxsning qayta xuddi shunday turdagi jinoyatlarni sodir etishi (JK 34-moddasi). Tartib: faqat sud tomonidan belgilanadi. Oqibatlari: qat’iyroq jazo tayinlanadi, jazoni ijro etish muassasalarining maxsus tartibli koloniyalarida o‘taladi va muddatidan ilgari shartli ozod qilishga nisbatan cheklovlar qo‘llaniladi."
+  },
+  {
+    "id": 6,
+    "savol": "Boshqa shaxsning jinoyatni sodir etish maqsadini qo‘llab-quvvatlagan shaxs dalolatchi deb topiladimi?",
+    "javob": "Faqatgina ruhiy qo‘llab-quvvatlash yetarli emas. Dalolatchi deb topish uchun shaxs boshqasini jinoyat sodir etishga qiziqtirgan (undagan) bo‘lishi shart (masalan, ishontirish, pora berish, qo‘rqitish orqali). Shunchaki niyatini ma’qullash dalolatchilikka kirmaydi, agar u yordam berish va’dasini bermagan bo‘lsa."
+  },
+  {
+    "id": 7,
+    "savol": "Ijtimoiy xavfli qilmishni jinoiy deb hisoblashning yuridik belgilari nimalarda ifodalanadi.",
+    "javob": "1. Ayblilik (shaxsning ongli munosabati); 2. Jinoiy jazolanish (qilmish uchun qonunda jazo belgilanganligi); 3. Qonunga xiloflik (faqat Jinoyat kodeksida ko‘rsatilganligi); 4. Ijtimoiy xavflilik (manfaatlarga jiddiy zarar yetkazish)."
+  },
+  {
+    "id": 8,
+    "savol": "Mastlikning qanday turi aqli rasolikni istisno etadi va jinoiy javobgarlikka olib kelmaydi?",
+    "javob": "Faqat patologik mastlik (psixoz holati) aqli rasolikni istisno etadi, chunki bu holatda shaxs o‘z harakatlarini idora qila olmaydi. Oddiy (fiziologik) mastlik holatida sodir etilgan jinoyat uchun shaxs javobgarlikdan ozod qilinmaydi (JK 19-modda)."
+  },
+  {
+    "id": 9,
+    "savol": "Jazo tayinlashga oid qoidalarning xalqaro hujjatlarida mustahkamlanishiga oid masalalarni ko‘rib chiqing.",
+    "javob": "Jazo tayinlash xalqaro huquqda Inson huquqlari umumjahon deklaratsiyasi va Fuqarolik va siyosiy huquqlar to‘g‘risidagi paktga asoslanadi. Asosiy prinsiplar: insonparvarlik, qiynoqlarning taqiqlanishi, jazo qilmishga mutanosib bo‘lishi va qonuniylik (nullum crimen, nulla poena sine lege)."
+  },
+  {
+    "id": 10,
+    "savol": "Jinoyatni sodir etishdan ixtiyoriy voz kechishni javobgarlikdan ozod qilishning institutiga kiritish mumkinmi?",
+    "javob": "Ha, ixtiyoriy voz kechish — jinoiy javobgarlikni istisno qiluvchi mustaqil institutdir. Agar shaxs jinoyatni oxiriga yetkazish imkoniyati bo‘la turib, uni o‘z xohishi bilan to‘xtatsa, u sodir etilgan tayyorgarlik harakatlari uchun javobgarlikka tortilmaydi."
+  },
+  {
+    "id": 11,
+    "savol": "Shartli hukm qilishning muddatidan ilgari ozod qilishdan farqi nimada?",
+    "javob": "Shartli hukm (JK 72-modda) jazo tayinlash paytida qo'llaniladi va shaxs jazoni o'tashdan shartli ravishda ozod qilinadi (sinov muddati belgilanadi). Muddatidan ilgari shartli ozod qilish (JK 73-modda) esa shaxs tayinlangan jazoning muayyan qismini o'tab bo'lganidan keyin, uning tuzalish yo'liga o'tganligi asosi bilan qolgan qismidan ozod qilinishidir."
+  },
+  {
+    "id": 12,
+    "savol": "Qaysi vaqtdan boshlab shaxs sudlangan hisoblanadi? Sudlanganlikni o‘tash va sudlanganlikni tugatish asoslari qanday?",
+    "javob": "Shaxs sudning ayblov hukmi qonuniy kuchga kirgan kundan boshlab sudlangan hisoblanadi. Sudlanganlikni tugatish asoslari: sinov muddati tugashi, jazo o'tab bo'linganidan keyin qonunda belgilangan muddatlarning o'tishi (JK 77-79 moddalar). Sudlanganlikni olib tashlash esa sud tomonidan muddatidan oldin yoki amnistiya/afv asosida amalga oshiriladi."
+  },
+  {
+    "id": 13,
+    "savol": "Qanday holatlarda voyaga yetmaganlarga tarbiyaviy ta’sir etuvchi majburlov choralari qo‘llanib jazodan ozod etilishiga yo‘l qo‘yiladi?",
+    "javob": "Agar voyaga yetmagan shaxs ijtimoiy xavfi katta bo'lmagan yoki uncha og'ir bo'lmagan jinoyatni birinchi marta sodir etgan bo'lsa va uning xulq-atvori, jinoyatning xususiyati hisobga olinib, uni jazo qo'llamasdan ham tuzatish mumkin deb topilsa, tarbiyaviy choralar (masalan, jamoat vasiyligiga topshirish) qo'llaniladi (JK 87-modda)."
+  },
+  {
+    "id": 14,
+    "savol": "18 yoshgacha bo‘lgan yoshda sodir etgan jinoyati uchun sudlangan shaxsga jazoni yengilrog‘i bilan almashtirishning qanday xususiyatlari mavjud?",
+    "javob": "Asosiy xususiyati — muddatlarning qisqaligida. Voyaga yetmaganlarga nisbatan jazoning o'talmagan qismini yengilrog'i bilan almashtirish uchun tayinlangan jazoning kamida 1/4 qismini (kattalarda bu muddat ko'proq) o'tagan bo'lishi yetarli hisoblanadi (JK 89-modda)."
+  },
+  {
+    "id": 15,
+    "savol": "Jinoyat huquqida qanday konstitutsiyaviy prinsiplar mujassamlashgan?",
+    "javob": "Qonuniylik, fuqarolarning qonun oldida tengligi, demokratizm, insonparvarlik, adolat, aybdorlik uchun javobgarlik va javobgarlikning muqarrarligi prinsiplari (JK 3-10 moddalar). Bu prinsiplar bevosita O'zbekiston Respublikasi Konstitutsiyasiga asoslangan."
+  },
+  {
+    "id": 16,
+    "savol": "Javobgarlikka tortishni to‘xtatib turish nima? Uning jinoiy-huquqiy ahamiyati nimada?",
+    "javob": "Bu — shaxsni jinoiy javobgarlikka tortish muddatining (da'vo muddati) o'tishi ma'lum sabablarga ko'ra to'xtalishi. Masalan, shaxs tergov yoki suddan qochgan taqdirda muddat to'xtaydi va u ushlangan yoki aybini bo'yniga olgan kundan qayta tiklanadi. Ahamiyati: jinoyat sodir etgan shaxsning javobgarlikdan qochib qutulishiga yo'l qo'ymaslik."
+  },
+  {
+    "id": 17,
+    "savol": "Voyaga yetmaganlarga ozodlikdan mahrum etish ko‘rinishidagi jazo tayinlashning shartlari qanday?",
+    "javob": "Ozodlikdan mahrum qilish faqat boshqa yengilroq jazolar bilan tuzatib bo'lmaydigan holatlarda qo'llaniladi. Muddatlar cheklangan: ijtimoiy xavfi katta bo'lmagan jinoyat uchun qo'llanilmaydi, og'ir jinoyat uchun 6 oydan 6 yilgacha, o'ta og'ir jinoyat uchun esa 10 yilgacha (kattalarda 20-25 yil) tayinlanishi mumkin (JK 85-modda)."
+  },
+  {
+    "id": 18,
+    "savol": "Jinoyatning belgilarini ayting.",
+    "javob": "1. Ijtimoiy xavflilik (jamiyatga zarar yetkazishi); 2. Ayblilik (qasddan yoki ehtiyotsizlikdan sodir etilishi); 3. Qonunga xiloflik (Jinoyat kodeksida taqiqlanganligi); 4. Jazolanish (qilmish uchun jinoiy jazo tayinlanishi shartligi)."
+  },
+  {
+    "id": 19,
+    "savol": "Aqli norasolik tibbiy mezonining mazmuni nimada?",
+    "javob": "Tibbiy mezon — shaxsdagi ruhiy holatning buzilishini anglatadi. Bunga surunkali ruhiy kasallik, ruhiy holatning vaqtincha buzilishi, aqli zaiflik yoki boshqa patologik holatlar kiradi. Faqat tibbiy mezonning o'zi yetarli emas, u yuridik mezon (o'z harakatini anglamaslik) bilan birga kelishi shart."
+  },
+  {
+    "id": 20,
+    "savol": "O‘zbekiston Respublikasining jinoyat huquqi bo‘yicha jinoiy javobgarlikka tortishning muddati deganda nimani tushunish lozim?",
+    "javob": "Bu jinoyat sodir etilgan kundan boshlab shaxsni ayblanuvchi tariqasida jalb qilishgacha o'tishi mumkin bo'lgan maksimal vaqt oralig'i. Muddatlar jinoyatning toifasiga qarab 2 yildan 25 yilgacha belgilanadi (JK 64-modda). Ushbu muddat o'tsa, shaxs javobgarlikdan ozod qilinadi."
+  },
+  {
+    "id": 21,
+    "savol": "Sudlanganlikning umumhuquqiy va jinoiy-huquqiy oqibatlari deganda nima tushuniladi?",
+    "javob": "Jinoiy-huquqiy oqibatlar: yangi jinoyat sodir etilganda retsidiv deb topish, og'irroq jazo tayinlash va jazoni o'tash tartibining qattiqlashishi. Umumhuquqiy oqibatlar: muayyan lavozimlarda ishlash (masalan, sudya, IIO xodimi), saylanish huquqi yoki qurol saqlash huquqining cheklanishi."
+  },
+  {
+    "id": 22,
+    "savol": "Qanday holatlarda voyaga yetmaganlarga tarbiyaviy ta’sir etuvchi majburlov choralari qo‘llanib jazodan ozod etilishiga yo‘l qo‘yiladi?",
+    "javob": "Voyaga yetmagan shaxs ijtimoiy xavfi katta bo'lmagan yoki uncha og'ir bo'lmagan jinoyatni birinchi marta sodir etgan bo'lsa, sud uni jazo qo'llashsiz tarbiyalash mumkin deb hisoblasa, jazodan ozod qilib, tarbiyaviy choralar qo'llaydi (JK 87-modda)."
+  },
+  {
+    "id": 23,
+    "savol": "Javobgarlikka tortishni to‘xtatib turish nima? Uning jinoiy-huquqiy ahamiyati nimada?",
+    "javob": "Bu shaxs tergov yoki suddan qochganida javobgarlikka tortish muddatining o'tishi to'xtatilishidir. Ahamiyati: jinoyatchi qancha vaqt yashirinmasin, ushlanganidan keyin baribir javobgarlikka tortilishini ta'minlash (muddat qochgan davrda o'tmaydi)."
+  },
+  {
+    "id": 24,
+    "savol": "Voyaga yetmaganlarga qo‘llaniladigan majburlov choralarining qanday turlari mavjud?",
+    "javob": "1. Jabrlanuvchidan uzr so'rash majburiyatini yuklash; 2. Yetkazilgan zararni to'lash; 3. Voyaga yetmagan shaxsni ota-onasi yoki vasiylar nazoratiga topshirish; 4. Maxsus o'quv-tarbiya muassasasiga joylashtirish."
+  },
+  {
+    "id": 25,
+    "savol": "Jazo tayinlashga oid qoidalarning xalqaro hujjatlarida mustahkamlanishiga oid masalalarni ko‘rib chiqing.",
+    "javob": "Xalqaro standartlar (masalan, BMTning 'Tokio qoidalari') jazoni individuallashtirish, ozodlikdan mahrum qilishni oxirgi chora sifatida qo'llash va inson qadr-qimmatini kamsitmaslikni talab qiladi. Shuningdek, xalqaro huquq o'lim jazosini bekor qilish yoki cheklashga qaratilgan."
+  },
+  {
+    "id": 26,
+    "savol": "Jinoiy qilmish ijtimoiy xavfliligining mazmun-mohiyati nimadan iborat.",
+    "javob": "Ijtimoiy xavflilik — qilmishning jinoyat qonuni bilan qo'riqlanadigan munosabatlarga (hayot, sog'liq, mulk va h.k.) real zarar yetkazishi yoki zarar yetkazish xavfini tug'dirishidir. U qilmishning xususiyati va darajasi bilan belgilanadi."
+  },
+  {
+    "id": 27,
+    "savol": "Yetkazilgan zararni qoplash deganda nimani tushunish lozim? Aybini bo‘yniga olish to‘g‘risida arz qilish nimada ifodalanadi? Shaxsning jinoyatning ochilishiga faol yordam berishi nimada namoyon bo‘ladi?",
+    "javob": "Zararni qoplash — yetkazilgan moddiy yoki ma'naviy zararni to'liq bartaraf etish. Aybini bo'yniga olish — shaxsning hali fosh etilmasdan turib, o'z ixtiyori bilan jinoyati haqida xabar berishi. Faol yordam berish — sheriklarini ko'rsatish, o'g'irlangan mulk joyini aytish va isbotlarni topishda qatnashish."
+  },
+  {
+    "id": 28,
+    "savol": "Qanday holatlarda voyaga yetmaganlarga tarbiyaviy ta’sir etuvchi majburlov choralari qo‘llanib jazodan ozod etilishiga yo‘l qo‘yiladi?",
+    "javob": "Bu savol 22-savol bilan bir xil: uncha og'ir bo'lmagan jinoyatni birinchi marta sodir etganda va sud shaxsni jazo bermasdan tuzatish mumkin deb topsa qo'llaniladi (JK 87-modda)."
+  },
+  {
+    "id": 29,
+    "savol": "Aqli rasolikning yuridik mezoni mavjudligini tasdiqlash uchun uning ikkala belgisining (intellektual va irodaviy) mavjudligi shartmi?",
+    "javob": "Ha, shaxs aqli raso deb topilishi uchun u o'z harakatining mohiyatini anglay olishi (intellektual belgi) VA o'z harakatlarini idora qila olishi (irodaviy belgi) shart. Agar ushbu belgilardan biri ruhiy kasallik tufayli bo'lmasa, shaxs aqli noraso deb topiladi."
+  },
+  {
+    "id": 30,
+    "savol": "Jinoyatlarning maxsus ob’yekti deganda nimani tushunasiz?",
+    "javob": "Maxsus (yoki turdosh) ob'ekt — bu bir turdagi bir-biriga yaqin ijtimoiy munosabatlar guruhi (masalan, shaxsga qarshi jinoyatlar, iqtisodiyot sohasidagi jinoyatlar). U Jinoyat kodeksi Maxsus qismining boblari bo'yicha guruhlanishiga asos bo'ladi."
+  },
+  {
+    "id": 31,
+    "savol": "Voyaga yetmaganlarga qo‘llaniladigan majburlov choralarining qanday turlari mavjud?",
+    "javob": "Jinoyat kodeksining 88-moddasiga ko‘ra: 1) Jabrlanuvchidan uzr so‘rash; 2) Yetkazilgan zararni to‘lash; 3) Ota-onasi yoki vasiylar nazoratiga topshirish; 4) Ixtisoslashtirilgan o‘quv-tarbiya muassasasiga (masalan, 'Baxtli' maktabiga) joylashtirish."
+  },
+  {
+    "id": 32,
+    "savol": "Jinoiy javobgarlikdan ozod qilish asosi sifatida yarashilganlikning chin ko‘ngildan pushaymon bo‘lishdan farqi nimada?",
+    "javob": "Yarashuvda (JK 66-1-modda) asosiy shart — ayblanuvchi va jabrlanuvchi o‘rtasida kelishuv mavjudligi. Chin ko‘ngildan pushaymon bo‘lishda (JK 65-modda) esa shaxsning qilmishidan afsuslanishi, zararni qoplashi va jinoyatni ochishga yordam berishi kifoya bo‘lib, jabrlanuvchining roziligi majburiy emas."
+  },
+  {
+    "id": 33,
+    "savol": "Jinoyat ishtirokchilarining qanday turlari mavjud?",
+    "javob": "Jinoyat kodeksining 28-moddasiga ko‘ra ishtirokchilar to‘rt turga bo‘linadi: 1) Bajaruvchi; 2) Tashkilotchi; 3) Dalolatchi (qiziqtiruvchi); 4) Yordamchi."
+  },
+  {
+    "id": 34,
+    "savol": "Voyaga yetmaganlar uchun jazo tizimi jazoning qanday turlarini nazarda tutadi?",
+    "javob": "JK 81-moddasiga ko‘ra: 1) Jarima; 2) Majburiy jamoat ishlari; 3) Axloq tuzatish ishlari; 4) Ozodlikni cheklash; 5) Ozodlikdan mahrum qilish. Voyaga yetmaganlarga nisbatan umrbod ozodlikdan mahrum qilish jazosi qo‘llanilmaydi."
+  },
+  {
+    "id": 35,
+    "savol": "Qanday vaziyatlarda shartli hukm qilish qo‘llanmaydi?",
+    "javob": "O‘ta og‘ir jinoyat sodir etganlarga, ilgari og‘ir yoki o‘ta og‘ir jinoyati uchun ozodlikdan mahrum etilganlarga, o‘ta xavfli residivistlarga hamda JK 72-moddasida ko‘rsatilgan ayrim toifadagi jinoyatlarni (masalan, terrorizm) sodir etgan shaxslarga nisbatan shartli hukm qo‘llanilmaydi."
+  },
+  {
+    "id": 36,
+    "savol": "Qilmishni ijtimoiy xavfini yo‘qotgan deb tan olishning asoslari qanday?",
+    "javob": "Bu asosan sharoit o‘zgarishi bilan bog‘liq. Masalan, qilmish sodir etilgan paytda zararli bo‘lgan, lekin tergov yoki sud paytiga kelib yangi qonun qabul qilinishi yoki ijtimoiy-siyosiy vaziyat o‘zgarishi natijasida mazkur harakat endi jamiyat uchun xavfli bo‘lmay qolsa (JK 65-modda)."
+  },
+  {
+    "id": 37,
+    "savol": "Bir qancha jinoyat sodir etish tushunchasi nima va qanday turlarini mavjud?",
+    "javob": "Bu shaxs tomonidan ikki yoki undan ortiq mustaqil jinoyatlarning sodir etilishi. Turlari: 1) Jinoyatlar takroriyligi (bir xil jinoyatni qayta sodir etish); 2) Jinoyatlar majmui (turli xil jinoyatlarni birgalikda sodir etish)."
+  },
+  {
+    "id": 38,
+    "savol": "Jinoyat tushunchasida formal (normativ) va moddiy yondashuvning mazmuni nimadan iborat?",
+    "javob": "Formal yondashuv — qilmishning faqat qonunda taqiqlanganligiga (qonun buzilishiga) urg‘u beradi. Moddiy yondashuv — qilmishning jamiyat uchun haqiqiy zararli ekanligiga (ijtimoiy xavfliligiga) e’tibor qaratadi. O‘zbekiston huquqida bu ikki yondashuv birlashgan."
+  },
+  {
+    "id": 39,
+    "savol": "Jinoyat tarkibi ob’yektiv tomonining fakultativ belgilarini ta’riflab bering.",
+    "javob": "Bular barcha jinoyatlar uchun majburiy bo‘lmagan, lekin ayrim moddalarda ko‘rsatiladigan belgilar: 1) Jinoyat sodir etish joyi; 2) Vaqti; 3) Usuli; 4) Holati; 5) Quroli yoki vositasi."
+  },
+  {
+    "id": 40,
+    "savol": "Shaxsni ijtimoiy xavfini yo‘qotgan deb tan olishning asoslari qanday?",
+    "javob": "Shaxs jinoyat sodir etganidan keyin o‘z xulq-atvori (masalan, chin ko‘ngildan pushaymon bo‘lish, zararni qoplash) yoki sog‘lig‘i holati o‘zgarishi tufayli tergov paytiga kelib jamiyat uchun boshqa xavf tug‘dirmaydi deb topilsa (JK 65-modda)."
+  },
+  {
+    "id": 41,
+    "savol": "Jinoyat sodir qilish joyi va holati o‘rtasidagi farq nimadan iborat.",
+    "javob": "Jinoyat sodir qilish joyi — bu jinoyat tarkib topgan aniq geografik yoki ma'muriy hudud (masalan, chegara yoki korxona). Holat esa — jinoyat sodir etilayotgan paytdagi tashqi vaziyat (masalan, favqulodda holat, urush vaqti yoki ommaviy tartibsizliklar)."
+  },
+  {
+    "id": 42,
+    "savol": "Mastlikning qanday turi aqli rasolikni istisno etadi va jinoiy javobgarlikka olib kelmaydi?",
+    "javob": "Faqat patologik mastlik (psixoz holati) aqli rasolikni istisno etadi. Bu holatda shaxs o'z harakatlarini anglamaydi. Oddiy (fiziologik) mastlik holatida sodir etilgan jinoyat uchun shaxs JK 19-moddasiga ko'ra javobgarlikka tortiladi."
+  },
+  {
+    "id": 43,
+    "savol": "Jinoiy javobgarlikdan ozod qilish asosi sifatida yarashilganlikning chin ko‘ngildan pushaymon bo‘lishdan farqi nimada?",
+    "javob": "Yarashuvda (JK 66-1) jabrlanuvchining arizasi va roziligi shart. Chin ko'ngildan pushaymon bo'lishda (JK 65) esa shaxsning qilmishini tan olishi, zararni qoplashi va ijtimoiy xavfliligini yo'qotishi yetarli, jabrlanuvchi bilan kelishuv shart emas."
+  },
+  {
+    "id": 44,
+    "savol": "Sodir etgan qilmishi ahamiyatini to‘la o‘lchamda anglash xususiyatidan mahrum etuvchi voyaga yetmaganni yoshi bo‘yicha rivojlanishidan sezilarli orqada qolishi.",
+    "javob": "Agar voyaga yetmagan shaxs ruhiy kasallik bilan bog'liq bo'lmagan holda, yoshi bo'yicha rivojlanishdan orqada qolsa va o'z harakati mohiyatini to'liq anglamasa, u jinoiy javobgarlikka tortilmaydi (JK 17-modda, 'yosh akkomodatsiyasi')."
+  },
+  {
+    "id": 45,
+    "savol": "Jinoyat sodir etish quroli jinoyat sodir qilish vositasidan nima bilan farqlanadi?",
+    "javob": "Qurol — bevosita jismoniy zarar yetkazish yoki mulkni yo'q qilish uchun ishlatiladigan narsa (masalan, pichoq, to'pponcha). Vosita — jinoyatni sodir etishga yordam beradigan buyum (masalan, jinoyat joyiga borish uchun avtomobil yoki soxta hujjat)."
+  },
+  {
+    "id": 46,
+    "savol": "Jinoyat huquqida qanday konstitutsiyaviy prinsiplar mujassamlashgan.",
+    "javob": "Bunga qonuniylik, qonun oldida tenglik, demokratizm, insonparvarlik, adolat, aybdorlik uchun javobgarlik hamda aybsizlik prezumpsiyasi (Konstitutsiyaning 26, 27, 28-moddalari bilan bog'liq holda) kiradi."
+  },
+  {
+    "id": 47,
+    "savol": "«Jinoyat sub’yekt» va «jinoyatchining shaxsi» tushunchalari bir-biri bilan qanday munosabatda bo‘ladi?",
+    "javob": "Jinoyat sub'yekti — bu qonuniy minimum (yosh va aqli rasolik). Jinoyatchining shaxsi — bu kengroq tushuncha bo'lib, uning xarakteri, tarbiyasi, ijtimoiy roli va o'tmishini o'z ichiga oladi va bu jazo tayinlashda hisobga olinadi."
+  },
+  {
+    "id": 48,
+    "savol": "Jinoyat ob’yekti va predmetining o‘zaro nisbati nimadan iborat?",
+    "javob": "Ob'yekt — bu tajovuz qilinayotgan ijtimoiy munosabat (masalan, mulkiy huquq). Predmet — bu o'sha munosabatning moddiy ifodasi (masalan, o'g'irlangan telefon). Har doim ob'yekt mavjud bo'ladi, lekin predmet har doim ham bo'lmasligi mumkin."
+  },
+  {
+    "id": 49,
+    "savol": "Jinoyat qonunining orqaga qaytish kuchi tushunchasini yoritib bering.",
+    "javob": "Orqaga qaytish kuchi — yangi qonun qilmishni jinoyat deb topmasa yoki jazoni yengillatsa, u qonun kuchga kirgunga qadar sodir etilgan qilmishlarga nisbatan ham qo'llaniladi. Jazoni og'irlashtiruvchi qonun orqaga qaytish kuchiga ega emas."
+  },
+  {
+    "id": 50,
+    "savol": "Suiqasdning qanday turlari mavjud?",
+    "javob": "1. Tugallangan suiqasd (shaxs o'ziga bog'liq barcha harakatni qilgan, lekin oqibat kelib chiqmagan); 2. Tugallanmagan suiqasd (shaxs o'ziga bog'liq bo'lmagan sabablarga ko'ra harakatni oxiriga yetkaza olmagan)."
+  },
+  {
+    "id": 51,
+    "savol": "Ijtimoiy xavfli qilmishni jinoiy deb hisoblashning yuridik belgilari nimalarda ifodalanadi.",
+    "javob": "Jinoiy qilmish bo'lishi uchun u to'rtta belgiga ega bo'lishi kerak: 1) Ijtimoiy xavflilik; 2) Ayblilik; 3) Qonunga xiloflik; 4) Jazolanish."
+  },
+  {
+    "id": 52,
+    "savol": "Jinoyat sodir qilish joyi va holati o‘rtasidagi farq nimadan iborat.",
+    "javob": "Joy — makonni anglatadi (qayerda?). Holat — muhit va vaziyatni anglatadi (qanday sharoitda?). Masalan, 'chegara punktida' bu joy, 'jangovar vaziyatda' esa bu holat."
+  },
+  {
+    "id": 53,
+    "savol": "Qanday holatlarda voyaga yetmaganlarga tarbiyaviy ta’sir etuvchi majburlov choralari qo‘llanib jazodan ozod etilishiga yo‘l qo‘yiladi?",
+    "javob": "Ijtimoiy xavfi katta bo'lmagan yoki uncha og'ir bo'lmagan jinoyatni birinchi marta sodir etganda, agar sud uni jazo bermasdan tarbiyalash mumkin deb xulosa qilsa (JK 87-modda)."
+  },
+  {
+    "id": 54,
+    "savol": "Shaxsni ijtimoiy xavfini yo‘qotgan deb tan olishning asoslari qanday?",
+    "javob": "Shaxsning jinoyatdan keyingi ijobiy xulq-atvori, yetkazilgan zararni to'liq qoplashi va uning xatti-harakatlarida qayta jinoyat sodir etish ehtimoli yo'qligi sud tomonidan tasdiqlanishi (JK 65-modda)."
+  },
+  {
+    "id": 55,
+    "savol": "Tibbiy yo‘sindagi majburlov choralarini o‘zgartirish uchun nima asos bo‘ladi?",
+    "javob": "Asosiy asos — shaxsning ruhiy holati yaxshilanishi yoki sog'ayishi. Tibbiy komissiya xulosasiga ko'ra, sud choralarni yengillashtirishi yoki butunlay bekor qilishi mumkin."
+  },
+  {
+    "id": 56,
+    "savol": "Ijtimoiy xavfli qilmishni jinoiy deb hisoblashning yuridik belgilari nimalarda ifodalanadi?",
+    "javob": "Qarang: 51-javob. (Takroriy savol: Ijtimoiy xavflilik, ayblilik, qonunga xiloflik va jazolanish)."
+  },
+  {
+    "id": 57,
+    "savol": "Bir qator jinoyatlar uchun 13 va 14 yoshdan javobgarlik o‘rnatish haqidagi qonun chiqaruvchining qarori nimadan kelib chiqadi?",
+    "javob": "Bu ushbu yoshdagi bolalarning muayyan o'ta og'ir jinoyatlar (masalan, qasddan odam o'ldirish, nomusga tegish) ijtimoiy xavfliligini tushuna olish qobiliyati va ushbu turdagi jinoyatlarning jamiyat uchun o'ta xavfliligidan kelib chiqadi."
+  },
+  {
+    "id": 58,
+    "savol": "Jinoyat qonunining tuzilishi qanday. JK Umumiy qism va Maxsus qismi moddalari turlari va strukturasini tavsiflab bering.",
+    "javob": "Umumiy qismda jinoyat qonunining vazifalari, javobgarlik asoslari va jazo turlari belgilanadi. Maxsus qismda esa aniq jinoyat tarkiblari va ular uchun jazolar ko'rsatiladi. Har bir modda sarlavha, dispozitsiya (ta'rif) va sanksiyadan (jazo) iborat."
+  },
+  {
+    "id": 59,
+    "savol": "Jinoiy qilmish ijtimoiy xavfliligining mazmun-mohiyati nimadan iborat.",
+    "javob": "Bu qilmishning jamiyat hayotining eng muhim sohalariga (inson huquqlari, xavfsizlik, tartib) real zarar yetkazishi yoki xavf tug'dirishidir. U qilmishning moddiy mazmunini belgilaydi."
+  },
+  {
+    "id": 60,
+    "savol": "Ayb uchun javobgarlik prinsipining jinoyat-huquqiy mohiyatini muhokama eting.",
+    "javob": "Bu prinsipga ko'ra, shaxs faqat o'zi sodir etgan, aybi isbotlangan va ongli ravishda amalga oshirgan harakatlari uchungina javob beradi. Aybsiz (ob'yektiv) javobgarlikka tortish, ya'ni tasodifiy oqibatlar uchun jazolash taqiqlanadi."
+  },
+  {
+    "id": 61,
+    "savol": "Sudlanganlik nima.",
+    "javob": "Sudlanganlik — shaxsning jinoyat sodir etganlik uchun sudlanganligi faktidan kelib chiqadigan huquqiy holat. U hukm qonuniy kuchga kirgan kundan boshlanadi va sudlanganlik tugallangan yoki olib tashlangan paytda tugaydi."
+  },
+  {
+    "id": 62,
+    "savol": "Javobgarlikning muqarrarligi prinsipi mazmunini yoriting.",
+    "javob": "Ushbu prinsipga ko'ra, jinoyat sodir etgan har bir shaxs qilmishi uchun qonunda belgilangan javobgarlikka tortilishi shart. Hech bir jinoyatchi jazolasiz qolmasligi va qonun oldida javob berishi kafolatlanadi."
+  },
+  {
+    "id": 63,
+    "savol": "Jinoyat predmeti deganda nima tushuniladi",
+    "javob": "Jinoyat predmeti — bu jinoyat tajovuzi yo'naltirilgan va jinoyat qonuni bilan qo'riqlanadigan moddiy dunyo ashyolari (masalan, o'g'irlikda — o'g'irlangan mol-mulk, kontrabandada — tovarlar)."
+  },
+  {
+    "id": 64,
+    "savol": "Jinoyatning obektiv tomoni nima. Uning mazmun-mohiyati nimalardan iborat.",
+    "javob": "Obektiv tomon — jinoyatning tashqi ifodasi. Mazmuni: ijtimoiy xavfli qilmish (harakat/harakatsizlik), ijtimoiy xavfli oqibat, qilmish va oqibat o'rtasidagi sababiy bog'lanish hamda jinoyat sodir etish joyi, vaqti, usuli va sharoiti."
+  },
+  {
+    "id": 65,
+    "savol": "Ishtirokchilikda sodir etilgan jinoyatning yuqoriroq ijtimoiy xavfliligi nimada",
+    "javob": "Bir necha shaxsning kuchlari birlashishi natijasida zarar yetkazish ko'lami kengayadi, jinoyatni yashirish osonlashadi va guruh bo'lib harakat qilish jamiyat uchun yakka tartibdagi jinoyatdan ko'ra xavfliroq hisoblanadi."
+  },
+  {
+    "id": 66,
+    "savol": "Fuqaroviylik prinsipi mazmunini yoritib bering",
+    "javob": "O'zbekiston fuqarolari va O'zbekistonda doimiy yashovchi fuqaroligi bo'lmagan shaxslar O'zbekiston hududidan tashqarida sodir etgan jinoyatlari uchun, agar ular o'sha davlatda jazolanmagan bo'lsa, O'zbekiston jinoyat qonuni bo'yicha javobgarlikka tortiladilar."
+  },
+  {
+    "id": 67,
+    "savol": "Shaxsning chin ko‘ngildan pushaymon bo‘lishining jinoyatdan ixtiyoriy voz kechishidan farqi nimada?",
+    "javob": "Ixtiyoriy voz kechish — jinoyat oxiriga yetkazilmasdan oldin sodir bo'ladi va shaxs javobgarlikdan butunlay ozod qilinadi. Chin ko'ngildan pushaymon bo'lish — jinoyat tugallanganidan keyin sodir bo'ladi va bu faqat jazoni yengillatish yoki ma'lum shartlar bilan javobgarlikdan ozod qilishga asos bo'ladi."
+  },
+  {
+    "id": 68,
+    "savol": "Harakatsizlikning obektiv va subektiv mezonlari nimadan iborat.",
+    "javob": "Obektiv mezon — shaxsning zimmasida muayyan harakatni bajarish huquqiy majburiyati borligi. Subektiv mezon — shaxsning o'sha harakatni bajarishga real imkoniyati (jismoniy va aqliy) mavjud bo'lganligi."
+  },
+  {
+    "id": 69,
+    "savol": "Javobgarlikka tortishni to‘xtatib turish nima? Uning jinoiy-huquqiy ahamiyati nimada?",
+    "javob": "Bu shaxs tergov yoki suddan qochganida javobgarlikka tortish muddatining o'tishi to'xtashidir. Ahamiyati: jinoyat sodir etgan shaxs vaqt o'tishi bilan javobgarlikdan qochib qutulishiga yo'l qo'ymaslik."
+  },
+  {
+    "id": 70,
+    "savol": "Maxsus subektning belgilarini aytib bering. Ularning ahamiyati nimadan iborat?",
+    "javob": "Maxsus subekt — umumiy belgilar (yosh, aqli rasolik) bilan birga qo'shimcha belgilarga ega shaxs (masalan, mansabdor shaxs, harbiy, vrach). Ahamiyati: jinoyatni kvalifikatsiya qilish va javobgarlik doirasini belgilash uchun zarur."
+  },
+  {
+    "id": 71,
+    "savol": "Xalqaro huquq normalari O‘zbekiston Respublikasi jinoyat huquqi normalirdan ustuvormi",
+    "javob": "Ha, O'zbekiston Respublikasi Konstitutsiyasiga ko'ra, xalqaro huquqning umume'tirof etilgan prinsiplari va normalari milliy qonunchilikdan ustun turadi. Agar xalqaro shartnomada milliy qonundagidan boshqacha qoidalar bo'lsa, xalqaro shartnoma qoidalari qo'llaniladi."
+  },
+  {
+    "id": 72,
+    "savol": "Tamom bo‘lgan jinoyatdan ham ixtiyoriy qaytish mumkinmi",
+    "javob": "Yo'q, tamom bo'lgan (tugallangan) jinoyatdan ixtiyoriy voz kechish mumkin emas. Voz kechish faqat tayyorgarlik ko'rish yoki suiqasd bosqichida, ya'ni jinoyat hali oxiriga yetkazilmagan paytda amalga oshirilishi mumkin."
+  },
+  {
+    "id": 73,
+    "savol": "Jinoyat qonunining orqaga qaytish kuchi tushunchasini yoritib bering. Qonunning orqaga qaytish kuchining ma’nosi nimadan iborat.",
+    "javob": "Orqaga qaytish kuchi — yangi qonun qilmishning jinoiyligini bekor qilsa yoki jazoni yengillatsa, u o'tmishda sodir etilgan qilmishlarga nisbatan ham amal qiladi. Ma'nosi: insonparvarlik prinsipini ta'minlash va shaxsning huquqiy holatini yaxshilash."
+  },
+  {
+    "id": 74,
+    "savol": "O‘zbekiston Respublikasining jinoyat to‘g‘risidagi qonun hujjatlariga muvofiq jinoyat deganda nima tushuniladi",
+    "javob": "Jinoyat — Jinoyat kodeksi bilan taqiqlangan, aybli ravishda sodir etilgan ijtimoiy xavfli qilmish (harakat yoki harakatsizlik) bo'lib, buning uchun jazo tayinlash xavfi mavjud."
+  },
+  {
+    "id": 75,
+    "savol": "Jinoyat ob’yekti va predmetining o‘zaro nisbati nimadan iborat.",
+    "javob": "Ob'yekt (ijtimoiy munosabat) doimo tajovuzga uchraydi. Predmet (ashyo) esa har doim ham mavjud bo'lmasligi mumkin. Masalan, o'g'irlikda ob'yekt — mulkiy huquq, predmet — o'g'irlangan buyum; haqorat qilishda ob'yekt bor, lekin moddiy predmet yo'q."
+  },
+  {
+    "id": 76,
+    "savol": "Jinoyat huquqining prinsiplar tizimini tavsiflab bering.",
+    "javob": "Tizimga quyidagilar kiradi: Qonuniylik, Fuqarolarning qonun oldida tengligi, Demokratizm, Insonparvarlik, Adolat, Aybdorlik uchun javobgarlik, Javobgarlikning muqarrarligi prinsiplari."
+  },
+  {
+    "id": 77,
+    "savol": "Shaxsning chin ko‘ngildan pushaymon bo‘lishining jinoyatdan ixtiyoriy voz kechishidan farqi nimada?",
+    "javob": "Bu savol 67-savol bilan bir xil. Asosiy farq — jinoyatning bosqichida (voz kechish tugallanmagan jinoyatda, pushaymonlik tugallangan jinoyatda bo'ladi)."
+  },
+  {
+    "id": 78,
+    "savol": "Jinoyatni sodir etishdan ixtiyoriy qaytishning huquqiy oqibatlari qanday?",
+    "javob": "Ixtiyoriy qaytgan shaxs jinoiy javobgarlikka tortilmaydi. Faqatgina u haqiqatda sodir etgan harakatlarida boshqa bir mustaqil jinoyat tarkibi bo'lsa (masalan, qurolni noqonuniy saqlash), o'sha qism uchun javob beradi."
+  },
+  {
+    "id": 79,
+    "savol": "Jinoiy oqibatlar nima. Ularning jinoiy-huquqiy mohiyati qanday.",
+    "javob": "Oqibat — ijtimoiy xavfli qilmish natijasida ob'yektga (manfaatlarga) yetkazilgan moddiy, jismoniy yoki ma'naviy zarar. Mohiyati: jinoyatni toifaga ajratish (og'ir/engil) va jazoni belgilashda asosiy mezon bo'ladi."
+  },
+  {
+    "id": 80,
+    "savol": "Xavfli va o‘ta xavfli residiv jinoyat tushunchalarini yoriting",
+    "javob": "Residiv — ilgari sudlangan shaxs tomonidan qayta jinoyat sodir etilishi. Xavfli residiv: ilgari og'ir jinoyat uchun sudlanib, yana og'ir jinoyat qilsa. O'ta xavfli residiv: o'ta og'ir jinoyatdan keyin yana o'ta og'ir jinoyat sodir etish yoki JK 34-moddasida ko'rsatilgan boshqa murakkab holatlar."
+  },
+  {
+    "id": 81,
+    "savol": "Shaxsning ijtimoiy xavflilik xususiyatini yo‘qotganligi munosabati bilan jazodan ozod qilishning asoslari qanday?",
+    "javob": "Asoslar: shaxs tomonidan sodir etilgan qilmish ijtimoiy xavfi katta bo'lmagan yoki uncha og'ir bo'lmagan jinoyat bo'lishi, shaxsning jinoyatdan keyingi ijobiy xulq-atvori (zararni qoplash, chin ko'ngildan pushaymonlik) va sudning tergov yoki sud jarayoni vaqtiga kelib shaxs jamiyat uchun boshqa xavf tug'dirmaydi degan xulosaga kelishi (JK 65-modda)."
+  },
+  {
+    "id": 82,
+    "savol": "O‘zbekiston Respublikasi Jinoyat kodeksining amal qilishining eksterritoriallik prinsipi nimani tashkil qiladi.",
+    "javob": "Ushbu prinsipga ko'ra, O'zbekiston fuqarolari va O'zbekistonda doimiy yashovchi fuqaroligi bo'lmagan shaxslar O'zbekiston hududidan tashqarida sodir etgan jinoyatlari uchun, agar o'sha qilmish sodir etilgan davlatda ushbu shaxslar jazolanmagan bo'lsa, O'zbekiston JK bo'yicha javobgarlikka tortilishini anglatadi (JK 12-modda)."
+  },
+  {
+    "id": 83,
+    "savol": "Birgalikdagi bajaruvchilik nima? Rollar taqsimoti bilan ishtirokchilik nima?",
+    "javob": "Birgalikdagi bajaruvchilik — ikki yoki undan ortiq shaxsning jinoyat ob'ektiv tomonidagi harakatlarni bevosita birgalikda (to'liq yoki qisman) amalga oshirishi. Rollar taqsimoti bilan ishtirokchilik — ishtirokchilarning turli vazifalarni (tashkilotchi, dalolatchi, yordamchi, bajaruvchi) o'zaro kelishib bajarishi."
+  },
+  {
+    "id": 84,
+    "savol": "Dalolatchilik intellektual yordamchilikdan nima bilan farqlanadi?",
+    "javob": "Dalolatchilik — shaxsni jinoyat sodir etishga undash, unda jinoyat qilish niyatini uyg'otish (bosim, qiziqtirish). Intellektual yordamchilik — shaxsda allaqachon mavjud bo'lgan jinoyat sodir etish niyatini maslahatlar, ko'rsatmalar yoki jinoyatdan keyin yordam berish va'dasi bilan mustahkamlashdir."
+  },
+  {
+    "id": 85,
+    "savol": "Kasalni umumiy tartibli ruhiy shifoxonadan kuzatuv kuchaytirilgan ruhiy shifoxonaga o‘tkazishga yo‘l qo‘yiladi?",
+    "javob": "Ha, agar umumiy tartibli shifoxonada davolanayotgan shaxsning ruhiy holati o'zgarsa, u o'zi yoki atrofdagilar uchun jiddiy xavf tug'dirsa, tibbiy komissiya xulosasiga asosan sud qarori bilan kuzatuv kuchaytirilgan muassasaga o'tkazilishi mumkin."
+  },
+  {
+    "id": 86,
+    "savol": "O‘zbekiston Respublikasi jinoyat qonunining konstitutsiyaviy asoslarini tavsiflab bering.",
+    "javob": "Jinoyat qonuni Konstitutsiyaga asoslanadi. Asosiy normalar: inson hayoti va huquqlarining oliy qadriyatligi, hech kim sud hukmisiz aybdor deb topilmasligi (aybsizlik prezumpsiyasi), jazolarning insonparvarligi va qonun oldida barchaning tengligi (Konstitutsiya 24-28 moddalari)."
+  },
+  {
+    "id": 87,
+    "savol": "Zaruriy mudofaa va uning shartlarini tahlil qiling.",
+    "javob": "Zaruriy mudofaa — davlat, jamiyat, shaxs yoki huquqlarni tajovuzdan himoya qilishda tajovuzchiga zarar yetkazish (JK 37-modda). Shartlari: tajovuz real (mavjud) bo'lishi, tajovuz ijtimoiy xavfli bo'lishi, himoya choralari tajovuzning xususiyati va xavflilik darajasiga mutanosib bo'lishi."
+  },
+  {
+    "id": 88,
+    "savol": "Jismoniy yoki ruhiy majburlash yoxud qo‘rqitish va kasb yoki xo‘jalik faoliyatiga bog‘liq asosli tavakkalchilikni tahlil qiling.",
+    "javob": "Majburlash — shaxs irodasidan tashqari jinoyatga majbur etilsa va u o'z harakatini boshqara olmasa, javobgarlik kelib chiqmaydi. Asosli tavakkalchilik — ijtimoiy foydali maqsadga erishish uchun qilingan, xavfni bartaraf etishning boshqa iloji bo'lmagan va zarar yetkazish ehtimoli kamaytirilgan harakat (JK 40-41 moddalar)."
+  },
+  {
+    "id": 89,
+    "savol": "Tamom bo‘lgan jinoyatdan ham ixtiyoriy qaytish mumkinmi?",
+    "javob": "Yo'q, tamom bo'lgan (tugallangan) jinoyatdan ixtiyoriy voz kechish mumkin emas. Ixtiyoriy voz kechish faqat tayyorgarlik yoki suiqasd bosqichida, ya'ni jinoyat tarkibi to'liq shakllanib ulgurmagan paytda amalga oshirilishi mumkin (JK 26-modda)."
+  },
+  {
+    "id": 90,
+    "savol": "Jinoyat qonuni amal qilishining universal prinsipini yoritib bering.",
+    "javob": "Universal prinsip — chet el fuqarolari yoki fuqaroligi bo'lmagan shaxslar O'zbekiston hududidan tashqarida tinchlik va insoniyatga qarshi jinoyat sodir etsalar (masalan, terrorizm, genotsid), ular qayerda bo'lishidan qat'i nazar, xalqaro shartnomalar asosida O'zbekiston JK bo'yicha javobgarlikka tortilishi mumkin."
+  },
+  {
+    "id": 100,
+    "savol": "O‘zbekiston Respublikasi jinoyat qonunining konstitutsiyaviy asoslarini tavsiflab bering.",
+    "javob": "JK 1-moddasiga ko‘ra, jinoyat qonunchiligi O‘zbekiston Konstitutsiyasiga asoslanadi. Asosiy ustunlar: inson huquqlarining ustuvorligi (24-modda), aybsizlik prezumpsiyasi (28-modda), sud orqali himoyalanish (55-modda) va jazolarning insonparvarligi."
+  },
+  {
+    "id": 101,
+    "savol": "Bir umrga ozodlikdan mahrum etilgan shaxslarga ijro etish muddatining o‘tganligini qo‘llash to‘g‘risidagi masala qanday tarzda yechiladi?",
+    "javob": "Umrbod ozodlikdan mahrum qilingan shaxslarga nisbatan ijro muddati o‘tganligini qo‘llash masalasi faqat sud tomonidan hal qilinadi. Agar sud muddat o‘tganligini qo‘llashni imkonsiz deb topsa, bu jazo 25 yil muddatga ozodlikdan mahrum qilish bilan almashtiriladi (JK 76-modda)."
+  },
+  {
+    "id": 102,
+    "savol": "Shaxsni ijtimoiy xavfini yo‘qotgan deb tan olishning asoslari qanday?",
+    "javob": "Asoslar: shaxsning jinoyat sodir etgandan keyingi namunali xulq-atvori, zararni to‘liq qoplashi, chin ko‘ngildan pushaymonligi va tergov/sud paytiga kelib uning shaxsi jamiyat uchun boshqa xavf tug‘dirmasligi (JK 65-modda)."
+  },
+  {
+    "id": 103,
+    "savol": "Jismoniy va ruhiy majburlash deganda nima tushuniladi?",
+    "javob": "Jismoniy majburlash — shaxsning irodasini jismoniy kuch, qiynoq yoki azob berish orqali sindirish. Ruhiy majburlash — shaxsga yoki uning yaqinlariga nisbatan zo‘rlik ishlatish, mulkni yo‘q qilish yoki sharmanda qilish bilan qo‘rqitish (tahdid)."
+  },
+  {
+    "id": 5,
+    "savol": "Jinoyat ob’yektlarini tasniflash asosiga qanday mezonlar qo‘yilgan?",
+    "javob": "Tasniflash 'vertikal' tizim bo‘yicha amalga oshiriladi: 1) Umumiy ob'yekt (barcha ijtimoiy munosabatlar); 2) Turdosh ob'yekt (boblar bo‘yicha, masalan, iqtisodiyot); 3) Bevosita ob'yekt (aniq modda bo‘yicha, masalan, mulkiy huquq)."
+  },
+  {
+    "id": 104,
+    "savol": "Qanday holatlarda voyaga yetmaganlarga tarbiyaviy ta’sir etuvchi majburlov choralari qo‘llanib jazodan ozod etilishiga yo‘l qo‘yiladi?",
+    "javob": "Ijtimoiy xavfi katta bo‘lmagan yoki uncha og‘ir bo‘lmagan jinoyatni birinchi marta sodir etgan, chin ko‘ngildan pushaymon bo‘lgan va jazo qo‘llamasdan tuzatish imkoni bo‘lgan holatlarda (JK 87-modda)."
+  },
+  {
+    "id": 105,
+    "savol": "Qilmishning jinoiyligini istisno qiladigan holatlar tushunchasini yoriting.",
+    "javob": "Bular tashqi tomondan jinoyatga o‘xshash, lekin ijtimoiy xavfliligi va aybi yo‘qligi sababli jinoyat deb topilmaydigan holatlar: zaruriy mudofaa, oxirgi zarurat, asosli tavakkalchilik, buyruqni bajarish va h.k. (JK 4-bob)."
+  },
+  {
+    "id": 106,
+    "savol": "Jinoyatni bilvosita sodir etish nima?",
+    "javob": "Bu shaxsning jinoyatni o‘zi emas, balki jinoiy javobgarlikka tortilmaydigan shaxslar (masalan, yoshi yetmaganlar, aqli norasolar) yoki hayvonlar orqali amalga oshirishi. Bunda buyruq bergan shaxs 'bajaruvchi' hisoblanadi."
+  },
+  {
+    "id": 107,
+    "savol": "Jinoyat ob’yekti nima. Uning ahamiyati nimadan iborat.",
+    "javob": "Jinoyat ob'yekti — jinoyat qonuni muhofaza qiladigan ijtimoiy munosabatlar. Ahamiyati: jinoyat tarkibining zaruriy elementi, qilmishning ijtimoiy xavfliligini belgilaydi va jinoyatlarni bir-biridan farqlash (kvalifikatsiya) uchun xizmat qiladi."
+  },
+  {
+    "id": 108,
+    "savol": "Ishtirokchilikning sub’yektiv belgilari nimalardan iborat?",
+    "javob": "1) Ikki yoki undan ortiq shaxsning jinoyat sodir etishda qatnashishi; 2) Aybning faqat qasddan bo‘lishi (ishtirokchilik ehtiyotsizlikda bo‘lmaydi); 3) Birgalikda jinoiy natijaga intilish (niyatlar birligi)."
+  },
+  {
+    "id": 109,
+    "savol": "Jinoyat huquqining prinsiplar tizimini tavsiflab bering.",
+    "javob": "Tizim 7 ta prinsipdan iborat: Qonuniylik, Fuqarolarning qonun oldida tengligi, Demokratizm, Insonparvarlik, Adolat, Aybdorlik uchun javobgarlik, Javobgarlikning muqarrarligi (JK 3-10 moddalar)."
+  },
+  {
+    "id": 110,
+    "savol": "18 yoshgacha bo‘lgan yoshda sodir etgan jinoyati uchun sudlangan shaxsga jazoni yengilrog‘i bilan almashtirishning qanday xususiyatlari mavjud?",
+    "javob": "Asosiy xususiyati imtiyozli muddatlardadir. Voyaga yetmaganlar tayinlangan jazoning kamida 1/4 qismini o‘taganlaridan keyin qolgan qismi yengilrog‘i bilan almashtirilishi mumkin (JK 89-modda)."
+  },
+  {
+    "id": 111,
+    "savol": "Ishtirokchilikda sodir etilgan jinoyatning yuqoriroq ijtimoiy xavfliligi nimada?",
+    "javob": "Kuchlar va vositalarning birlashishi natijasida zarar yetkazish ko‘lami ortadi, jinoyatni rejalashtirish va yashirish osonlashadi, bu esa jamiyat uchun yakka shaxsdan ko‘ra ko‘proq xavf tug‘diradi."
+  },
+  {
+    "id": 112,
+    "savol": "Jinoyatlarni miqdor ko‘rsatgichlariga ko‘ra tasniflash nima.",
+    "javob": "Bu jinoyatlarni ularning ijtimoiy xavflilik darajasiga ko‘ra guruhlash (JK 15-modda): 1) Ijtimoiy xavfi katta bo‘lmagan; 2) Uncha og‘ir bo‘lmagan; 3) Og‘ir; 4) O‘ta og‘ir jinoyatlar."
+  },
+  {
+    "id": 113,
+    "savol": "Og‘ir va o‘ta og‘ir jinoyatlarga qanday jinoyatlar kiradi. Amaliy misollar bilan asoslab bering.",
+    "javob": "Og‘ir: qasddan sodir etilib, 5 yildan 10 yilgacha jazo beriladigan (masalan, bosqinchilik). O‘ta og‘ir: 10 yildan ortiq jazo beriladigan (masalan, qasddan odam o‘ldirish yoki terrorizm)."
+  },
+  {
+    "id": 114,
+    "savol": "Jinoyat huquqida jinoyatchining shaxsi deganda nima tushuniladi?",
+    "javob": "Jinoyatchi shaxsi — sub'yektning yoshi va aqli rasoligidan tashqari, uning ijtimoiy-psixologik xususiyatlari, o‘tmishdagi xulqi, oilaviy va moddiy ahvoli yig‘indisi bo‘lib, jazo tayinlashda individuallashtirish uchun xizmat qiladi."
+  },
+  {
+    "id": 115,
+    "savol": "Jinoyat huquqining vazifalari nimalardan iborat.",
+    "javob": "JK 2-moddasiga ko‘ra: shaxsni, uning huquq va erkinliklarini, jamiyat va davlat manfaatlarini, mulkni, atrof-muhitni va tinchlikni jinoiy tajovuzlardan himoya qilish hamda jinoyatlarning oldini olish."
+  },
+  {
+    "id": 116,
+    "savol": "Shaxsning chin ko‘ngildan pushaymon bo‘lishining jinoyatdan ixtiyoriy voz kechishidan farqi nimada?",
+    "javob": "Voz kechish — jinoyat tugallanmasdan oldin sodir bo‘ladi (javobgarlik yo‘q). Pushaymonlik — jinoyat tugallangandan keyin bo‘ladi (jazo yengillashadi yoki ma'lum shartlar bilan ozod qilinadi)."
+  },
+  {
+    "id": 117,
+    "savol": "Jinoyat huquqida anologiya nima. O‘zbekiston Respublikasi Jinoyat kodeksida normalarida anologiyaga yo‘l qo‘yiladimi?",
+    "javob": "Analogiya — qonunda ko‘rsatilmagan qilmishni shunga o‘xshash norma bilan jazolash. O‘zbekiston JK 4-moddasiga ko‘ra, jinoyat huquqida analogiya qo‘llash qat'iyan taqiqlanadi (faqat qonunda yozilgan qilmish jinoyatdir)."
+  },
+  {
+    "id": 118,
+    "savol": "Voyaga yetmaganlarga qo‘llaniladigan majburlov choralarining qanday turlari mavjud?",
+    "javob": "Uzr so‘rash, zararni qoplash, ota-ona nazoratiga berish va ixtisoslashtirilgan o‘quv-tarbiya muassasasiga joylashtirish (JK 88-modda)."
+  },
+  {
+    "id": 119,
+    "savol": "Voyaga yetmaganlarga ozodlikdan mahrum etish ko‘rinishidagi jazo tayinlashning shartlari qanday?",
+    "javob": "Faqat og‘ir yoki o‘ta og‘ir jinoyatlar uchun qo‘llaniladi. Muddatlari cheklangan: 6 oydan 10 yilgacha (o‘ta og‘ir jinoyat uchun ham 10 yildan oshmaydi)."
+  },
+  {
+    "id": 120,
+    "savol": "Ishtirokchilikning ob’yektiv belgilari nimalardan iborat?",
+    "javob": "1) Kamida ikki nafar sub'yektning qatnashishi; 2) Ularning harakatlari o‘rtasidagi o‘zaro bog‘liqlik; 3) Birgalikdagi harakatlar natijasida yagona jinoiy oqibatning kelib chiqishi."
+  },
+  {
+    "id": 121,
+    "savol": "Boshqa shaxsning jinoyatni sodir etish maqsadini qo‘llab-quvvatlagan shaxs dalolatchi deb topiladimi",
+    "javob": "Yo'q. Dalolatchi deb topish uchun shaxs boshqa shaxsni jinoyat sodir etishga qiziqtirgan (undagan) bo'lishi shart. Shunchaki niyatni ma'qullash yoki ruhiy qo'llab-quvvatlash dalolatchilikni tashkil etmaydi."
+  },
+  {
+    "id": 122,
+    "savol": "Jazo tayinlashga oid qoidalarning xalqaro hujjatlarida mustahkamlanishiga oid masalalarni ko‘rib chiqing",
+    "javob": "Asosiy hujjatlar: Inson huquqlari umumjahon deklaratsiyasi, Fuqarolik va siyosiy huquqlar to'g'risidagi pakt, BMTning 'Tokio qoidalari'. Ular jazoning insonparvarligi, qiynoqlarning taqiqlanishi va adolatli sudlov prinsiplarini mustahkamlaydi."
+  },
+  {
+    "id": 123,
+    "savol": "Voyaga yetmaganlarga ozodlikdan mahrum etish ko‘rinishidagi jazo tayinlashning shartlari qanday",
+    "javob": "Faqat og'ir yoki o'ta og'ir jinoyatlar uchun qo'llaniladi. Muddatlar: 6 oydan 10 yilgacha. Ijtimoiy xavfi katta bo'lmagan jinoyatlar uchun voyaga yetmaganlarga ushbu jazo tayinlanmaydi (JK 85-modda)."
+  },
+  {
+    "id": 124,
+    "savol": "Jinoyat huquqida qanday konstitutsiyaviy prinsiplar mujassamlashgan.",
+    "javob": "Inson huquqlari ustuvorligi, qonuniylik, aybsizlik prezumpsiyasi, sud himoyasi va jazolarning insonparvarligi. JKning barcha prinsiplari (3-10 moddalar) Konstitutsiyaviy normalarga tayanadi."
+  },
+  {
+    "id": 125,
+    "savol": "Jinoyat qonunini sharhlash deganda nimani tushunish lozim",
+    "javob": "Jinoyat-huquqiy normalarining mazmun-mohiyatini aniqlash va tushuntirish jarayoni. Sharhlash turlari: rasmiy (Oliy sud Plenumi qarorlari), ilmiy (doktrinal) va grammatik/mantiqiy sharhlar."
+  },
+  {
+    "id": 126,
+    "savol": "Davomli jinoyatlar va ularning takroran sodir etilgan jinoyatlardan farqli jihatlarini tahlil qiling",
+    "javob": "Davomli jinoyat — yagona maqsadga qaratilgan bir necha o'xshash harakatlar yig'indisi (yagona jinoyat). Takroran sodir etilgan jinoyat — mustaqil niyat bilan sodir etilgan ikki yoki undan ortiq alohida jinoyatlardir."
+  },
+  {
+    "id": 127,
+    "savol": "Jinoyat ishtirokchilarining qanday turlari mavjud? Jinoyat ishtirokchilarining qanday turi eng xavfli ko‘rinadi va nima uchun",
+    "javob": "Turlari: bajaruvchi, tashkilotchi, dalolatchi, yordamchi. Eng xavflisi — tashkilotchi, chunki u jinoiy guruhni tuzadi, reja tuzadi va jarayonni boshqaradi, bu esa jinoyat ko'lamini oshiradi."
+  },
+  {
+    "id": 128,
+    "savol": "Mastlikning qanday turi aqli rasolikni istisno etadi va jinoiy javobgarlikka olib kelmaydi",
+    "javob": "Faqat patologik mastlik. Bu holat ruhiy kasallik turi hisoblanib, shaxs o'z harakatlarini anglamaydi. Oddiy mastlikda (alkogol, giyohvandlik) javobgarlik bekor qilinmaydi (JK 19-modda)."
+  },
+  {
+    "id": 129,
+    "savol": "Aybdor shaxsning chin ko‘ngildan pushaymon bo‘lishi munosabati bilan javobgarlikdan ozod bo‘lishining asoslari va shartlari qanday",
+    "javob": "Asos: JK 65-modda. Shartlari: birinchi marta uncha og'ir bo'lmagan jinoyat sodir etish, aybni bo'yniga olish, zararni to'liq qoplash va jinoyatning ochilishiga faol yordam berish."
+  },
+  {
+    "id": 130,
+    "savol": "Xavfli va o‘ta xavfli residiv jinoyat tushunchalarini yoriting",
+    "javob": "Xavfli residiv — og'ir jinoyat uchun sudlangan shaxsning yana og'ir jinoyat qilishi. O'ta xavfli residiv — sud tomonidan JK 34-moddasi asosida belgilangan o'ta og'ir jinoyatlarning takrorlanishi."
+  },
+  {
+    "id": 131,
+    "savol": "Voyaga yetmaganlarga qo‘llaniladigan majburlov choralarining qanday turlari mavjud?",
+    "javob": "Uzr so'rash, zararni qoplash, ota-ona yoki vasiylar nazoratiga berish, ixtisoslashtirilgan o'quv-tarbiya muassasalariga joylashtirish (JK 88-modda)."
+  },
+  {
+    "id": 132,
+    "savol": "Chin ko‘ngildan pushaymon bo‘lganlik bilan ijtimoiy xavflilik xususiyatini yo‘qotganlikning farqi nimada?",
+    "javob": "Pushaymonlik — bu shaxsning qilmishiga nisbatan sub'ektiv munosabati. Ijtimoiy xavflilikni yo'qotish — bu shaxsning xulqi yoki vaziyat o'zgarishi natijasida jamiyat uchun xavf tug'dirmaslik holatidir."
+  },
+  {
+    "id": 133,
+    "savol": "Boshqa shaxsning jinoyatni sodir etish maqsadini qo‘llab-quvvatlagan shaxs dalolatchi deb topiladimi",
+    "javob": "Yo'q (Qarang: 121-javob). Dalolatchilik uchun faol undash/qiziqtirish harakati bo'lishi shart."
+  },
+  {
+    "id": 134,
+    "savol": "Birgalikdagi bajaruvchilik nima? Rollar taqsimoti bilan ishtirokchilik nima",
+    "javob": "Birgalikdagi bajaruvchilik — bir necha kishi jinoyatni bevosita amalga oshirishi. Rollar taqsimoti — har bir ishtirokchining o'ziga xos vazifasi (biri qo'riqlaydi, biri o'g'irlaydi, biri tashkil qiladi) mavjudligi."
+  },
+  {
+    "id": 135,
+    "savol": "Shaxsni o‘ta xavfli residivist deb topishning asoslari va tartibi, uning huquqiy oqibatlari",
+    "javob": "Asos: JK 34-modda. Tartib: faqat sud tomonidan belgilanadi. Oqibati: qat'iyroq jazo, maxsus tartibli koloniyalar va shartli ozod qilish imkoniyatining cheklanishi."
+  },
+  {
+    "id": 136,
+    "savol": "Maxsus subektning belgilarini aytib bering. Ularning ahamiyati nimadan iborat",
+    "javob": "Belgilari: mansab, kasb, harbiy unvon va h.k. Ahamiyati: jinoyatni to'g'ri kvalifikatsiya qilish (masalan, poraxo'rlikda faqat mansabdor shaxs sub'yekt bo'la oladi)."
+  },
+  {
+    "id": 137,
+    "savol": "Shaxsni ijtimoiy xavfini yo‘qotgan deb tan olishning asoslari qanday?",
+    "javob": "Shaxsning jinoyatdan keyingi ijobiy xulqi, zararni to'lashi va uning shaxsidagi salbiy xususiyatlar barham topganligi (JK 65-modda)."
+  },
+  {
+    "id": 138,
+    "savol": "Jinoyat ob’yektlarini vertikalligiga ko‘ra va gorizontalligiga ko‘ra tasniflash qanday obektlarni o‘z ichiga qamrab oladi.",
+    "javob": "Vertikal: umumiy, turdosh va bevosita ob'yektlar. Gorizontal: asosiy, qo'shimcha va fakultativ ob'yektlar (masalan, bosqinchilikda mulk asosiy, sog'liq qo'shimcha ob'yekt)."
+  },
+  {
+    "id": 139,
+    "savol": "Javobgarlik kelib chiqadigan yoshga to‘lmagan, aqli noraso yoki aybsiz holda harakat qilgan shaxs bilan ishtirokchilik vujudga kelishi mumkinmi",
+    "javob": "Yo'q. Ishtirokchilik uchun kamida ikki nafar jinoiy sub'yekt (yoshi yetgan va aqli raso) bo'lishi shart. Bunday holatda 'bilvosita bajaruvchilik' vujudga keladi."
+  },
+  {
+    "id": 140,
+    "savol": "Bir qator jinoyatlar uchun 13 va 14 yoshdan javobgarlik o‘rnatish haqidagi qonun chiqaruvchining qarori nimadan kelib chiqadi",
+    "javob": "Bu ushbu yoshdagi shaxslarning o'ta og'ir qilmishlar (masalan, qasddan odam o'ldirish) ijtimoiy xavfliligini anglay olish darajasi va jinoyatchilikning barvaqt oldini olish zaruriyatidan kelib chiqadi."
+  },
+  {
+    "id": 141,
+    "savol": "Muddatidan ilgari ozod qilish bilan yengilrog‘i bilan almashtirilgan jazoni o‘tashning o‘xshashligi nimada.",
+    "javob": "O‘xshashligi shundaki, har ikkala institut ham jazoni o‘tashdan muddatidan oldin ozod qilishning turlari bo‘lib, shaxsning tuzalganligini inobatga oladi va faqat mahkum jazoning qonunda belgilangan muayyan qismini (masalan, 1/3 yoki 1/2) o‘tab bo‘lganidan keyin qo‘llaniladi."
+  },
+  {
+    "id": 142,
+    "savol": "Jismoniy yoki ruhiy majburlash yoxud qo‘rqitish va kasb yoki xo‘jalik faoliyatiga bog‘liq asosli tavakkalchilikni tahlil qiling.",
+    "javob": "Majburlash — shaxs irodasini jismoniy yoki ruhiy tazyiq bilan sindirish bo‘lib, agar shaxs o‘z harakatini idora qila olmasa, javobgarlikni istisno qiladi. Asosli tavakkalchilik — ijtimoiy foydali maqsadga erishish uchun ongli ravishda xavfga borish bo‘lib, agar zarar oldini olishning boshqa chorasi bo‘lmasa, qilmish jinoiy deb topilmaydi (JK 40, 41-moddalar)."
+  },
+  {
+    "id": 143,
+    "savol": "Jinoiy oqibatlar nima. Ularning jinoiy-huquqiy mohiyati qanday.",
+    "javob": "Jinoiy oqibat — tajovuz natijasida ob’yektga yetkazilgan zarar (moddiy, jismoniy, ma’naviy). Mohiyati: u jinoyat tarkibining moddiy elementidir, qilmishning xavflilik darajasini va jazo miqdorini belgilashda asosiy mezon bo‘lib xizmat qiladi."
+  },
+  {
+    "id": 144,
+    "savol": "Birgalikdagi bajaruvchilik nima? Rollar taqsimoti bilan ishtirokchilik nima.",
+    "javob": "Birgalikdagi bajaruvchilik — bir necha shaxsning jinoyatni bevosita birga sodir etishi. Rollar taqsimoti — ishtirokchilarning turli funksiyalarni (tashkilotchi, dalolatchi, yordamchi) o‘zaro kelishuv asosida bo‘lib olib bajarishidir."
+  },
+  {
+    "id": 145,
+    "savol": "Murakkab ishtirokchilik nima? Uning jinoyat-huquqiy ahamiyati nimada.",
+    "javob": "Murakkab ishtirokchilik — rollar taqsimlangan ishtirokchilik turi bo‘lib, unda nafaqat bajaruvchi, balki tashkilotchi, dalolatchi yoki yordamchilar ham qatnashadi. Ahamiyati: bu barcha ishtirokchilarning harakatlarini yagona jinoyat deb kvalifikatsiya qilish va har birining hissasiga yarasha jazo tayinlash imkonini beradi."
+  },
+  {
+    "id": 146,
+    "savol": "Jinoyat ob’yektiv tomoni fakultativ belgilarini jinoyatni kvalifikatsiya qilishdagi ahamiyati nimalarda ifodalanadi.",
+    "javob": "Fakultativ belgilar (joy, vaqt, usul, qurol) agar modda dispozitsiyasida ko‘rsatilgan bo‘lsa, majburiy belgiga aylanadi va qilmishni aynan o‘sha modda bilan kvalifikatsiya qilishga asos bo‘ladi (masalan, qurol ishlatsa — bosqinchilik)."
+  },
+  {
+    "id": 147,
+    "savol": "Umumiy qoida bo‘yicha jinoiy javobgarlik qaysi yoshdan yuzaga keladi.",
+    "javob": "Jinoyat kodeksining 17-moddasiga ko‘ra, umumiy qoida bo‘yicha jinoiy javobgarlik shaxs 16 yoshga to‘lganidan boshlab yuzaga keladi."
+  },
+  {
+    "id": 148,
+    "savol": "Jinoiy javobgarlik kelib chiquvchi yoshning eng yuqori chegarasi mavjudmi.",
+    "javob": "Yo‘q, jinoyat qonunchiligida javobgarlikka tortish uchun eng yuqori yosh chegarasi belgilanmagan. Har qanday yoshdagi aqli raso shaxs sodir etgan jinoyati uchun javob beradi."
+  },
+  {
+    "id": 149,
+    "savol": "Jinoyat tarkibi elementlari tizimida ob’yektiv tomonning ahamiyati nimada.",
+    "javob": "Ob’yektiv tomon jinoyatning tashqi ifodasidir. Ahamiyati: qilmishning qonunga xilofligini isbotlashning asosi hisoblanadi, aynan shu tomon orqali jinoyatning moddiy izlari aniqlanadi va sub’yektiv tomonni (niyatni) tahlil qilishga yo‘l ochadi."
+  },
+  {
+    "id": 150,
+    "savol": "Bir guruh shaxslar deganda nima tushuniladi? Agar ikkinchi jinoyat ishtirokchisi aqli noraso shaxs bo‘lgan bo‘lsa, guruh mavjud bo‘ladimi.",
+    "javob": "Bir guruh shaxslar — kamida ikki nafar sub’yektning (yoshi yetgan va aqli raso) oldindan kelishmasdan birgalikda jinoyat sodir etishi. Agar ikkinchi shaxs aqli noraso bo‘lsa, yuridik ma’noda guruh mavjud bo‘lmaydi (bilvosita bajaruvchilik hisoblanadi)."
+  },
+  {
+    "id": 152,
+    "savol": "Harakatsizlikda jinoiy javobgarlikning o‘ziga xos xususiyatlarini aniqlang. Harakatsizlikning obektiv va subektiv mezonlari nimadan iborat.",
+    "javob": "Xususiyati: shaxs biror amalni qilishi shart bo‘la turib qilmasligidir. Ob’yektiv mezon: shaxsning zimmasida qonun, kasb yoki shartnoma bo‘yicha harakat qilish majburiyati borligi. Sub’yektiv mezon: shaxsning o‘sha vaqtda harakat qilishga real imkoniyati mavjudligi."
+  },
+  {
+    "id": 153,
+    "savol": "Jinoyat ob’yekti va predmetining o‘zaro nisbati nimadan iborat.",
+    "javob": "Ob’yekt — tajovuz qilingan munosabat (mulk huquqi), predmet — tajovuz ob’yekti bo‘lgan moddiy ashyo (mashina). Ob’yekt har doim mavjud, predmet esa fakultativdir (masalan, haqoratda predmet yo‘q)."
+  },
+  {
+    "id": 154,
+    "savol": "Aybdor shaxsning chin ko‘ngildan pushaymon bo‘lishi munosabati bilan javobgarlikdan ozod bo‘lishining asoslari va shartlari qanday.",
+    "javob": "Asos: JK 65-modda. Shartlari: birinchi marta uncha og‘ir bo‘lmagan jinoyat sodir etish, aybni bo‘yniga olish, zararni to‘liq qoplash va jinoyatning ochilishiga faol yordam berishdir."
+  },
+  {
+    "id": 155,
+    "savol": "Jinoyat huquqining prinsiplar tizimini tavsiflab bering.",
+    "javob": "Tizim: 1) Qonuniylik; 2) Fuqarolarning tengligi; 3) Demokratizm; 4) Insonparvarlik; 5) Adolat; 6) Aybdorlik uchun javobgarlik; 7) Javobgarlikning muqarrarligi."
+  },
+  {
+    "id": 156,
+    "savol": "Tibbiy yo‘sindagi majburlov choralarini o‘zgartirish uchun nima asos bo‘ladi.",
+    "javob": "Shaxsning ruhiy holati sog‘ayishi yoki yaxshilanishi natijasida u o‘zi va atrofdagilar uchun xavf tug‘dirmay qolishi haqidagi tibbiy xulosa va sud qarori asos bo‘ladi."
+  },
+  {
+    "id": 157,
+    "savol": "Jinoiy xulqning akti sifatida harakatning mazmuni nimadan iborat.",
+    "javob": "Jinoiy harakat — shaxsning jinoyat qonuni bilan taqiqlangan, ongli va irodaviy ravishda amalga oshirgan jismoniy faolligidir. U muayyan harakatlar yig‘indisi va ijtimoiy xavfli oqibatga yo‘naltirilganligi bilan ifodalanadi."
+  },
+  {
+    "id": 158,
+    "savol": "Jinoyat ob’yektiv tomonining zaruriy belgilari va ularning ahamiyatini ayting. Amaliy misollar bilan bayon qiling.",
+    "javob": "Zaruriy belgilar: ijtimoiy xavfli qilmish (harakat/harakatsizlik). Moddiy tarkibda — oqibat va sababiy bog‘lanish ham. Misol: O‘g‘irlikda harakat — molni yashirin olish. Ahamiyati: bu belgilar bo‘lmasa, jinoyat tarkibi mavjud bo‘lmaydi."
+  },
+  {
+    "id": 159,
+    "savol": "Jinoiy qilmishni boshqa huquqbuzarliklardan nima farqi bor.",
+    "javob": "Asosiy farqi ijtimoiy xavflilik darajasida. Jinoyat jamiyat uchun eng og‘ir xavf tug‘diradi va u uchun jinoiy jazo qo‘llaniladi. Boshqa huquqbuzarliklar (ma’muriy, fuqaroviy) xavflilik darajasi pastligi bilan ajralib turadi."
+  },
+  {
+    "id": 160,
+    "savol": "Jazo tayinlash yuzasidan qiyosiy-huquqiy tahlil o‘tkazing.",
+    "javob": "Tahlil shuni ko‘rsatadiki, jazo qilmishning og‘irligiga va shaxsning xususiyatiga mutanosib bo‘lishi shart (adolat prinsipi). O‘zbekiston qonunchiligida jazo tayinlashda insonparvarlikka ustuvorlik beriladi (masalan, ayollar va qariyalarga nisbatan cheklovlar)."
+  },
+  {
+    "id": 161,
+    "savol": "Jinoyat huquqida jinoyatchining shaxsi deganda nima tushuniladi.",
+    "javob": "Bu — jinoyat sodir etgan shaxsning faqat yoshi va aqli rasoligigina emas, balki uning ijtimoiy, psixologik, huquqiy xususiyatlari (muqaddam sudlanganligi, oilaviy ahvoli, xarakteri) majmuidir."
+  },
+  {
+    "id": 162,
+    "savol": "Jinoyat ob’yektiv tomoni fakultativ belgilarining ahamiyati va zaruriy belgilardan farqi nimada.",
+    "javob": "Zaruriy belgilar (harakat) barcha jinoyatlarda bo‘lishi shart. Fakultativ belgilar (joy, vaqt, usul) hamma jinoyatda ham bo‘lavermaydi, lekin moddada ko‘rsatilsa, jazo tayinlashda og‘irlashtiruvchi yoki yengillatuvchi holat sifatida ahamiyatga ega bo‘ladi."
+  },
+  {
+    "id": 163,
+    "savol": "Zaruriy mudofaa va uning shartlarini tahlil qiling.",
+    "javob": "Zaruriy mudofaa — tajovuzchiga zarar yetkazib, o‘zini yoki boshqalarni himoya qilish. Shartlari: tajovuz real bo‘lishi, himoya choralari tajovuz xavfiga mutanosib bo‘lishi (mudofaa chegarasidan chiqmaslik)."
+  },
+  {
+    "id": 164,
+    "savol": "Jinoyatni sodir etishdan ixtiyoriy qaytishning huquqiy oqibatlari qanday.",
+    "javob": "Shaxs jinoyatni oxiriga yetkazishdan ixtiyoriy voz kechsa, jinoiy javobgarlikka tortilmaydi. Faqat u sodir etgan amalda boshqa mustaqil jinoyat tarkibi bo‘lsa, o‘sha qism uchun javob beradi (JK 26-modda)."
+  },
+  {
+    "id": 165,
+    "savol": "Jinoyat huquqida qanday konstitutsiyaviy prinsiplar mujassamlashgan.",
+    "javob": "Inson huquqlari ustuvorligi, qonuniylik, aybsizlik prezumpsiyasi, sud himoyasi va jazolarning insonparvarligi. JKning barcha prinsiplari Konstitutsiya normalari bilan uzviy bog‘liqdir."
+  },
+  {
+    "id": 166,
+    "savol": "Qanday holatlarda voyaga yetmaganlarga tarbiyaviy ta’sir etuvchi majburlov choralari qo‘llanib jazodan ozod etilishiga yo‘l qo‘yiladi.",
+    "javob": "Uncha og‘ir bo‘lmagan jinoyatni birinchi marta sodir etganda, shaxsning tuzalishiga ishonch bo‘lsa va sud jazo berishni maqsadga muvofiq emas deb topsa (JK 87-modda)."
+  },
+  {
+    "id": 167,
+    "savol": "Jinoyatlarni tasniflash asosiga qanday mezonlar qo‘yilgan.",
+    "javob": "Asosiy mezon — ijtimoiy xavflilik darajasi va turi. Shunga ko‘ra jinoyatlar: ijtimoiy xavfi katta bo‘lmagan, uncha og‘ir bo‘lmagan, og‘ir va o‘ta og‘ir turlarga bo‘linadi (JK 15-modda)."
+  },
+  {
+    "id": 168,
+    "savol": "Shartli hukm qilishning muddatidan ilgari ozod qilishdan farqi nimada.",
+    "javob": "Shartli hukmda jazo tayinlanadi, lekin ijro etilmaydi (sinov muddati). Muddatidan oldin ozod qilishda esa shaxs jazoning bir qismini o‘tab bo‘lganidan keyin qolgan qismidan ozod qilinadi."
+  },
+  {
+    "id": 169,
+    "savol": "Murakkab ishtirokchilik nima? Uning jinoyat-huquqiy ahamiyati nimada.",
+    "javob": "Murakkab ishtirokchilik — rollar taqsimlangan ishtirokchilikdir. Ahamiyati: bu har bir ishtirokchining (yordamchi, dalolatchi va h.k.) aybi darajasini aniq belgilash va adolatli jazo tayinlash imkonini beradi."
+  },
+  {
+    "id": 170,
+    "savol": "Jinoiy javobgarlik kelib chiquvchi yoshning eng yuqori chegarasi mavjudmi.",
+    "javob": "Yo‘q, eng yuqori yosh chegarasi mavjud emas. Shaxs yoshidan qat’i nazar, agar u aqli raso bo‘lsa, sodir etgan qilmishi uchun javob berishi shart."
+  },
+  {
+    "id": 171,
+    "savol": "Bir qancha jinoyat sodir etish tushunchasi nima va qanday turlarini mavjud",
+    "javob": "Shaxs tomonidan bir-biriga bog‘liq bo‘lmagan ikki yoki undan ortiq jinoiy qilmishning sodir etilishi. Turlari: 1) Jinoyatlar takroriyligi (bir xil jinoyatni qayta sodir etish); 2) Jinoyatlar majmui (turli moddalar bo‘yicha bir necha jinoyat sodir etish)."
+  },
+  {
+    "id": 172,
+    "savol": "Jinoiy oqibatni jinoyatlarni kvalifikatsiya qilishdagi ahamiyati nimalarda ifodalanadi",
+    "javob": "Oqibat jinoyatni tamom bo‘lgan yoki suiqasd bosqichida ekanligini aniqlashga, jinoyat toifasini (og‘irligini) belgilashga va moddiy tarkibli jinoyatlarda javobgarlikning muqarrar asosi sifatida xizmat qiladi."
+  },
+  {
+    "id": 173,
+    "savol": "Javobgarlikning muqarrarligi prinsipi majburiy jazo tayinlashni anglatadimi",
+    "javob": "Yo‘q, bu prinsip har doim jazo tayinlashni anglatmaydi. U jinoyat sodir etgan shaxsning qilmishiga huquqiy baho berilishi va qonuniy javobgarlikka tortilishini anglatadi. Qonunda ko‘rsatilgan asoslar mavjud bo‘lsa, shaxs javobgarlikka tortilib, jazodan ozod qilinishi ham mumkin."
+  },
+  {
+    "id": 174,
+    "savol": "Jinoyat ob’yektiv tomoni fakultativ belgilarini jinoyatni kvalifikatsiya qilishdagi ahamiyati nimalarda ifodalanadi.",
+    "javob": "Fakultativ belgilar (usul, joy, vaqt, qurol) agar modda dispozitsiyasida shart qilib ko‘rsatilgan bo‘lsa, qilmishni aynan o‘sha modda bilan kvalifikatsiya qilish uchun zaruriy belgi hisoblanadi (masalan, tungi vaqtda yoki qurol bilan sodir etish)."
+  },
+  {
+    "id": 175,
+    "savol": "Birgalikda jinoyat sodir qilgan shaxsning chin ko‘ngildan pushaymon bo‘lishi munosabati bilan ozod qilishning asoslari qanday",
+    "javob": "Ishtirokchilarning har biri mustaqil pushaymon bo‘lishi mumkin. Asoslar: aybni bo‘yniga olish, jinoyatni ochishga faol yordam berish, zararni qoplash. Har bir ishtirokchining harakatiga individual baho beriladi (JK 65-modda)."
+  },
+  {
+    "id": 176,
+    "savol": "Jinoyatning obektiv tomoni nima. Uning mazmun-mohiyati nimalardan iborat",
+    "javob": "Bu jinoyatning tashqi ifodasi bo‘lib, quyidagilarni qamrab oladi: ijtimoiy xavfli qilmish (harakat/harakatsizlik), ijtimoiy xavfli oqibat, ular o‘rtasidagi sababiy bog‘lanish, shuningdek, jinoyat sodir etilgan joy, vaqt, usul va sharoit."
+  },
+  {
+    "id": 177,
+    "savol": "Xavfli va o‘ta xavfli residiv jinoyat tushunchalarini yoriting.",
+    "javob": "Residiv — sudlanganlik muddati tugamasdan qayta jinoyat qilish. Xavfli residiv: shaxs ilgari og‘ir jinoyat qilib, yana og‘ir jinoyat qilsa. O‘ta xavfli residiv: o‘ta og‘ir jinoyatdan keyin yana shunday jinoyat qilsa (JK 34-modda)."
+  },
+  {
+    "id": 178,
+    "savol": "Qaysi paytdan boshlab shaxs jinoiy javobgarlik kelib chiquvchi yoshga to‘lgan deb hisoblanadi",
+    "javob": "Shaxs tug‘ilgan kunidan keyingi kunning nolinchi soatidan (soat 00:00 dan) boshlab tegishli yoshga to‘lgan hisoblanadi. Masalan, 1-iyulda tug‘ilgan bo‘lsa, 2-iyuldan boshlab yoshi to‘lgan sanaladi."
+  },
+  {
+    "id": 179,
+    "savol": "Ishtirokchilikning sub’yektiv belgilari nimalardan iborat",
+    "javob": "1) Faqat qasddan sodir etilishi (ishtirokchilarning niyati birligi); 2) Birgalikda jinoiy natijaga intilish; 3) Har bir ishtirokchi boshqasining harakatidan xabardor bo‘lishi."
+  },
+  {
+    "id": 180,
+    "savol": "Jazo tayinlashga oid qoidalarning xalqaro hujjatlarida mustahkamlanishiga oid masalalarni ko‘rib chiqing",
+    "javob": "Xalqaro huquq (BMT rezolyutsiyalari, Paktlar) jazoning asosiy maqsadi insonni qiynash emas, balki uni jamiyatga qaytarish (reabilitatsiya) ekanligini, jazolarning mutanosibligini va insonparvarligini talab qiladi."
+  },
+  {
+    "id": 181,
+    "savol": "Jinoyat ob’yektlarini vertikalligiga ko‘ra va gorizontalligiga ko‘ra tasniflash qanday obektlarni o‘z ichiga qamrab oladi",
+    "javob": "Vertikal tasnif: umumiy ob'yekt (JK himoyasidagi barcha munosabatlar), turdosh ob'yekt (bir guruhdagi munosabatlar, masalan, iqtisodiy), bevosita ob'yekt (konkret jinoyat tajovuz qiladigan munosabat). Gorizontal tasnif: asosiy ob'yekt, qo'shimcha ob'yekt va fakultativ ob'yekt (masalan, bosqinchilikda mulk asosiy, sog'liq qo'shimcha ob'yekt)."
+  },
+  {
+    "id": 182,
+    "savol": "Jinoiy oqibatlar nima. Ularning jinoiy-huquqiy mohiyati qanday.",
+    "javob": "Jinoiy oqibat — ijtimoiy xavfli qilmish natijasida ob'yektga yetkazilgan jismoniy, moddiy yoki ma'naviy zarardir. Mohiyati: u jinoyat tarkibining zaruriy elementi (moddiy tarkibda), qilmishning ijtimoiy xavflilik darajasini aniqlaydi va jazoni individuallashtirishda xizmat qiladi."
+  },
+  {
+    "id": 183,
+    "savol": "Takroran jinoyat sodir etish, uning turlari va huquqiy ahamiyatini yoriting.",
+    "javob": "Takroran jinoyat sodir etish — ilgari jinoyat sodir etgan shaxsning JK Maxsus qismining aynan bitta moddasi yoki tegishli hollarda boshqa moddalari bilan ko'zda tutilgan jinoyatni qayta sodir etishi (JK 32-modda). Turlari: bir turdagi va o'xshash takroriylik. Ahamiyati: jazoni og'irlashtiruvchi holat yoki ayrim hollarda jinoyatning kvalifikatsiya belgisi hisoblanadi."
+  },
+  {
+    "id": 184,
+    "savol": "Jinoyat qonuni amal qilishining universal prinsipini yoritib bering.",
+    "javob": "Universal prinsip — chet el fuqarolari yoki fuqaroligi bo'lmagan shaxslarning O'zbekiston hududidan tashqarida tinchlik va insoniyat xavfsizligiga qarshi (genotsid, terrorizm, urush jinoyatlari) jinoyat sodir etganligi uchun, xalqaro shartnomalarga asosan, qilmish sodir etilgan joydan qat'i nazar javobgarlikka tortilishidir."
+  },
+  {
+    "id": 185,
+    "savol": "Birgalikdagi bajaruvchilik nima? Rollar taqsimoti bilan ishtirokchilik nima?",
+    "javob": "Birgalikdagi bajaruvchilik (sodeystvie) — ikki yoki undan ortiq shaxsning jinoyat ob'ektiv tomonini birgalikda to'liq yoki qisman amalga oshirishi. Rollar taqsimoti (murakkab ishtirokchilik) — ishtirokchilarning bajaruvchi, tashkilotchi, dalolatchi va yordamchi kabi turli funksiyalarni bo'lib olib harakat qilishidir."
+  },
+  {
+    "id": 186,
+    "savol": "Qanday vaziyatlarda muddat o‘tganlik davri uziladi",
+    "javob": "Jinoiy javobgarlikka tortish muddati (da'vo muddati) ikki holatda uziladi: 1) Shaxs yangi o'rtacha og'ir, og'ir yoki o'ta og'ir jinoyat sodir etsa; 2) Shaxs tergov yoki suddan qochib yashirinsa (bu holatda muddat to'xtaydi va ushlangan kundan qayta tiklanadi)."
+  },
+  {
+    "id": 187,
+    "savol": "Ishtirokchilikda sodir etilgan jinoyatning yuqoriroq ijtimoiy xavfliligi nimada?",
+    "javob": "Yuqori xavflilik — jinoiy kuchlarning birlashishi, zarar yetkazish ko'lamining ortishi, jinoyatni rejalashtirish va yashirishning osonlashishi hamda ishtirokchilarning bir-biriga ruhiy ta'sir ko'rsatib, jinoiy niyatni mustahkamlashida ifodalanadi."
+  },
+  {
+    "id": 188,
+    "savol": "Jinoyatga daxldorlik nima? Jinoyatga daxldorlik va ishtirokchilik o‘rtasidagi farq nimada",
+    "javob": "Jinoyatga daxldorlik — shaxsning jinoyat tayyorgarligi yoki sodir etilishida qatnashmasdan, u haqida oldindan va'da bermay turib, jinoyatni yashirishi yoki xabar bermasligidir. Farqi: ishtirokchilikda shaxs jinoyatga 'ichidan' (hamkorlikda) hissa qo'shadi, daxldorlikda esa jinoyat jarayoniga bog'liq bo'lmagan 'tashqi' harakat qiladi."
+  },
+  {
+    "id": 189,
+    "savol": "Voyaga yetmaganlarga ozodlikdan mahrum etish ko‘rinishidagi jazo tayinlashning shartlari qanday?",
+    "javob": "Faqat og'ir yoki o'ta og'ir jinoyatlar uchun qo'llaniladi. Ijtimoiy xavfi katta bo'lmagan jinoyatlar uchun taqiqlangan. Eng kam muddati — 6 oy, eng ko'p muddati — 10 yil (18 yoshga to'lmaganlar uchun maksimum chegara)."
+  },
+  {
+    "id": 190,
+    "savol": "Formal va kesik tarkibli jinoyatlar o‘rtasidagi farq nimadan iborat.",
+    "javob": "Formal tarkibda jinoyat ijtimoiy xavfli harakat sodir etilgan paytdan (oqibat kelib chiqishidan qat'i nazar) tugallangan hisoblanadi. Kesik (truncated) tarkibda esa jinoyatning tugallanish payti yanada oldinroqqa — jinoyat sodir etishga tayyorgarlik yoki suiqasd bosqichiga ko'chirilgan bo'ladi (masalan, bosqinchilikda tajovuz boshlangan paytdan)."
+  },
+  {
+    "id": 191,
+    "savol": "Tamom bo‘lgan jinoyatdan ham ixtiyoriy qaytish mumkinmi?",
+    "javob": "Yo‘q, tamom bo‘lgan (tugallangan) jinoyatdan ixtiyoriy voz kechish mumkin emas. Ixtiyoriy voz kechish faqat jinoyat oxiriga yetkazilmagan bosqichda — tayyorgarlik yoki suiqasd vaqtida amalga oshirilishi mumkin. Jinoyat tugallanganidan keyin shaxs faqat chin ko‘ngildan pushaymon bo‘lishi mumkin, bu esa javobgarlikni bekor qilmaydi, balki jazoni yengillatadi."
+  },
+  {
+    "id": 192,
+    "savol": "Odillik va insonparvarlik prinsiplarining o‘zaro bog‘liq jihatlarini muhokama eting.",
+    "javob": "Odillik prinsipi jazoning qilmish og‘irligiga mutanosibligini talab qilsa, insonparvarlik prinsipi jazoning maqsadi insonni qiynash emas, balki uni tuzatish ekanligini belgilaydi. Ular birgalikda shaxsga ortiqcha azob bermaydigan, lekin uning qilmishiga yarasha bo‘lgan eng munosib choralarni tanlashni ta’minlaydi."
+  },
+  {
+    "id": 193,
+    "savol": "Boshqa shaxsning jinoyatni sodir etish maqsadini qo‘llab-quvvatlagan shaxs dalolatchi deb topiladimi?",
+    "javob": "Yo‘q, shunchaki niyatni ma’qullash dalolatchilik uchun kamlik qiladi. Dalolatchi deb topish uchun shaxs boshqa shaxsda jinoyat qilish niyatini uyg‘otishi (undashi, qiziqtirishi, bosim o‘tkazishi) shart. Agar niyat allaqachon mavjud bo‘lib, shunchaki qo‘llab-quvvatlansa, bu harakat ma’lum sharoitlarda intellektual yordamchilik deb baholanishi mumkin."
+  },
+  {
+    "id": 194,
+    "savol": "Jazo tayinlashga oid qoidalarning xalqaro hujjatlarida mustahkamlanishiga oid masalalarni ko‘rib chiqing.",
+    "javob": "Xalqaro darajada 'Mahbuslar bilan muomala qilishning minimal standart qoidalari' (Nelson Mandela qoidalari) va 'Ozodlikdan mahrum qilish bilan bog‘liq bo‘lmagan choralar bo‘yicha minimal standart qoidalar' (Tokio qoidalari) mavjud. Ular jazoni tayinlashda shaxs qadr-qimmatini saqlash, kamsitishga yo‘l qo‘ymaslik va ijtimoiy reabilitatsiyaga urg‘u berishni talab qiladi."
+  },
+  {
+    "id": 195,
+    "savol": "Voyaga yetmaganlarga ozodlikdan mahrum etish ko‘rinishidagi jazo tayinlashning shartlari qanday?",
+    "javob": "Faqat og‘ir yoki o‘ta og‘ir jinoyatlar uchun qo‘llaniladi. Ijtimoiy xavfi katta bo‘lmagan jinoyatlar uchun bu jazo tayinlanmaydi. Eng kam muddati — 6 oy, eng ko‘p muddati — 10 yil. Mahkum jazo muddatini voyaga yetmaganlar uchun mo‘ljallangan tarbiya koloniyalarida o‘taydi (JK 85-modda)."
+  },
+  {
+    "id": 196,
+    "savol": "Jinoyatga tayyorgarlik ko‘rish jinoyat sodir qilishga qasdning paydo bo‘lishidan nima bilan farqlanadi?",
+    "javob": "Qasdning paydo bo‘lishi (yalang‘och niyat) — bu shaxsning ichki ruhiy holati bo‘lib, u jinoiy javobgarlikka sabab bo‘lmaydi. Tayyorgarlik ko‘rish esa tashqi dunyoda ifodalangan moddiy harakatdir (qurol sotib olish, sherik topish, reja tuzish). Tayyorgarlik — jinoiy faoliyatning birinchi bosqichidir."
+  },
+  {
+    "id": 197,
+    "savol": "Qonuniylik prinsipiga ko‘ra shaxsni jinoiy javobgarlikka tortish asosini tavsiflab bering.",
+    "javob": "Qonuniylik prinsipiga ko‘ra, shaxs faqat Jinoyat kodeksida ko‘zda tutilgan aniq qilmishni sodir etganidagina javobgarlikka tortiladi. Hech kim qonunda ko‘rsatilmagan qilmish uchun yoki analogiya bo‘yicha jazolanishi mumkin emas. Jinoiy javobgarlikka tortish uchun faqat qonuniy asoslar — jinoyat tarkibining barcha elementlari mavjud bo‘lishi shart."
+  },
+  {
+    "id": 198,
+    "savol": "Davomli jinoyatlar va ularning takroran sodir etilgan jinoyatlardan farqli jihatlarini tahlil qiling.",
+    "javob": "Davomli jinoyatda shaxs yagona niyat bilan bitta maqsadga erishish uchun o‘xshash harakatlarni ketma-ket qiladi (masalan, ombordan ehtiyot qismlarni bo‘lib-bo‘lib o‘g‘irlash) — bu bitta jinoyat sanaladi. Takroran sodir etilgan jinoyatda esa har bir harakat alohida niyat bilan sodir etiladi va har biri mustaqil jinoyat hisoblanadi."
+  },
+  {
+    "id": 199,
+    "savol": "Jazo tayinlash yuzasidan qiyosiy-huquqiy tahlil o‘tkazing.",
+    "javob": "Qiyosiy tahlil shuni ko‘rsatadiki, ko‘pgina rivojlangan davlatlar (masalan, Evropa Ittifoqi) jazoni qat’iylashtirishdan ko‘ra, uning muqarrarligiga va mahkumni jamiyatga moslashtirishga (probatsiya) ko‘proq e’tibor beradi. O‘zbekiston qonunchiligi ham bosqichma-bosqich liberallashib, ozodlikdan mahrum qilish bilan bog‘liq bo‘lmagan jazolarni (masalan, ozodlikni cheklash) kengaytirmoqda."
+  },
+  {
+    "id": 200,
+    "savol": "Bajaruvchi eksessi nima, uning qanday turlari mavjud?",
+    "javob": "Bajaruvchi eksessi — bajaruvchining boshqa ishtirokchilarning niyati (kelishuvi) doirasidan tashqariga chiqib, ular rejalashtirmagan jinoyatni sodir etishi. Turlari: 1) Miqdoriy eksess (rejalashtirilgan jinoyatning og‘irroq shaklini sodir etish); 2) Sifat eksessi (umuman boshqa turdagi jinoyatni sodir etish). Eksess uchun faqat bajaruvchi javob beradi, boshqa ishtirokchilar kelishilgan doirada javob beradilar."
+  }
+]
