@@ -50,6 +50,14 @@
       overflow-x:hidden;
     }
 
+    /* Mobile/desktop height helpers */
+    .app-min-h{
+      min-height: 100dvh;
+    }
+    .safe-bottom{
+      padding-bottom: max(10px, env(safe-area-inset-bottom));
+    }
+
     .blob{ position:absolute; filter:blur(40px); opacity:.55; animation:floaty 10s ease-in-out infinite; pointer-events:none; }
     .blob.one{ width:420px;height:420px;background:rgba(0,102,255,.28);top:-120px;left:-120px;border-radius:48% 52% 55% 45%/45% 52% 48% 55%; }
     .blob.two{ width:520px;height:520px;background:rgba(0,102,255,.16);bottom:-180px;right:-180px;border-radius:55% 45% 50% 50%/50% 55% 45% 50%; animation-duration:12s; }
@@ -124,7 +132,7 @@
       box-shadow: 0 0 0 3px rgba(0,102,255,.14);
     }
 
-    /* Markdown styling inside assistant messages */
+    /* Markdown styling */
     .md h1,.md h2,.md h3{ font-weight: 800; margin: .35rem 0 .25rem; }
     .md p{ margin: .25rem 0; }
     .md ul{ list-style: disc; padding-left: 1.1rem; margin: .35rem 0; }
@@ -152,15 +160,11 @@
       border-radius: 8px;
       border: 1px solid rgba(255,255,255,.08);
     }
-    .md pre code{
-      background: transparent;
-      padding: 0;
-      border: none;
-    }
+    .md pre code{ background: transparent; padding: 0; border: none; }
   </style>
 </head>
 
-<body class="antialiased relative">
+<body class="antialiased relative app-min-h">
   <div class="blob one"></div>
   <div class="blob two"></div>
   <div class="blob three"></div>
@@ -224,7 +228,7 @@
   </div>
 
   <!-- MAIN -->
-  <main class="pt-24 pb-10 min-h-screen">
+  <main class="pt-24 pb-10 min-h-[100dvh]">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-6">
         <div>
@@ -243,8 +247,10 @@
         </div>
       </div>
 
-      <section class="glass-panel rounded-3xl overflow-hidden">
-        <div class="px-5 sm:px-6 py-4 border-b border-white/10 flex items-center justify-between">
+      <!-- Chat Panel (RESPONSIVE FLEX) -->
+      <section class="glass-panel rounded-3xl overflow-hidden flex flex-col min-h-[72dvh] md:min-h-[70dvh]">
+        <!-- Top bar -->
+        <div class="px-5 sm:px-6 py-4 border-b border-white/10 flex items-center justify-between shrink-0">
           <div class="flex items-center gap-3">
             <div class="h-10 w-10 rounded-2xl glass-subpanel flex items-center justify-center">
               <i class="ph-bold ph-robot text-lawBlue text-xl"></i>
@@ -267,9 +273,11 @@
           </div>
         </div>
 
-        <div id="chat-container" class="h-[62vh] sm:h-[64vh] overflow-y-auto px-4 sm:px-6 py-5 space-y-4"></div>
+        <!-- Messages (flex-1 + min-h-0 fixes mobile scroll) -->
+        <div id="chat-container" class="flex-1 min-h-0 overflow-y-auto px-4 sm:px-6 py-5 space-y-4"></div>
 
-        <div class="border-t border-white/10 px-4 sm:px-6 py-4">
+        <!-- Composer (sticky-like bottom area) -->
+        <div class="border-t border-white/10 px-4 sm:px-6 py-4 shrink-0 safe-bottom">
           <div class="flex items-end gap-3">
             <div class="flex-grow">
               <div class="glass-subpanel rounded-2xl px-4 py-3 border border-white/10 focus-ring transition">
@@ -438,8 +446,8 @@
       top.appendChild(right);
 
       const content = document.createElement('div');
-      content.className = 'mt-2 text-sm text-white/90 leading-6 md md:prose-invert';
-      content.innerHTML = renderMarkdownSafe(text);
+      content.className = 'mt-2 text-sm text-white/90 leading-6 md';
+      content.innerHTML = `<div class="md">${renderMarkdownSafe(text)}</div>`;
 
       bubble.appendChild(top);
       bubble.appendChild(content);
