@@ -1,317 +1,575 @@
 <!DOCTYPE html>
 <html lang="uz" class="scroll-smooth">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lawinate.uz | AI Assistant</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
-<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "58db17dfbaa943a2b8c6c7e895c112d3"}'></script><!-- End Cloudflare Web Analytics -->
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        lawBlue: '#0066FF',
-                        lawDark: '#050505',
-                        lawCard: '#0F1115',
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        body {
-            background-color: #050505;
-            color: white;
-            background-image:
-                radial-gradient(circle at 20% 20%, rgba(0, 102, 255, 0.15) 0%, transparent 40%),
-                radial-gradient(circle at 80% 80%, rgba(0, 102, 255, 0.1) 0%, transparent 40%);
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lawinate.uz | AI Assistant</title>
+  <meta name="description" content="Lawinate AI Assistant — huquqiy savollarga tezkor javoblar." />
 
-        .glass-nav {
-            background: rgba(5, 5, 5, 0.7);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
-        .glass-card {
-            background: rgba(15, 17, 21, 0.6);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.3s ease;
-        }
+  <!-- Cloudflare Web Analytics -->
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
+    data-cf-beacon='{"token":"58db17dfbaa943a2b8c6c7e895c112d3"}'></script>
+  <!-- End Cloudflare Web Analytics -->
 
-        .glass-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(0, 102, 255, 0.3);
-            box-shadow: 0 10px 40px -10px rgba(0, 102, 255, 0.2);
-        }
+  <!-- Markdown render + XSS protect -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.6/dist/purify.min.js"></script>
 
-        .text-gradient {
-            background: linear-gradient(to right, #fff, #0066FF);
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'sans-serif'] },
+          colors: { lawBlue: '#0066FF', lawDark: '#050505', lawCard: '#0F1115' }
         }
+      }
+    }
+  </script>
 
-        /* Maxsus suhbat oynasi stillari */
-        .chat-message.user {
-            background-color: rgba(0, 102, 255, 0.2); /* lawBlue ning 20% shaffofligi */
-            border-bottom-right-radius: 0;
-        }
-        .chat-message.assistant {
-            background-color: rgba(15, 17, 21, 0.6); /* glass-card orqasidagi rang */
-            border-bottom-left-radius: 0;
-        }
-        .chat-container::-webkit-scrollbar {
-            width: 8px;
-        }
-        .chat-container::-webkit-scrollbar-track {
-            background: #0F1115;
-            border-radius: 10px;
-        }
-        .chat-container::-webkit-scrollbar-thumb {
-            background-color: #0066FF;
-            border-radius: 10px;
-            border: 2px solid #0F1115;
-        }
-    </style>
+  <style>
+    :root{
+      --glass: rgba(255,255,255,.08);
+      --glass2: rgba(255,255,255,.06);
+      --stroke: rgba(255,255,255,.14);
+      --shadow: 0 18px 60px rgba(0,0,0,.45);
+      --shadow2: 0 12px 40px rgba(0,0,0,.35);
+      --blue: #0066FF;
+    }
+
+    body{
+      color:#fff;
+      background:
+        radial-gradient(1200px 800px at 15% 15%, rgba(0,102,255,.25), transparent 60%),
+        radial-gradient(1000px 700px at 85% 80%, rgba(0,102,255,.18), transparent 55%),
+        radial-gradient(900px 600px at 60% 10%, rgba(255,255,255,.08), transparent 55%),
+        #050505;
+      overflow-x:hidden;
+    }
+
+    .blob{ position:absolute; filter:blur(40px); opacity:.55; animation:floaty 10s ease-in-out infinite; pointer-events:none; }
+    .blob.one{ width:420px;height:420px;background:rgba(0,102,255,.28);top:-120px;left:-120px;border-radius:48% 52% 55% 45%/45% 52% 48% 55%; }
+    .blob.two{ width:520px;height:520px;background:rgba(0,102,255,.16);bottom:-180px;right:-180px;border-radius:55% 45% 50% 50%/50% 55% 45% 50%; animation-duration:12s; }
+    .blob.three{ width:360px;height:360px;background:rgba(255,255,255,.10);top:30%;right:15%;border-radius:60% 40% 55% 45%/45% 55% 45% 55%; animation-duration:14s; opacity:.35; }
+    @keyframes floaty{ 0%,100%{transform:translateY(0) translateX(0) scale(1);} 50%{transform:translateY(18px) translateX(-10px) scale(1.03);} }
+
+    .glass-nav{
+      background: rgba(10,10,12,.40);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+    .glass-panel{
+      background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.06));
+      border: 1px solid rgba(255,255,255,.12);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+    .glass-subpanel{
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.10);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow: var(--shadow2);
+    }
+    .text-gradient{
+      background: linear-gradient(90deg, #ffffff 0%, #a9c8ff 30%, #0066FF 100%);
+      -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
+    }
+
+    #chat-container::-webkit-scrollbar{ width: 10px; }
+    #chat-container::-webkit-scrollbar-track{ background: rgba(255,255,255,.05); border-radius: 999px; }
+    #chat-container::-webkit-scrollbar-thumb{
+      background: rgba(0,102,255,.55);
+      border-radius: 999px;
+      border: 2px solid rgba(0,0,0,.25);
+    }
+
+    .msg{
+      border: 1px solid rgba(255,255,255,.10);
+      box-shadow: 0 10px 25px rgba(0,0,0,.25);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+    .msg.user{ background: linear-gradient(180deg, rgba(0,102,255,.20), rgba(0,102,255,.10)); border-color: rgba(0,102,255,.25); }
+    .msg.ai{ background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.06)); }
+
+    .fade-in{ animation: fadeIn .16s ease-out; }
+    @keyframes fadeIn{ from{opacity:0; transform: translateY(6px);} to{opacity:1; transform: translateY(0);} }
+
+    .focus-ring:focus-within{
+      border-color: rgba(0,102,255,.55);
+      box-shadow: 0 0 0 4px rgba(0,102,255,.18);
+    }
+
+    .chip{
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.10);
+      color: rgba(255,255,255,.85);
+      transition: .14s ease;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    .chip:hover{
+      background: rgba(255,255,255,.09);
+      border-color: rgba(0,102,255,.35);
+      box-shadow: 0 0 0 3px rgba(0,102,255,.14);
+    }
+
+    /* Markdown styling inside assistant messages */
+    .md h1,.md h2,.md h3{ font-weight: 800; margin: .35rem 0 .25rem; }
+    .md p{ margin: .25rem 0; }
+    .md ul{ list-style: disc; padding-left: 1.1rem; margin: .35rem 0; }
+    .md ol{ list-style: decimal; padding-left: 1.25rem; margin: .35rem 0; }
+    .md li{ margin: .2rem 0; }
+    .md a{ color: rgba(169,200,255,1); text-decoration: underline; text-underline-offset: 3px; }
+    .md blockquote{
+      border-left: 3px solid rgba(0,102,255,.55);
+      padding-left: .8rem;
+      color: rgba(255,255,255,.78);
+      margin: .4rem 0;
+    }
+    .md pre{
+      background: rgba(0,0,0,.30);
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: 14px;
+      padding: 12px;
+      overflow:auto;
+      margin-top: 10px;
+    }
+    .md code{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
+      background: rgba(0,0,0,.25);
+      padding: 2px 6px;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,.08);
+    }
+    .md pre code{
+      background: transparent;
+      padding: 0;
+      border: none;
+    }
+  </style>
 </head>
 
-<body class="antialiased relative overflow-x-hidden">
+<body class="antialiased relative">
+  <div class="blob one"></div>
+  <div class="blob two"></div>
+  <div class="blob three"></div>
 
-    <nav class="fixed w-full z-50 glass-nav">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-20 items-center">
-                <a href="/" class="flex items-center gap-2 cursor-pointer">
-                    <i class="ph-fill ph-scales text-3xl text-lawBlue"></i>
-                    <span class="text-2xl font-bold tracking-tight">Lawinate<span class="text-lawBlue">.uz</span></span>
-                </a>
-                <div class="hidden md:flex space-x-8 text-sm font-medium text-gray-300">
-                    <a href="reyting.html" class="hover:text-white transition">Reyting</a>
-                    <a href="kutubxona.html" class="hover:text-white transition">Kutubxona</a>
-                    <a href="testlar.html" class="hover:text-white transition">Testlar</a>
-                    <a href="community.html" class="hover:text-white transition">Community</a>
-                    <a href="ai-assistant.html" class="text-lawBlue hover:text-white transition">AI Assistant</a>
-                </div>
-                <div class="hidden md:flex gap-4">
-                    <button class="text-sm font-medium hover:text-white text-gray-300 transition">Kirish</button>
-                    <button class="bg-lawBlue hover:bg-blue-600 text-white px-5 py-2 rounded-full text-sm font-semibold transition shadow-[0_0_20px_rgba(0,102,255,0.3)]">
-                        Ro'yxatdan o'tish
-                    </button>
-                </div>
-                <div class="md:hidden">
-                    <input type="checkbox" id="mobile-menu-toggle" class="hidden peer">
-                    <label for="mobile-menu-toggle" class="cursor-pointer relative z-50">
-                        <i class="ph-bold ph-list text-2xl text-white transition-opacity duration-300 peer-checked:opacity-0"></i>
-                        <i class="ph-bold ph-x text-2xl text-white transition-opacity duration-300 opacity-0 peer-checked:opacity-100 absolute top-0 left-0"></i>
-                    </label>
-                </div>
-            </div>
+  <!-- NAV -->
+  <nav class="fixed w-full z-50 glass-nav">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-20 items-center">
+        <a href="/" class="flex items-center gap-2">
+          <i class="ph-fill ph-scales text-3xl text-lawBlue"></i>
+          <span class="text-2xl font-black tracking-tight">Lawinate<span class="text-lawBlue">.uz</span></span>
+        </a>
+
+        <div class="hidden md:flex space-x-8 text-sm font-semibold text-gray-200/80">
+          <a href="reyting.html" class="hover:text-white transition">Reyting</a>
+          <a href="kutubxona.html" class="hover:text-white transition">Kutubxona</a>
+          <a href="testlar.html" class="hover:text-white transition">Testlar</a>
+          <a href="community.html" class="hover:text-white transition">Community</a>
+          <a href="ai-assistant.html" class="text-white underline decoration-lawBlue/70 underline-offset-8">AI Assistant</a>
         </div>
-    </nav>
-    <div id="mobile-menu" class="fixed top-20 left-0 w-full glass-nav md:hidden transform -translate-y-full transition-transform duration-300 ease-in-out z-40">
-        <div class="max-w-7xl mx-auto px-4 py-6">
-            <div class="flex flex-col space-y-4">
-                <a href="reyting.html" class="text-gray-300 hover:text-white transition py-2">Reyting</a>
-                <a href="kutubxona.html" class="text-gray-300 hover:text-white transition py-2">Kutubxona</a>
-                <a href="testlar.html" class="text-gray-300 hover:text-white transition py-2">Testlar</a>
-                <a href="community.html" class="text-gray-300 hover:text-white transition py-2">Community</a>
-                <a href="ai-assistant.html" class="text-lawBlue hover:text-white transition py-2">AI Assistant</a>
-                <div class="border-t border-gray-700 pt-4 mt-4">
-                    <button class="w-full text-left text-gray-300 hover:text-white transition py-2">Kirish</button>
-                    <button class="w-full mt-2 bg-lawBlue hover:bg-blue-600 text-white px-5 py-3 rounded-full text-sm font-semibold transition">
-                        Ro'yxatdan o'tish
-                    </button>
-                </div>
-            </div>
+
+        <div class="hidden md:flex items-center gap-3">
+          <button class="px-4 py-2 rounded-full text-sm font-semibold bg-white/5 hover:bg-white/10 border border-white/10 transition">
+            Kirish
+          </button>
+          <button class="px-5 py-2 rounded-full text-sm font-extrabold bg-lawBlue hover:bg-blue-600 transition shadow-[0_0_22px_rgba(0,102,255,.35)]">
+            Ro'yxatdan o'tish
+          </button>
         </div>
+
+        <div class="md:hidden">
+          <input type="checkbox" id="mobile-menu-toggle" class="hidden peer">
+          <label for="mobile-menu-toggle" class="cursor-pointer relative z-50">
+            <i class="ph-bold ph-list text-2xl text-white transition-opacity duration-300 peer-checked:opacity-0"></i>
+            <i class="ph-bold ph-x text-2xl text-white transition-opacity duration-300 opacity-0 peer-checked:opacity-100 absolute top-0 left-0"></i>
+          </label>
+        </div>
+      </div>
     </div>
+  </nav>
 
-    <main class="flex flex-col h-screen pt-24 pb-8">
-        <div class="max-w-4xl mx-auto w-full flex-grow flex flex-col glass-card rounded-2xl p-6 lg:p-8 shadow-xl border-blue-900/30">
-            <h1 class="text-3xl lg:text-4xl font-extrabold text-center mb-6 text-gradient">Lawinate AI Assistant</h1>
-            <p class="text-center text-gray-400 mb-8 max-w-2xl mx-auto">Huquqiy savollaringizga tezkor javoblar oling. Qonunlar, kodekslar va huquqiy tushunchalar bo'yicha yordam beradi.</p>
+  <!-- MOBILE MENU -->
+  <div id="mobile-menu" class="fixed top-20 left-0 w-full md:hidden transform -translate-y-full transition-transform duration-300 ease-in-out z-40 glass-nav">
+    <div class="max-w-7xl mx-auto px-4 py-6">
+      <div class="flex flex-col space-y-3">
+        <a href="reyting.html" class="text-gray-200/80 hover:text-white transition py-2">Reyting</a>
+        <a href="kutubxona.html" class="text-gray-200/80 hover:text-white transition py-2">Kutubxona</a>
+        <a href="testlar.html" class="text-gray-200/80 hover:text-white transition py-2">Testlar</a>
+        <a href="community.html" class="text-gray-200/80 hover:text-white transition py-2">Community</a>
+        <a href="ai-assistant.html" class="text-white py-2 font-bold">AI Assistant</a>
+        <div class="border-t border-white/10 pt-4 mt-2">
+          <button class="w-full text-left px-4 py-2 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 transition text-sm font-semibold">
+            Kirish
+          </button>
+          <button class="w-full mt-2 px-4 py-3 rounded-full bg-lawBlue hover:bg-blue-600 transition text-sm font-extrabold">
+            Ro'yxatdan o'tish
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 
-            <div id="chat-container" class="flex-grow overflow-y-auto space-y-4 pr-2 mb-6">
-                <div class="flex items-start gap-3 chat-message assistant max-w-[80%] md:max-w-[70%] bg-lawCard p-4 rounded-xl rounded-tl-none">
-                    <i class="ph-bold ph-robot text-xl text-lawBlue mt-1"></i>
-                    <div>
-                        <p class="font-semibold text-lawBlue mb-1">Lawinate Assistant</p>
-                        <p class="text-gray-200 text-sm">Salom! Men Lawinate AI Assistantman. Huquqiy savollaringizga javob berishga tayyorman. Menga nima haqida savol bermoqchisiz?</p>
-                    </div>
-                </div>
+  <!-- MAIN -->
+  <main class="pt-24 pb-10 min-h-screen">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-6">
+        <div>
+          <h1 class="text-3xl sm:text-4xl font-black text-gradient">Lawinate AI Assistant</h1>
+          <p class="text-gray-200/70 mt-2 max-w-2xl text-sm sm:text-base">
+            Glassphorm UI: savol yozing, tezkor huquqiy tushuntirish oling. (Enter yuboradi, Shift+Enter yangi qator)
+          </p>
+        </div>
+        <div class="flex items-center gap-2">
+          <button id="clear-chat" class="px-4 py-2 rounded-full text-sm font-bold bg-white/5 hover:bg-white/10 border border-white/10 transition">
+            <i class="ph-bold ph-broom mr-1"></i> Tozalash
+          </button>
+          <button id="scroll-bottom" class="hidden px-4 py-2 rounded-full text-sm font-extrabold bg-lawBlue hover:bg-blue-600 transition shadow-[0_0_20px_rgba(0,102,255,.28)]">
+            <i class="ph-bold ph-arrow-down mr-1"></i> Pastga
+          </button>
+        </div>
+      </div>
+
+      <section class="glass-panel rounded-3xl overflow-hidden">
+        <div class="px-5 sm:px-6 py-4 border-b border-white/10 flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <div class="h-10 w-10 rounded-2xl glass-subpanel flex items-center justify-center">
+              <i class="ph-bold ph-robot text-lawBlue text-xl"></i>
             </div>
+            <div>
+              <p class="font-extrabold leading-5">Lawinate Assistant</p>
+              <p class="text-xs text-gray-200/70 flex items-center gap-2">
+                <span class="inline-flex items-center gap-1">
+                  <span class="w-2 h-2 rounded-full bg-green-400"></span> Online
+                </span>
+                <span class="opacity-70">•</span>
+                <span class="opacity-80">Markdown supported</span>
+              </p>
+            </div>
+          </div>
 
-            <div class="flex items-center gap-4 mt-auto">
-                <input type="text" id="user-input" placeholder="Savolingizni yozing..."
-                    class="flex-grow p-4 rounded-full bg-lawCard border border-white/10 focus:outline-none focus:border-lawBlue placeholder-gray-500 text-white text-sm"
-                    autocomplete="off">
-                <button id="send-button"
-                    class="bg-lawBlue hover:bg-blue-600 text-white p-4 rounded-full transition-all duration-200 shadow-[0_0_20px_rgba(0,102,255,0.3)] flex-shrink-0"
-                    title="Yuborish">
-                    <i class="ph-bold ph-paper-plane-tilt text-xl"></i>
-                </button>
-                <div id="loading-indicator" class="hidden flex items-center gap-2 text-lawBlue">
-                    <i class="ph-bold ph-circle-notch animate-spin text-xl"></i>
+          <div class="hidden sm:flex items-center gap-2 text-xs text-gray-200/70">
+            <i class="ph-bold ph-lock"></i>
+            <span>Local chat history</span>
+          </div>
+        </div>
+
+        <div id="chat-container" class="h-[62vh] sm:h-[64vh] overflow-y-auto px-4 sm:px-6 py-5 space-y-4"></div>
+
+        <div class="border-t border-white/10 px-4 sm:px-6 py-4">
+          <div class="flex items-end gap-3">
+            <div class="flex-grow">
+              <div class="glass-subpanel rounded-2xl px-4 py-3 border border-white/10 focus-ring transition">
+                <textarea id="user-input" rows="1"
+                  class="w-full bg-transparent outline-none resize-none text-white placeholder-gray-200/50 text-sm leading-6"
+                  placeholder="Savolingizni yozing..."
+                  autocomplete="off"></textarea>
+
+                <div class="flex items-center justify-between mt-2">
+                  <div class="text-xs text-gray-200/70 flex items-center gap-2">
+                    <i class="ph-bold ph-sparkle"></i><span>Minimal • Tezkor • Tushunarli</span>
+                  </div>
+                  <div id="loading-indicator" class="hidden items-center gap-2 text-lawBlue text-xs">
+                    <i class="ph-bold ph-circle-notch animate-spin text-base"></i>
                     <span>Yuklanmoqda...</span>
+                  </div>
                 </div>
+              </div>
+              <p id="error-message" class="text-red-300 text-sm mt-2 hidden"></p>
             </div>
-             <p id="error-message" class="text-red-500 text-sm mt-2 hidden text-center"></p>
+
+            <button id="send-button"
+              class="h-12 w-12 rounded-2xl bg-lawBlue hover:bg-blue-600 transition shadow-[0_0_24px_rgba(0,102,255,.35)] flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed"
+              title="Yuborish">
+              <i class="ph-bold ph-paper-plane-tilt text-xl"></i>
+            </button>
+          </div>
+
+          <div class="mt-3 flex flex-wrap gap-2">
+            <button class="chip" data-chip="Jinoyat tarkibi nima? Qisqa tushuntirib ber.">Jinoyat tarkibi</button>
+            <button class="chip" data-chip="JKda ishtirokchilik turlari va farqi?">Ishtirokchilik</button>
+            <button class="chip" data-chip="Zaruriy mudofaa nima? Misol bilan.">Zaruriy mudofaa</button>
+            <button class="chip" data-chip="Jinoyat obyekti va predmeti farqi?">Obyekt vs predmet</button>
+          </div>
         </div>
-    </main>
+      </section>
+    </div>
+  </main>
 
-    <footer class="py-12 border-t border-white/5 bg-black">
-        <div class="max-w-7xl mx-auto px-4 text-center">
-            <div class="flex items-center justify-center gap-2 mb-6">
-                <i class="ph-fill ph-scales text-2xl text-lawBlue"></i>
-                <span class="text-xl font-bold">Lawinate.uz</span>
-            </div>
-            <p class="text-gray-500 text-sm mb-8">© 2025 Lawinate. Barcha huquqlar himoyalangan.</p>
-            <div class="flex justify-center gap-6 text-gray-400">
-                <a href="#" class="hover:text-white transition"><i class="ph-fill ph-telegram-logo text-xl"></i></a>
-                <a href="#" class="hover:text-white transition"><i class="ph-fill ph-instagram-logo text-xl"></i></a>
-                <a href="#" class="hover:text-white transition"><i class="ph-fill ph-linkedin-logo text-xl"></i></a>
-            </div>
-        </div>
-    </footer>
+  <footer class="py-10 border-t border-white/10 bg-black/10">
+    <div class="max-w-7xl mx-auto px-4 text-center">
+      <div class="flex items-center justify-center gap-2 mb-3">
+        <i class="ph-fill ph-scales text-2xl text-lawBlue"></i>
+        <span class="text-xl font-black">Lawinate.uz</span>
+      </div>
+      <p class="text-gray-200/60 text-sm">© 2025 Lawinate. Barcha huquqlar himoyalangan.</p>
+    </div>
+  </footer>
 
-    <script>
-        // Mobil menyu funksiyasi
-        const toggle = document.getElementById('mobile-menu-toggle');
-        const menu = document.getElementById('mobile-menu');
-        if (toggle && menu) { // Elementlar mavjudligini tekshirish
-            toggle.addEventListener('change', () => {
-                if (toggle.checked) {
-                    menu.classList.remove('-translate-y-full');
-                    menu.classList.add('translate-y-0');
-                } else {
-                    menu.classList.add('-translate-y-full');
-                    menu.classList.remove('translate-y-0');
-                }
-            });
+  <script>
+    // Mobile menu
+    const toggle = document.getElementById('mobile-menu-toggle');
+    const menu = document.getElementById('mobile-menu');
+    if (toggle && menu) {
+      toggle.addEventListener('change', () => {
+        if (toggle.checked) {
+          menu.classList.remove('-translate-y-full');
+          menu.classList.add('translate-y-0');
+        } else {
+          menu.classList.add('-translate-y-full');
+          menu.classList.remove('translate-y-0');
         }
+      });
+      menu.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', () => {
+          toggle.checked = false;
+          menu.classList.add('-translate-y-full');
+          menu.classList.remove('translate-y-0');
+        });
+      });
+    }
 
+    // ---- AI Assistant (API o'zgarmagan) ----
+    const userInput = document.getElementById('user-input');
+    const sendButton = document.getElementById('send-button');
+    const chatContainer = document.getElementById('chat-container');
+    const loadingIndicator = document.getElementById('loading-indicator');
+    const errorMessage = document.getElementById('error-message');
+    const clearChatBtn = document.getElementById('clear-chat');
+    const scrollBottomBtn = document.getElementById('scroll-bottom');
 
-        // AI Assistant funksionaliteti
-        const userInput = document.getElementById('user-input');
-        const sendButton = document.getElementById('send-button');
-        const chatContainer = document.getElementById('chat-container');
-        const loadingIndicator = document.getElementById('loading-indicator');
-        const errorMessage = document.getElementById('error-message');
+    const OPENROUTER_API_KEY = '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';
+    const MODEL_NAME = 'xiaomi/mimo-v2-flash:free';
 
-        const OPENROUTER_API_KEY = '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'; // Sening API kaliting
-        const MODEL_NAME = 'xiaomi/mimo-v2-flash:free';
+    const STORAGE_KEY = 'lawinate_ai_messages_glass_md_v1';
 
-        // Suhbat tarixini saqlash
-        let messages = [
-            { role: "assistant", content: "Salom! Men Lawinate AI Assistantman. Huquqiy savollaringizga javob berishga tayyorman. Menga nima haqida savol bermoqchisiz?" }
-        ];
+    const defaultMessages = [
+      { role: "assistant", content: "Salom! Men Lawinate AI Assistantman. Huquqiy savollaringizga javob berishga tayyorman. Menga nima haqida savol bermoqchisiz?", ts: Date.now() }
+    ];
 
-        async function sendMessage() {
-            const userMessage = userInput.value.trim();
-            if (userMessage === '') return;
+    let messages = loadMessages();
 
-            // Xato xabarini tozalash
-            errorMessage.classList.add('hidden');
+    function loadMessages(){
+      try{
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if(!raw) return [...defaultMessages];
+        const parsed = JSON.parse(raw);
+        if(!Array.isArray(parsed) || parsed.length === 0) return [...defaultMessages];
+        return parsed
+          .filter(m => m && (m.role === 'user' || m.role === 'assistant') && typeof m.content === 'string')
+          .map(m => ({ ...m, ts: m.ts || Date.now() }));
+      }catch(e){
+        return [...defaultMessages];
+      }
+    }
+    function saveMessages(){
+      try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(messages)); }catch(e){}
+    }
 
-            // Foydalanuvchi xabarini ko'rsatish
-            appendMessage(userMessage, 'user');
-            userInput.value = ''; // Kiritish maydonini tozalash
-            chatContainer.scrollTop = chatContainer.scrollHeight; // Pastga aylantirish
+    function renderMarkdownSafe(text){
+      const html = marked.parse(text, { breaks: true, gfm: true });
+      return DOMPurify.sanitize(html);
+    }
 
-            messages.push({ role: "user", content: userMessage });
+    function formatTime(ts){
+      const d = ts ? new Date(ts) : new Date();
+      return d.toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
+    }
 
-            // Yuklanish indikatorini ko'rsatish
-            loadingIndicator.classList.remove('hidden');
-            sendButton.disabled = true;
+    function appendMessage(text, sender, ts = Date.now()) {
+      const row = document.createElement('div');
+      row.className = `flex items-start gap-3 ${sender === 'user' ? 'justify-end' : 'justify-start'} fade-in`;
 
-            try {
-                const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
-                    method: "POST",
-                    headers: {
-                        "Authorization": `Bearer ${OPENROUTER_API_KEY}`,
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                        model: MODEL_NAME,
-                        messages: messages, // Butun suhbat tarixini yuborish
-                    }),
-                });
+      const bubble = document.createElement('div');
+      bubble.className = `msg ${sender === 'user' ? 'user' : 'ai'} max-w-[92%] sm:max-w-[78%] rounded-2xl px-4 py-3`;
 
-                if (!response.ok) {
-                    const errorData = await response.json();
-                    throw new Error(`API xatosi: ${response.status} - ${errorData.message || response.statusText}`);
-                }
+      const top = document.createElement('div');
+      top.className = 'flex items-center justify-between gap-3';
 
-                const data = await response.json();
-                const assistantResponse = data.choices[0].message.content;
+      const left = document.createElement('div');
+      left.className = 'flex items-center gap-2';
 
-                // Assistant javobini ko'rsatish
-                appendMessage(assistantResponse, 'assistant');
-                messages.push({ role: "assistant", content: assistantResponse }); // Suhbatga qo'shish
-                chatContainer.scrollTop = chatContainer.scrollHeight; // Pastga aylantirish
+      const icon = document.createElement('i');
+      icon.className = `ph-bold ${sender === 'user' ? 'ph-user-circle text-white/80' : 'ph-robot text-lawBlue'} text-lg`;
 
-            } catch (error) {
-                console.error("Xato yuz berdi:", error);
-                errorMessage.textContent = `Xatolik: ${error.message}. Iltimos, keyinroq urinib ko'ring.`;
-                errorMessage.classList.remove('hidden');
-            } finally {
-                loadingIndicator.classList.add('hidden');
-                sendButton.disabled = false;
-                userInput.focus(); // Foydalanuvchiga yana yozish uchun fokus berish
-            }
-        }
+      const name = document.createElement('p');
+      name.className = 'text-xs font-extrabold text-white/90';
+      name.textContent = sender === 'user' ? 'Siz' : 'Lawinate Assistant';
 
-        function appendMessage(text, sender) {
-            const messageWrapper = document.createElement('div');
-            messageWrapper.className = `flex items-start gap-3 max-w-[80%] md:max-w-[70%] p-4 rounded-xl chat-message ${sender}`;
+      left.appendChild(icon);
+      left.appendChild(name);
 
-            const icon = document.createElement('i');
-            icon.className = `ph-bold text-xl mt-1 ${sender === 'user' ? 'ph-user-circle text-gray-300' : 'ph-robot text-lawBlue'}`;
+      const right = document.createElement('div');
+      right.className = 'flex items-center gap-2';
 
-            const contentDiv = document.createElement('div');
-            const senderName = document.createElement('p');
-            senderName.className = `font-semibold ${sender === 'user' ? 'text-gray-300' : 'text-lawBlue'} mb-1`;
-            senderName.textContent = sender === 'user' ? 'Siz' : 'Lawinate Assistant';
+      const time = document.createElement('span');
+      time.className = 'text-[11px] text-white/55';
+      time.textContent = formatTime(ts);
 
-            const messageText = document.createElement('p');
-            messageText.className = 'text-gray-200 text-sm';
-            messageText.textContent = text;
+      const copyBtn = document.createElement('button');
+      copyBtn.className = `${sender === 'assistant' ? '' : 'hidden'} text-white/55 hover:text-white transition`;
+      copyBtn.title = 'Nusxa olish';
+      copyBtn.innerHTML = '<i class="ph-bold ph-copy text-base"></i>';
+      copyBtn.addEventListener('click', async () => {
+        try{
+          await navigator.clipboard.writeText(text);
+          copyBtn.innerHTML = '<i class="ph-bold ph-check text-base text-green-300"></i>';
+          setTimeout(()=> copyBtn.innerHTML = '<i class="ph-bold ph-copy text-base"></i>', 900);
+        }catch(e){}
+      });
 
-            if (sender === 'user') {
-                messageWrapper.classList.add('ml-auto', 'bg-lawBlue/20', 'rounded-br-none');
-            } else {
-                messageWrapper.classList.add('bg-lawCard', 'rounded-tl-none');
-            }
+      right.appendChild(time);
+      right.appendChild(copyBtn);
 
-            contentDiv.appendChild(senderName);
-            contentDiv.appendChild(messageText);
+      top.appendChild(left);
+      top.appendChild(right);
 
-            messageWrapper.appendChild(icon);
-            messageWrapper.appendChild(contentDiv);
+      const content = document.createElement('div');
+      content.className = 'mt-2 text-sm text-white/90 leading-6 md md:prose-invert';
+      content.innerHTML = renderMarkdownSafe(text);
 
-            chatContainer.appendChild(messageWrapper);
-        }
+      bubble.appendChild(top);
+      bubble.appendChild(content);
+      row.appendChild(bubble);
+      chatContainer.appendChild(row);
+    }
 
-        sendButton.addEventListener('click', sendMessage);
-        userInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                sendMessage();
-            }
+    function renderAll(){
+      chatContainer.innerHTML = '';
+      for(const m of messages){
+        appendMessage(m.content, m.role === 'user' ? 'user' : 'assistant', m.ts || Date.now());
+      }
+      scrollToBottom(true);
+    }
+
+    function scrollToBottom(force=false){
+      if(force){
+        chatContainer.scrollTop = chatContainer.scrollHeight;
+        return;
+      }
+      const nearBottom = (chatContainer.scrollHeight - chatContainer.scrollTop - chatContainer.clientHeight) < 220;
+      if(nearBottom) chatContainer.scrollTop = chatContainer.scrollHeight;
+    }
+
+    chatContainer.addEventListener('scroll', () => {
+      const nearBottom = (chatContainer.scrollHeight - chatContainer.scrollTop - chatContainer.clientHeight) < 220;
+      if(nearBottom) scrollBottomBtn.classList.add('hidden');
+      else scrollBottomBtn.classList.remove('hidden');
+    });
+    scrollBottomBtn.addEventListener('click', () => scrollToBottom(true));
+
+    function autoGrow(){
+      userInput.style.height = 'auto';
+      userInput.style.height = Math.min(userInput.scrollHeight, 180) + 'px';
+      sendButton.disabled = userInput.value.trim().length === 0;
+    }
+    userInput.addEventListener('input', autoGrow);
+
+    async function sendMessage() {
+      const userMessage = userInput.value.trim();
+      if (userMessage === '') return;
+
+      errorMessage.classList.add('hidden');
+
+      appendMessage(userMessage, 'user');
+      messages.push({ role: "user", content: userMessage, ts: Date.now() });
+      saveMessages();
+
+      userInput.value = '';
+      autoGrow();
+      scrollToBottom(true);
+
+      loadingIndicator.classList.remove('hidden');
+      loadingIndicator.classList.add('flex');
+      sendButton.disabled = true;
+
+      try {
+        const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+          method: "POST",
+          headers: {
+            "Authorization": `Bearer ${OPENROUTER_API_KEY}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            model: MODEL_NAME,
+            messages: messages.map(({role, content}) => ({role, content})),
+          }),
         });
 
-        // Sahifa yuklanganda avtomatik ravishda pastga aylantirish (assistantning birinchi xabari ko'rinishi uchun)
-        window.addEventListener('load', () => {
-            chatContainer.scrollTop = chatContainer.scrollHeight;
-        });
-    </script>
+        if (!response.ok) {
+          let msg = response.statusText;
+          try{
+            const errorData = await response.json();
+            msg = errorData.message || msg;
+          }catch(e){}
+          throw new Error(`API xatosi: ${response.status} - ${msg}`);
+        }
+
+        const data = await response.json();
+        const assistantResponse = data.choices?.[0]?.message?.content || "Kechirasiz, javob olinmadi.";
+
+        appendMessage(assistantResponse, 'assistant');
+        messages.push({ role: "assistant", content: assistantResponse, ts: Date.now() });
+        saveMessages();
+        scrollToBottom(true);
+
+      } catch (error) {
+        console.error("Xato yuz berdi:", error);
+        errorMessage.textContent = `Xatolik: ${error.message}. Iltimos, keyinroq urinib ko'ring.`;
+        errorMessage.classList.remove('hidden');
+      } finally {
+        loadingIndicator.classList.add('hidden');
+        loadingIndicator.classList.remove('flex');
+        sendButton.disabled = userInput.value.trim().length === 0;
+        userInput.focus();
+      }
+    }
+
+    // Enter send / Shift+Enter newline
+    userInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        sendMessage();
+      }
+    });
+    sendButton.addEventListener('click', sendMessage);
+
+    // Clear chat
+    clearChatBtn.addEventListener('click', () => {
+      messages = [...defaultMessages];
+      saveMessages();
+      renderAll();
+      userInput.focus();
+    });
+
+    // Chips
+    document.querySelectorAll('.chip').forEach(btn => {
+      btn.addEventListener('click', () => {
+        userInput.value = btn.getAttribute('data-chip') || '';
+        autoGrow();
+        userInput.focus();
+      });
+    });
+
+    // Init
+    window.addEventListener('load', () => {
+      renderAll();
+      autoGrow();
+      userInput.focus();
+    });
+  </script>
 </body>
-
 </html>
