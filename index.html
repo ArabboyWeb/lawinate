@@ -2,263 +2,380 @@
 <html lang="uz" class="scroll-smooth">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="monetag" content="545db92cef1c18c3e4cd4cd3fde96488">
-    <title>Lawinate.uz | Yuridik Kelajak Platformasi</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "58db17dfbaa943a2b8c6c7e895c112d3"}'></script><!-- End Cloudflare Web Analytics -->
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        lawBlue: '#0066FF',
-                        lawDark: '#050505',
-                        lawCard: '#0F1115',
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        /* Maxsus Gradient va Animatsiyalar */
-        body {
-            background-color: #050505;
-            color: white;
-            background-image:
-                radial-gradient(circle at 20% 20%, rgba(0, 102, 255, 0.15) 0%, transparent 40%),
-                radial-gradient(circle at 80% 80%, rgba(0, 102, 255, 0.1) 0%, transparent 40%);
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        .glass-nav {
-            background: rgba(5, 5, 5, 0.7);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
+  <!-- Monetag (o'zgarmadi) -->
+  <meta name="monetag" content="545db92cef1c18c3e4cd4cd3fde96488">
 
-        .glass-card {
-            background: rgba(15, 17, 21, 0.6);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.3s ease;
-        }
+  <!-- ✅ SEO: Title + Description -->
+  <title>Lawinate.uz — Yuridik Kelajak Platformasi | Testlar, Kutubxona, Reyting, AI Assistant</title>
+  <meta name="description"
+    content="Lawinate.uz — talabalar va abituriyentlar uchun huquqiy ta’lim platformasi: testlar, imtihon savol-javoblari, smart kutubxona, reyting va AI Assistant." />
 
-        .glass-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(0, 102, 255, 0.3);
-            box-shadow: 0 10px 40px -10px rgba(0, 102, 255, 0.2);
-        }
+  <!-- ✅ SEO: Canonical -->
+  <link rel="canonical" href="https://lawinate.uz/" />
 
-        .text-gradient {
-            background: linear-gradient(to right, #fff, #0066FF);
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+  <!-- ✅ SEO: Robots -->
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+  <meta name="googlebot" content="index,follow,max-image-preview:large" />
+
+  <!-- ✅ Language + Geo -->
+  <meta http-equiv="content-language" content="uz" />
+  <meta name="geo.region" content="UZ" />
+  <meta name="geo.placename" content="Uzbekistan" />
+
+  <!-- ✅ Theme -->
+  <meta name="theme-color" content="#0066FF" />
+
+  <!-- ✅ Favicon / icons (fayllar bo'lishi kerak) -->
+  <link rel="icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <!-- ✅ Open Graph -->
+  <meta property="og:site_name" content="Lawinate.uz">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Lawinate.uz — Yuridik Kelajak Platformasi">
+  <meta property="og:description"
+    content="Testlar, imtihon savol-javoblari, smart kutubxona, reyting va AI Assistant — barchasi bitta platformada.">
+  <meta property="og:url" content="https://lawinate.uz/">
+  <meta property="og:image" content="https://lawinate.uz/og-cover.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="uz_UZ">
+
+  <!-- ✅ Twitter/X -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Lawinate.uz — Yuridik Kelajak Platformasi">
+  <meta name="twitter:description" content="Huquqiy testlar, kutubxona, reyting va AI Assistant.">
+  <meta name="twitter:image" content="https://lawinate.uz/og-cover.jpg">
+
+  <!-- ✅ Preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+  <!-- Cloudflare Web Analytics -->
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js'
+    data-cf-beacon='{"token":"58db17dfbaa943a2b8c6c7e895c112d3"}'></script>
+  <!-- End Cloudflare Web Analytics -->
+
+  <!-- ✅ Structured data -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://lawinate.uz/#organization",
+          "name": "Lawinate.uz",
+          "url": "https://lawinate.uz/",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://lawinate.uz/logo.png"
+          },
+          "sameAs": [
+            "https://t.me/your_channel",
+            "https://instagram.com/your_page",
+            "https://linkedin.com/company/your_page"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://lawinate.uz/#website",
+          "url": "https://lawinate.uz/",
+          "name": "Lawinate.uz",
+          "publisher": {
+            "@id": "https://lawinate.uz/#organization"
+          },
+          "inLanguage": "uz",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://lawinate.uz/kutubxona.html?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+          }
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://lawinate.uz/#webpage",
+          "url": "https://lawinate.uz/",
+          "name": "Lawinate.uz — Yuridik Kelajak Platformasi",
+          "isPartOf": {
+            "@id": "https://lawinate.uz/#website"
+          },
+          "about": {
+            "@id": "https://lawinate.uz/#organization"
+          },
+          "inLanguage": "uz",
+          "description": "Talabalar va abituriyentlar uchun huquqiy ta’lim platformasi: testlar, savol-javoblar, kutubxona, reyting va AI Assistant."
         }
-    </style>
+      ]
+    }
+  </script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            lawBlue: '#0066FF',
+            lawDark: '#050505',
+            lawCard: '#0F1115',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #050505;
+      color: white;
+      background-image:
+        radial-gradient(circle at 20% 20%, rgba(0, 102, 255, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 80% 80%, rgba(0, 102, 255, 0.1) 0%, transparent 40%);
+    }
+
+    .glass-nav {
+      background: rgba(5, 5, 5, 0.7);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .glass-card {
+      background: rgba(15, 17, 21, 0.6);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: all 0.3s ease;
+    }
+
+    .glass-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(0, 102, 255, 0.3);
+      box-shadow: 0 10px 40px -10px rgba(0, 102, 255, 0.2);
+    }
+
+    .text-gradient {
+      background: linear-gradient(to right, #fff, #0066FF);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  </style>
 </head>
 
 <body class="antialiased relative overflow-x-hidden">
 
-    <nav class="fixed w-full z-50 glass-nav">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-20 items-center">
-                <a href="index.html" class="flex items-center gap-2 cursor-pointer">
-                    <i class="ph-fill ph-scales text-3xl text-lawBlue"></i>
-                    <span class="text-2xl font-bold tracking-tight">Lawinate<span class="text-lawBlue">.uz</span></span>
-                </a>
-                
-                <div class="hidden md:flex items-center space-x-6 text-sm font-medium text-gray-300">
-                    <a href="reyting.html" class="hover:text-white transition">Reyting</a>
-                    <a href="kutubxona.html" class="hover:text-white transition">Kutubxona</a>
-                    <a href="testlar.html" class="hover:text-white transition">Testlar</a>
-                    <a href="community.html" class="hover:text-white transition">Community</a>
-                    
-                    <a href="aiassist.html" class="text-lawBlue font-bold hover:text-white transition flex items-center gap-1 border border-lawBlue/30 px-3 py-1.5 rounded-full bg-lawBlue/10 hover:bg-lawBlue/20">
-                        <i class="ph-bold ph-sparkle"></i> AI Assistant
-                    </a>
-                </div>
+  <nav class="fixed w-full z-50 glass-nav">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-20 items-center">
+        <a href="index.html" class="flex items-center gap-2 cursor-pointer">
+          <i class="ph-fill ph-scales text-3xl text-lawBlue"></i>
+          <span class="text-2xl font-bold tracking-tight">Lawinate<span class="text-lawBlue">.uz</span></span>
+        </a>
 
-                <div class="hidden md:flex gap-4">
-                    <a href="auth.html" class="text-sm font-medium hover:text-white text-gray-300 transition flex items-center">Kirish</a>
-                    <a href="auth.html" class="bg-lawBlue hover:bg-blue-600 text-white px-5 py-2 rounded-full text-sm font-semibold transition shadow-[0_0_20px_rgba(0,102,255,0.3)]">
-                        Ro'yxatdan o'tish
-                    </a>
-                </div>
+        <div class="hidden md:flex items-center space-x-6 text-sm font-medium text-gray-300">
+          <a href="reyting.html" class="hover:text-white transition">Reyting</a>
+          <a href="kutubxona.html" class="hover:text-white transition">Kutubxona</a>
+          <a href="testlar.html" class="hover:text-white transition">Testlar</a>
+          <a href="community.html" class="hover:text-white transition">Community</a>
 
-                <div class="md:hidden">
-                    <input type="checkbox" id="mobile-menu-toggle" class="hidden peer">
-                    <label for="mobile-menu-toggle" class="cursor-pointer relative z-50">
-                        <i class="ph-bold ph-list text-2xl text-white transition-opacity duration-300 peer-checked:opacity-0"></i>
-                        <i class="ph-bold ph-x text-2xl text-white transition-opacity duration-300 opacity-0 peer-checked:opacity-100 absolute top-0 left-0"></i>
-                    </label>
-                </div>
-            </div>
+          <a href="aiassist.html"
+            class="text-lawBlue font-bold hover:text-white transition flex items-center gap-1 border border-lawBlue/30 px-3 py-1.5 rounded-full bg-lawBlue/10 hover:bg-lawBlue/20">
+            <i class="ph-bold ph-sparkle"></i> AI Assistant
+          </a>
         </div>
-    </nav>
 
-    <div id="mobile-menu" class="fixed top-0 left-0 w-full h-screen bg-lawDark/95 backdrop-blur-xl md:hidden transform -translate-y-full transition-transform duration-500 ease-in-out z-40 flex items-center">
-        <div class="max-w-7xl mx-auto px-4 py-6 text-center">
-            <div class="flex flex-col space-y-6 text-xl font-bold">
-                <a href="reyting.html" class="text-gray-300 hover:text-white transition">Reyting</a>
-                <a href="kutubxona.html" class="text-gray-300 hover:text-white transition">Kutubxona</a>
-                <a href="testlar.html" class="text-gray-300 hover:text-white transition">Testlar</a>
-                <a href="community.html" class="text-gray-300 hover:text-white transition">Community</a>
-                
-                <a href="aiassist.html" class="text-lawBlue flex items-center justify-center gap-2">
-                    <i class="ph-bold ph-sparkle"></i> AI Assistant
-                </a>
-
-                <div class="border-t border-gray-700 pt-8 mt-4 flex flex-col gap-4">
-                    <a href="auth.html" class="text-gray-300 hover:text-white transition">Kirish</a>
-                    <a href="auth.html" class="bg-lawBlue hover:bg-blue-600 text-white px-8 py-4 rounded-full text-lg font-semibold transition">
-                        Ro'yxatdan o'tish
-                    </a>
-                </div>
-            </div>
+        <div class="hidden md:flex gap-4">
+          <a href="auth.html"
+            class="text-sm font-medium hover:text-white text-gray-300 transition flex items-center">Kirish</a>
+          <a href="auth.html"
+            class="bg-lawBlue hover:bg-blue-600 text-white px-5 py-2 rounded-full text-sm font-semibold transition shadow-[0_0_20px_rgba(0,102,255,0.3)]">
+            Ro'yxatdan o'tish
+          </a>
         </div>
+
+        <div class="md:hidden">
+          <input type="checkbox" id="mobile-menu-toggle" class="hidden peer">
+          <label for="mobile-menu-toggle" class="cursor-pointer relative z-50">
+            <i class="ph-bold ph-list text-2xl text-white transition-opacity duration-300 peer-checked:opacity-0"></i>
+            <i
+              class="ph-bold ph-x text-2xl text-white transition-opacity duration-300 opacity-0 peer-checked:opacity-100 absolute top-0 left-0"></i>
+          </label>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div id="mobile-menu"
+    class="fixed top-0 left-0 w-full h-screen bg-lawDark/95 backdrop-blur-xl md:hidden transform -translate-y-full transition-transform duration-500 ease-in-out z-40 flex items-center">
+    <div class="max-w-7xl mx-auto px-4 py-6 text-center">
+      <div class="flex flex-col space-y-6 text-xl font-bold">
+        <a href="reyting.html" class="text-gray-300 hover:text-white transition">Reyting</a>
+        <a href="kutubxona.html" class="text-gray-300 hover:text-white transition">Kutubxona</a>
+        <a href="testlar.html" class="text-gray-300 hover:text-white transition">Testlar</a>
+        <a href="community.html" class="text-gray-300 hover:text-white transition">Community</a>
+
+        <a href="aiassist.html" class="text-lawBlue flex items-center justify-center gap-2">
+          <i class="ph-bold ph-sparkle"></i> AI Assistant
+        </a>
+
+        <div class="border-t border-gray-700 pt-8 mt-4 flex flex-col gap-4">
+          <a href="auth.html" class="text-gray-300 hover:text-white transition">Kirish</a>
+          <a href="auth.html"
+            class="bg-lawBlue hover:bg-blue-600 text-white px-8 py-4 rounded-full text-lg font-semibold transition">
+            Ro'yxatdan o'tish
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+      <a href="aiassist.html"
+        class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card mb-8 border border-blue-900/30 hover:scale-[1.01] transition">
+        <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+        <span class="text-xs font-medium text-blue-200">Yangi: AI Yordamchi ishga tushdi</span>
+      </a>
+
+      <h1 class="text-5xl md:text-7xl font-black tracking-tight mb-6 leading-tight">
+        Huquqiy bilimlaringizni <br>
+        <span class="text-gradient">Yangi darajaga</span> olib chiqing
+      </h1>
+
+      <p class="text-lg md:text-xl text-gray-400 mb-10 max-w-2xl mx-auto">
+        Abituriyentlar va talabalar uchun #1 raqamli platforma.
+        Reytingda bellashing, elektron kutubxonadan foydalaning va professional yurist bo'ling.
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <a href="JKhquqi-imtixon test-savol-javoblari.htnl.html"
+          class="w-full sm:w-auto bg-white text-black px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-200 transition flex items-center justify-center gap-2">
+          Boshlash <i class="ph-bold ph-arrow-right"></i>
+        </a>
+
+        <button
+          class="w-full sm:w-auto glass-card px-8 py-4 rounded-full font-bold text-lg hover:bg-white/5 transition flex items-center justify-center gap-2">
+          <i class="ph-bold ph-download-simple"></i> Ilovani yuklash
+        </button>
+      </div>
     </div>
 
-    <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-            <a href="aiassist.html" class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card mb-8 border border-blue-900/30 hover:scale-[1.01] transition">
-                <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
-                <span class="text-xs font-medium text-blue-200">Yangi: AI Yordamchi ishga tushdi</span>
-            </a>
-            
-            <h1 class="text-5xl md:text-7xl font-black tracking-tight mb-6 leading-tight">
-                Huquqiy bilimlaringizni <br>
-                <span class="text-gradient">Yangi darajaga</span> olib chiqing
-            </h1>
-            
-            <p class="text-lg md:text-xl text-gray-400 mb-10 max-w-2xl mx-auto">
-                Abituriyentlar va talabalar uchun #1 raqamli platforma. 
-                Reytingda bellashing, elektron kutubxonadan foydalaning va professional yurist bo'ling.
-            </p>
+    <div
+      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-600/10 rounded-full blur-[120px] -z-10">
+    </div>
+  </section>
 
-            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <a href="JKhquqi-imtixon test-savol-javoblari.htnl.html" class="w-full sm:w-auto bg-white text-black px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-200 transition flex items-center justify-center gap-2">
-                    Boshlash <i class="ph-bold ph-arrow-right"></i>
-                </a>
-                
-                <button class="w-full sm:w-auto glass-card px-8 py-4 rounded-full font-bold text-lg hover:bg-white/5 transition flex items-center justify-center gap-2">
-                    <i class="ph-bold ph-download-simple"></i> Ilovani yuklash
-                </button>
-            </div>
-        </div>
+  <section class="py-20 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl font-bold mb-4">Siz uchun imkoniyatlar</h2>
+        <p class="text-gray-400">Lawinate shunchaki sayt emas, bu — tizim.</p>
+      </div>
 
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-600/10 rounded-full blur-[120px] -z-10"></div>
-    </section>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
 
-    <section class="py-20 relative">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold mb-4">Siz uchun imkoniyatlar</h2>
-                <p class="text-gray-400">Lawinate shunchaki sayt emas, bu — tizim.</p>
-            </div>
+        <a href="reyting.html" class="glass-card p-8 rounded-3xl relative group cursor-pointer">
+          <div class="w-12 h-12 bg-blue-600/20 rounded-xl flex items-center justify-center mb-6 group-hover:bg-blue-600 transition">
+            <i class="ph-fill ph-trophy text-2xl text-blue-400 group-hover:text-white"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Live Reyting</h3>
+          <p class="text-sm text-gray-400 leading-relaxed">
+            Boshqa talabalar bilan bellashing. Ball to'plang va O'zbekiston bo'yicha TOP-100 ro'yxatga kiring.
+          </p>
+        </a>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                
-                <a href="reyting.html" class="glass-card p-8 rounded-3xl relative group cursor-pointer">
-                    <div class="w-12 h-12 bg-blue-600/20 rounded-xl flex items-center justify-center mb-6 group-hover:bg-blue-600 transition">
-                        <i class="ph-fill ph-trophy text-2xl text-blue-400 group-hover:text-white"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Live Reyting</h3>
-                    <p class="text-sm text-gray-400 leading-relaxed">
-                        Boshqa talabalar bilan bellashing. Ball to'plang va O'zbekiston bo'yicha TOP-100 ro'yxatga kiring.
-                    </p>
-                </a>
+        <a href="kutubxona.html" class="glass-card p-8 rounded-3xl relative group cursor-pointer">
+          <div class="w-12 h-12 bg-purple-600/20 rounded-xl flex items-center justify-center mb-6 group-hover:bg-purple-600 transition">
+            <i class="ph-fill ph-books text-2xl text-purple-400 group-hover:text-white"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Smart Kutubxona</h3>
+          <p class="text-sm text-gray-400 leading-relaxed">
+            Minglab huquqiy adabiyotlar va kodekslar. Qidiruv va yuklab olish — mutlaqo tekin.
+          </p>
+        </a>
 
-                <a href="kutubxona.html" class="glass-card p-8 rounded-3xl relative group cursor-pointer">
-                    <div class="w-12 h-12 bg-purple-600/20 rounded-xl flex items-center justify-center mb-6 group-hover:bg-purple-600 transition">
-                        <i class="ph-fill ph-books text-2xl text-purple-400 group-hover:text-white"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Smart Kutubxona</h3>
-                    <p class="text-sm text-gray-400 leading-relaxed">
-                        Minglab huquqiy adabiyotlar va kodekslar. Qidiruv va yuklab olish — mutlaqo tekin.
-                    </p>
-                </a>
+        <a href="testlar.html" class="glass-card p-8 rounded-3xl relative group cursor-pointer">
+          <div class="w-12 h-12 bg-green-600/20 rounded-xl flex items-center justify-center mb-6 group-hover:bg-green-600 transition">
+            <i class="ph-fill ph-student text-2xl text-green-400 group-hover:text-white"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Abituriyentlar</h3>
+          <p class="text-sm text-gray-400 leading-relaxed">
+            DTM standartidagi testlar, video darslar va Universitetlarga kirish ballari tahlili.
+          </p>
+        </a>
 
-                <a href="testlar.html" class="glass-card p-8 rounded-3xl relative group cursor-pointer">
-                    <div class="w-12 h-12 bg-green-600/20 rounded-xl flex items-center justify-center mb-6 group-hover:bg-green-600 transition">
-                        <i class="ph-fill ph-student text-2xl text-green-400 group-hover:text-white"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Abituriyentlar</h3>
-                    <p class="text-sm text-gray-400 leading-relaxed">
-                        DTM standartidagi testlar, video darslar va Universitetlarga kirish ballari tahlili.
-                    </p>
-                </a>
+        <a href="aiassist.html" class="glass-card p-8 rounded-3xl relative group cursor-pointer border-lawBlue/40 bg-gradient-to-br from-lawCard to-blue-900/10">
+          <div class="w-12 h-12 bg-cyan-600/20 rounded-xl flex items-center justify-center mb-6 group-hover:bg-cyan-600 transition shadow-[0_0_15px_rgba(0,255,255,0.3)]">
+            <i class="ph-fill ph-sparkle text-2xl text-cyan-400 group-hover:text-white"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3 text-white">AI Advokat</h3>
+          <p class="text-sm text-gray-400 leading-relaxed">
+            Sun'iy intelekt yordamida har qanday huquqiy savolga soniyalar ichida javob oling.
+          </p>
+          <span class="absolute top-4 right-4 bg-lawBlue text-[10px] font-bold px-2 py-1 rounded-full animate-bounce">YANGI</span>
+        </a>
 
-                <a href="aiassist.html" class="glass-card p-8 rounded-3xl relative group cursor-pointer border-lawBlue/40 bg-gradient-to-br from-lawCard to-blue-900/10">
-                    <div class="w-12 h-12 bg-cyan-600/20 rounded-xl flex items-center justify-center mb-6 group-hover:bg-cyan-600 transition shadow-[0_0_15px_rgba(0,255,255,0.3)]">
-                        <i class="ph-fill ph-sparkle text-2xl text-cyan-400 group-hover:text-white"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3 text-white">AI Advokat</h3>
-                    <p class="text-sm text-gray-400 leading-relaxed">
-                        Sun'iy intelekt yordamida har qanday huquqiy savolga soniyalar ichida javob oling.
-                    </p>
-                    <span class="absolute top-4 right-4 bg-lawBlue text-[10px] font-bold px-2 py-1 rounded-full animate-bounce">YANGI</span>
-                </a>
+      </div>
+    </div>
+  </section>
 
-            </div>
-        </div>
-    </section>
+  <section class="py-20 border-t border-white/5">
+    <div class="max-w-7xl mx-auto px-4 flex flex-wrap justify-around text-center gap-8">
+      <div>
+        <h4 class="text-4xl font-bold text-white mb-1">5,000+</h4>
+        <p class="text-sm text-gray-500 uppercase tracking-wider">Foydalanuvchilar</p>
+      </div>
+      <div>
+        <h4 class="text-4xl font-bold text-white mb-1">120+</h4>
+        <p class="text-sm text-gray-500 uppercase tracking-wider">Kitoblar</p>
+      </div>
+      <div>
+        <h4 class="text-4xl font-bold text-white mb-1">TOP #1</h4>
+        <p class="text-sm text-gray-500 uppercase tracking-wider">Huquqiy platforma</p>
+      </div>
+    </div>
+  </section>
 
-    <section class="py-20 border-t border-white/5">
-        <div class="max-w-7xl mx-auto px-4 flex flex-wrap justify-around text-center gap-8">
-            <div>
-                <h4 class="text-4xl font-bold text-white mb-1">5,000+</h4>
-                <p class="text-sm text-gray-500 uppercase tracking-wider">Foydalanuvchilar</p>
-            </div>
-            <div>
-                <h4 class="text-4xl font-bold text-white mb-1">120+</h4>
-                <p class="text-sm text-gray-500 uppercase tracking-wider">Kitoblar</p>
-            </div>
-            <div>
-                <h4 class="text-4xl font-bold text-white mb-1">TOP #1</h4>
-                <p class="text-sm text-gray-500 uppercase tracking-wider">Huquqiy platforma</p>
-            </div>
-        </div>
-    </section>
+  <footer class="py-12 border-t border-white/5 bg-black">
+    <div class="max-w-7xl mx-auto px-4 text-center">
+      <div class="flex items-center justify-center gap-2 mb-6">
+        <i class="ph-fill ph-scales text-2xl text-lawBlue"></i>
+        <span class="text-xl font-bold">Lawinate.uz</span>
+      </div>
+      <p class="text-gray-500 text-sm mb-8">© 2026 Lawinate Digital. Barcha huquqlar himoyalangan.</p>
+      <div class="flex justify-center gap-6 text-gray-400">
+        <a href="#" class="hover:text-white transition"><i class="ph-fill ph-telegram-logo text-xl"></i></a>
+        <a href="#" class="hover:text-white transition"><i class="ph-fill ph-instagram-logo text-xl"></i></a>
+        <a href="#" class="hover:text-white transition"><i class="ph-fill ph-linkedin-logo text-xl"></i></a>
+      </div>
+    </div>
+  </footer>
 
-    <footer class="py-12 border-t border-white/5 bg-black">
-        <div class="max-w-7xl mx-auto px-4 text-center">
-            <div class="flex items-center justify-center gap-2 mb-6">
-                <i class="ph-fill ph-scales text-2xl text-lawBlue"></i>
-                <span class="text-xl font-bold">Lawinate.uz</span>
-            </div>
-            <p class="text-gray-500 text-sm mb-8">© 2026 Lawinate Digital. Barcha huquqlar himoyalangan.</p>
-            <div class="flex justify-center gap-6 text-gray-400">
-                <a href="#" class="hover:text-white transition"><i class="ph-fill ph-telegram-logo text-xl"></i></a>
-                <a href="#" class="hover:text-white transition"><i class="ph-fill ph-instagram-logo text-xl"></i></a>
-                <a href="#" class="hover:text-white transition"><i class="ph-fill ph-linkedin-logo text-xl"></i></a>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        const toggle = document.getElementById('mobile-menu-toggle');
-        const menu = document.getElementById('mobile-menu');
-        if (toggle && menu) {
-            toggle.addEventListener('change', () => {
-                if (toggle.checked) {
-                    menu.classList.remove('-translate-y-full');
-                    menu.classList.add('translate-y-0');
-                    document.body.style.overflow = 'hidden'; // Menyu ochiqligida skrolni yopish
-                } else {
-                    menu.classList.add('-translate-y-full');
-                    menu.classList.remove('translate-y-0');
-                    document.body.style.overflow = 'auto';
-                }
-            });
+  <script>
+    const toggle = document.getElementById('mobile-menu-toggle');
+    const menu = document.getElementById('mobile-menu');
+    if (toggle && menu) {
+      toggle.addEventListener('change', () => {
+        if (toggle.checked) {
+          menu.classList.remove('-translate-y-full');
+          menu.classList.add('translate-y-0');
+          document.body.style.overflow = 'hidden';
+        } else {
+          menu.classList.add('-translate-y-full');
+          menu.classList.remove('translate-y-0');
+          document.body.style.overflow = 'auto';
         }
-    </script>
+      });
+    }
+  </script>
 
 </body>
 </html>
