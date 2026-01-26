@@ -1,22 +1,24 @@
 <!DOCTYPE html>
 <html lang="uz" class="scroll-smooth">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Mulk huquq imtixon | Lawinate.uz</title>
-  <meta name="description" content="Mulk huquq bo‘yicha imtihon savol-javoblari. Qidiruv, 10 tadan pagination, mobil va desktop uchun mos, system/light/dark theme, sevimlilar, nusxa olish, ulashish." />
+  <meta name="description"
+    content="Mulk huquq bo‘yicha imtihon savol-javoblari. Qidiruv, 10 tadan pagination, mobil va desktop uchun mos, system/light/dark theme, sevimlilar, nusxa olish, ulashish." />
 
   <!-- Open Graph -->
   <meta property="og:title" content="Mulk huquq imtixon | Lawinate.uz" />
-  <meta property="og:description" content="Mulk huquq bo‘yicha imtihon savol-javoblari: qidiruv, pagination, theme, sevimlilar, nusxa, ulashish." />
+  <meta property="og:description"
+    content="Mulk huquq bo‘yicha imtihon savol-javoblari: qidiruv, pagination, theme, sevimlilar, nusxa, ulashish." />
   <meta property="og:type" content="website" />
 
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
-<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "58db17dfbaa943a2b8c6c7e895c112d3"}'></script><!-- End Cloudflare Web Analytics -->
-  <script>
+
   <script>
     tailwind.config = {
       theme: {
@@ -30,32 +32,33 @@
 
   <style>
     /* ===== THEME VARIABLES ===== */
-    :root{
+    :root {
       --bg: #050505;
       --text: #ffffff;
-      --muted: rgba(255,255,255,0.65);
-      --muted2: rgba(255,255,255,0.45);
-      --card: rgba(15,17,21,0.62);
-      --nav: rgba(5,5,5,0.72);
-      --border: rgba(255,255,255,0.08);
-      --border2: rgba(255,255,255,0.06);
-      --shadow: rgba(0,102,255,0.22);
-      --glow1: rgba(0,102,255,0.15);
-      --glow2: rgba(0,102,255,0.10);
+      --muted: rgba(255, 255, 255, 0.65);
+      --muted2: rgba(255, 255, 255, 0.45);
+      --card: rgba(15, 17, 21, 0.62);
+      --nav: rgba(5, 5, 5, 0.72);
+      --border: rgba(255, 255, 255, 0.08);
+      --border2: rgba(255, 255, 255, 0.06);
+      --shadow: rgba(0, 102, 255, 0.22);
+      --glow1: rgba(0, 102, 255, 0.15);
+      --glow2: rgba(0, 102, 255, 0.10);
       --footerBg: #000;
     }
-    body.light{
+
+    body.light {
       --bg: #f7f8fb;
       --text: #0b1220;
-      --muted: rgba(11,18,32,0.70);
-      --muted2: rgba(11,18,32,0.55);
-      --card: rgba(255,255,255,0.78);
-      --nav: rgba(247,248,251,0.72);
-      --border: rgba(11,18,32,0.10);
-      --border2: rgba(11,18,32,0.08);
-      --shadow: rgba(0,102,255,0.18);
-      --glow1: rgba(0,102,255,0.10);
-      --glow2: rgba(0,102,255,0.06);
+      --muted: rgba(11, 18, 32, 0.70);
+      --muted2: rgba(11, 18, 32, 0.55);
+      --card: rgba(255, 255, 255, 0.78);
+      --nav: rgba(247, 248, 251, 0.72);
+      --border: rgba(11, 18, 32, 0.10);
+      --border2: rgba(11, 18, 32, 0.08);
+      --shadow: rgba(0, 102, 255, 0.18);
+      --glow1: rgba(0, 102, 255, 0.10);
+      --glow2: rgba(0, 102, 255, 0.06);
       --footerBg: #ffffff;
     }
 
@@ -79,6 +82,7 @@
       border: 1px solid var(--border2);
       transition: all 0.25s ease;
     }
+
     .glass-card:hover {
       transform: translateY(-3px);
       border-color: rgba(0, 102, 255, 0.25);
@@ -93,33 +97,64 @@
     }
 
     /* Accordion */
-    .answer-wrap { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
-    .answer-wrap.open { max-height: 3000px; }
+    .answer-wrap {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease;
+    }
+
+    .answer-wrap.open {
+      max-height: 3000px;
+    }
 
     /* Disabled */
-    button:disabled { opacity: 0.45; cursor: not-allowed; }
+    button:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
 
     /* Mobile tap target */
-    .tap { min-height: 44px; }
+    .tap {
+      min-height: 44px;
+    }
 
     /* Inputs in both themes */
-    .input-like { color: var(--text); }
-    .input-like::placeholder { color: var(--muted2); }
+    .input-like {
+      color: var(--text);
+    }
+
+    .input-like::placeholder {
+      color: var(--muted2);
+    }
 
     /* Subtle text helpers */
-    .muted { color: var(--muted); }
-    .muted2 { color: var(--muted2); }
+    .muted {
+      color: var(--muted);
+    }
+
+    .muted2 {
+      color: var(--muted2);
+    }
 
     /* Footer */
-    .footer-bg { background: var(--footerBg); border-top: 1px solid var(--border2); }
+    .footer-bg {
+      background: var(--footerBg);
+      border-top: 1px solid var(--border2);
+    }
 
     /* Chips */
     .chip {
       border: 1px solid var(--border2);
-      background: rgba(0,102,255,0.06);
+      background: rgba(0, 102, 255, 0.06);
     }
-    body.light .chip { background: rgba(0,102,255,0.05); }
-    .chip:hover { border-color: rgba(0,102,255,0.25); }
+
+    body.light .chip {
+      background: rgba(0, 102, 255, 0.05);
+    }
+
+    .chip:hover {
+      border-color: rgba(0, 102, 255, 0.25);
+    }
 
     /* Toast */
     .toast {
@@ -132,6 +167,7 @@
       pointer-events: none;
       transition: opacity 0.25s ease, transform 0.25s ease;
     }
+
     .toast.show {
       opacity: 1;
       transform: translateX(-50%) translateY(-4px);
@@ -139,26 +175,35 @@
     }
 
     /* Floating top button */
-    #toTopBtn { opacity: 0; pointer-events: none; transition: opacity 0.2s ease, transform 0.2s ease; }
-    #toTopBtn.show { opacity: 1; pointer-events: auto; transform: translateY(-4px); }
+    #toTopBtn {
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    #toTopBtn.show {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(-4px);
+    }
   </style>
 
   <!-- Theme early apply (flash kamayadi) -->
   <script>
-    (function () {
-      const THEME_KEY = "lawinate_theme_mode";
-      try {
-        const saved = localStorage.getItem(THEME_KEY);
-        const mode = ["system","light","dark"].includes(saved) ? saved : "system";
-        const mql = window.matchMedia && window.matchMedia("(prefers-color-scheme: light)");
-        const sys = (mql && mql.matches) ? "light" : "dark";
-        const finalMode = (mode === "system") ? sys : mode;
-        document.documentElement.style.colorScheme = finalMode;
-        document.addEventListener("DOMContentLoaded", () => {
-          document.body.classList.toggle("light", finalMode === "light");
-        });
-      } catch(e) {}
-    })();
+      (function () {
+        const THEME_KEY = "lawinate_theme_mode";
+        try {
+          const saved = localStorage.getItem(THEME_KEY);
+          const mode = ["system", "light", "dark"].includes(saved) ? saved : "system";
+          const mql = window.matchMedia && window.matchMedia("(prefers-color-scheme: light)");
+          const sys = (mql && mql.matches) ? "light" : "dark";
+          const finalMode = (mode === "system") ? sys : mode;
+          document.documentElement.style.colorScheme = finalMode;
+          document.addEventListener("DOMContentLoaded", () => {
+            document.body.classList.toggle("light", finalMode === "light");
+          });
+        } catch (e) { }
+      })();
   </script>
 </head>
 
@@ -181,27 +226,33 @@
           <a href="testlar.html" class="muted hover:text-[color:var(--text)] transition">Testlar</a>
           <a href="community.html" class="muted hover:text-[color:var(--text)] transition">Community</a>
 
-          <a href="aiassist.html" class="text-lawBlue font-bold hover:text-[color:var(--text)] transition flex items-center gap-1 border border-[color:var(--border)] px-3 py-1.5 rounded-full bg-[rgba(0,102,255,0.08)] hover:bg-[rgba(0,102,255,0.14)]">
+          <a href="aiassist.html"
+            class="text-lawBlue font-bold hover:text-[color:var(--text)] transition flex items-center gap-1 border border-[color:var(--border)] px-3 py-1.5 rounded-full bg-[rgba(0,102,255,0.08)] hover:bg-[rgba(0,102,255,0.14)]">
             <i class="ph-bold ph-sparkle"></i> AI Assistant
           </a>
         </div>
 
         <div class="hidden md:flex items-center gap-3">
           <!-- THEME TOGGLE (DESKTOP) -->
-          <button type="button" id="themeToggle" class="glass-card px-3 py-2 rounded-full border border-[color:var(--border)] hover:bg-[rgba(255,255,255,0.05)] transition tap flex items-center gap-2 text-sm">
+          <button type="button" id="themeToggle"
+            class="glass-card px-3 py-2 rounded-full border border-[color:var(--border)] hover:bg-[rgba(255,255,255,0.05)] transition tap flex items-center gap-2 text-sm">
             <span id="themeIcon" class="text-xl"><i class="ph-bold ph-desktop"></i></span>
             <span id="themeLabel" class="font-semibold">System</span>
           </button>
 
-          <a href="auth.html" class="text-sm font-medium muted hover:text-[color:var(--text)] transition flex items-center">Kirish</a>
-          <a href="auth.html" class="bg-lawBlue hover:bg-blue-600 text-white px-5 py-2 rounded-full text-sm font-semibold transition shadow-[0_0_20px_rgba(0,102,255,0.25)] tap">
+          <a href="auth.html"
+            class="text-sm font-medium muted hover:text-[color:var(--text)] transition flex items-center">Kirish</a>
+          <a href="auth.html"
+            class="bg-lawBlue hover:bg-blue-600 text-white px-5 py-2 rounded-full text-sm font-semibold transition shadow-[0_0_20px_rgba(0,102,255,0.25)] tap">
             Ro'yxatdan o'tish
           </a>
         </div>
 
         <div class="md:hidden flex items-center gap-2">
           <!-- THEME TOGGLE (MOBILE QUICK) -->
-          <button type="button" id="themeToggleMobileTop" class="glass-card px-3 py-2 rounded-full border border-[color:var(--border)] tap" aria-label="Theme almashtirish">
+          <button type="button" id="themeToggleMobileTop"
+            class="glass-card px-3 py-2 rounded-full border border-[color:var(--border)] tap"
+            aria-label="Theme almashtirish">
             <span id="themeIconMobileTop" class="text-xl"><i class="ph-bold ph-desktop"></i></span>
           </button>
 
@@ -215,7 +266,8 @@
   </nav>
 
   <!-- MOBILE MENU -->
-  <div id="mobile-menu" class="fixed top-0 left-0 w-full h-screen bg-[rgba(0,0,0,0.55)] backdrop-blur-xl md:hidden transform -translate-y-full transition-transform duration-500 ease-in-out z-40 flex items-center">
+  <div id="mobile-menu"
+    class="fixed top-0 left-0 w-full h-screen bg-[rgba(0,0,0,0.55)] backdrop-blur-xl md:hidden transform -translate-y-full transition-transform duration-500 ease-in-out z-40 flex items-center">
     <div class="max-w-7xl mx-auto px-4 py-10 text-center w-full">
       <div class="glass-card rounded-3xl p-6 sm:p-8 border border-[color:var(--border)]">
         <div class="flex items-center justify-between mb-6">
@@ -223,25 +275,32 @@
             <i class="ph-fill ph-scales text-2xl text-lawBlue"></i>
             <span class="text-lg font-black">Menu</span>
           </div>
-          <button type="button" id="themeToggleMobile" class="glass-card px-4 py-2 rounded-full border border-[color:var(--border)] tap flex items-center gap-2 text-sm font-semibold">
+          <button type="button" id="themeToggleMobile"
+            class="glass-card px-4 py-2 rounded-full border border-[color:var(--border)] tap flex items-center gap-2 text-sm font-semibold">
             <span id="themeIconMobile" class="text-xl"><i class="ph-bold ph-desktop"></i></span>
             <span id="themeLabelMobile">System</span>
           </button>
         </div>
 
         <div class="flex flex-col space-y-5 text-lg font-bold">
-          <a href="reyting.html" class="muted hover:text-[color:var(--text)] transition tap flex items-center justify-center">Reyting</a>
-          <a href="kutubxona.html" class="muted hover:text-[color:var(--text)] transition tap flex items-center justify-center">Kutubxona</a>
-          <a href="testlar.html" class="muted hover:text-[color:var(--text)] transition tap flex items-center justify-center">Testlar</a>
-          <a href="community.html" class="muted hover:text-[color:var(--text)] transition tap flex items-center justify-center">Community</a>
+          <a href="reyting.html"
+            class="muted hover:text-[color:var(--text)] transition tap flex items-center justify-center">Reyting</a>
+          <a href="kutubxona.html"
+            class="muted hover:text-[color:var(--text)] transition tap flex items-center justify-center">Kutubxona</a>
+          <a href="testlar.html"
+            class="muted hover:text-[color:var(--text)] transition tap flex items-center justify-center">Testlar</a>
+          <a href="community.html"
+            class="muted hover:text-[color:var(--text)] transition tap flex items-center justify-center">Community</a>
 
           <a href="aiassist.html" class="text-lawBlue flex items-center justify-center gap-2 tap">
             <i class="ph-bold ph-sparkle"></i> AI Assistant
           </a>
 
           <div class="border-t border-[color:var(--border)] pt-6 mt-2 flex flex-col gap-3">
-            <a href="auth.html" class="muted hover:text-[color:var(--text)] transition tap flex items-center justify-center">Kirish</a>
-            <a href="auth.html" class="bg-lawBlue hover:bg-blue-600 text-white px-8 py-4 rounded-full text-lg font-semibold transition tap">
+            <a href="auth.html"
+              class="muted hover:text-[color:var(--text)] transition tap flex items-center justify-center">Kirish</a>
+            <a href="auth.html"
+              class="bg-lawBlue hover:bg-blue-600 text-white px-8 py-4 rounded-full text-lg font-semibold transition tap">
               Ro'yxatdan o'tish
             </a>
           </div>
@@ -254,7 +313,8 @@
   <section class="relative pt-24 sm:pt-32 pb-8 sm:pb-10 lg:pt-40 overflow-hidden">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
 
-      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card mb-5 sm:mb-6 border border-[color:var(--border)]">
+      <div
+        class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card mb-5 sm:mb-6 border border-[color:var(--border)]">
         <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
         <span class="text-xs sm:text-sm font-medium muted">Imtihon uchun tezkor savol-javob</span>
       </div>
@@ -272,11 +332,11 @@
         <div class="glass-card rounded-2xl p-3 border border-[color:var(--border)]">
           <div class="flex items-center gap-3">
             <i class="ph-bold ph-magnifying-glass text-xl text-lawBlue"></i>
-            <input id="search"
-              class="w-full bg-transparent outline-none input-like text-sm sm:text-base"
-              type="text"
+            <input id="search" class="w-full bg-transparent outline-none input-like text-sm sm:text-base" type="text"
               placeholder="Masalan: Fuqorolik, shartnomalar, foydalanish..." />
-            <button type="button" id="clearSearchBtn" class="glass-card px-3 py-2 rounded-full border border-[color:var(--border)] tap hidden" aria-label="Qidiruvni tozalash">
+            <button type="button" id="clearSearchBtn"
+              class="glass-card px-3 py-2 rounded-full border border-[color:var(--border)] tap hidden"
+              aria-label="Qidiruvni tozalash">
               <i class="ph-bold ph-x"></i>
             </button>
           </div>
@@ -286,10 +346,12 @@
           <div id="counter" class="text-center sm:text-left">Yuklanmoqda...</div>
 
           <div class="grid grid-cols-2 sm:flex gap-2 w-full sm:w-auto">
-            <button type="button" id="openAll" class="glass-card px-4 py-2 rounded-full hover:bg-[rgba(255,255,255,0.05)] transition border border-[color:var(--border)] tap w-full sm:w-auto">
+            <button type="button" id="openAll"
+              class="glass-card px-4 py-2 rounded-full hover:bg-[rgba(255,255,255,0.05)] transition border border-[color:var(--border)] tap w-full sm:w-auto">
               Hammasini ochish
             </button>
-            <button type="button" id="closeAll" class="glass-card px-4 py-2 rounded-full hover:bg-[rgba(255,255,255,0.05)] transition border border-[color:var(--border)] tap w-full sm:w-auto">
+            <button type="button" id="closeAll"
+              class="glass-card px-4 py-2 rounded-full hover:bg-[rgba(255,255,255,0.05)] transition border border-[color:var(--border)] tap w-full sm:w-auto">
               Hammasini yopish
             </button>
           </div>
@@ -298,37 +360,30 @@
         <!-- NEW: quick actions -->
         <div class="mt-3 flex flex-col sm:flex-row gap-2 items-center justify-between">
           <div class="flex flex-wrap gap-2 justify-center sm:justify-start">
-            <button type="button" id="favOnlyBtn" class="glass-card px-4 py-2 rounded-full border border-[color:var(--border)] tap flex items-center gap-2">
+            <button type="button" id="favOnlyBtn"
+              class="glass-card px-4 py-2 rounded-full border border-[color:var(--border)] tap flex items-center gap-2">
               <i class="ph-bold ph-star"></i>
               <span class="text-sm font-semibold">Sevimlilar</span>
               <span id="favOnlyBadge" class="ml-1 text-xs muted2"></span>
             </button>
-            <button type="button" id="randomBtn" class="glass-card px-4 py-2 rounded-full border border-[color:var(--border)] tap flex items-center gap-2">
-              <i class="ph-bold ph-dice-five"></i>
-              <span class="text-sm font-semibold">Tasodifiy</span>
-            </button>
-            <button type="button" id="resetStateBtn" class="glass-card px-4 py-2 rounded-full border border-[color:var(--border)] tap flex items-center gap-2">
+            <button type="button" id="resetStateBtn"
+              class="glass-card px-4 py-2 rounded-full border border-[color:var(--border)] tap flex items-center gap-2">
               <i class="ph-bold ph-arrow-counter-clockwise"></i>
               <span class="text-sm font-semibold">Reset</span>
             </button>
           </div>
-
-          <div class="flex flex-wrap gap-2 justify-center sm:justify-end">
-            <button type="button" class="chip glass-card px-3 py-2 rounded-full tap text-sm" data-chip="Mulk">Mulk</button>
-            <button type="button" class="chip glass-card px-3 py-2 rounded-full tap text-sm" data-chip="shirkat">Mol-Mulk</button>
-            <button type="button" class="chip glass-card px-3 py-2 rounded-full tap text-sm" data-chip="shartnoma">Shartnoma</button>
-            <button type="button" class="chip glass-card px-3 py-2 rounded-full tap text-sm" data-chip="faoliyat">fuqorolik</button>
-            <button type="button" class="chip glass-card px-3 py-2 rounded-full tap text-sm" data-chip="huquqiy javobgarlik">Javobgarlik</button>
-          </div>
         </div>
 
         <p class="mt-3 muted2 text-xs text-center sm:text-left">
-          Tezkor tugmalar: <span class="font-semibold">/</span> (qidiruv), <span class="font-semibold">n</span>/<span class="font-semibold">p</span> (keyingi/oldingi), <span class="font-semibold">Esc</span> (tozalash)
+          Tezkor tugmalar: <span class="font-semibold">/</span> (qidiruv), <span class="font-semibold">n</span>/<span
+            class="font-semibold">p</span> (keyingi/oldingi), <span class="font-semibold">Esc</span> (tozalash)
         </p>
       </div>
     </div>
 
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] sm:w-[820px] h-[650px] sm:h-[820px] bg-blue-600/10 rounded-full blur-[120px] -z-10"></div>
+    <div
+      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] sm:w-[820px] h-[650px] sm:h-[820px] bg-blue-600/10 rounded-full blur-[120px] -z-10">
+    </div>
   </section>
 
   <!-- LIST -->
@@ -349,9 +404,12 @@
       </div>
       <p class="muted2 text-sm mb-8">© 2026 Lawinate Digital. Barcha huquqlar himoyalangan.</p>
       <div class="flex justify-center gap-6 muted">
-        <a href="#" class="hover:text-[color:var(--text)] transition tap"><i class="ph-fill ph-telegram-logo text-xl"></i></a>
-        <a href="#" class="hover:text-[color:var(--text)] transition tap"><i class="ph-fill ph-instagram-logo text-xl"></i></a>
-        <a href="#" class="hover:text-[color:var(--text)] transition tap"><i class="ph-fill ph-linkedin-logo text-xl"></i></a>
+        <a href="#" class="hover:text-[color:var(--text)] transition tap"><i
+            class="ph-fill ph-telegram-logo text-xl"></i></a>
+        <a href="#" class="hover:text-[color:var(--text)] transition tap"><i
+            class="ph-fill ph-instagram-logo text-xl"></i></a>
+        <a href="#" class="hover:text-[color:var(--text)] transition tap"><i
+            class="ph-fill ph-linkedin-logo text-xl"></i></a>
       </div>
     </div>
   </footer>
@@ -396,8 +454,8 @@
     function updateThemeUI(mode) {
       const iconClass =
         mode === "system" ? "ph-bold ph-desktop" :
-        mode === "light"  ? "ph-bold ph-sun" :
-                            "ph-bold ph-moon";
+          mode === "light" ? "ph-bold ph-sun" :
+            "ph-bold ph-moon";
       const html = `<i class="${iconClass}"></i>`;
 
       const ti = document.getElementById("themeIcon");
@@ -508,7 +566,6 @@
     const clearSearchBtn = document.getElementById("clearSearchBtn");
     const favOnlyBtn = document.getElementById("favOnlyBtn");
     const favOnlyBadge = document.getElementById("favOnlyBadge");
-    const randomBtn = document.getElementById("randomBtn");
     const resetStateBtn = document.getElementById("resetStateBtn");
 
     const STATE_KEY = "lawinate_xalqaro_state";
@@ -538,13 +595,13 @@
       try {
         const arr = JSON.parse(localStorage.getItem(FAV_KEY) || "[]");
         favSet = new Set(Array.isArray(arr) ? arr.map(String) : []);
-      } catch(e) {
+      } catch (e) {
         favSet = new Set();
       }
     }
 
     function saveFavs() {
-      try { localStorage.setItem(FAV_KEY, JSON.stringify(Array.from(favSet))); } catch(e) {}
+      try { localStorage.setItem(FAV_KEY, JSON.stringify(Array.from(favSet))); } catch (e) { }
     }
 
     function setFavOnlyUI() {
@@ -562,7 +619,7 @@
           favoritesOnly
         };
         localStorage.setItem(STATE_KEY, JSON.stringify(state));
-      } catch(e) {}
+      } catch (e) { }
     }
 
     function readState() {
@@ -579,7 +636,7 @@
             favoritesOnly = st.favoritesOnly;
           }
         }
-      } catch(e) {}
+      } catch (e) { }
     }
 
     function syncUrl() {
@@ -590,7 +647,7 @@
         if (favoritesOnly) u.searchParams.set("fav", "1"); else u.searchParams.delete("fav");
         u.searchParams.set("page", String(page));
         history.replaceState(null, "", u.toString());
-      } catch(e) {}
+      } catch (e) { }
     }
 
     function clampPage() {
@@ -703,7 +760,7 @@
       ta.style.left = "-9999px";
       document.body.appendChild(ta);
       ta.select();
-      try { document.execCommand("copy"); } catch(e) {}
+      try { document.execCommand("copy"); } catch (e) { }
       document.body.removeChild(ta);
       return Promise.resolve();
     }
@@ -1049,35 +1106,6 @@
           });
         }
 
-        // NEW: random question
-        if (randomBtn) {
-          randomBtn.addEventListener("click", () => {
-            const pool = filteredItems.length ? filteredItems : allItems;
-            if (!pool.length) return;
-            const r = pool[Math.floor(Math.random() * pool.length)];
-            const id = String(getStableId(r));
-            // agar qidiruv bo‘lsa ham, shu pool ichida sakraydi
-            const idx = filteredItems.findIndex(it => String(getStableId(it)) === id);
-            if (idx >= 0) {
-              page = Math.floor(idx / PAGE_SIZE) + 1;
-              renderPage();
-              setTimeout(() => openByIdInCurrentPage(id), 50);
-              showToast("Tasodifiy savol ochildi");
-            } else {
-              // fallback: qidiruv bo‘sh bo‘lsa
-              searchEl.value = "";
-              updateClearBtn();
-              favoritesOnly = false;
-              setFavOnlyUI();
-              applySearch();
-              const newIdx = filteredItems.findIndex(it => String(getStableId(it)) === id);
-              page = Math.floor(Math.max(0, newIdx) / PAGE_SIZE) + 1;
-              renderPage();
-              setTimeout(() => openByIdInCurrentPage(id), 50);
-            }
-          });
-        }
-
         // NEW: reset
         if (resetStateBtn) {
           resetStateBtn.addEventListener("click", () => {
@@ -1087,20 +1115,10 @@
             setFavOnlyUI();
             updateClearBtn();
             applySearch();
-            try { localStorage.removeItem(STATE_KEY); } catch(e) {}
+            try { localStorage.removeItem(STATE_KEY); } catch (e) { }
             showToast("Reset qilindi");
           });
         }
-
-        // NEW: chips
-        document.querySelectorAll("[data-chip]").forEach(btn => {
-          btn.addEventListener("click", () => {
-            const v = btn.getAttribute("data-chip") || "";
-            searchEl.value = v;
-            updateClearBtn();
-            applySearch();
-          });
-        });
 
         // NEW: shortcuts
         setupShortcuts();
@@ -1119,7 +1137,7 @@
         } else {
           // State bo‘yicha render
           // Avval qidiruvni qo‘llaymiz (state q bo‘lsa), keyin state page ni qaytaramiz
-          const st = (() => { try { return JSON.parse(localStorage.getItem(STATE_KEY) || "{}"); } catch(e){ return {}; } })();
+          const st = (() => { try { return JSON.parse(localStorage.getItem(STATE_KEY) || "{}"); } catch (e) { return {}; } })();
           const wantedPage = (st && Number.isFinite(+st.page)) ? Math.max(1, parseInt(st.page, 10) || 1) : 1;
 
           applySearch();
@@ -1136,5 +1154,5 @@
     init();
   </script>
 </body>
-</html>
 
+</html>
