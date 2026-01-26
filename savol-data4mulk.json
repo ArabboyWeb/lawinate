@@ -1,0 +1,802 @@
+[
+  {
+    "id": 1,
+    "savol": "Mulk huquqi tushunchasi va tamoyillari.",
+    "javob": "Mulk huquqi — shaxsning unga tegishli bo‘lgan mol-mulkka o‘z xohishi bilan va o‘z manfaatlarini ko‘zlab egalik qilish, undan foydalanish va uni tasarruf etish huquqidir. Asosiy tamoyillari: mulkning daxlsizligi, mulkdorlar huquqlarining tengligi, mulkiy munosabatlar ishtirokchilarining avtonomiyasi va mulk huquqini himoya qilishning kafolatlanganligidir."
+  },
+  {
+    "id": 2,
+    "savol": "Shirkat (Jamoa mulki).",
+    "javob": "Jamoa mulki — muayyan shaxslar guruhi (shirkat a'zolari)ga tegishli bo‘lgan mulk shakli bo‘lib, u umumiy mulk huquqi asosida boshqariladi. Shirkat mulki uning ishtirokchilari tomonidan qo‘shilgan ulushlar va faoliyat davomida orttirilgan daromadlar hisobiga shakllanadi; unda mulkka egalik qilish va foydalanish jamoaviy kelishuv asosida amalga oshiriladi."
+  },
+  {
+    "id": 3,
+    "savol": "Mulk huquqining vujudga kelish asoslari.",
+    "javob": "Mulk huquqi vujudga kelishining asosi ikki turga bo‘linadi: birlamchi (yangi ashyo yaratish, hosil va daromad olish, egasiz ashyoga egalik qilish) va hosilaviy (oldisotdi, ayirboshlash, hadya, meros orqali o‘tish yoki huquqiy vorislik). Asosiy talab — ushbu harakatlarning qonuniy bitim yoki huquqiy fakt asosida sodir etilishidir."
+  },
+  {
+    "id": 4,
+    "savol": "Natsionalizatsiya qaysi hollarda amalga oshiriladi.",
+    "javob": "Natsionalizatsiya — xususiy mulkni qonun asosida davlat egaligiga o‘tkazishdir. Bu jarayon faqat alohida qonun hujjatlari asosida, ijtimoiy va davlat manfaatlarini ko‘zlagan holda, natsionalizatsiya qilinayotgan mulkdorga yetkazilgan zararni va mulk qiymatini to‘liq qoplab berish sharti bilan amalga oshiriladi."
+  },
+  {
+    "id": 5,
+    "savol": "Rekvizitsiya tushunchasi.",
+    "javob": "Rekvizitsiya — tabiiy ofatlar, epidemiyalar, avariyalar va boshqa favqulodda vaziyatlar yuz bergan taqdirda, jamiyat manfaatlarini ko‘zlab, mol-mulkni mulkdordan davlat organi qaroriga muvofiq uning qiymatini to‘lagan holda olib qo‘yishdir. Bu majburiy va haq to‘lanadigan jarayon hisoblanadi."
+  },
+  {
+    "id": 6,
+    "savol": "Mulk shakllari tushunchasi.",
+    "javob": "Mulk shakllari — mulkning kimga tegishliligiga qarab tasniflanishi. O‘zbekiston Respublikasida mulk xususiy mulk va ommaviy (davlat) mulki shakllarida bo‘ladi. Har bir shakl qonun oldida tengdir va barcha mulkdorlar uchun xo‘jalik yuritishda bir xil huquqiy rejim yaratiladi."
+  },
+  {
+    "id": 7,
+    "savol": "Davlat mulki.",
+    "javob": "Davlat mulki — umumxalq mulki bo‘lib, u respublika mulki (yer, yer osti boyliklari, suv, havo bo‘shlig‘i va respublika budjeti) hamda ma’muriy-hududiy tuzilmalar mulki (munitsipal mulk)dan iborat. Bu mulkni boshqarishni davlat organlari va ular vakolat bergan shaxslar amalga oshiradi."
+  },
+  {
+    "id": 8,
+    "savol": "Mulk huquqining bekor bo‘lish asoslari.",
+    "javob": "Mulk huquqi quyidagi hollarda bekor bo‘ladi: mulkdor o‘z ixtiyori bilan voz kechsa, ashyo yo‘q bo‘lib ketsa (nobud bo‘lsa), shartnomaviy majburiyatlar bajarilishi natijasida mulk boshqaga o‘tsa hamda qonunda belgilangan majburiy tartibda olib qo‘yilsa (musodara, rekvizitsiya, ijro hujjati bo‘yicha undiruv)."
+  },
+  {
+    "id": 9,
+    "savol": "Xususiy mulk.",
+    "javob": "Xususiy mulk — jismoniy va yuridik shaxslarning qonun bilan taqiqlanmagan har qanday mol-mulkka bo‘lgan daxlsiz huquqidir. Xususiy mulk dorisi o‘z mulkining miqdori va qiymati bo‘yicha cheklanmaydi (qonunda ko‘rsatilgan maxsus holatlar mustasno) va u o‘z mulkidan tadbirkorlik faoliyati uchun foydalanishga haqlidir."
+  },
+  {
+    "id": 10,
+    "savol": "Mulk huquqini himoya qilish usullari.",
+    "javob": "Mulk huquqini himoya qilishning asosiy fuqarolik-huquqiy usullari: vindikatsion da’vo (mulkni o‘zganing g‘ayriqonuniy egaligidan qaytarib olish), negator da’vo (egalik qilish bilan bog‘liq bo‘lmagan huquqbuzarliklarni bartaraf etish), mulk huquqini tan olish to‘g‘risidagi da’volar va yetkazilgan zararni qoplashdir."
+  },
+  {
+    "id": 11,
+    "savol": "Mulk shakllari tushunchasi.",
+    "javob": "Mulk shakllari — mulkning o‘zlashtirilish usuli va sub’yektiga ko‘ra huquqiy holatidir. O‘zbekistonda mulk xususiy va ommaviy shakllarda bo‘ladi. Har bir shakl o‘ziga xos huquqiy rejimga ega bo‘lsa-da, qonun oldida barcha mulk shakllari teng hisoblanadi va davlat tomonidan bir xil himoya qilinadi."
+  },
+  {
+    "id": 12,
+    "savol": "Oliy ta’lim muassasalari mulki.",
+    "javob": "Oliy ta’lim muassasalari (OTM) mulki — muassasaga operativ boshqaruv huquqi asosida biriktirilgan hamda uning o‘z faoliyati (pullik xizmatlar) natijasida orttirgan mol-mulkidir. Davlat OTMlari mulki davlat mulki hisoblanadi, biroq ular o‘z mustaqil balansiga va ushbu mulkdan ustavda belgilangan maqsadlarda foydalanish huquqiga ega."
+  },
+  {
+    "id": 13,
+    "savol": "Umumiy mulk.",
+    "javob": "Umumiy mulk — ikki yoki undan ortiq shaxsning bir ashyoga nisbatan egalik huquqidir. U ikki turga bo‘linadi: ulushli mulk (har bir mulkdorning ulushi aniq belgilangan) va birgalikda mulk (ulushlar oldindan belgilab qo‘yilmaydi, masalan, er-xotinning birgalikdagi mulki)."
+  },
+  {
+    "id": 14,
+    "savol": "Majburiyat tushunchasi.",
+    "javob": "Majburiyat — fuqarolik huquqiy munosabati bo‘lib, unga ko‘ra bir shaxs (qarzdor) boshqa shaxs (kreditor) foydasiga muayyan harakatni amalga oshirishga (mol-mulk topshirish, ish bajarish, pul to‘lash) yoki harakatdan tiyilishga majbur bo‘ladi, kreditor esa buni talab qilish huquqiga ega."
+  },
+  {
+    "id": 15,
+    "savol": "Davlat mulki zarurligining obyektiv sababi.",
+    "javob": "Davlat mulki zarurligining sababi — jamiyatning umumiy manfaatlarini ta’minlash, ijtimoiy sohalarni (ta’lim, sog‘liqni saqlash) qo‘llab-quvvatlash, milliy xavfsizlik va strategik resurslarni (yer, energetika, mudofaa) markazlashgan holda boshqarish hamda bozordagi monopoliyalarni tartibga solish ehtiyojidir."
+  },
+  {
+    "id": 16,
+    "savol": "Mulk huquqining vujudga kelish va bekor bo‘lish asoslari.",
+    "javob": "Vujudga kelish: ashyo yaratish, bitimlar (oldisotdi, hadya), meros, xususiylashtirish va egalik qilish muddatining o‘tishi. Bekor bo‘lish: mulkdor ixtiyori (sotish, voz kechish), ob’ektning yo‘qolishi va majburiy olib qo‘yish (musodara, rekvizitsiya, qarz uchun undiruv)."
+  },
+  {
+    "id": 17,
+    "savol": "Aralash mulk.",
+    "javob": "Aralash mulk — turli mulk shakllarining (masalan, davlat va xususiy mulk) bir korxona yoki ob’ekt doirasida birlashishidir. Bu ko‘pincha aksiyadorlik jamiyatlarida namoyon bo‘ladi, bu yerda aksiyalar paketining bir qismi davlatga, qolgan qismi esa xususiy investorlarga tegishli bo‘ladi."
+  },
+  {
+    "id": 18,
+    "savol": "Mulk tushunchasi. Mulkning iqtisodiy ma’nodagi tushunchasi.",
+    "javob": "Huquqiy ma’noda mulk — egalik qilish, foydalanish va tasarruf etish huquqlari yig‘indisidir. Iqtisodiy ma’noda esa mulk — moddiy boyliklarning ma’lum shaxslar tomonidan o‘zlashtirilishi natijasida kishilar o‘rtasida vujudga keladigan ijtimoiy-iqtisodiy munosabatlardir."
+  },
+  {
+    "id": 19,
+    "savol": "Majburiyatlarning bajarilishini ta’minlash.",
+    "javob": "Majburiyatlar bajarilishini ta’minlash — qarzdor tomonidan majburiyat bajarilmagan taqdirda kreditorning manfaatlarini himoya qiluvchi huquqiy vositalardir. Bularga: neustoyka (vazminlik), garov, zaklad, kafillik, kafolat va qarzdorning mol-mulkini ushlab qolish kiradi."
+  },
+  {
+    "id": 20,
+    "savol": "Xususiy mulk huquqi tushunchasi.",
+    "javob": "Xususiy mulk huquqi — shaxsning qonun bilan cheklanmagan miqdordagi mol-mulkka nisbatan mutloq hukmronligidir. Bu huquq egasiga o‘z mulkidan har qanday xo‘jalik faoliyati, jumladan tadbirkorlik uchun foydalanish erkinligini beradi va davlat tomonidan daxlsiz deb kafolatlanadi."
+  },
+  {
+    "id": 21,
+    "savol": "Ajnabiy fuqarolar, tashkilotlar va davlatlarning mulki.",
+    "javob": "Bu sub’yektlar O‘zbekiston hududida xalqaro shartnomalar va milliy qonunchilik asosida mulk huquqiga ega bo‘lishi mumkin. Ularning mulkiy huquqlari milliy rejim asosida (ayrim cheklovlar bilan, masalan, qishloq xo‘jaligi yerlariga egalik qilish taqiqlangan) himoya qilinadi."
+  },
+  {
+    "id": 22,
+    "savol": "Vindikatsion da’volar.",
+    "javob": "Vindikatsion da’vo — mulkdorning o‘z ashyosini boshqa shaxsning g‘ayriqonuniy egaligidan qaytarib olish haqidagi talabidir. Bu da’vo ashyo amalda mavjud bo‘lgan va uning o‘ziga xos belgilari saqlanib qolgan hollarda beriladi."
+  },
+  {
+    "id": 23,
+    "savol": "Mulk huquqining vujudga kelishi va uning bekor bo‘lishi.",
+    "javob": "Vujudga kelish asoslari: ashyoni yaratish, bitimlar, meva va daromadlar, egalik qilish muddati. Bekor bo‘lish asoslari: mulkdor ixtiyori (sotish, hadya), ashyoning nobud bo‘lishi va qonuniy majburiy tartibda olib qo‘yilishi."
+  },
+  {
+    "id": 24,
+    "savol": "Ommaviy mulk.",
+    "javob": "Ommaviy mulk — davlatga tegishli bo‘lgan mulkdir. U respublika mulki (davlat xazinasi, strategik resurslar) va ma’muriy-hududiy tuzilmalar (munitsipal) mulkiga bo‘linadi va jamiyat manfaatlarini ko‘zlab boshqariladi."
+  },
+  {
+    "id": 25,
+    "savol": "Majburiyat huquqi tushunchasi va taraflari.",
+    "javob": "Majburiyat huquqi — fuqarolik huquqining qarzdordan muayyan harakatni talab qilishga qaratilgan qismi. Taraflari: kreditor (talab qilish huquqiga ega shaxs) va qarzdor (majburiyatni bajarishi shart bo‘lgan shaxs)."
+  },
+  {
+    "id": 26,
+    "savol": "Mulkiy huquqning himoya qilinishi.",
+    "javob": "Bu mulkdorning huquqlari buzilganda ularni tiklashga qaratilgan huquqiy choralar tizimidir. U ashyoviy-huquqiy (vindikatsiya, negator), majburiyat-huquqiy (zararni qoplash) va boshqa usullar orqali sud tartibida amalga oshiriladi."
+  },
+  {
+    "id": 27,
+    "savol": "Xususiy mulk huquqi tushunchasi va uning ahamiyati.",
+    "javob": "Xususiy mulk — shaxsning mulkka mutloq egaligi bo‘lib, u erkin bozor iqtisodiyotining, tadbirkorlik rivojining va fuqarolarning iqtisodiy mustaqilligining huquqiy poydevori hisoblanadi."
+  },
+  {
+    "id": 28,
+    "savol": "Xo‘jalik shirkati va jamiyati mulkining mohiyati.",
+    "javob": "Bu yuridik shaxsning mulki bo‘lib, muassislarning ulushlari va faoliyat natijasida orttirilgan daromadlardan shakllanadi. Muassislar mulk ustidan emas, yuridik shaxsga nisbatan majburiyat huquqiga ega bo‘ladilar."
+  },
+  {
+    "id": 29,
+    "savol": "O‘zbekiston Respublikasi Mulki.",
+    "javob": "Bu butun xalqqa tegishli bo‘lgan respublika mulkidir. Unga yer, yer osti boyliklari, ichki suvlar, o‘simlik va hayvonot dunyosi, shuningdek, davlat budjeti va davlat banklari mablag‘lari kiradi."
+  },
+  {
+    "id": 30,
+    "savol": "Xo‘jalik yuritish va operativ boshqarish.",
+    "javob": "Xo‘jalik yuritish — korxonaga berilgan mulk ustidan keng vakolatlar (foyda olish maqsadida); Operativ boshqarish — muassasaga berilgan mulkni faqat belgilangan maqsadlar va topshiriqlar doirasida boshqarish (cheklangan vakolatlar)."
+  },
+  {
+    "id": 31,
+    "savol": "Ashyoviy huquq tushunchasi va turlari.",
+    "javob": "Ashyoviy huquq — shaxsning ashyo ustidan bevosita hukmronligidir. Turlari: mulk huquqi, xo‘jalik yuritish huquqi, operativ boshqaruv huquqi, meros qilib qoldiriladigan umrbod egalik qilish huquqi va servitut."
+  },
+  {
+    "id": 32,
+    "savol": "Negator da’volar.",
+    "javob": "Negator da’vo — mulkdorning egalik qilish huquqi saqlanib qolgan holda, uning mulkdan foydalanishiga yoki uni tasarruf etishiga xalaqit berayotgan har qanday to‘siqlarni bartaraf etish to‘g‘risidagi talabidir."
+  },
+  {
+    "id": 33,
+    "savol": "Davlat organlari xususiylashtirish sub’yekti.",
+    "javob": "Xususiylashtirishda davlat organlari (masalan, Davlat aktivlarini boshqarish agentligi) sotuvchi (mulkdor nomidan ish yurituvchi) sifatida ishtirok etadi va davlat mulkini xususiy sektorga o‘tkazish jarayonini tartibga soladi."
+  },
+  {
+    "id": 34,
+    "savol": "Davlat uy-joy fondidagi turar joyni xususiylashtirishda huquqlarni himoya qilish.",
+    "javob": "Bu jarayon fuqarolarning ixtiyoriyligi, uy-joyning holatini hisobga olish va imtiyozli guruhlar huquqlarini ta’minlashga asoslanadi. Noqonuniy rad etish yoki shartlarni buzish ustidan sudga shikoyat qilish huquqi kafolatlanadi."
+  },
+  {
+    "id": 35,
+    "savol": "Davlat mol-mulki.",
+    "javob": "Davlat mol-mulki — respublika va munitsipal mulkdan tashkil topgan moddiy va nomoddiy ob’ektlar yig‘indisi bo‘lib, davlat hokimiyati funksiyalarini bajarish va ijtimoiy ehtiyojlarni qondirish uchun xizmat qiladi."
+  },
+  {
+    "id": 36,
+    "savol": "Servitut huquqi tushunchasi va elementlari.",
+    "javob": "Servitut — o‘zganing yer uchastkasidan cheklangan tarzda foydalanish huquqidir (masalan, o‘tish yoki kommunikatsiya o‘tkazish uchun). Elementlari: xizmat ko‘rsatuvchi uchastka, foydalanuvchi shaxs va foydalanish maqsadidir."
+  },
+  {
+    "id": 37,
+    "savol": "Mulk huquqi tadbirkorlik faoliyatining asosi sifatida.",
+    "javob": "Mulk huquqi tadbirkorga ishlab chiqarish vositalariga egalik qilish, tavakkalchilik qilish va olingan foydani o‘z ixtiyori bilan tasarruf etish imkonini beradi, bu esa iqtisodiy faollikning bosh shartidir."
+  },
+  {
+    "id": 38,
+    "savol": "Davlat uy-joy fondi.",
+    "javob": "Bu davlatga tegishli bo‘lgan va mahalliy hokimiyat yoki idoralar tasarrufida bo‘lgan, fuqarolarga ijara yoki xususiylashtirish maqsadida beriladigan turar joylar yig‘indisidir."
+  },
+  {
+    "id": 39,
+    "savol": "Ma’muriy-hududiy tuzilmalar mulki.",
+    "javob": "Bu munitsipal mulk bo‘lib, mahalliy davlat hokimiyati organlari (viloyat, tuman, shahar hokimliklari) tasarrufidagi mol-mulk, mahalliy budjet mablag‘lari va kommunal xo‘jalik ob’ektlarini o‘z ichiga oladi."
+  },
+  {
+    "id": 40,
+    "savol": "Umumiy mulk tushunchasi va uning vujudga kelishi.",
+    "javob": "Umumiy mulk — bir ashyoning bir vaqtning o‘zida bir necha shaxsga tegishli bo‘lishidir. U ashyoni bo‘lish imkoni bo‘lmaganda, qonun bo‘yicha (masalan, meros) yoki shartnoma asosida (birgalikda sotib olish) vujudga keladi."
+  },
+  {
+    "id": 41,
+    "savol": "Mulk huquqini himoya qilish usullari.",
+    "javob": "Mulk huquqi ashyoviy-huquqiy (vindikatsiya, negator), majburiyat-huquqiy (zararni qoplash, ashyoni qaytarish) hamda mulkdorning huquqlari buzilgan holda qabul qilingan davlat hujjatlarini haqiqiy emas deb topish orqali himoya qilinadi."
+  },
+  {
+    "id": 42,
+    "savol": "Xo‘jalik yuritish va operativ boshqarish huquqi.",
+    "javob": "Xo‘jalik yuritish — mulkdor tomonidan korxonaga berilgan, foyda olishga qaratilgan keng vakolatli ashyoviy huquq. Operativ boshqarish — muassasaga uning ustav maqsadlari va mulkdor topshiriqlari doirasida berilgan, ancha cheklangan ashyoviy huquqdir."
+  },
+  {
+    "id": 43,
+    "savol": "Davlat mulkini xususiylashtirish usullari.",
+    "javob": "Asosiy usullar: auksion (eng yuqori narx), tanlov (shartlarni bajarish), to‘g‘ridan-to‘g‘ri sotish, ijara asosida keyinchalik sotib olish va davlat korxonalarini aksiyadorlik jamiyatlariga aylantirishdir."
+  },
+  {
+    "id": 44,
+    "savol": "Xususiy mulk huquqi sub’yektlari.",
+    "javob": "Xususiy mulk huquqi sub’yektlari — jismoniy shaxslar (fuqarolar, chet el fuqarolari) va nodavlat yuridik shaxslardir (shirkatlar, jamiyatlar, nodavlat muassasalar)."
+  },
+  {
+    "id": 45,
+    "savol": "Mulkiy huquqni fuqarolik huquq normalari bilan himoya qilishning boshqa usullari.",
+    "javob": "Bularga mulkni xavf ostiga qo‘yuvchi harakatlarni to‘xtatish, ashyoni boshqaga o‘tishini taqiqlash (arest), ashyoning qiymatini undirish hamda mulkdorning manfaatlarini ko‘zlab tuzilgan bitimlarni haqiqiy emas deb topish kiradi."
+  },
+  {
+    "id": 46,
+    "savol": "Yer uchastkasiga doimiy egalik qilish va undan foydalanish huquqi.",
+    "javob": "Bu yuridik shaxslarga yer uchastkasidan muddatsiz va doimiy foydalanish imkonini beruvchi ashyoviy huquqdir. Bunda shaxs yerga egalik qiladi va foydalanadi, biroq uni mustaqil tasarruf eta olmaydi (sotish yoki garovga qo‘yish cheklangan)."
+  },
+  {
+    "id": 47,
+    "savol": "Er-xotinlar o‘rtasidagi mulk huquqi.",
+    "javob": "Nikoh davomida orttirilgan mol-mulk, agar shartnomada boshqacha ko‘rsatilmagan bo‘lsa, ularning umumiy birgalikdagi mulki hisoblanadi. Nikohgacha tegishli bo‘lgan yoki hadya va meros tariqasida olingan mulk esa har birining shaxsiy mulki sanaladi."
+  },
+  {
+    "id": 48,
+    "savol": "Undiruvni umumiy mol-mulkdagi ulushga qaratish.",
+    "javob": "Qarzdorning shaxsiy mulki yetarli bo‘lmaganda, kreditor uning umumiy ulushli mulkdagi ulushini ajratishni va undiruvni o‘sha ulushga qaratishni talab qilishga haqli. Agar ajratish imkonsiz bo‘lsa, ulush bozor narxida sotilishi mumkin."
+  },
+  {
+    "id": 49,
+    "savol": "Imtiyozli sotib olish huquqi tushunchasi.",
+    "javob": "Umumiy ulushli mulkdagi ishtirokchi o‘z ulushini yot shaxsga sotmoqchi bo‘lsa, boshqa ishtirokchilar ushbu ulushni sotuvchi taklif qilgan narxda va shartlarda birinchi bo‘lib sotib olish huquqiga ega ekanligidir."
+  },
+  {
+    "id": 50,
+    "savol": "Birgalikdagi mulk bo‘lgan mol-mulkni taqsimlash va undan ulush ajratish.",
+    "javob": "Birgalikdagi mulkni taqsimlashda dastlab har bir ishtirokchining ulushi aniqlanadi (odatda teng deb hisoblanadi). Shundan so‘ng mulk ashyoviy (natural) shaklda yoki kompensatsiya to‘lash orqali taqsimlanadi."
+  },
+  {
+    "id": 51,
+    "savol": "Xususiy mulk asosida tadbirkorlik faoliyatini yuritish asoslari.",
+    "javob": "Tadbirkor o‘ziga tegishli mulkdan foydalanib, mustaqil ravishda qaror qabul qiladi, foyda oladi va tavakkalchilik asosida javobgar bo‘ladi. Davlat xususiy mulkdorning tadbirkorlik faoliyatiga asossiz aralashishini taqiqlaydi."
+  },
+  {
+    "id": 52,
+    "savol": "Dehqon va fermer xo‘jaligining mulk huquqi tushunchasi va turlari.",
+    "javob": "Fermer xo‘jaligi — yer ijarasi asosida faoliyat yurituvchi yuridik shaxs bo‘lib, olingan mahsulot uning mulki. Dehqon xo‘jaligi — oilaviy asosda, yerga meros qilib qoldiriladigan umrbod egalik qilish huquqi asosida faoliyat yuritadi."
+  },
+  {
+    "id": 53,
+    "savol": "Mulk ijarasi shartnomasi tushunchasi va huquqiy belgilari.",
+    "javob": "Mulk ijarasi (lizing) — ijaraga beruvchi o‘z ashyosini ijaraga oluvchiga vaqtincha egalik qilish va foydalanish uchun haq evaziga topshirishidir. Belgilari: muddatlilik, haq to‘lanishi, ashyoning qaytarilishi va mulk huquqining o‘tmasligidir."
+  },
+  {
+    "id": 54,
+    "savol": "Mulk huquqi ob’yektlari.",
+    "javob": "Ob’yektlar — har qanday ashyolar (ko‘char va ko‘chmas), pul, qimmatli qog‘ozlar, intellektual mulk natijalari va boshqa moddiy yoki nomoddiy ne’matlardir."
+  },
+  {
+    "id": 55,
+    "savol": "Yuridik ma’nodagi mulk shakli.",
+    "javob": "Bu mulkning muayyan huquqiy rejimga bo‘ysunishi bo‘lib, mulk sub’yektining huquqiy maqomini va ushbu mulkdan foydalanishning qonuniy chegaralarini belgilaydi (masalan, davlat mulkining xususiylashtirilmasligi)."
+  },
+  {
+    "id": 56,
+    "savol": "Xo‘jalik yuritish va operativ boshqarish huquqi.",
+    "javob": "Bu mulkdor bo‘lmagan shaxslarning (yuridik shaxslarning) mulkdor tomonidan o‘zlariga biriktirilgan mol-mulk ustidan qonunda belgilangan doirada egalik qilish, foydalanish va tasarruf etish huquqlaridir."
+  },
+  {
+    "id": 57,
+    "savol": "Meros qilib qoldiriladigan yer uchastkasiga umrbod egalik qilish huquqi.",
+    "javob": "Bu fuqarolarga (asosan dehqon xo‘jaligi yoki uy-joy qurish uchun) beriladigan ashyoviy huquq bo‘lib, u yerga egalik qilish va undan foydalanishni hamda ushbu huquqni meros bo‘yicha topshirishni ko‘zda tutadi."
+  },
+  {
+    "id": 58,
+    "savol": "Mulk huquqi sub’yektlari.",
+    "javob": "Mulk huquqi sub’yektlari: fuqarolar, yuridik shaxslar (tijorat va nodavlat), O‘zbekiston Respublikasi (davlat) va mahalliy davlat hokimiyati organlaridir."
+  },
+  {
+    "id": 59,
+    "savol": "Mulk huquqini amalga oshirishning chegarasi.",
+    "javob": "Mulkdor o‘z huquqini amalga oshirayotganda boshqa shaxslarning huquqlarini buzmasligi, atrof-muhitga zarar yetkazmasligi va qonun bilan belgilangan taqiqlarga (masalan, qo‘shnichilik huquqi) amal qilishi shart."
+  },
+  {
+    "id": 60,
+    "savol": "Mol-mulkni saqlash mas’uliyati.",
+    "javob": "Qonun yoki shartnomada boshqacha tartib nazarda tutilgan bo‘lmasa, o‘z mol-mulkini saqlash, uni but saqlash bilan bog‘liq xarajatlarni to‘lash va ashyoning tasodifiy nobud bo‘lish xavfi mulkdorning zimmasida bo‘ladi."
+  },
+  {
+    "id": 61,
+    "savol": "Mulk huquqini himoya qilish usullari.",
+    "javob": "Mulk huquqi ashyoviy-huquqiy usullar (vindikatsiya va negator da’volar) hamda majburiyat-huquqiy usullar (zararni qoplash, ashyoni topshirish majburiyati) orqali himoya qilinadi. Shuningdek, davlat organlarining mulkdor huquqini buzuvchi hujjatlarini haqiqiy emas deb topish ham himoya usuli hisoblanadi."
+  },
+  {
+    "id": 62,
+    "savol": "Xo‘jalik yuritish va operativ boshqarish huquqi.",
+    "javob": "Xo‘jalik yuritish huquqi — korxonaning mulkdor tomonidan o‘ziga biriktirilgan mulkka nisbatan qonun doirasida egalik qilish, foydalanish va tasarruf etish huquqidir. Operativ boshqarish huquqi — muassasa yoki korxonaning o‘z faoliyat maqsadlari va mulkdor topshiriqlari doirasida mulkdan foydalanish bo‘yicha cheklangan huquqidir."
+  },
+  {
+    "id": 63,
+    "savol": "Davlat mulkini xususiylashtirish usullari.",
+    "javob": "Asosiy usullar: davlat mulkini auksionlarda sotish, tanlov asosida (investitsiya majburiyatlari bilan) sotish, davlat korxonalarini aksiyadorlik jamiyatlariga aylantirish, mulkni ijaraga berib, keyinchalik sotib olish va to‘g‘ridan-to‘g‘ri sotishdan iborat."
+  },
+  {
+    "id": 64,
+    "savol": "Xususiy mulk huquqi sub’yektlari.",
+    "javob": "Xususiy mulk sub’yektlari — jismoniy shaxslar (O‘zbekiston fuqarolari, chet el fuqarolari, fuqaroligi bo‘lmagan shaxslar) va nodavlat yuridik shaxslar (xo‘jalik jamiyatlari, shirkatlar, jamoat birlashmalari va diniy tashkilotlar)dir."
+  },
+  {
+    "id": 65,
+    "savol": "Mulkiy huquqni fuqarolik huquq normalari bilan himoya qilishning boshqa usullari.",
+    "javob": "Bunga mulkdorning ashyosini qonuniy asoslarsiz olib qo‘yishga qarshi qaratilgan da’volar, mulkdorning huquqi buzilgan holda tuzilgan bitimlarni haqiqiy emas deb topish hamda mulkdorga yetkazilgan boy berilgan foyda va ma’naviy zararni undirish kiradi."
+  },
+  {
+    "id": 66,
+    "savol": "Yer uchastkasiga doimiy egalik qilish va undan foydalanish huquqi.",
+    "javob": "Bu ashyoviy huquq bo‘lib, yuridik shaxslarga yer uchastkasidan muddatsiz foydalanish imkonini beradi. Bunda shaxs yerga egalik qiladi va undan maqsadli foydalanadi, biroq yerni mustaqil sotish, hadya qilish yoki garovga qo‘yish huquqiga ega bo‘lmaydi."
+  },
+  {
+    "id": 67,
+    "savol": "Er-xotinlar o‘rtasidagi mulk huquqi.",
+    "javob": "Nikoh davomida orttirilgan mol-mulk ularning umumiy birgalikdagi mulki hisoblanadi (agar nikoh shartnomasida boshqacha tartib bo‘lmasa). Har birining nikohgacha bo‘lgan mulki, shuningdek, nikoh davomida hadya yoki meros tartibida olingan mulk ularning shaxsiy mulki sanaladi."
+  },
+  {
+    "id": 68,
+    "savol": "Undiruvni umumiy mol-mulkdagi ulushga qaratish.",
+    "javob": "Qarzdorning shaxsiy mol-mulki yetarli bo‘lmaganida, kreditor uning umumiy mulkdagi ulushini ajratishni va undiruvni ushbu ulushga qaratishni talab qilishi mumkin. Agar ulushni natural shaklda ajratish imkoni bo‘lmasa, kreditor ulushni bozor narxida sotib olinishini talab qilishga haqli."
+  },
+  {
+    "id": 69,
+    "savol": "Imtiyozli sotib olish huquqi tushunchasi.",
+    "javob": "Umumiy ulushli mulk ishtirokchisi o‘z ulushini yot shaxsga sotmoqchi bo‘lganda, qolgan ishtirokchilar ushbu ulushni sotilayotgan narxda va boshqa teng shartlarda birinchi navbatda sotib olish huquqiga ega bo‘lishidir."
+  },
+  {
+    "id": 70,
+    "savol": "Birgalikdagi mulk bo‘lgan mol-mulkni taqsimlash va undan ulush ajratish.",
+    "javob": "Taqsimlash — mulkdorlar o‘rtasidagi umumiy mulk munosabatlarining butunlay tugashi. Ulush ajratish — bir ishtirokchining o‘z ulushini olib chiqishi, qolganlarda esa umumiy mulkning saqlanib qolishi. Odatda ulushlar teng deb hisoblanadi."
+  },
+  {
+    "id": 71,
+    "savol": "Mulkiy huquqni himoya qilishning boshqa usullari va choralari.",
+    "javob": "Bunga o‘z-o‘zini himoya qilish (qonun doirasida), majburiyatni bajarishni talab qilish, ashyoni asliga qaytarish (restitutsiya) va davlat organlarining noqonuniy harakatlari natijasida yetkazilgan zararni davlat hisobidan qoplash choralari kiradi."
+  },
+  {
+    "id": 72,
+    "savol": "Xususiy mulk huquqi ob’yektlari turlari.",
+    "javob": "Ob’yektlar ko‘char mulk (pul, qimmatli qog‘ozlar, jihozlar) va ko‘chmas mulk (yer uchastkalari, binolar, inshootlar, turar joylar)ga bo‘linadi. Shuningdek, intellektual faoliyat natijalari ham xususiy mulk ob’yekti bo‘lishi mumkin."
+  },
+  {
+    "id": 73,
+    "savol": "Mol-mulkni musodara qilish.",
+    "javob": "Musodara — mol-mulkni jinoyat yoki ma’muriy huquqbuzarlik sodir etganlik uchun qonunda belgilangan tartibda, sud qarori asosida davlat foydasiga haq to‘lamasdan majburiy olib qo‘yilishidir."
+  },
+  {
+    "id": 74,
+    "savol": "Iqtisodiy ma’nodagi mulk.",
+    "javob": "Iqtisodiy ma’noda mulk — moddiy boyliklarning ma’lum bir sub’yektga tegishliligi yuzasidan kishilar o‘rtasida vujudga keladigan ijtimoiy munosabatlardir. Bu ishlab chiqarish vositalari va natijalarini o‘zlashtirish jarayonini ifodalaydi."
+  },
+  {
+    "id": 75,
+    "savol": "Xususiy mulk huquqi sub’yektlari.",
+    "javob": "Bunga barcha jismoniy shaxslar (fuqaroligi va doimiy yashash joyidan qat’i nazar) hamda davlatga tegishli bo‘lmagan barcha turdagi yuridik shaxslar (masalan, xususiy korxonalar, fermer xo‘jaliklari) kiradi."
+  },
+  {
+    "id": 76,
+    "savol": "Xo‘jalik yuritish va operativ boshqarish asosida tadbirkorlik xususiyatlari.",
+    "javob": "Bunda tadbirkorlik sub’yekti mulkdor emas, balki mulkdor biriktirgan ashyo bilan ish yuritadi. Xo‘jalik yuritishda tadbirkor foyda olishda erkinroq, operativ boshqarishda esa faqat smeta va maqsadli ajratmalar doirasida cheklangan bo‘ladi."
+  },
+  {
+    "id": 77,
+    "savol": "Mulkdorlarning huquqini va manfaatlarini himoya qilinishi.",
+    "javob": "Davlat barcha mulkdorlarga teng huquqiy sharoitlar yaratadi. Mulkdorning huquqlari sud orqali himoya qilinadi, uning mulki faqat qonunda ko‘zda tutilgan hollarda va to‘la kompensatsiya evaziga olib qo‘yilishi mumkin."
+  },
+  {
+    "id": 78,
+    "savol": "Mahalla mulki qanday mablag‘lar hisobidan shakllanishi.",
+    "javob": "Mahalla (fuqarolar o‘zini o‘zi boshqarish organi) mulki mahalliy budjet ajratmalari, o‘z xo‘jalik faoliyatidan olingan daromadlar, yuridik va jismoniy shaxslarning ixtiyoriy xayriyalari hamda qonuniy berilgan mol-mulklar hisobiga shakllanadi."
+  },
+  {
+    "id": 79,
+    "savol": "Xususiy korxonalar mulki.",
+    "javob": "Xususiy korxona mulki uning egasiga (yagona jismoniy shaxsga) tegishli bo‘lgan va korxonaga uning tomonidan berilgan mol-mulkdan hamda korxona faoliyati davomida orttirilgan daromadlardan tashkil topadi."
+  },
+  {
+    "id": 80,
+    "savol": "Ijara korxonasining mulki.",
+    "javob": "Ijara korxonasi mulki ijaraga olingan ashyolardan, ishlab chiqarilgan mahsulotdan va ijaraga oluvchi tomonidan o‘z mablag‘lari hisobiga sotib olingan hamda korxonaga tegishli bo‘lgan boshqa boyliklardan iborat bo‘ladi."
+  },
+  {
+    "id": 81,
+    "savol": "Ajnabiy fuqarolar, tashkilotlar va davlatlarning mulki.",
+    "javob": "Chet el sub’yektlari O‘zbekiston hududida xalqaro shartnomalar va milliy qonunchilikka binoan har qanday ashyoviy huquqqa ega bo‘lishi mumkin. Ularning mulkiy huquqlari milliy rejim tamoyili asosida himoya qilinadi, ammo milliy xavfsizlik va yer resurslarini saqlash maqsadida qishloq xo‘jaligi yerlariga egalik qilish kabi masalalarda cheklovlar mavjud."
+  },
+  {
+    "id": 82,
+    "savol": "Vindikatsion da’volar.",
+    "javob": "Vindikatsion da’vo — bu mulkdorning o‘z ashyosini boshqa shaxsning g‘ayriqonuniy egaligidan qaytarib olish haqidagi talabidir. Da’vo qondirilishi uchun ashyo natura holida saqlanib qolgan bo‘lishi va javobgarda amalda mavjud bo‘lishi shart."
+  },
+  {
+    "id": 83,
+    "savol": "Mulk huquqining vujudga kelishi va uning bekor bo‘lishi.",
+    "javob": "Vujudga kelish: yangi ashyo yaratish, bitimlar (sotish, hadya), meros, xususiylashtirish. Bekor bo‘lish: mulkdorning o‘z ixtiyori (sotish, voz kechish), ob’ektning jismoniy yo‘qolishi va qonuniy majburiy tartibda (musodara, rekvizitsiya) olib qo‘yilishi."
+  },
+  {
+    "id": 84,
+    "savol": "Ommaviy mulk.",
+    "javob": "Ommaviy mulk — bu davlat (respublika) yoki ma’muriy-hududiy tuzilmalar (munitsipal) mulkidir. U butun jamiyat manfaatlarini ko‘zlab boshqariladi va strategik ahamiyatga ega resurslarni (yer, yer osti boyliklari) o‘z ichiga oladi."
+  },
+  {
+    "id": 85,
+    "savol": "Majburiyat huquqi tushunchasi va taraflari.",
+    "javob": "Majburiyat huquqi — kreditorning qarzdordan muayyan harakatni (mol topshirish, pul to‘lash) bajarishni yoki undan tiyilishni talab qilish huquqini tartibga soluvchi normalar tizimi. Taraflari: kreditor (huquq egasi) va qarzdor (majburiyat bajaruvchi)."
+  },
+  {
+    "id": 86,
+    "savol": "Mulkiy huquqning himoya qilinishi.",
+    "javob": "Bu mulkdorga tegishli vakolatlarni tiklash va buzilgan huquqlarni himoya qilishga qaratilgan huquqiy vositalar yig‘indisidir. U ashyoviy-huquqiy da’volar, zararni qoplash va ma’muriy hujjatlarni bekor qilish orqali amalga oshiriladi."
+  },
+  {
+    "id": 87,
+    "savol": "Xususiy mulk huquqi tushunchasi va uning ahamiyati.",
+    "javob": "Xususiy mulk — shaxsning o‘z mol-mulkiga nisbatan mutloq va daxlsiz egaligidir. Ahamiyati: iqtisodiy erkinlikni ta’minlaydi, tadbirkorlik tashabbusini rag‘batlantiradi va fuqarolik jamiyatining moddiy asosi bo‘lib xizmat qiladi."
+  },
+  {
+    "id": 88,
+    "savol": "Xo‘jalik shirkati va jamiyati mulkining mohiyati.",
+    "javob": "Bu muassislarning ulushlari va korxona faoliyati natijasida orttirilgan mulk bo‘lib, u yuridik shaxsning mulki hisoblanadi. Muassislar ushbu mulkka emas, balki yuridik shaxsga nisbatan majburiyat huquqiga (dividend olish, boshqarishda qatnashish) ega bo‘ladilar."
+  },
+  {
+    "id": 89,
+    "savol": "O‘zbekiston Respublikasi Mulki.",
+    "javob": "Bu respublika budjeti, oltin-valyuta zaxiralari, yer, yer osti boyliklari, o‘simlik va hayvonot dunyosi hamda davlat ahamiyatidagi ob’ektlarni o‘z ichiga oluvchi umumxalq boyligidir."
+  },
+  {
+    "id": 90,
+    "savol": "Xo‘jalik yuritish va operativ boshqarish.",
+    "javob": "Xo‘jalik yuritish — davlat unitar korxonalariga beriladigan keng ko‘lamli (foyda olishga qaratilgan) ashyoviy huquq. Operativ boshqarish — davlat muassasalariga faqat belgilangan maqsadlar uchun beriladigan cheklangan huquq."
+  },
+  {
+    "id": 91,
+    "savol": "Xususiy mulk huquqi sub’yektlari.",
+    "javob": "Sub’yektlar — fuqarolar (jismoniy shaxslar) hamda davlatga tegishli bo‘lmagan barcha turdagi yuridik shaxslar (aksiyadorlik jamiyatlari, mas’uliyati cheklangan jamiyatlar, nodavlat tashkilotlar)."
+  },
+  {
+    "id": 92,
+    "savol": "Ommaviy (davlat) mulk huquqi tushunchasi va turlari.",
+    "javob": "Bu davlat hokimiyati tomonidan jamiyat ehtiyojlari uchun boshqariladigan mulkdir. Turlari: respublika mulki (markaziy darajadagi) va munitsipal (mahalliy hokimiyat tasarrufidagi) mulk."
+  },
+  {
+    "id": 93,
+    "savol": "Ommaviy mulkning zarurati va manbalari.",
+    "javob": "Zarurati: ijtimoiy sohalarni (mudofaa, ta’lim) ta’minlash va strategik resurslarni boshqarish. Manbalari: soliqlar, davlat korxonalari foydasi, bojlar va qonuniy tartibda olib qo‘yilgan (musodara, egasiz mulk) boyliklar."
+  },
+  {
+    "id": 94,
+    "savol": "Mulkni davlat tasarrufidan chiqarish va xususiylashtirish.",
+    "javob": "Bu davlat mulkini xususiy mulkka aylantirish jarayonidir. Tasarrufdan chiqarish — korxonani davlat boshqaruvidan mustaqil xo‘jalik sub’yektiga aylantirish; xususiylashtirish — uning mulkini jismoniy yoki nodavlat yuridik shaxslarga sotishdir."
+  },
+  {
+    "id": 95,
+    "savol": "Meros qilib qoldiriladigan yer uchastkasiga umrbod egalik qilish huquqi.",
+    "javob": "Bu fuqarolarga uy-joy qurish yoki dehqon xo‘jaligini yuritish uchun beriladigan ashyoviy huquq bo‘lib, yerga egalik qilish va undan foydalanishni hamda bu huquqni vafotidan so‘ng vorislarga o‘tkazishni nazarda tutadi."
+  },
+  {
+    "id": 96,
+    "savol": "Davlat korxonasi, muassasalari va davlat ijara korxonasining mol-mulki.",
+    "javob": "Bu mulk davlatga tegishli bo‘lib, korxonalarga xo‘jalik yuritish, muassasalarga operativ boshqarish huquqi asosida beriladi. Ijara korxonasida esa mulk shartnoma asosida haq evaziga vaqtincha foydalanishga topshiriladi."
+  },
+  {
+    "id": 97,
+    "savol": "Umumiy mulkdan ulush ajratish va uni taqsimlash.",
+    "javob": "Taqsimlash — umumiy mulkni ishtirokchilar soniga qarab qismlarga bo‘lish va mulkiy munosabatni tugatish. Ulush ajratish — bir ishtirokchining o‘z qismini olib chiqishi, qolganlarda esa umumiy mulk rejimining saqlanishi."
+  },
+  {
+    "id": 98,
+    "savol": "Davlat mulkini xususiylashtirish dasturlarini ishlab chiqish va tayyorlash.",
+    "javob": "Bu jarayon vakolatli davlat organlari (Agentliklar) tomonidan ob’ektlarni inventarizatsiya qilish, baholash, sotish usulini (auksion, tanlov) tanlash va xususiylashtirish rejasini tasdiqlash orqali amalga oshiriladi."
+  },
+  {
+    "id": 99,
+    "savol": "Meros qilib qoldiriladigan yer uchastkasiga umrbod egalik qilish huquqi (takroriy).",
+    "javob": "Fuqaroning yer uchastkasidan uning hayoti davomida foydalanish va uni o‘z vorislariga vasiyat yoki qonun bo‘yicha o‘tkazish bo‘yicha mutloq huquqi. Yer davlat mulki bo‘lib qoladi, ammo egalik qilish huquqi shaxsiy hisoblanadi."
+  },
+  {
+    "id": 100,
+    "savol": "Mulk huquqi tamoyillari.",
+    "javob": "Asosiy tamoyillar: mulkning daxlsizligi (majburiy olib qo‘ymaslik), barcha mulk shakllarining huquqiy tengligi, mulkdorning o‘z mulkidan erkin foydalanishi va boshqa shaxslar huquqlarining poymol qilinmasligidir."
+  },
+  {
+    "id": 101,
+    "savol": "Xususiy mulk huquqi ob’yektlari turlari.",
+    "javob": "Xususiy mulk ob’yektlari ko‘char va ko‘chmas mulklarga bo‘linadi. Bunga turar joylar, binolar, inshootlar, transport vositalari, pul mablag‘lari, qimmatli qog‘ozlar, intellektual mulk natijalari hamda qonun bilan taqiqlanmagan boshqa har qanday moddiy boyliklar kiradi."
+  },
+  {
+    "id": 102,
+    "savol": "Vindikatsion da’volar.",
+    "javob": "Vindikatsion da’vo — mulkdorning o‘z ashyosini boshqa shaxsning g‘ayriqonuniy egaligidan qaytarib olish haqidagi talabidir. Bu ashyo natura holida saqlanib qolgan va boshqa shaxsda amalda mavjud bo‘lgan taqdirdagina qo‘llaniladi."
+  },
+  {
+    "id": 103,
+    "savol": "Davlat korxonasi, muassasalari va davlat ijara korxonasining mol-mulki.",
+    "javob": "Bu mulklar davlatga tegishli bo‘lib, davlat unitar korxonalariga xo‘jalik yuritish, muassasalarga esa operativ boshqaruv huquqi asosida beriladi. Ijara korxonalarida esa mulk shartnoma asosida, ma’lum haq evaziga vaqtincha foydalanish uchun topshiriladi."
+  },
+  {
+    "id": 104,
+    "savol": "Xususiy mulk huquqi tushunchasi va uning ahamiyati.",
+    "javob": "Xususiy mulk — shaxsning mol-mulkka mutloq va daxlsiz egaligidir. Ahamiyati: iqtisodiy barqarorlikni ta’minlaydi, tadbirkorlik tashabbuslarini rivojlantiradi va bozor iqtisodiyoti sharoitida erkin raqobat muhitini yaratadi."
+  },
+  {
+    "id": 105,
+    "savol": "Ommaviy mulkning zarurati va manbalari.",
+    "javob": "Zarurati: davlat funksiyalarini bajarish, mudofaa, xavfsizlik va ijtimoiy sohalarni ta’minlash. Manbalari: soliqlar, davlat korxonalari foydasi, bojxona to‘lovlari, egasiz mulklarning davlatga o‘tishi va majburiy olib qo‘yilgan (musodara) ashyolar."
+  },
+  {
+    "id": 106,
+    "savol": "Mulkni davlat tasarrufidan chiqarish va xususiylashtirish oqibatlari.",
+    "javob": "Oqibatlari: mulkdorlar qatlamining shakllanishi, iqtisodiyotda davlat ulushining kamayishi, raqobatning kuchayishi, boshqaruv samaradorligining oshishi va mulk uchun mas’uliyatning xususiy sub’yektlarga o‘tishi."
+  },
+  {
+    "id": 107,
+    "savol": "Mulkdorlarning huquqini va manfaatlarini himoya qilinishi.",
+    "javob": "Mulkdor huquqlari davlat tomonidan kafolatlanadi. Ularning huquqlari buzilganda sud orqali himoya qilinadi, yetkazilgan zararlar (jumladan, boy berilgan foyda) to‘liq qoplanadi va mulkni asossiz olib qo‘yish taqiqlanadi."
+  },
+  {
+    "id": 108,
+    "savol": "Ommaviy mulkning zarurati va manbalari.",
+    "javob": "Strategik resurslarni (suv, havo, yer osti boyliklari) saqlash va ijtimoiy tenglikni ta’minlash uchun zarur. Manbalari — qonun hujjatlarida belgilangan tartibda budjetga tushadigan barcha majburiy to‘lovlar va davlat mulkidan foydalanishdan keladigan daromadlardir."
+  },
+  {
+    "id": 109,
+    "savol": "Mulkni davlat tasarrufidan chiqarish va xususiylashtirish.",
+    "javob": "Tasarrufdan chiqarish — davlat korxonasini boshqa xo‘jalik yuritish shakliga (masalan, AJ) o‘tkazish. Xususiylashtirish — davlat mulkini jismoniy va yuridik shaxslarga haq evaziga yoki imtiyozli asosda sotish orqali xususiy mulkka aylantirish."
+  },
+  {
+    "id": 110,
+    "savol": "Mulk shakllari.",
+    "javob": "O‘zbekiston Respublikasi Konstitutsiyasiga ko‘ra iqtisodiyotning negizini turli shakllardagi mulk tashkil etadi. Asosiy shakllari: xususiy mulk va ommaviy (davlat) mulkidir. Har ikki shakl daxlsizdir va davlat tomonidan teng himoya qilinadi."
+  },
+  {
+    "id": 111,
+    "savol": "Mulk huquqi tushunchasi va tamoyillari.",
+    "javob": "Mulk huquqi — sub’yektning ashyoga nisbatan egalik qilish, foydalanish va tasarruf etish vakolatlari yig‘indisidir. Tamoyillari: mulkning daxlsizligi, mulkdorlar tengligi, iqtisodiy faoliyat erkinligi va huquqlarni sud orqali himoya qilish."
+  },
+  {
+    "id": 112,
+    "savol": "Shirkat (Jamoa mulki).",
+    "javob": "Jamoa mulki — muayyan guruh shaxslarining birlashishi natijasida shakllangan mulk. Unda boshqaruv jamoaviy asosda amalga oshiriladi, daromad esa ishtirokchilarning ulushi yoki mehnat ishtirokiga qarab taqsimlanadi."
+  },
+  {
+    "id": 113,
+    "savol": "Mulk huquqining vujudga kelish asoslari.",
+    "javob": "Birlamchi asoslar: yangi ashyo yaratish, tabiat resurslarini o‘zlashtirish. Hosilaviy asoslar: shartnomalar (oldisotdi, ayirboshlash, hadya), meros, huquqiy vorislik va egalik qilish muddatining o‘tishi."
+  },
+  {
+    "id": 114,
+    "savol": "Natsionalizatsiya qaysi hollarda amalga oshiriladi.",
+    "javob": "Natsionalizatsiya — xususiy mulkni davlat egaligiga o‘tkazish bo‘lib, u faqat alohida qonun qabul qilingan taqdirda, davlat manfaatlari uchun va mulkdorga yetkazilgan zararning qiymatini to‘liq qoplash sharti bilan amalga oshiriladi."
+  },
+  {
+    "id": 115,
+    "savol": "Rekvizitsiya tushunchasi.",
+    "javob": "Rekvizitsiya — favqulodda vaziyatlar (tabiiy ofat, epidemiya) yuz berganda, jamiyat manfaatlarini ko‘zlab, mol-mulkni mulkdordan uning qiymatini to‘lagan holda davlat organi qarori bilan vaqtincha yoki butunlay olib qo‘yilishidir."
+  },
+  {
+    "id": 116,
+    "savol": "Mulk shakllari tushunchasi.",
+    "javob": "Mulk shakllari — mulkiy munosabatlarning sub’yektlar tarkibi va huquqiy rejimiga ko‘ra tasniflanishidir. Bu ashyoni kim o‘zlashtirayotganini va undan foydalanishning qonuniy chegaralarini belgilaydi."
+  },
+  {
+    "id": 117,
+    "savol": "Davlat mulki.",
+    "javob": "Davlat mulki — respublika mulki va ma’muriy-hududiy tuzilmalar (munitsipal) mulkidan iborat. Bunga yer, yer osti boyliklari, budjet mablag‘lari va davlatga qarashli korxona-muassasalarning barcha aktivlari kiradi."
+  },
+  {
+    "id": 118,
+    "savol": "Mulk huquqining bekor bo‘lish asoslari.",
+    "javob": "Mulkdor ixtiyori bilan (sotish, tashlab ketish), ashyoning jismoniy nobud bo‘lishi, ashyoga egalik huquqining boshqa shaxsga o‘tishi hamda majburiy tartibda (musodara, undiruvni mulkka qaratish) olib qo‘yilishi."
+  },
+  {
+    "id": 119,
+    "savol": "Xususiy mulk.",
+    "javob": "Xususiy mulk — jismoniy va yuridik shaxslarning qonun bilan taqiqlanmagan har qanday ashyolarga nisbatan mutloq huquqi. U miqdori va qiymati bo‘yicha cheklanmaydi va daxlsiz hisoblanadi."
+  },
+  {
+    "id": 120,
+    "savol": "Mulk huquqini himoya qilish usullari.",
+    "javob": "Asosiy usullar: vindikatsion da’vo, negator da’vo, mulk huquqini tan olish, g‘ayriqonuniy bitimlarni haqiqiy emas deb topish hamda davlat organlarining noqonuniy hujjatlari natijasida yetkazilgan zararni qoplashdir."
+  },
+  {
+    "id": 121,
+    "savol": "Umumiy ulushli mulkni egallash, undan foydalanish va uni tasarruf etish",
+    "javob": "Umumiy ulushli mulkni tasarruf etish barcha ishtirokchilarning kelishuvi bilan amalga oshiriladi. Egalik qilish va foydalanish ham o'zaro kelishuv asosida, imkon bo'lmaganda esa sud tartibida belgilanadi. Har bir ishtirokchi o'z ulushiga mutanosib ravishda foyda olish va xarajatlarda qatnashish huquqiga ega."
+  },
+  {
+    "id": 122,
+    "savol": "Servitut huquqi tushunchasi va elementlari.",
+    "javob": "Servitut — o'zganing yer uchastkasidan cheklangan tarzda foydalanish huquqi. Elementlari: xizmat ko'rsatuvchi uchastka (yuklatilgan), hukmron uchastka (manfaatdor), servitut sub'yektlari (mulkdorlar) va foydalanish maqsadi (yo'l, aloqa liniyasi va h.k.)."
+  },
+  {
+    "id": 123,
+    "savol": "Sudda negator da’voni kimlar qo‘zg‘atish huquqiga ega?",
+    "javob": "Negator da'voni mulkdorning o'zi, shuningdek, ashyoga qonuniy asosda (xo'jalik yuritish, operativ boshqaruv yoki ijara asosida) egalik qilayotgan, ammo mulkdor bo'lmagan qonuniy egalar qo'zg'atish huquqiga ega."
+  },
+  {
+    "id": 124,
+    "savol": "Oilaviy mulk",
+    "javob": "Oilaviy mulk — oila a'zolarining birgalikdagi faoliyati natijasida orttirilgan va ularga umumiy birgalikdagi mulk huquqi asosida tegishli bo'lgan ashyolar. Bunga er-xotinning nikoh davomidagi mulki va dehqon xo'jaligining oilaviy mulki misol bo'ladi."
+  },
+  {
+    "id": 125,
+    "savol": "Ma’muriy-hududiy tuzilma mulki (kommunal mulk) obyektlari",
+    "javob": "Ob'yektlariga mahalliy budjet mablag'lari, munitsipal uy-joy fondi, kommunal xo'jalik ob'ektlari (suv, gaz, issiqlik ta'minoti), mahalliy ahamiyatdagi yo'llar va mahalliy davlat hokimiyati organlariga biriktirilgan mol-mulklar kiradi."
+  },
+  {
+    "id": 126,
+    "savol": "Mulkiy huquqni fuqarolik huquq normalari bilan himoya qilishning boshqa usullari.",
+    "javob": "Bunga ashyoni natura holida topshirish majburiyatini yuklash, yetkazilgan zararni (real zarar va boy berilgan foyda) undirish, ashyoni noqonuniy ushlab qolishni to'xtatish va mulkdorning huquqini buzuvchi bitimlarni haqiqiy emas deb topish choralari kiradi."
+  },
+  {
+    "id": 127,
+    "savol": "Davlat mulkini xususiylashtirish usullari.",
+    "javob": "Xususiylashtirish auksion (narx ustunligi), tanlov (investitsiya majburiyati), to'g'ridan-to'g'ri sotish, korxonani aksiyadorlik jamiyatiga aylantirish va davlat ulushini birjada sotish usullari orqali amalga oshiriladi."
+  },
+  {
+    "id": 128,
+    "savol": "Mahalla mulki",
+    "javob": "Mahalla mulki — fuqarolar o'zini o'zi boshqarish organiga tegishli bo'lgan, xayriya, o'z faoliyati daromadlari va davlat tomonidan berilgan mablag'lar hisobiga shakllangan mulkdir. U mahalla ahlini ijtimoiy qo'llab-quvvatlash va hududni obodonlashtirishga xizmat qiladi."
+  },
+  {
+    "id": 129,
+    "savol": "Jamoat birlashmalarining Mulki",
+    "javob": "Bu yuridik shaxs maqomiga ega bo'lgan birlashmaning (partiyalar, kasaba uyushmalari) mulki bo'lib, a'zolik badallari va xayriyalar hisobiga shakllanadi. Birlashma tugatilganda, uning mulki a'zolar o'rtasida taqsimlanmaydi, balki ustav maqsadlariga sarflanadi."
+  },
+  {
+    "id": 130,
+    "savol": "Davlat mulkining obyektlari",
+    "javob": "Ob'yektlar: yer, yer osti boyliklari, suv, havo bo'shlig'i, o'simlik va hayvonot dunyosi, davlat budjeti mablag'lari, davlat banklari, mudofaa ob'ektlari, magistral quvurlar va respublika ahamiyatidagi infratuzilmalar."
+  },
+  {
+    "id": 131,
+    "savol": "Xo‘jalik yuritish va operativ boshqarish huquqi asosida tadbirkorlik faoliyatining xususiyatlari.",
+    "javob": "Asosiy xususiyati — tadbirkor sub'yekt ashyoning mulkdori emas. Xo'jalik yuritishda korxona o'z daromadini tasarruf etishda kengroq erkinlikka ega bo'lsa, operativ boshqarishda faqat mulkdor tasdiqlagan smeta va maqsadli vazifalar doirasida ish yuritadi."
+  },
+  {
+    "id": 132,
+    "savol": "Negator da’volar",
+    "javob": "Negator da'vo — mulkdorning o'z ashyosiga egalik qilish huquqi buzilmagan holda, uning foydalanish yoki tasarruf etish vakolatlarini amalga oshirishga xalaqit berayotgan har qanday g'ayriqonuniy to'siqlarni bartaraf etish talabidir."
+  },
+  {
+    "id": 133,
+    "savol": "Ijaraga olingan korxona Mulki.",
+    "javob": "Bu mulkka ijaraga olingan asosiy vositalar, ishlab chiqarilgan mahsulotlar va ijara korxonasi tomonidan o'z mablag'lari hisobiga sotib olingan ashyolar kiradi. Mahsulot va daromadlar, agar shartnomada boshqacha bo'lmasa, ijarachining mulki hisoblanadi."
+  },
+  {
+    "id": 134,
+    "savol": "Xo‘jalik jamiyati va shirkatining mulki",
+    "javob": "Bu sub'yektlar yuridik shaxs sifatida o'z balansidagi mulkning egasidir. Muassislar tomonidan qo'shilgan ulushlar va korxona faoliyati natijasida orttirilgan daromadlar jamiyatning xususiy mulkini tashkil etadi."
+  },
+  {
+    "id": 135,
+    "savol": "Shartnomali munosabatlarda mulkiy xuquqlarni buzish qanday ko‘rinishlarda namoyon bo‘ladi.",
+    "javob": "Asosan majburiyatni bajarmaslik, muddatni kechiktirish, ashyoni sifatsiz topshirish, to'lovni amalga oshirmaslik yoki ashyoni shikastlagan holda qaytarish ko'rinishlarida namoyon bo'ladi."
+  },
+  {
+    "id": 136,
+    "savol": "Ajnabiy fuqarolar, tashkilotlar va davlatlarning mulki.",
+    "javob": "Ular O'zbekistonda xalqaro huquq normalari va milliy qonunlar doirasida mulkdor bo'lishlari mumkin. Ularning mulki daxlsizdir, biroq yerga egalik qilish kabi strategik masalalarda milliy qonunchilik bilan belgilangan maxsus cheklovlar amal qiladi."
+  },
+  {
+    "id": 137,
+    "savol": "Mulkiy huquqning kafolati.",
+    "javob": "Davlat mulkning daxlsizligini va barcha mulkdorlarning qonun oldida tengligini kafolatlaydi. Mulkdor o'z huquqlarini himoya qilish uchun sudga murojaat qilish huquqiga ega va uning mulki faqat sud qarori bilan olib qo'yilishi mumkin."
+  },
+  {
+    "id": 138,
+    "savol": "Xususiy mulk huquqi ob’yektlari",
+    "javob": "Xususiy mulk ob'yektlariga jismoniy va yuridik shaxslarga tegishli bo'lgan uylar, kvartiralar, bog'-tomorqalar, korxonalar, uskunalar, transport, xomashyo, tayyor mahsulotlar, pul va intellektual mulk kiradi."
+  },
+  {
+    "id": 139,
+    "savol": "Ma’muriy-hududiy tuzilma mulki (kommunal mulk) obyektlari (takroriy)",
+    "javob": "Mahalliy hokimiyat tasarrufidagi ijtimoiy infratuzilma: maktablar, bog'chalar, shifoxonalar, kommunal tarmoqlar, mahalliy yo'llar, parklar va munitsipal transport vositalari."
+  },
+  {
+    "id": 140,
+    "savol": "Umumiy mulkdan ulush ajratish va uni taqsimlash.",
+    "javob": "Taqsimlash — barcha ishtirokchilar o'rtasida mulkni bo'lish va umumiy mulkni tugatish. Ulush ajratish — faqat bir ishtirokchining chiqib ketishi va qolganlar uchun umumiy mulk rejimining davom etishidir. Ikkala holatda ham natural bo'lish imkoni bo'lmasa, pul kompensatsiyasi to'lanadi."
+  },
+  {
+    "id": 141,
+    "savol": "Mulk shakllari tushunchasi.",
+    "javob": "Mulk shakllari — mulkning kimga tegishliligiga qarab huquqiy va iqtisodiy tavsiflanishi. O‘zbekiston Respublikasida mulk xususiy mulk va ommaviy (davlat) mulki shakllarida bo‘ladi. Barcha mulk shakllari daxlsiz va qonun oldida tengdir."
+  },
+  {
+    "id": 142,
+    "savol": "Mulkiy huquqning himoya qilinishi.",
+    "javob": "Bu mulkdorga o‘z huquqlarini buzilishlardan saqlash, buzilgan huquqlarini tiklash va yetkazilgan zararni qoplash imkonini beruvchi huquqiy choralar tizimidir. Himoya asosan sud tartibida amalga oshiriladi."
+  },
+  {
+    "id": 143,
+    "savol": "Mulkiy huquqni fuqarolik huquq normalari bilan himoya qilishning boshqa usullari.",
+    "javob": "Bunga ashyoni natura holida topshirish, ashyoni boshqaga o‘tkazishni taqiqlash (xatlov), bitimlarni haqiqiy emas deb topish va davlat organlarining noqonuniy hujjatlarini bekor qilish kiradi."
+  },
+  {
+    "id": 144,
+    "savol": "Ulushli mulkdagi ulush.",
+    "javob": "Ulushli mulkdagi ulush — bu har bir mulkdorning umumiy mulk huquqidagi miqdoran belgilangan qismidir (masalan, 1/2 qism). Ulush ashyoning o‘zida emas, balki huquqda ifodalanadi."
+  },
+  {
+    "id": 145,
+    "savol": "Sudda negator da’voni kimlar qo‘zg‘atish huquqiga ega?",
+    "javob": "Negator da’voni mulkdorning o‘zi hamda ashyoga qonuniy asosda (ijara, xo‘jalik yuritish, operativ boshqaruv) egalik qilayotgan har qanday qonuniy egalar qo‘zg‘atishi mumkin."
+  },
+  {
+    "id": 146,
+    "savol": "Xususiy mulk huquqi ob’yektlari turlari.",
+    "javob": "Turlari: ko‘chmas mulk (yer, bino, turar joy), ko‘char mulk (pul, avtomobil, jihozlar), intellektual mulk (ixtirolar, asarlar) va qimmatli qog‘ozlar (aksiya, obligatsiya)."
+  },
+  {
+    "id": 147,
+    "savol": "Dehqon va fermer xo‘jaligining mulk huquqi tushunchasi va turlari.",
+    "javob": "Fermer xo‘jaligi — yuridik shaxs sifatida o‘z mulkiga ega (texnika, mahsulot). Dehqon xo‘jaligi — oilaviy tadbirkorlik shakli bo‘lib, mulki a’zolarning birgalikdagi mulki hisoblanadi."
+  },
+  {
+    "id": 148,
+    "savol": "Shartnomalardan tashqari bo‘ladigan majburiyatlarda mulkiy huquq buzilishi.",
+    "javob": "Bu asosan delikt (zarar yetkazish) natijasida, ya’ni shaxsning mol-mulkiga shikast yetkazilganda yoki ashyo g‘ayriqonuniy egallab olinganda (asossiz boyish) sodir bo‘ladi."
+  },
+  {
+    "id": 149,
+    "savol": "Mulk huquqini himoya qilish usullari.",
+    "javob": "Ikki asosiy guruhga bo‘linadi: ashyoviy-huquqiy (vindikatsiya, negator) va majburiyat-huquqiy (zararni qoplash, ashyoni qaytarish)."
+  },
+  {
+    "id": 150,
+    "savol": "Birgalikdagi umumiy mulk.",
+    "javob": "Ishtirokchilarning ashyoga bo‘lgan huquqi oldindan ulushlarga bo‘linmagan holdagi egaligi. Masalan, er-xotinning nikoh davomida orttirgan mulki."
+  },
+  {
+    "id": 151,
+    "savol": "Yer uchastkasiga doimiy egalik qilish va undan foydalanish huquqi.",
+    "javob": "Yuridik shaxslarga yerdan muddatsiz foydalanish uchun beriladigan ashyoviy huquq. Yer davlat mulki bo‘lib qoladi, sub’yekt esa undan faqat maqsadli foydalanadi."
+  },
+  {
+    "id": 152,
+    "savol": "Ashyoviy huquq tushunchasi va turlari.",
+    "javob": "Ashyoviy huquq — shaxsning ashyo ustidan mutloq hukmronligi. Turlari: mulk huquqi, xo‘jalik yuritish, operativ boshqaruv, servitut va yerga umrbod egalik qilish huquqi."
+  },
+  {
+    "id": 153,
+    "savol": "Ommaviy mulk.",
+    "javob": "Davlatga tegishli mulk. U respublika mulki (davlat xazinasi, strategik ob’yektlar) va munitsipal mulk (mahalliy hokimiyat mulki)ga bo‘linadi."
+  },
+  {
+    "id": 154,
+    "savol": "Davlat mulki zarurligining obyektiv sababi.",
+    "javob": "Bozor iqtisodiyoti ta’minlay olmaydigan sohalarni (mudofaa, fundamental fan, ekologiya) saqlash va ijtimoiy adolatni ta’minlash zarurati."
+  },
+  {
+    "id": 155,
+    "savol": "Mulk huquqini himoya qilishning majburiy-huquqiy usullari.",
+    "javob": "Bunga yetkazilgan zararni qoplash (FK 14-modda), ashyoni shartnoma bo‘yicha qaytarib berish va asossiz orttirilgan boylikni qaytarish talablari kiradi."
+  },
+  {
+    "id": 156,
+    "savol": "Mulk huquqi tadbirkorlik faoliyatining asosi sifatida.",
+    "javob": "Mulk huquqi tadbirkorga ishlab chiqarish vositalariga ega bo‘lish, tavakkal qilish va olingan foydani o‘z ixtiyori bilan tasarruf etish erkinligini beradi."
+  },
+  {
+    "id": 157,
+    "savol": "Xo‘jalik yuritish va operativ boshqarish huquqi.",
+    "javob": "Mulkdor bo‘lmagan yuridik shaxslarning mulkdor biriktirgan mulk ustidan vakolatlari. Xo‘jalik yuritishda erkinlik yuqori, operativ boshqarishda esa juda cheklangan."
+  },
+  {
+    "id": 158,
+    "savol": "Davlat korxonasining mulki.",
+    "javob": "Unitar korxonaga mulkdor (davlat) tomonidan xo‘jalik yuritish huquqi asosida biriktirilgan va korxonaning o‘z faoliyatidan orttirgan aktivlari."
+  },
+  {
+    "id": 159,
+    "savol": "Diniy tashkilotlarning mulki tushunchasi.",
+    "javob": "Diniy tashkilotlarning o‘z mablag‘lari, xayriya ehsonlari va davlat tomonidan berilgan yoki qonuniy sotib olingan binolar hamda ashyolar yig‘indisidir."
+  },
+  {
+    "id": 160,
+    "savol": "Kooperativ mulk.",
+    "javob": "A’zolarning pay badallari va birgalikdagi mehnat faoliyati natijasida shakllangan jamoaviy mulk shakli."
+  }
+]
