@@ -77,14 +77,14 @@ Recommended production values:
 - `CLIENT_URL=https://lawinate.uz`
 - `CORS_ORIGIN=https://lawinate.uz,https://www.lawinate.uz,https://lawinate.netlify.app`
 - `SQLITE_DB_FILE=/var/data/database.db` (if you attach Render disk)
-- `GOOGLE_REDIRECT_URI=https://lawinate-backend.onrender.com/api/auth/google/callback`
+- `GOOGLE_REDIRECT_URI=https://lawinate-sc7t.onrender.com/api/auth/google/callback`
 - `DATABASE_URL=postgresql://...` (optional)
 
 ## Netlify Frontend Deploy
 
-- `netlify.toml` includes `/api/*` proxy to `https://lawinate-backend.onrender.com`.
+- `netlify.toml` includes `/api/*` proxy to `https://lawinate-sc7t.onrender.com`.
 - If your Render URL is different, update that redirect target.
-- Optional alternative: set Netlify env variable `REACT_APP_API_URL=https://lawinate-backend.onrender.com`.
+- Optional alternative: set Netlify env variable `REACT_APP_API_URL=https://lawinate-sc7t.onrender.com`.
 
 ## Notes
 

@@ -30,7 +30,7 @@ services:
       - key: GOOGLE_CLIENT_SECRET
         sync: false
       - key: GOOGLE_REDIRECT_URI
-        value: https://lawinate-backend.onrender.com/api/auth/google/callback
+        value: https://lawinate-sc7t.onrender.com/api/auth/google/callback
       - key: ADMIN_SEED_EMAIL
         sync: false
       - key: ADMIN_SEED_PASSWORD
