@@ -21,7 +21,7 @@ const {
 const GOOGLE_SCOPE = 'openid email profile';
 const OPENROUTER_API_URL = 'https://openrouter.ai/api/v1/chat/completions';
 const OPENROUTER_API_KEY = process.env.OPENROUTER_API_KEY || '';
-const DEFAULT_SERVER_BASE_URL = process.env.SERVER_BASE_URL || `http://localhost:${process.env.PORT || 3001}`;
+const DEFAULT_SERVER_BASE_URL = process.env.SERVER_BASE_URL || process.env.APP_BASE_URL || 'https://example.com';
 const AI_MODELS = [
   {
     id: 'z-ai/glm-4.5-air:free',

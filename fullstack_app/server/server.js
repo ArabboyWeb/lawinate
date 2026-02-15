@@ -23,7 +23,6 @@ function validateEnv() {
   if (process.env.NODE_ENV !== 'production') return;
 
   const missing = [];
-  if (!process.env.DATABASE_URL) missing.push('DATABASE_URL');
   if (!process.env.JWT_SECRET) missing.push('JWT_SECRET');
   if (!process.env.APP_BASE_URL && !process.env.CLIENT_URL) missing.push('APP_BASE_URL or CLIENT_URL');
 
@@ -46,8 +45,13 @@ function getCorsConfig() {
 
 async function createServer() {
   validateEnv();
-  await checkPostgresConnection();
   const db = await initDb();
+
+  if (process.env.DATABASE_URL) {
+    await checkPostgresConnection();
+  } else if (process.env.NODE_ENV === 'production') {
+    console.warn('DATABASE_URL is not set. PostgreSQL checks are disabled.');
+  }
 
   const app = express();
   app.use(cors(getCorsConfig()));
@@ -57,7 +61,29 @@ async function createServer() {
   const authRequired = createAuth(db);
   const adminRequired = createAuth(db, { adminOnly: true });
 
-  app.use('/api', createPublicRouter(db, authRequired, checkPostgresConnection));
+  app.use(
+    '/api',
+    createPublicRouter(db, authRequired, async () => {
+      await db.get('SELECT 1 AS ok');
+
+      if (process.env.DATABASE_URL) {
+        const postgres = await checkPostgresConnection();
+        return {
+          sqlite: { ok: true },
+          postgres
+        };
+      }
+
+      return {
+        sqlite: { ok: true },
+        postgres: {
+          ok: null,
+          skipped: true,
+          message: 'DATABASE_URL is not configured'
+        }
+      };
+    })
+  );
   app.use('/api/chat', authRequired, createPublicChatRouter(db));
 
   app.use('/api/admin/auth', createAdminAuthRouter(db, adminRequired));

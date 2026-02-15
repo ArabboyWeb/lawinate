@@ -3,7 +3,9 @@ const bcrypt = require('bcryptjs');
 const path = require('path');
 const { nowIso, clampNumber, getTodayDate } = require('./utils');
 
-const DB_FILE = path.join(__dirname, '..', 'database.db');
+const DB_FILE = process.env.SQLITE_DB_FILE
+  ? path.resolve(process.env.SQLITE_DB_FILE)
+  : path.join(__dirname, '..', 'database.db');
 const ADMIN_SEED_EMAIL = process.env.ADMIN_SEED_EMAIL || 'admin@lawinate.local';
 const ADMIN_SEED_PASSWORD = process.env.ADMIN_SEED_PASSWORD || 'ChangeMe123!';
 const MODERATOR_SEED_EMAIL = process.env.MODERATOR_SEED_EMAIL || 'moderator@lawinate.uz';

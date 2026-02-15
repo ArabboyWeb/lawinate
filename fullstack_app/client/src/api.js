@@ -6,7 +6,17 @@ import axios from 'axios';
 // interceptor automatically attaches the JWT token from localStorage
 // (if present) to all outgoing requests.
 
-const API_BASE = process.env.REACT_APP_API_URL || 'http://localhost:3001';
+function resolveApiBaseUrl() {
+  const configured = String(process.env.REACT_APP_API_URL || '').trim();
+  if (configured) {
+    return configured.replace(/\/+$/, '');
+  }
+
+  // Full-stack default: same-origin (/api/*) behind reverse-proxy.
+  return '';
+}
+
+const API_BASE = resolveApiBaseUrl();
 
 const api = axios.create({
   baseURL: API_BASE,

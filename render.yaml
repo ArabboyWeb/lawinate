@@ -13,14 +13,16 @@ services:
         value: production
       - key: DATABASE_URL
         sync: false
+      - key: SQLITE_DB_FILE
+        value: /var/data/database.db
       - key: JWT_SECRET
         sync: false
       - key: APP_BASE_URL
-        sync: false
+        value: https://lawinate.uz
       - key: CLIENT_URL
-        sync: false
+        value: https://lawinate.uz
       - key: CORS_ORIGIN
-        sync: false
+        value: https://lawinate.uz,https://www.lawinate.uz,https://lawinate.netlify.app
       - key: OPENROUTER_API_KEY
         sync: false
       - key: GOOGLE_CLIENT_ID
@@ -28,7 +30,7 @@ services:
       - key: GOOGLE_CLIENT_SECRET
         sync: false
       - key: GOOGLE_REDIRECT_URI
-        sync: false
+        value: https://lawinate-backend.onrender.com/api/auth/google/callback
       - key: ADMIN_SEED_EMAIL
         sync: false
       - key: ADMIN_SEED_PASSWORD

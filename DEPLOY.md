@@ -19,12 +19,13 @@ copy fullstack_app\\client\\.env.example fullstack_app\\client\\.env
 
 Set real values before production:
 
-- `DATABASE_URL` (Neon/PostgreSQL connection string)
 - `JWT_SECRET` (required in production)
 - `OPENROUTER_API_KEY` (required only if AI endpoint is used)
 - `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`, `GOOGLE_REDIRECT_URI` (required only if Google login is used)
 - `APP_BASE_URL` and/or `CLIENT_URL`
 - `CORS_ORIGIN` (comma-separated allowed origins)
+- `SQLITE_DB_FILE` (recommended in production, e.g. `/var/data/database.db` on Render with persistent disk)
+- `DATABASE_URL` (optional: PostgreSQL health check only)
 
 ## 3. Build frontend
 
@@ -66,19 +67,27 @@ Set these values in Render when creating Web Service:
 Required env vars for startup:
 
 - `NODE_ENV=production`
-- `DATABASE_URL` (Neon connection string)
 - `JWT_SECRET`
 - `APP_BASE_URL` or `CLIENT_URL`
 - `CORS_ORIGIN` (for Netlify origin, can be comma-separated)
 
 Recommended production values:
 
-- `APP_BASE_URL=https://your-frontend.netlify.app`
-- `CLIENT_URL=https://your-frontend.netlify.app`
-- `CORS_ORIGIN=https://your-frontend.netlify.app`
-- `GOOGLE_REDIRECT_URI=https://your-render-service.onrender.com/api/auth/google/callback`
+- `APP_BASE_URL=https://lawinate.uz`
+- `CLIENT_URL=https://lawinate.uz`
+- `CORS_ORIGIN=https://lawinate.uz,https://www.lawinate.uz,https://lawinate.netlify.app`
+- `SQLITE_DB_FILE=/var/data/database.db` (if you attach Render disk)
+- `GOOGLE_REDIRECT_URI=https://lawinate-backend.onrender.com/api/auth/google/callback`
+- `DATABASE_URL=postgresql://...` (optional)
+
+## Netlify Frontend Deploy
+
+- `netlify.toml` includes `/api/*` proxy to `https://lawinate-backend.onrender.com`.
+- If your Render URL is different, update that redirect target.
+- Optional alternative: set Netlify env variable `REACT_APP_API_URL=https://lawinate-backend.onrender.com`.
 
 ## Notes
 
 - `.env` files, build artifacts, and `database.db` are git-ignored.
 - Seed admin credentials are controlled via env variables (`ADMIN_SEED_EMAIL`, `ADMIN_SEED_PASSWORD`).
+- Current app auth/content data is stored in SQLite. Without persistent disk, data resets after restart/redeploy.
