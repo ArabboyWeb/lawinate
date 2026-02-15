@@ -23,7 +23,7 @@ const AdminLoginPage = () => {
   const resolveErrorMessage = (err, fallback) => {
     if (err?.response?.data?.error) return err.response.data.error;
     if (err?.code === 'ERR_NETWORK' || /Network Error/i.test(String(err?.message || ''))) {
-      return "Server bilan aloqa yo'q. Backendni ishga tushiring: npm --prefix fullstack_app/server start";
+      return "Server bilan aloqa yo'q. 5-10 soniyadan keyin qayta urinib ko'ring.";
     }
     return fallback;
   };

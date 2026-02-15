@@ -6,14 +6,15 @@ function resolveApiBaseUrl() {
     return configured.replace(/\/+$/, '');
   }
 
-  // Full-stack default: same-origin (/api/*) behind reverse-proxy.
-  return '';
+  // Full-stack default backend.
+  return 'https://lawinate-sc7t.onrender.com';
 }
 
 const API_BASE = resolveApiBaseUrl();
 
 const adminApi = axios.create({
   baseURL: API_BASE,
+  timeout: 25000,
 });
 
 adminApi.interceptors.request.use((config) => {
@@ -26,7 +27,17 @@ adminApi.interceptors.request.use((config) => {
 
 adminApi.interceptors.response.use(
   (response) => response,
-  (error) => {
+  async (error) => {
+    const cfg = error?.config || {};
+    if (
+      (error?.code === 'ERR_NETWORK' || /Network Error/i.test(String(error?.message || '')))
+      && !cfg.__retry_once
+    ) {
+      cfg.__retry_once = true;
+      await new Promise((resolve) => setTimeout(resolve, 1200));
+      return adminApi(cfg);
+    }
+
     const status = error?.response?.status;
     if (status === 401 || status === 403) {
       localStorage.removeItem('admin_token');

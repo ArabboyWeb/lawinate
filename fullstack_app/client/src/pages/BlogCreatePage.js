@@ -195,7 +195,7 @@ const BlogCreatePage = () => {
       if (backendError) {
         setMessage(backendError);
       } else if (isNetwork) {
-        setMessage("Server bilan aloqa yo'q. Backendni qayta ishga tushiring.");
+        setMessage("Server bilan aloqa yo'q. 5-10 soniyadan keyin qayta urinib ko'ring.");
       } else {
         setMessage('Postni saqlashda xatolik.');
       }
