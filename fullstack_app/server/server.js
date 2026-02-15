@@ -1,7 +1,10 @@
+require('dotenv').config({ quiet: true });
+
 const express = require('express');
 const cors = require('cors');
 const { initDb, ADMIN_SEED_EMAIL } = require('./src/db');
 const { sanitizeBody, createAuth, errorHandler, asyncHandler } = require('./src/middleware');
+const { checkPostgresConnection } = require('./src/pg');
 
 const createPublicRouter = require('./src/routes/public');
 const createPublicChatRouter = require('./src/routes/publicChat');
@@ -16,18 +19,45 @@ const createAdminSettingsRouter = require('./src/routes/adminSettings');
 
 const PORT = process.env.PORT || 3001;
 
+function validateEnv() {
+  if (process.env.NODE_ENV !== 'production') return;
+
+  const missing = [];
+  if (!process.env.DATABASE_URL) missing.push('DATABASE_URL');
+  if (!process.env.JWT_SECRET) missing.push('JWT_SECRET');
+  if (!process.env.APP_BASE_URL && !process.env.CLIENT_URL) missing.push('APP_BASE_URL or CLIENT_URL');
+
+  if (missing.length > 0) {
+    throw new Error(`Missing required environment variables for production: ${missing.join(', ')}`);
+  }
+}
+
+function getCorsConfig() {
+  const configured = (process.env.CORS_ORIGIN || '')
+    .split(',')
+    .map((value) => value.trim())
+    .filter(Boolean);
+
+  return {
+    origin: configured.length > 0 ? configured : true,
+    credentials: true
+  };
+}
+
 async function createServer() {
+  validateEnv();
+  await checkPostgresConnection();
   const db = await initDb();
 
   const app = express();
-  app.use(cors());
+  app.use(cors(getCorsConfig()));
   app.use(express.json({ limit: '8mb' }));
   app.use(sanitizeBody);
 
   const authRequired = createAuth(db);
   const adminRequired = createAuth(db, { adminOnly: true });
 
-  app.use('/api', createPublicRouter(db, authRequired));
+  app.use('/api', createPublicRouter(db, authRequired, checkPostgresConnection));
   app.use('/api/chat', authRequired, createPublicChatRouter(db));
 
   app.use('/api/admin/auth', createAdminAuthRouter(db, adminRequired));
@@ -48,7 +78,9 @@ createServer()
   .then((app) => {
     app.listen(PORT, () => {
       console.log(`Lawinate API is running on port ${PORT}`);
-      console.log(`Admin login seed -> ${ADMIN_SEED_EMAIL}`);
+      if (process.env.NODE_ENV !== 'production') {
+        console.log(`Admin login seed -> ${ADMIN_SEED_EMAIL}`);
+      }
     });
   })
   .catch((err) => {

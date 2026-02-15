@@ -4,8 +4,11 @@ const path = require('path');
 const { nowIso, clampNumber, getTodayDate } = require('./utils');
 
 const DB_FILE = path.join(__dirname, '..', 'database.db');
-const ADMIN_SEED_EMAIL = 'jamesarabboy@proton.me';
-const ADMIN_SEED_PASSWORD = 'Arabboy7844$Abdulaziz7844$';
+const ADMIN_SEED_EMAIL = process.env.ADMIN_SEED_EMAIL || 'admin@lawinate.local';
+const ADMIN_SEED_PASSWORD = process.env.ADMIN_SEED_PASSWORD || 'ChangeMe123!';
+const MODERATOR_SEED_EMAIL = process.env.MODERATOR_SEED_EMAIL || 'moderator@lawinate.uz';
+const MODERATOR_SEED_PASSWORD = process.env.MODERATOR_SEED_PASSWORD || 'Moderator123$';
+const STUDENT_SEED_PASSWORD = process.env.STUDENT_SEED_PASSWORD || 'Student123$';
 
 function openDb(filename = DB_FILE) {
   return new Promise((resolve, reject) => {
@@ -478,10 +481,10 @@ async function seedData(db) {
     admin = { id: created.lastID };
   }
 
-  const moderatorEmail = 'moderator@lawinate.uz';
+  const moderatorEmail = MODERATOR_SEED_EMAIL;
   const mod = await db.get('SELECT id FROM users WHERE email = ?', [moderatorEmail]);
   if (!mod) {
-    const hash = await bcrypt.hash('Moderator123$', 10);
+    const hash = await bcrypt.hash(MODERATOR_SEED_PASSWORD, 10);
     await db.run(
       `INSERT INTO users (full_name, email, password_hash, role, university, city, registration_date, created_at, updated_at)
        VALUES (?, ?, ?, 'moderator', ?, ?, ?, ?, ?)` ,
@@ -491,7 +494,7 @@ async function seedData(db) {
 
   const students = await db.get(`SELECT COUNT(*) as count FROM users WHERE role='student'`);
   if ((students.count || 0) === 0) {
-    const hash = await bcrypt.hash('Student123$', 10);
+    const hash = await bcrypt.hash(STUDENT_SEED_PASSWORD, 10);
     const seedUsers = [
       ['Ali Valiyev', 'ali@lawinate.uz', 'TDYU', 'Tashkent', 540],
       ['Malika Jurayeva', 'malika@lawinate.uz', 'JIDU', 'Bukhara', 620],
@@ -693,7 +696,6 @@ async function logAdminAction(db, adminId, action, entityType, entityId = null, 
 module.exports = {
   DB_FILE,
   ADMIN_SEED_EMAIL,
-  ADMIN_SEED_PASSWORD,
   initDb,
   logAdminAction
 };

@@ -20,7 +20,8 @@ const {
 
 const GOOGLE_SCOPE = 'openid email profile';
 const OPENROUTER_API_URL = 'https://openrouter.ai/api/v1/chat/completions';
-const OPENROUTER_API_KEY = process.env.OPENROUTER_API_KEY || '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';
+const OPENROUTER_API_KEY = process.env.OPENROUTER_API_KEY || '';
+const DEFAULT_SERVER_BASE_URL = process.env.SERVER_BASE_URL || `http://localhost:${process.env.PORT || 3001}`;
 const AI_MODELS = [
   {
     id: 'z-ai/glm-4.5-air:free',
@@ -216,9 +217,9 @@ async function callOpenRouter(modelId, messages) {
 
 function getGoogleConfig() {
   return {
-    clientId: process.env.GOOGLE_CLIENT_ID || '1077561971790-sqes8lrbulfjhk5aas5hvmbpiojn876n.apps.googleusercontent.com',
+    clientId: process.env.GOOGLE_CLIENT_ID || '',
     clientSecret: process.env.GOOGLE_CLIENT_SECRET || '',
-    redirectUri: process.env.GOOGLE_REDIRECT_URI || 'http://localhost:3001/api/auth/google/callback',
+    redirectUri: process.env.GOOGLE_REDIRECT_URI || `${DEFAULT_SERVER_BASE_URL}/api/auth/google/callback`,
   };
 }
 
@@ -370,11 +371,29 @@ async function upsertGoogleUser(db, profile) {
   return createdUser;
 }
 
-function createPublicRouter(db, authRequired) {
+function createPublicRouter(db, authRequired, checkDatabaseHealth = async () => ({ ok: true })) {
   const router = createAsyncRouter();
 
-  router.get('/health', (_req, res) => {
-    res.json({ status: 'ok', service: 'lawinate-api', at: nowIso() });
+  router.get('/health', async (_req, res) => {
+    try {
+      const dbStatus = await checkDatabaseHealth();
+      return res.json({
+        status: 'ok',
+        service: 'lawinate-api',
+        database: dbStatus,
+        at: nowIso()
+      });
+    } catch (err) {
+      return res.status(503).json({
+        status: 'error',
+        service: 'lawinate-api',
+        database: {
+          ok: false,
+          message: sanitizeText(err?.message || 'Database check failed', 200)
+        },
+        at: nowIso()
+      });
+    }
   });
 
   router.get('/auth/google/url', async (req, res) => {

@@ -12,8 +12,8 @@ const AdminLoginPage = () => {
   const location = useLocation();
   const [searchParams] = useSearchParams();
 
-  const [email, setEmail] = useState('jamesarabboy@proton.me');
-  const [password, setPassword] = useState('Arabboy7844$Abdulaziz7844$');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(true);
   const [loading, setLoading] = useState(false);
   const [resetLoading, setResetLoading] = useState(false);
@@ -23,7 +23,7 @@ const AdminLoginPage = () => {
   const resolveErrorMessage = (err, fallback) => {
     if (err?.response?.data?.error) return err.response.data.error;
     if (err?.code === 'ERR_NETWORK' || /Network Error/i.test(String(err?.message || ''))) {
-      return 'Server bilan aloqa yo‘q. Backendni ishga tushiring: npm --prefix fullstack_app/server start';
+      return "Server bilan aloqa yo'q. Backendni ishga tushiring: npm --prefix fullstack_app/server start";
     }
     return fallback;
   };
