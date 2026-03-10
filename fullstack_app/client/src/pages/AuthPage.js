@@ -194,6 +194,7 @@ const AuthPage = () => {
                       className="input"
                       value={form.phone}
                       onChange={handleChange}
+                      required
                     />
                   </div>
 
@@ -205,6 +206,7 @@ const AuthPage = () => {
                       className="input"
                       value={form.university}
                       onChange={handleChange}
+                      required
                     />
                   </div>
 
@@ -216,6 +218,7 @@ const AuthPage = () => {
                       className="input"
                       value={form.course}
                       onChange={handleChange}
+                      required
                     />
                   </div>
 
@@ -227,6 +230,7 @@ const AuthPage = () => {
                       className="input"
                       value={form.city}
                       onChange={handleChange}
+                      required
                     />
                   </div>
 
@@ -238,6 +242,7 @@ const AuthPage = () => {
                       className="input"
                       value={form.bio}
                       onChange={handleChange}
+                      required
                     />
                   </div>
 
@@ -250,6 +255,7 @@ const AuthPage = () => {
                       placeholder="URL kiriting yoki pastdan local rasm tanlang"
                       value={form.profile_image}
                       onChange={handleChange}
+                      required
                     />
                     <div className="upload-row">
                       <label htmlFor="profile_image_file" className="btn btn-soft btn-file">

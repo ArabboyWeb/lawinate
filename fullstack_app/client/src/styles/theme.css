@@ -336,6 +336,19 @@ a {
   gap: 10px;
 }
 
+.mobile-profile-shortcut {
+  display: none;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--btn-soft-border);
+  color: var(--nav-pill-text);
+  background: var(--btn-soft-bg);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
 .nav-pill {
   display: inline-flex;
   align-items: center;
@@ -2145,6 +2158,11 @@ a {
   .desktop-links,
   .desktop-auth {
     display: none;
+  }
+
+  .mobile-profile-shortcut {
+    display: inline-flex;
+    margin-left: auto;
   }
 
   .mobile-toggle {

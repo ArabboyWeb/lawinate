@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Chart } from 'chart.js/auto';
+import { UserCircle } from '@phosphor-icons/react';
 import { AuthContext } from '../contexts/AuthContext';
 import api from '../api';
 
@@ -127,11 +128,34 @@ const DashboardPage = () => {
 
   return (
     <div className="site-container page-stack">
-      <section className="glass-card card-pad">
-        <h1 className="section-title">Shaxsiy kabinet</h1>
-        <p className="subtle" style={{ marginTop: 8 }}>
-          Profil, progress va test natijalaringiz bir joyda.
-        </p>
+      <section className="glass-card card-pad" style={{ display: 'flex', alignItems: 'center', gap: 18, flexWrap: 'wrap' }}>
+        {user.profile_image ? (
+          <img
+            src={user.profile_image}
+            alt={user.full_name}
+            style={{ width: 72, height: 72, borderRadius: '50%', objectFit: 'cover' }}
+          />
+        ) : (
+          <div
+            style={{
+              width: 72,
+              height: 72,
+              borderRadius: '50%',
+              display: 'grid',
+              placeItems: 'center',
+              background: 'var(--panel-active-bg)',
+              color: 'var(--law-blue)',
+            }}
+          >
+            <UserCircle size={44} weight="fill" />
+          </div>
+        )}
+        <div>
+          <h1 className="section-title">Shaxsiy kabinet</h1>
+          <p className="subtle" style={{ marginTop: 8 }}>
+            Profil, progress va test natijalaringiz bir joyda.
+          </p>
+        </div>
       </section>
 
       <section className="stats-grid">
@@ -230,7 +254,7 @@ const DashboardPage = () => {
 
         {myPosts.length === 0 ? (
           <p className="subtle" style={{ marginTop: 12 }}>
-            Hali post yo&apos;q. Birinchi postingizni yarating.
+            Hali post yo'q. Birinchi postingizni yarating.
           </p>
         ) : (
           <div className="blog-dash-list">
@@ -245,14 +269,14 @@ const DashboardPage = () => {
                     )}
                   </h3>
                   <p className="subtle" style={{ margin: '6px 0 0' }}>
-                    {post.category} • {post.status} • {new Date(post.updated_at || post.created_at).toLocaleString()}
+                    {post.category} - {post.status} - {new Date(post.updated_at || post.created_at).toLocaleString()}
                   </p>
                 </div>
                 <div className="actions">
                   {post.status === 'published' ? (
-                    <a className="btn btn-soft" href={post.absolute_link} target="_blank" rel="noopener noreferrer">
-                      Link
-                    </a>
+                    <Link className="btn btn-soft" to={post.link}>
+                      Sahifani ochish
+                    </Link>
                   ) : (
                     <span className="btn btn-soft" style={{ pointerEvents: 'none' }}>Draft</span>
                   )}

@@ -181,7 +181,7 @@ const BlogCreatePage = () => {
 
       const post = res.data?.post;
       setSavedPostId(post?.id || null);
-      setSavedLink(String(res.data?.absolute_link || ''));
+      setSavedLink(String(post?.link || res.data?.link || ''));
       setStatus(targetStatus);
 
       if (targetStatus === 'published') {
@@ -353,12 +353,12 @@ const BlogCreatePage = () => {
                 </button>
               </div>
 
-              {savedLink && (
+              {status === 'published' && savedLink && (
                 <div className="blog-link-box">
-                  <p className="subtle" style={{ margin: 0 }}>Publish link:</p>
-                  <a href={savedLink} target="_blank" rel="noopener noreferrer" className="blog-link-anchor">
+                  <p className="subtle" style={{ margin: 0 }}>Post sahifasi:</p>
+                  <Link to={savedLink} className="blog-link-anchor">
                     <LinkSimple size={14} weight="bold" /> {savedLink}
-                  </a>
+                  </Link>
                 </div>
               )}
 

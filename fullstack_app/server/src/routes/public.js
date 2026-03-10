@@ -473,10 +473,15 @@ function createPublicRouter(db, authRequired, checkDatabaseHealth = async () => 
     const fullName = sanitizeText(req.body.full_name, 120);
     const email = sanitizeText(req.body.email, 120).toLowerCase();
     const password = String(req.body.password || '');
+    const phone = sanitizeText(req.body.phone, 40);
+    const university = sanitizeText(req.body.university, 180);
+    const course = sanitizeText(req.body.course, 60);
+    const city = sanitizeText(req.body.city, 80);
+    const bio = sanitizeText(req.body.bio, 500);
     const profileImage = sanitizeText(req.body.profile_image, 800000);
 
-    if (!fullName || !email || !password) {
-      return res.status(400).json({ error: 'Required fields are missing' });
+    if (!fullName || !email || !password || !phone || !university || !course || !city || !bio || !profileImage) {
+      return res.status(400).json({ error: 'Ro`yxatdan o`tishda barcha maydonlar majburiy' });
     }
 
     if (password.length < 8) {
@@ -497,11 +502,11 @@ function createPublicRouter(db, authRequired, checkDatabaseHealth = async () => 
         fullName,
         email,
         hash,
-        sanitizeText(req.body.phone, 40),
-        sanitizeText(req.body.university, 180),
-        sanitizeText(req.body.course, 60),
-        sanitizeText(req.body.city, 80),
-        sanitizeText(req.body.bio, 500),
+        phone,
+        university,
+        course,
+        city,
+        bio,
         profileImage,
         nowIso(),
         nowIso(),

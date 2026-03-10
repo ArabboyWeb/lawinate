@@ -808,9 +808,11 @@ async function seedData(db) {
   if ((booksCount.count || 0) === 0) {
     const bookCols = await getTableColumns(db, 'books');
     const books = [
-      ['Jinoyat huquqi', 'Darslik', 'jinoyat', 'https://example.com/jinoyat.pdf', 2400, 1],
-      ['Fuqarolik huquqi', 'Qollanma', 'fuqarolik', 'https://example.com/fuqarolik.pdf', 1800, 1],
-      ['Konstitutsiya', 'Yangi tahrir', 'konstitutsiya', 'https://example.com/konstitutsiya.pdf', 5200, 1]
+      ['Jinoyat huquqi (2020)', 'Darslik', 'jinoyat', 'https://www.dropbox.com/scl/fi/8dcgtq1p3pj85cf00c6g6/_-_-_-_-_-_2020-2.pdf?rlkey=to4pm5fhbtud4ui5rwku3tj66&st=prnxd8q8&raw=1', 2400, 0],
+      ['Fuqarolik huquqi', "O'quv qo'llanma", 'fuqarolik', 'https://www.dropbox.com/scl/fi/qrqs8nyraef1b9ejlkpec/Fuqarolik-huquqi.pdf?rlkey=e2pp3mg3claj730dkh3hwzf68&st=dfutd2t9&raw=1', 1800, 1],
+      ["O'zbekiston Konstitutsiyasi", 'Yangi tahrir', 'kodeks', 'https://www.dropbox.com/scl/fi/z6uga8ex71x83t1n9h5mk/constitution_oz.pdf?rlkey=3aknav73hv3p5erv6fgdu7fal&st=ajhen0w6&raw=1', 5200, 0],
+      ["Ma'muriy huquq", "G'oziyev A. (2023)", 'mamuriy', 'https://www.dropbox.com/scl/fi/kwapcv04pmj76y9xxqee4/Goziyev_A._Ma-muriy_huquqi_2023-1.pdf?rlkey=59t2dwoggwpdghtmvakfc7kk9&st=rgp4lzb6&raw=1', 1500, 0],
+      ['Davlat tilida ish yuritish', "Amaliy qo'llanma", 'hujjat', 'https://www.dropbox.com/scl/fi/t8xl79cn6jep0guhvm1a2/Kitoblaro_bot-DAVLAT-TILIDA-ISH-YURITISH.PDF.pdf?rlkey=bqi4pic52qgiezzb33j31rm1i&st=owhkow10&raw=1', 3100, 0]
     ];
     const stmt = await db.prepare(
       bookCols.includes('link')

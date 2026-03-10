@@ -24,6 +24,7 @@ const NavBar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const hasAdminSession = ['admin', 'moderator'].includes(user?.role)
     || (typeof window !== 'undefined' && !!localStorage.getItem('admin_token'));
+  const profileLabel = user?.full_name?.split(' ')[0] || 'Profil';
 
   const handleLogout = () => {
     logout();
@@ -77,12 +78,45 @@ const NavBar = () => {
           )}
         </nav>
 
+        {user && (
+          <NavLink to="/dashboard" className="mobile-profile-shortcut" onClick={closeMenu}>
+            {user.profile_image ? (
+              <img
+                src={user.profile_image}
+                alt={user.full_name || 'Profil'}
+                style={{
+                  width: 32,
+                  height: 32,
+                  borderRadius: '50%',
+                  objectFit: 'cover',
+                }}
+              />
+            ) : (
+              <UserCircle size={22} weight="fill" />
+            )}
+            <span>{profileLabel}</span>
+          </NavLink>
+        )}
+
         <div className="desktop-auth">
           {user ? (
             <>
               <NavLink to="/dashboard" className="nav-pill">
-                <UserCircle size={16} weight="fill" />
-                {user.full_name?.split(' ')[0] || 'Profil'}
+                {user.profile_image ? (
+                  <img
+                    src={user.profile_image}
+                    alt={user.full_name || 'Profil'}
+                    style={{
+                      width: 24,
+                      height: 24,
+                      borderRadius: '50%',
+                      objectFit: 'cover',
+                    }}
+                  />
+                ) : (
+                  <UserCircle size={16} weight="fill" />
+                )}
+                {profileLabel}
               </NavLink>
               <button type="button" className="btn btn-danger" onClick={handleLogout}>
                 <SignOut size={16} weight="bold" /> Chiqish
