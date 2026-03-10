@@ -6,6 +6,16 @@ function createAdminLibraryRouter(db) {
   const router = createAsyncRouter();
 
   async function getBookTableColumns() {
+    if (db.meta?.driver === 'postgres') {
+      const rows = await db.all(
+        `SELECT column_name AS name
+         FROM information_schema.columns
+         WHERE table_schema = 'public' AND table_name = 'books'
+         ORDER BY ordinal_position`
+      );
+      return rows.map((row) => row.name);
+    }
+
     const rows = await db.all('PRAGMA table_info(books)');
     return rows.map((row) => row.name);
   }

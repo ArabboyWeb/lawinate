@@ -1,7 +1,21 @@
 const sqlite3 = require('sqlite3').verbose();
 const bcrypt = require('bcryptjs');
 const path = require('path');
+const { types } = require('pg');
+const { getPostgresPool } = require('./pg');
 const { nowIso, clampNumber, getTodayDate } = require('./utils');
+
+const INT8_OID = 20;
+const NUMERIC_OID = 1700;
+
+types.setTypeParser(INT8_OID, (value) => {
+  const parsed = Number(value);
+  return Number.isFinite(parsed) ? parsed : 0;
+});
+types.setTypeParser(NUMERIC_OID, (value) => {
+  const parsed = Number(value);
+  return Number.isFinite(parsed) ? parsed : 0;
+});
 
 const DB_FILE = process.env.SQLITE_DB_FILE
   ? path.resolve(process.env.SQLITE_DB_FILE)
@@ -12,71 +26,113 @@ const MODERATOR_SEED_EMAIL = process.env.MODERATOR_SEED_EMAIL || 'moderator@lawi
 const MODERATOR_SEED_PASSWORD = process.env.MODERATOR_SEED_PASSWORD || 'Moderator123$';
 const STUDENT_SEED_PASSWORD = process.env.STUDENT_SEED_PASSWORD || 'Student123$';
 
-function openDb(filename = DB_FILE) {
-  return new Promise((resolve, reject) => {
-    const rawDb = new sqlite3.Database(filename, (err) => {
-      if (err) return reject(err);
-      return resolve(wrapDb(rawDb));
-    });
-  });
+function resolveDbClient() {
+  const explicit = String(process.env.DB_CLIENT || '').trim().toLowerCase();
+  if (explicit === 'sqlite' || explicit === 'postgres') return explicit;
+  return process.env.DATABASE_URL ? 'postgres' : 'sqlite';
 }
 
-function wrapDb(rawDb) {
-  return {
-    exec(sql) {
-      return new Promise((resolve, reject) => {
-        rawDb.exec(sql, (err) => (err ? reject(err) : resolve()));
-      });
-    },
-    get(sql, params = []) {
-      return new Promise((resolve, reject) => {
-        rawDb.get(sql, params, (err, row) => (err ? reject(err) : resolve(row)));
-      });
-    },
-    all(sql, params = []) {
-      return new Promise((resolve, reject) => {
-        rawDb.all(sql, params, (err, rows) => (err ? reject(err) : resolve(rows)));
-      });
-    },
-    run(sql, params = []) {
-      return new Promise((resolve, reject) => {
-        rawDb.run(sql, params, function runCb(err) {
-          if (err) return reject(err);
-          return resolve({ lastID: this.lastID, changes: this.changes });
-        });
-      });
-    },
-    prepare(sql) {
-      return new Promise((resolve, reject) => {
-        const stmt = rawDb.prepare(sql, (err) => {
-          if (err) return reject(err);
-          return resolve({
-            run(...params) {
-              return new Promise((resolveRun, rejectRun) => {
-                stmt.run(params, function stmtRun(runErr) {
-                  if (runErr) return rejectRun(runErr);
-                  return resolveRun({ lastID: this.lastID, changes: this.changes });
-                });
-              });
-            },
-            finalize() {
-              return new Promise((resolveFin, rejectFin) => {
-                stmt.finalize((finErr) => (finErr ? rejectFin(finErr) : resolveFin()));
-              });
-            }
-          });
-        });
-      });
+function isValidIdentifier(value) {
+  return /^[A-Za-z_][A-Za-z0-9_]*$/.test(String(value || ''));
+}
+
+function splitSqlStatements(sql) {
+  const out = [];
+  let current = '';
+  let inSingle = false;
+  let inDouble = false;
+
+  for (let i = 0; i < sql.length; i += 1) {
+    const ch = sql[i];
+    const next = sql[i + 1];
+
+    if (ch === "'" && !inDouble) {
+      current += ch;
+      if (inSingle && next === "'") {
+        current += next;
+        i += 1;
+      } else {
+        inSingle = !inSingle;
+      }
+      continue;
     }
-  };
+
+    if (ch === '"' && !inSingle) {
+      inDouble = !inDouble;
+      current += ch;
+      continue;
+    }
+
+    if (ch === ';' && !inSingle && !inDouble) {
+      const trimmed = current.trim();
+      if (trimmed) out.push(trimmed);
+      current = '';
+      continue;
+    }
+
+    current += ch;
+  }
+
+  const tail = current.trim();
+  if (tail) out.push(tail);
+  return out;
 }
 
-async function initDb() {
-  const db = await openDb();
+function convertPlaceholders(sql) {
+  let idx = 0;
+  let out = '';
+  let inSingle = false;
+  let inDouble = false;
 
-  await db.exec(`
-    PRAGMA foreign_keys = ON;
+  for (let i = 0; i < sql.length; i += 1) {
+    const ch = sql[i];
+    const next = sql[i + 1];
 
+    if (ch === "'" && !inDouble) {
+      out += ch;
+      if (inSingle && next === "'") {
+        out += next;
+        i += 1;
+      } else {
+        inSingle = !inSingle;
+      }
+      continue;
+    }
+
+    if (ch === '"' && !inSingle) {
+      inDouble = !inDouble;
+      out += ch;
+      continue;
+    }
+
+    if (ch === '?' && !inSingle && !inDouble) {
+      idx += 1;
+      out += `$${idx}`;
+      continue;
+    }
+
+    out += ch;
+  }
+
+  return out;
+}
+
+function toPostgresSchema(sql) {
+  let converted = String(sql || '');
+  converted = converted.replace(/INTEGER PRIMARY KEY AUTOINCREMENT/gi, 'BIGSERIAL PRIMARY KEY');
+  converted = converted.replace(/registration_date TEXT DEFAULT CURRENT_TIMESTAMP/gi, 'registration_date TIMESTAMPTZ DEFAULT NOW()');
+  converted = converted.replace(/last_login_at TEXT/gi, 'last_login_at TIMESTAMPTZ');
+  converted = converted.replace(/created_at TEXT DEFAULT CURRENT_TIMESTAMP/gi, 'created_at TIMESTAMPTZ DEFAULT NOW()');
+  converted = converted.replace(/updated_at TEXT DEFAULT CURRENT_TIMESTAMP/gi, 'updated_at TIMESTAMPTZ DEFAULT NOW()');
+  converted = converted.replace(/published_at TEXT/gi, 'published_at TIMESTAMPTZ');
+  converted = converted.replace(/resolved_at TEXT/gi, 'resolved_at TIMESTAMPTZ');
+  converted = converted.replace(/expires_at TEXT/gi, 'expires_at TIMESTAMPTZ');
+  converted = converted.replace(/joined_at TEXT DEFAULT CURRENT_TIMESTAMP/gi, 'joined_at TIMESTAMPTZ DEFAULT NOW()');
+  return converted;
+}
+
+function getSchemaSql(client) {
+  const base = `
     CREATE TABLE IF NOT EXISTS users (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       full_name TEXT NOT NULL,
@@ -314,24 +370,181 @@ async function initDb() {
       updated_at TEXT DEFAULT CURRENT_TIMESTAMP,
       FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE
     );
-  `);
+  `;
+
+  if (client === 'postgres') {
+    return toPostgresSchema(base);
+  }
+  return `PRAGMA foreign_keys = ON;\n${base}`;
+}
+
+function openDb(filename = DB_FILE) {
+  return new Promise((resolve, reject) => {
+    const rawDb = new sqlite3.Database(filename, (err) => {
+      if (err) return reject(err);
+      return resolve(wrapDb(rawDb));
+    });
+  });
+}
+
+function wrapDb(rawDb) {
+  return {
+    meta: { driver: 'sqlite' },
+    exec(sql) {
+      return new Promise((resolve, reject) => {
+        rawDb.exec(sql, (err) => (err ? reject(err) : resolve()));
+      });
+    },
+    get(sql, params = []) {
+      return new Promise((resolve, reject) => {
+        rawDb.get(sql, params, (err, row) => (err ? reject(err) : resolve(row)));
+      });
+    },
+    all(sql, params = []) {
+      return new Promise((resolve, reject) => {
+        rawDb.all(sql, params, (err, rows) => (err ? reject(err) : resolve(rows)));
+      });
+    },
+    run(sql, params = []) {
+      return new Promise((resolve, reject) => {
+        rawDb.run(sql, params, function runCb(err) {
+          if (err) return reject(err);
+          return resolve({ lastID: this.lastID, changes: this.changes });
+        });
+      });
+    },
+    prepare(sql) {
+      return new Promise((resolve, reject) => {
+        const stmt = rawDb.prepare(sql, (err) => {
+          if (err) return reject(err);
+          return resolve({
+            run(...params) {
+              return new Promise((resolveRun, rejectRun) => {
+                stmt.run(params, function stmtRun(runErr) {
+                  if (runErr) return rejectRun(runErr);
+                  return resolveRun({ lastID: this.lastID, changes: this.changes });
+                });
+              });
+            },
+            finalize() {
+              return new Promise((resolveFin, rejectFin) => {
+                stmt.finalize((finErr) => (finErr ? rejectFin(finErr) : resolveFin()));
+              });
+            }
+          });
+        });
+      });
+    }
+  };
+}
+
+function wrapPostgresDb(pool) {
+  const db = {
+    meta: { driver: 'postgres' },
+    async exec(sql) {
+      const statements = splitSqlStatements(String(sql || ''));
+      for (const statement of statements) {
+        await pool.query(statement);
+      }
+    },
+    async get(sql, params = []) {
+      const result = await pool.query(convertPlaceholders(String(sql || '').trim()), params);
+      return result.rows[0];
+    },
+    async all(sql, params = []) {
+      const result = await pool.query(convertPlaceholders(String(sql || '').trim()), params);
+      return result.rows;
+    },
+    async run(sql, params = []) {
+      const query = convertPlaceholders(String(sql || '').trim().replace(/;+\s*$/, ''));
+      const isInsert = /^INSERT\s+/i.test(query);
+      const hasReturning = /\sRETURNING\s+/i.test(query);
+
+      if (isInsert && !hasReturning) {
+        try {
+          const result = await pool.query(`${query} RETURNING id`, params);
+          return { lastID: result.rows[0]?.id ?? null, changes: result.rowCount || 0 };
+        } catch (err) {
+          const missingIdColumn = err && (err.code === '42703' || /column\s+"id"\s+does not exist/i.test(String(err.message)));
+          if (!missingIdColumn) throw err;
+        }
+      }
+
+      const result = await pool.query(query, params);
+      return { lastID: isInsert ? (result.rows[0]?.id ?? null) : null, changes: result.rowCount || 0 };
+    },
+    async prepare(sql) {
+      return {
+        run(...params) {
+          return db.run(sql, params);
+        },
+        async finalize() {
+          return undefined;
+        }
+      };
+    }
+  };
+
+  return db;
+}
+
+async function openPostgresDb() {
+  const pool = getPostgresPool();
+  const db = wrapPostgresDb(pool);
+  await db.get('SELECT 1 AS ok');
+  return db;
+}
+
+async function initDb(options = {}) {
+  const { skipSeed = false } = options;
+  const client = resolveDbClient();
+  const db = client === 'postgres' ? await openPostgresDb() : await openDb();
+  await db.exec(getSchemaSql(client));
 
   await migrateLegacySchema(db);
-  await seedData(db);
+  if (!skipSeed) {
+    await seedData(db);
+  }
   return db;
 }
 
 async function getTableColumns(db, tableName) {
+  if (!isValidIdentifier(tableName)) return [];
+
+  if (db.meta?.driver === 'postgres') {
+    const rows = await db.all(
+      `SELECT column_name AS name
+       FROM information_schema.columns
+       WHERE table_schema = 'public' AND table_name = ?
+       ORDER BY ordinal_position`,
+      [tableName]
+    );
+    return rows.map((r) => r.name);
+  }
+
   const rows = await db.all(`PRAGMA table_info(${tableName})`);
   return rows.map((r) => r.name);
 }
 
 async function hasTable(db, tableName) {
+  if (!isValidIdentifier(tableName)) return false;
+
+  if (db.meta?.driver === 'postgres') {
+    const row = await db.get(
+      `SELECT table_name AS name
+       FROM information_schema.tables
+       WHERE table_schema = 'public' AND table_name = ?`,
+      [tableName]
+    );
+    return !!row;
+  }
+
   const row = await db.get(`SELECT name FROM sqlite_master WHERE type='table' AND name = ?`, [tableName]);
   return !!row;
 }
 
 async function ensureColumn(db, tableName, columnName, columnSql) {
+  if (!isValidIdentifier(tableName) || !isValidIdentifier(columnName)) return;
   const columns = await getTableColumns(db, tableName);
   if (!columns.includes(columnName)) {
     await db.run(`ALTER TABLE ${tableName} ADD COLUMN ${columnName} ${columnSql}`);
@@ -339,6 +552,9 @@ async function ensureColumn(db, tableName, columnName, columnSql) {
 }
 
 async function migrateLegacySchema(db) {
+  const timestampType = db.meta?.driver === 'postgres' ? 'TIMESTAMPTZ' : 'TEXT';
+  const autoPk = db.meta?.driver === 'postgres' ? 'BIGSERIAL PRIMARY KEY' : 'INTEGER PRIMARY KEY AUTOINCREMENT';
+
   // users table migration from previous versions
   await ensureColumn(db, 'users', 'role', `TEXT DEFAULT 'student'`);
   await ensureColumn(db, 'users', 'is_banned', 'INTEGER DEFAULT 0');
@@ -348,9 +564,9 @@ async function migrateLegacySchema(db) {
   await ensureColumn(db, 'users', 'total_questions', 'INTEGER DEFAULT 0');
   await ensureColumn(db, 'users', 'streak_days', 'INTEGER DEFAULT 0');
   await ensureColumn(db, 'users', 'last_test_date', 'TEXT');
-  await ensureColumn(db, 'users', 'last_login_at', 'TEXT');
-  await ensureColumn(db, 'users', 'created_at', 'TEXT');
-  await ensureColumn(db, 'users', 'updated_at', 'TEXT');
+  await ensureColumn(db, 'users', 'last_login_at', timestampType);
+  await ensureColumn(db, 'users', 'created_at', timestampType);
+  await ensureColumn(db, 'users', 'updated_at', timestampType);
 
   await db.run(`UPDATE users SET role = 'student' WHERE role IS NULL OR TRIM(role) = ''`);
   await db.run(`UPDATE users SET is_banned = COALESCE(is_banned, 0)`);
@@ -375,8 +591,8 @@ async function migrateLegacySchema(db) {
         state TEXT PRIMARY KEY,
         purpose TEXT NOT NULL,
         redirect_path TEXT,
-        created_at TEXT DEFAULT CURRENT_TIMESTAMP,
-        expires_at TEXT NOT NULL
+        created_at ${timestampType} DEFAULT CURRENT_TIMESTAMP,
+        expires_at ${timestampType} NOT NULL
       );
     `);
   }
@@ -386,11 +602,11 @@ async function migrateLegacySchema(db) {
   if (!(await hasTable(db, 'chat_groups'))) {
     await db.exec(`
       CREATE TABLE chat_groups (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        id ${autoPk},
         name TEXT NOT NULL,
         created_by INTEGER NOT NULL,
-        created_at TEXT DEFAULT CURRENT_TIMESTAMP,
-        updated_at TEXT DEFAULT CURRENT_TIMESTAMP,
+        created_at ${timestampType} DEFAULT CURRENT_TIMESTAMP,
+        updated_at ${timestampType} DEFAULT CURRENT_TIMESTAMP,
         FOREIGN KEY(created_by) REFERENCES users(id)
       );
     `);
@@ -402,7 +618,7 @@ async function migrateLegacySchema(db) {
         group_id INTEGER NOT NULL,
         user_id INTEGER NOT NULL,
         role TEXT NOT NULL DEFAULT 'member' CHECK(role IN ('owner','member')),
-        joined_at TEXT DEFAULT CURRENT_TIMESTAMP,
+        joined_at ${timestampType} DEFAULT CURRENT_TIMESTAMP,
         PRIMARY KEY(group_id, user_id),
         FOREIGN KEY(group_id) REFERENCES chat_groups(id) ON DELETE CASCADE,
         FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE
@@ -413,7 +629,7 @@ async function migrateLegacySchema(db) {
   if (!(await hasTable(db, 'chat_messages'))) {
     await db.exec(`
       CREATE TABLE chat_messages (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        id ${autoPk},
         group_id INTEGER NOT NULL,
         user_id INTEGER NOT NULL,
         message_text TEXT,
@@ -421,7 +637,7 @@ async function migrateLegacySchema(db) {
         voice_blob_base64 TEXT,
         voice_mime_type TEXT,
         voice_duration_sec REAL,
-        created_at TEXT DEFAULT CURRENT_TIMESTAMP,
+        created_at ${timestampType} DEFAULT CURRENT_TIMESTAMP,
         FOREIGN KEY(group_id) REFERENCES chat_groups(id) ON DELETE CASCADE,
         FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE
       );
@@ -433,8 +649,8 @@ async function migrateLegacySchema(db) {
   await ensureColumn(db, 'books', 'cover_url', 'TEXT');
   await ensureColumn(db, 'books', 'featured', 'INTEGER DEFAULT 0');
   await ensureColumn(db, 'books', 'status', `TEXT DEFAULT 'published'`);
-  await ensureColumn(db, 'books', 'created_at', 'TEXT');
-  await ensureColumn(db, 'books', 'updated_at', 'TEXT');
+  await ensureColumn(db, 'books', 'created_at', timestampType);
+  await ensureColumn(db, 'books', 'updated_at', timestampType);
 
   const bookCols = await getTableColumns(db, 'books');
   if (bookCols.includes('link')) {
@@ -460,17 +676,33 @@ async function migrateLegacySchema(db) {
 async function seedData(db) {
   const now = nowIso();
 
-  await db.run(
-    `INSERT OR IGNORE INTO ai_settings (id, rate_limit_per_minute, safe_mode_enabled, updated_at)
-     VALUES (1, 30, 1, ?)` ,
-    [now]
-  );
+  if (db.meta?.driver === 'postgres') {
+    await db.run(
+      `INSERT INTO ai_settings (id, rate_limit_per_minute, safe_mode_enabled, updated_at)
+       VALUES (1, 30, 1, ?)
+       ON CONFLICT (id) DO NOTHING`,
+      [now]
+    );
 
-  await db.run(
-    `INSERT OR IGNORE INTO site_settings (id, site_name, maintenance_mode, allow_registration, updated_at)
-     VALUES (1, 'Lawinate.uz', 0, 1, ?)` ,
-    [now]
-  );
+    await db.run(
+      `INSERT INTO site_settings (id, site_name, maintenance_mode, allow_registration, updated_at)
+       VALUES (1, 'Lawinate.uz', 0, 1, ?)
+       ON CONFLICT (id) DO NOTHING`,
+      [now]
+    );
+  } else {
+    await db.run(
+      `INSERT OR IGNORE INTO ai_settings (id, rate_limit_per_minute, safe_mode_enabled, updated_at)
+       VALUES (1, 30, 1, ?)` ,
+      [now]
+    );
+
+    await db.run(
+      `INSERT OR IGNORE INTO site_settings (id, site_name, maintenance_mode, allow_registration, updated_at)
+       VALUES (1, 'Lawinate.uz', 0, 1, ?)` ,
+      [now]
+    );
+  }
 
   let admin = await db.get('SELECT id FROM users WHERE email = ?', [ADMIN_SEED_EMAIL]);
   if (!admin) {

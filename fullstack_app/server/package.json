@@ -5,7 +5,9 @@
   "main": "server.js",
   "scripts": {
     "build": "node -e \"console.log('No build step required for backend')\"",
-    "start": "node server.js"
+    "start": "node server.js",
+    "db:migrate:sqlite-to-postgres": "node scripts/migrate-sqlite-to-postgres.js",
+    "db:verify": "node scripts/verify-db-test.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

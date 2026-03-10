@@ -992,11 +992,12 @@ function createPublicRouter(db, authRequired, checkDatabaseHealth = async () => 
     const model = getModelById(sanitizeText(req.body.model, 200));
     const settings = await db.get('SELECT * FROM ai_settings WHERE id = 1');
     const limit = settings?.rate_limit_per_minute || 30;
+    const oneMinuteAgoIso = new Date(Date.now() - 60 * 1000).toISOString();
 
     const countRow = await db.get(
       `SELECT COUNT(*) as count FROM ai_prompt_logs
-       WHERE user_id = ? AND created_at >= datetime('now', '-1 minute')`,
-      [req.authUser.id]
+       WHERE user_id = ? AND created_at >= ?`,
+      [req.authUser.id, oneMinuteAgoIso]
     );
 
     if ((countRow.count || 0) >= limit) {

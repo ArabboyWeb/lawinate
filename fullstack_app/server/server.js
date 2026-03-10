@@ -2,6 +2,7 @@ require('dotenv').config({ quiet: true });
 
 const express = require('express');
 const cors = require('cors');
+const { query } = require('./db');
 const { initDb, ADMIN_SEED_EMAIL } = require('./src/db');
 const { sanitizeBody, createAuth, errorHandler, asyncHandler } = require('./src/middleware');
 const { checkPostgresConnection } = require('./src/pg');
@@ -46,9 +47,12 @@ function getCorsConfig() {
 async function createServer() {
   validateEnv();
   const db = await initDb();
+  const dbDriver = db.meta?.driver || 'sqlite';
 
-  if (process.env.DATABASE_URL) {
+  if (dbDriver === 'postgres') {
     await checkPostgresConnection();
+  } else if (process.env.DATABASE_URL) {
+    console.warn('DB_CLIENT=sqlite is active. PostgreSQL connection checks are skipped.');
   } else if (process.env.NODE_ENV === 'production') {
     console.warn('DATABASE_URL is not set. PostgreSQL checks are disabled.');
   }
@@ -57,6 +61,20 @@ async function createServer() {
   app.use(cors(getCorsConfig()));
   app.use(express.json({ limit: '8mb' }));
   app.use(sanitizeBody);
+  app.get('/api/db-test', async (_req, res) => {
+    try {
+      const result = await query('SELECT CURRENT_TIMESTAMP AS db_time');
+      return res.json({
+        status: 'connected',
+        db_time: result.rows[0]?.db_time || null
+      });
+    } catch (err) {
+      return res.status(500).json({
+        status: 'error',
+        error: err?.message || String(err)
+      });
+    }
+  });
 
   const authRequired = createAuth(db);
   const adminRequired = createAuth(db, { adminOnly: true });
@@ -66,15 +84,25 @@ async function createServer() {
     createPublicRouter(db, authRequired, async () => {
       await db.get('SELECT 1 AS ok');
 
+      if (dbDriver === 'postgres') {
+        const postgres = await checkPostgresConnection();
+        return {
+          primary: 'postgres',
+          postgres
+        };
+      }
+
       if (process.env.DATABASE_URL) {
         const postgres = await checkPostgresConnection();
         return {
+          primary: 'sqlite',
           sqlite: { ok: true },
           postgres
         };
       }
 
       return {
+        primary: 'sqlite',
         sqlite: { ok: true },
         postgres: {
           ok: null,

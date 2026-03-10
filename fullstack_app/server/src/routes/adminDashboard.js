@@ -14,8 +14,12 @@ function createAdminDashboardRouter(db) {
   }
 
   router.get('/overview', async (_req, res) => {
+    const last7Days = dateRange(7);
+    const today = last7Days[last7Days.length - 1];
+    const fromDay = last7Days[0];
+
     const totalUsers = await db.get(`SELECT COUNT(*) as count FROM users WHERE role = 'student'`);
-    const todayTests = await db.get(`SELECT COUNT(*) as count FROM results WHERE DATE(created_at) = DATE('now', 'localtime')`);
+    const todayTests = await db.get(`SELECT COUNT(*) as count FROM results WHERE DATE(created_at) = ?`, [today]);
     const avgAccuracy = await db.get(`SELECT AVG(score) as value FROM results`);
     const totalDownloads = await db.get(`SELECT COALESCE(SUM(downloads), 0) as value FROM books`);
 
@@ -28,12 +32,12 @@ function createAdminDashboardRouter(db) {
         UNION ALL
         SELECT DATE(created_at) as day, user_id FROM ai_prompt_logs
       ) activity
-      WHERE day >= DATE('now', '-6 day')
+      WHERE day >= ?
       GROUP BY day
       ORDER BY day ASC
-    `);
+    `, [fromDay]);
 
-    const template = dateRange(7).reduce((acc, day) => {
+    const template = last7Days.reduce((acc, day) => {
       acc[day] = 0;
       return acc;
     }, {});

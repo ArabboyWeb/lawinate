@@ -15,7 +15,12 @@ export const AdminAuthProvider = ({ children }) => {
   const decodeBase64UrlJson = useCallback((encoded) => {
     const raw = String(encoded || '').replace(/-/g, '+').replace(/_/g, '/');
     const padded = raw + '==='.slice((raw.length + 3) % 4);
-    return JSON.parse(window.atob(padded));
+    const binary = window.atob(padded);
+    const bytes = Uint8Array.from(binary, (ch) => ch.charCodeAt(0));
+    const jsonText = typeof TextDecoder !== 'undefined'
+      ? new TextDecoder('utf-8').decode(bytes)
+      : decodeURIComponent(bytes.reduce((acc, byte) => `${acc}%${byte.toString(16).padStart(2, '0')}`, ''));
+    return JSON.parse(jsonText);
   }, []);
 
   const applyAdminSession = useCallback((token, user) => {
