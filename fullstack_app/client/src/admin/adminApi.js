@@ -1,14 +1,5 @@
 import axios from 'axios';
-
-function resolveApiBaseUrl() {
-  const configured = String(process.env.REACT_APP_API_URL || '').trim();
-  if (configured) {
-    return configured.replace(/\/+$/, '');
-  }
-
-  // Full-stack default backend.
-  return 'https://lawinate-sc7t.onrender.com';
-}
+import { resolveApiBaseUrl, shouldResetSession } from '../shared/apiBase';
 
 const API_BASE = resolveApiBaseUrl();
 
@@ -38,8 +29,7 @@ adminApi.interceptors.response.use(
       return adminApi(cfg);
     }
 
-    const status = error?.response?.status;
-    if (status === 401 || status === 403) {
+    if (shouldResetSession(error, ['/api/admin/auth/me'])) {
       localStorage.removeItem('admin_token');
       if (typeof window !== 'undefined' && !window.location.pathname.startsWith('/admin/login')) {
         window.location.assign('/admin/login');

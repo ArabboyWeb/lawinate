@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { LockKey, ShieldCheck, UserCircle } from '@phosphor-icons/react';
 import { AdminAuthContext } from '../AdminAuthContext';
@@ -18,6 +18,7 @@ const AdminLoginPage = () => {
   const [loading, setLoading] = useState(false);
   const [resetLoading, setResetLoading] = useState(false);
   const [googleLoading, setGoogleLoading] = useState(false);
+  const [googleEnabled, setGoogleEnabled] = useState(true);
   const queryError = searchParams.get('error');
 
   const resolveErrorMessage = (err, fallback) => {
@@ -27,6 +28,23 @@ const AdminLoginPage = () => {
     }
     return fallback;
   };
+
+  useEffect(() => {
+    let active = true;
+
+    adminApi.get('/api/auth/providers')
+      .then((res) => {
+        if (!active) return;
+        setGoogleEnabled(Boolean(res.data?.google?.enabled));
+      })
+      .catch(() => {
+        // Keep the fallback button visible when provider status cannot be loaded.
+      });
+
+    return () => {
+      active = false;
+    };
+  }, []);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -153,9 +171,15 @@ const AdminLoginPage = () => {
               {loading ? 'Kirish tekshirilmoqda...' : 'Admin panelga kirish'}
             </button>
 
-            <button type="button" className="admin-btn-soft w-full" onClick={handleGoogleLogin} disabled={googleLoading}>
-              {googleLoading ? 'Googlega yo\'naltirilmoqda...' : 'Google bilan kirish'}
-            </button>
+            {googleEnabled ? (
+              <button type="button" className="admin-btn-soft w-full" onClick={handleGoogleLogin} disabled={googleLoading}>
+                {googleLoading ? 'Googlega yo\'naltirilmoqda...' : 'Google bilan kirish'}
+              </button>
+            ) : (
+              <div className="rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-slate-300">
+                Google auth hozircha sozlanmagan.
+              </div>
+            )}
 
             {queryError && (
               <div className="rounded-xl border border-red-400/30 bg-red-500/10 px-3 py-2 text-sm text-red-200">

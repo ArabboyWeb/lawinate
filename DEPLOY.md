@@ -102,7 +102,8 @@ Recommended production values:
 
 - `netlify.toml` includes `/api/*` proxy to `https://lawinate-sc7t.onrender.com`.
 - If your Render URL is different, update that redirect target.
-- Optional alternative: set Netlify env variable `REACT_APP_API_URL=https://lawinate-sc7t.onrender.com`.
+- Preferred: leave `REACT_APP_API_URL` unset in production so the frontend uses the same-origin `/api` proxy.
+- Optional alternative: set Netlify env variable `REACT_APP_API_URL=https://lawinate-sc7t.onrender.com` only if direct cross-origin requests are required and CORS is configured correctly.
 
 ## Notes
 

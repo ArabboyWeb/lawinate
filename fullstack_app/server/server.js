@@ -37,10 +37,17 @@ function getCorsConfig() {
     .split(',')
     .map((value) => value.trim())
     .filter(Boolean);
+  const allowedOrigins = new Set(configured);
 
   return {
-    origin: configured.length > 0 ? configured : true,
-    credentials: true
+    origin(origin, callback) {
+      if (!origin || configured.length === 0 || allowedOrigins.has(origin)) {
+        return callback(null, true);
+      }
+      return callback(null, false);
+    },
+    credentials: true,
+    optionsSuccessStatus: 204
   };
 }
 
@@ -58,7 +65,9 @@ async function createServer() {
   }
 
   const app = express();
-  app.use(cors(getCorsConfig()));
+  const corsConfig = getCorsConfig();
+  app.use(cors(corsConfig));
+  app.options('*', cors(corsConfig));
   app.use(express.json({ limit: '8mb' }));
   app.use(sanitizeBody);
   app.get('/api/db-test', async (_req, res) => {

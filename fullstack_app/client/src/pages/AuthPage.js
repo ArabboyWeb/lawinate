@@ -1,6 +1,7 @@
-﻿import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { LockKey, ShieldCheck, UserPlus } from '@phosphor-icons/react';
+import api from '../api';
 import { AuthContext } from '../contexts/AuthContext';
 
 const MAX_PROFILE_IMAGE_SIZE = 4 * 1024 * 1024;
@@ -26,6 +27,7 @@ const AuthPage = () => {
   const [loading, setLoading] = useState(false);
   const [googleLoading, setGoogleLoading] = useState(false);
   const [imageLoading, setImageLoading] = useState(false);
+  const [googleEnabled, setGoogleEnabled] = useState(true);
   const googleError = searchParams.get('error');
 
   const resolveErrorMessage = (err, fallback = 'Xatolik yuz berdi') => {
@@ -35,6 +37,23 @@ const AuthPage = () => {
     }
     return fallback;
   };
+
+  useEffect(() => {
+    let active = true;
+
+    api.get('/api/auth/providers')
+      .then((res) => {
+        if (!active) return;
+        setGoogleEnabled(Boolean(res.data?.google?.enabled));
+      })
+      .catch(() => {
+        // Keep the fallback button visible when provider status cannot be loaded.
+      });
+
+    return () => {
+      active = false;
+    };
+  }, []);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -297,17 +316,23 @@ const AuthPage = () => {
                 </button>
               </div>
 
-              <div className="form-group full" style={{ marginTop: 6 }}>
-                <button
-                  type="button"
-                  className="btn btn-soft"
-                  onClick={handleGoogleLogin}
-                  disabled={googleLoading}
-                  style={{ width: '100%' }}
-                >
-                  {googleLoading ? 'Google yo\'naltirilmoqda...' : 'Google bilan kirish'}
-                </button>
-              </div>
+              {googleEnabled ? (
+                <div className="form-group full" style={{ marginTop: 6 }}>
+                  <button
+                    type="button"
+                    className="btn btn-soft"
+                    onClick={handleGoogleLogin}
+                    disabled={googleLoading}
+                    style={{ width: '100%' }}
+                  >
+                    {googleLoading ? 'Google yo\'naltirilmoqda...' : 'Google bilan kirish'}
+                  </button>
+                </div>
+              ) : (
+                <p className="notice form-group full" style={{ marginTop: 6 }}>
+                  Google auth hozircha sozlanmagan.
+                </p>
+              )}
             </form>
           </article>
         </div>

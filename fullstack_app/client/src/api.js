@@ -1,20 +1,5 @@
 import axios from 'axios';
-
-// Centralized axios instance for API requests.  The base URL is
-// configurable via the REACT_APP_API_URL environment variable; if not
-// provided, it defaults to the local development server.  An
-// interceptor automatically attaches the JWT token from localStorage
-// (if present) to all outgoing requests.
-
-function resolveApiBaseUrl() {
-  const configured = String(process.env.REACT_APP_API_URL || '').trim();
-  if (configured) {
-    return configured.replace(/\/+$/, '');
-  }
-
-  // Full-stack default backend.
-  return 'https://lawinate-sc7t.onrender.com';
-}
+import { resolveApiBaseUrl, shouldResetSession } from './shared/apiBase';
 
 const API_BASE = resolveApiBaseUrl();
 
@@ -44,9 +29,9 @@ api.interceptors.response.use(
       return api(cfg);
     }
 
-    const status = error?.response?.status;
-    if (status === 401 || status === 403) {
+    if (shouldResetSession(error, ['/api/profile'])) {
       localStorage.removeItem('token');
+      localStorage.removeItem('admin_token');
       if (typeof window !== 'undefined') {
         const currentPath = window.location.pathname || '';
         const publicPaths = ['/', '/auth', '/ranking', '/library', '/tests'];

@@ -223,6 +223,10 @@ function getGoogleConfig() {
   };
 }
 
+function isGoogleAuthConfigured(config = getGoogleConfig()) {
+  return !!(config.clientId && config.clientSecret);
+}
+
 function getGoogleFrontendRedirectPath(value, fallback = '/dashboard') {
   const cleaned = sanitizeText(String(value || ''), 200);
   if (!cleaned || !cleaned.startsWith('/') || cleaned.startsWith('//')) {
@@ -396,9 +400,18 @@ function createPublicRouter(db, authRequired, checkDatabaseHealth = async () => 
     }
   });
 
+  router.get('/auth/providers', async (_req, res) => {
+    const googleConfig = getGoogleConfig();
+    res.json({
+      google: {
+        enabled: isGoogleAuthConfigured(googleConfig)
+      }
+    });
+  });
+
   router.get('/auth/google/url', async (req, res) => {
     const config = getGoogleConfig();
-    if (!config.clientId || !config.clientSecret) {
+    if (!isGoogleAuthConfigured(config)) {
       return res.status(503).json({ error: 'Google auth is not configured on server' });
     }
 
@@ -426,7 +439,7 @@ function createPublicRouter(db, authRequired, checkDatabaseHealth = async () => 
       return res.redirect(buildGoogleErrorRedirect('/auth', 'Invalid or expired Google state'));
     }
 
-    if (!config.clientId || !config.clientSecret) {
+    if (!isGoogleAuthConfigured(config)) {
       return res.redirect(buildGoogleErrorRedirect(stateRow.redirect_path, 'Google auth is not configured on server'));
     }
 
