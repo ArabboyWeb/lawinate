@@ -1,6 +1,4 @@
-const sqlite3 = require('sqlite3').verbose();
 const bcrypt = require('bcryptjs');
-const path = require('path');
 const { types } = require('pg');
 const { getPostgresPool } = require('./pg');
 const { nowIso, clampNumber, getTodayDate } = require('./utils');
@@ -17,9 +15,6 @@ types.setTypeParser(NUMERIC_OID, (value) => {
   return Number.isFinite(parsed) ? parsed : 0;
 });
 
-const DB_FILE = process.env.SQLITE_DB_FILE
-  ? path.resolve(process.env.SQLITE_DB_FILE)
-  : path.join(__dirname, '..', 'database.db');
 const ADMIN_SEED_EMAIL = process.env.ADMIN_SEED_EMAIL || 'admin@lawinate.local';
 const ADMIN_SEED_PASSWORD = process.env.ADMIN_SEED_PASSWORD || 'ChangeMe123!';
 const ADMIN_SEED_FORCE_SYNC = String(process.env.ADMIN_SEED_FORCE_SYNC || '').trim().toLowerCase() === 'true';
@@ -28,9 +23,16 @@ const MODERATOR_SEED_PASSWORD = process.env.MODERATOR_SEED_PASSWORD || 'Moderato
 const STUDENT_SEED_PASSWORD = process.env.STUDENT_SEED_PASSWORD || 'Student123$';
 
 function resolveDbClient() {
+  if (!String(process.env.DATABASE_URL || '').trim()) {
+    throw new Error('DATABASE_URL is required. This app is configured to use Neon/PostgreSQL only.');
+  }
+
   const explicit = String(process.env.DB_CLIENT || '').trim().toLowerCase();
-  if (explicit === 'sqlite' || explicit === 'postgres') return explicit;
-  return process.env.DATABASE_URL ? 'postgres' : 'sqlite';
+  if (explicit && explicit !== 'postgres') {
+    throw new Error('Only PostgreSQL/Neon is supported. Remove DB_CLIENT=sqlite and use DATABASE_URL.');
+  }
+
+  return 'postgres';
 }
 
 function isValidIdentifier(value) {
@@ -132,7 +134,7 @@ function toPostgresSchema(sql) {
   return converted;
 }
 
-function getSchemaSql(client) {
+function getSchemaSql() {
   const base = `
     CREATE TABLE IF NOT EXISTS users (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -406,70 +408,7 @@ function getSchemaSql(client) {
       ON analytics_events(session_id);
   `;
 
-  if (client === 'postgres') {
-    return toPostgresSchema(base);
-  }
-  return `PRAGMA foreign_keys = ON;\n${base}`;
-}
-
-function openDb(filename = DB_FILE) {
-  return new Promise((resolve, reject) => {
-    const rawDb = new sqlite3.Database(filename, (err) => {
-      if (err) return reject(err);
-      return resolve(wrapDb(rawDb));
-    });
-  });
-}
-
-function wrapDb(rawDb) {
-  return {
-    meta: { driver: 'sqlite' },
-    exec(sql) {
-      return new Promise((resolve, reject) => {
-        rawDb.exec(sql, (err) => (err ? reject(err) : resolve()));
-      });
-    },
-    get(sql, params = []) {
-      return new Promise((resolve, reject) => {
-        rawDb.get(sql, params, (err, row) => (err ? reject(err) : resolve(row)));
-      });
-    },
-    all(sql, params = []) {
-      return new Promise((resolve, reject) => {
-        rawDb.all(sql, params, (err, rows) => (err ? reject(err) : resolve(rows)));
-      });
-    },
-    run(sql, params = []) {
-      return new Promise((resolve, reject) => {
-        rawDb.run(sql, params, function runCb(err) {
-          if (err) return reject(err);
-          return resolve({ lastID: this.lastID, changes: this.changes });
-        });
-      });
-    },
-    prepare(sql) {
-      return new Promise((resolve, reject) => {
-        const stmt = rawDb.prepare(sql, (err) => {
-          if (err) return reject(err);
-          return resolve({
-            run(...params) {
-              return new Promise((resolveRun, rejectRun) => {
-                stmt.run(params, function stmtRun(runErr) {
-                  if (runErr) return rejectRun(runErr);
-                  return resolveRun({ lastID: this.lastID, changes: this.changes });
-                });
-              });
-            },
-            finalize() {
-              return new Promise((resolveFin, rejectFin) => {
-                stmt.finalize((finErr) => (finErr ? rejectFin(finErr) : resolveFin()));
-              });
-            }
-          });
-        });
-      });
-    }
-  };
+  return toPostgresSchema(base);
 }
 
 function wrapPostgresDb(pool) {
@@ -531,9 +470,9 @@ async function openPostgresDb() {
 
 async function initDb(options = {}) {
   const { skipSeed = false } = options;
-  const client = resolveDbClient();
-  const db = client === 'postgres' ? await openPostgresDb() : await openDb();
-  await db.exec(getSchemaSql(client));
+  resolveDbClient();
+  const db = await openPostgresDb();
+  await db.exec(getSchemaSql());
 
   await migrateLegacySchema(db);
   if (!skipSeed) {
@@ -544,36 +483,24 @@ async function initDb(options = {}) {
 
 async function getTableColumns(db, tableName) {
   if (!isValidIdentifier(tableName)) return [];
-
-  if (db.meta?.driver === 'postgres') {
-    const rows = await db.all(
-      `SELECT column_name AS name
-       FROM information_schema.columns
-       WHERE table_schema = 'public' AND table_name = ?
-       ORDER BY ordinal_position`,
-      [tableName]
-    );
-    return rows.map((r) => r.name);
-  }
-
-  const rows = await db.all(`PRAGMA table_info(${tableName})`);
+  const rows = await db.all(
+    `SELECT column_name AS name
+     FROM information_schema.columns
+     WHERE table_schema = 'public' AND table_name = ?
+     ORDER BY ordinal_position`,
+    [tableName]
+  );
   return rows.map((r) => r.name);
 }
 
 async function hasTable(db, tableName) {
   if (!isValidIdentifier(tableName)) return false;
-
-  if (db.meta?.driver === 'postgres') {
-    const row = await db.get(
-      `SELECT table_name AS name
-       FROM information_schema.tables
-       WHERE table_schema = 'public' AND table_name = ?`,
-      [tableName]
-    );
-    return !!row;
-  }
-
-  const row = await db.get(`SELECT name FROM sqlite_master WHERE type='table' AND name = ?`, [tableName]);
+  const row = await db.get(
+    `SELECT table_name AS name
+     FROM information_schema.tables
+     WHERE table_schema = 'public' AND table_name = ?`,
+    [tableName]
+  );
   return !!row;
 }
 
@@ -586,8 +513,8 @@ async function ensureColumn(db, tableName, columnName, columnSql) {
 }
 
 async function migrateLegacySchema(db) {
-  const timestampType = db.meta?.driver === 'postgres' ? 'TIMESTAMPTZ' : 'TEXT';
-  const autoPk = db.meta?.driver === 'postgres' ? 'BIGSERIAL PRIMARY KEY' : 'INTEGER PRIMARY KEY AUTOINCREMENT';
+  const timestampType = 'TIMESTAMPTZ';
+  const autoPk = 'BIGSERIAL PRIMARY KEY';
 
   // users table migration from previous versions
   await ensureColumn(db, 'users', 'role', `TEXT DEFAULT 'student'`);
@@ -789,33 +716,19 @@ async function seedData(db) {
     return { id: existing.id };
   }
 
-  if (db.meta?.driver === 'postgres') {
-    await db.run(
-      `INSERT INTO ai_settings (id, rate_limit_per_minute, safe_mode_enabled, updated_at)
-       VALUES (1, 30, 1, ?)
-       ON CONFLICT (id) DO NOTHING`,
-      [now]
-    );
+  await db.run(
+    `INSERT INTO ai_settings (id, rate_limit_per_minute, safe_mode_enabled, updated_at)
+     VALUES (1, 30, 1, ?)
+     ON CONFLICT (id) DO NOTHING`,
+    [now]
+  );
 
-    await db.run(
-      `INSERT INTO site_settings (id, site_name, maintenance_mode, allow_registration, updated_at)
-       VALUES (1, 'Lawinate.uz', 0, 1, ?)
-       ON CONFLICT (id) DO NOTHING`,
-      [now]
-    );
-  } else {
-    await db.run(
-      `INSERT OR IGNORE INTO ai_settings (id, rate_limit_per_minute, safe_mode_enabled, updated_at)
-       VALUES (1, 30, 1, ?)` ,
-      [now]
-    );
-
-    await db.run(
-      `INSERT OR IGNORE INTO site_settings (id, site_name, maintenance_mode, allow_registration, updated_at)
-       VALUES (1, 'Lawinate.uz', 0, 1, ?)` ,
-      [now]
-    );
-  }
+  await db.run(
+    `INSERT INTO site_settings (id, site_name, maintenance_mode, allow_registration, updated_at)
+     VALUES (1, 'Lawinate.uz', 0, 1, ?)
+     ON CONFLICT (id) DO NOTHING`,
+    [now]
+  );
 
   const admin = await ensureSeedUser({
     email: ADMIN_SEED_EMAIL,
@@ -1044,7 +957,6 @@ async function logAdminAction(db, adminId, action, entityType, entityId = null, 
 }
 
 module.exports = {
-  DB_FILE,
   ADMIN_SEED_EMAIL,
   initDb,
   logAdminAction

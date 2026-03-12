@@ -754,8 +754,47 @@ function createPublicRouter(db, authRequired, checkDatabaseHealth = async () => 
     });
   });
 
+  router.get('/tests/catalog/:category', async (req, res) => {
+    const category = sanitizeText(req.params.category, 40).toLowerCase();
+    if (!category || category === 'mixed') {
+      return res.json({ category, tests: [] });
+    }
+
+    const tests = await db.all(
+      `SELECT
+         t.id,
+         t.title,
+         t.category,
+         t.difficulty,
+         t.status,
+         COUNT(q.id) as question_count
+       FROM tests t
+       LEFT JOIN questions q
+         ON q.test_id = t.id
+        AND q.status = 'published'
+       WHERE t.category = ? AND t.status = 'published'
+       GROUP BY t.id, t.title, t.category, t.difficulty, t.status
+       HAVING COUNT(q.id) > 0
+       ORDER BY t.updated_at DESC, t.id DESC`,
+      [category]
+    );
+
+    res.json({
+      category,
+      tests: tests.map((item) => ({
+        id: item.id,
+        title: item.title,
+        category: item.category,
+        difficulty: item.difficulty,
+        status: item.status,
+        question_count: item.question_count || 0
+      }))
+    });
+  });
+
   router.get('/tests/:category', async (req, res) => {
     const category = sanitizeText(req.params.category, 40).toLowerCase();
+    const requestedTestId = clampNumber(req.query.test_id, 1, Number.MAX_SAFE_INTEGER, 0);
     let rows;
 
     if (category === 'mixed') {
@@ -767,12 +806,20 @@ function createPublicRouter(db, authRequired, checkDatabaseHealth = async () => 
       );
       rows = shuffleArray(rows).slice(0, 10);
     } else {
+      const where = ['t.category = ?', `q.status = 'published'`, `t.status = 'published'`];
+      const params = [category];
+
+      if (requestedTestId) {
+        where.push('t.id = ?');
+        params.push(requestedTestId);
+      }
+
       rows = await db.all(
         `SELECT q.id, q.question_text, q.option_a, q.option_b, q.option_c, q.option_d
          FROM questions q
          JOIN tests t ON t.id = q.test_id
-         WHERE t.category = ? AND q.status = 'published' AND t.status = 'published'` ,
-        [category]
+         WHERE ${where.join(' AND ')}` ,
+        params
       );
     }
 
@@ -1004,7 +1051,7 @@ function createPublicRouter(db, authRequired, checkDatabaseHealth = async () => 
     if (!prompt) return res.status(400).json({ error: 'Prompt is required' });
 
     if (!OPENROUTER_API_KEY) {
-      return res.status(503).json({ error: 'AI provider key is missing' });
+      return res.status(503).json({ error: 'AI provider key is missing. Set OPENROUTER_API_KEY on the server.' });
     }
 
     const model = getModelById(sanitizeText(req.body.model, 200));

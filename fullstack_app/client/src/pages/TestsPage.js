@@ -1,4 +1,4 @@
-﻿import React, { useContext, useEffect, useMemo, useState } from 'react';
+import React, { useContext, useEffect, useMemo, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import {
   ArrowsClockwise,
@@ -7,7 +7,7 @@ import {
   Gavel,
   ListChecks,
   NotePencil,
-  Shuffle,
+  Shuffle
 } from '@phosphor-icons/react';
 import { AuthContext } from '../contexts/AuthContext';
 import api from '../api';
@@ -19,13 +19,17 @@ const CATEGORIES = [
   { key: 'fuqarolik', title: 'Fuqarolik huquqi testlari', icon: Exam },
   { key: 'dtm', title: 'DTM testlari', icon: GraduationCap },
   { key: 'mehnat', title: 'Mehnat huquqi testlari', icon: ListChecks },
-  { key: 'mixed', title: 'Aralash testlar', icon: Shuffle },
+  { key: 'mixed', title: 'Aralash testlar', icon: Shuffle }
 ];
 
 const TestsPage = () => {
   const { category } = useParams();
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
+
+  const [availableTests, setAvailableTests] = useState([]);
+  const [selectedTestId, setSelectedTestId] = useState('');
+  const [catalogLoading, setCatalogLoading] = useState(false);
 
   const [questions, setQuestions] = useState([]);
   const [answers, setAnswers] = useState([]);
@@ -34,31 +38,98 @@ const TestsPage = () => {
   const [result, setResult] = useState(null);
   const [emptyState, setEmptyState] = useState(false);
 
+  const isMixedCategory = category === 'mixed';
+
+  useEffect(() => {
+    if (!category || isMixedCategory) {
+      setAvailableTests([]);
+      setSelectedTestId('');
+      setCatalogLoading(false);
+      return;
+    }
+
+    let active = true;
+    setCatalogLoading(true);
+
+    api
+      .get(`/api/tests/catalog/${category}`)
+      .then((res) => {
+        if (!active) return;
+        const tests = res.data.tests || [];
+        setAvailableTests(tests);
+        setEmptyState(tests.length === 0);
+        setSelectedTestId((prev) => {
+          if (tests.some((item) => String(item.id) === String(prev))) {
+            return prev;
+          }
+          return tests[0] ? String(tests[0].id) : '';
+        });
+      })
+      .catch((err) => {
+        if (!active) return;
+        setAvailableTests([]);
+        setEmptyState(true);
+        setError(err.response?.data?.error || 'Testlar ro`yxatini olishda xatolik');
+      })
+      .finally(() => {
+        if (active) setCatalogLoading(false);
+      });
+
+    return () => {
+      active = false;
+    };
+  }, [category, isMixedCategory]);
+
   useEffect(() => {
     if (!category) return;
 
+    if (!user) {
+      setQuestions([]);
+      setAnswers([]);
+      setLoading(false);
+      setResult(null);
+      return;
+    }
+
+    if (!isMixedCategory && !selectedTestId) {
+      setQuestions([]);
+      setAnswers([]);
+      setLoading(false);
+      return;
+    }
+
     setLoading(true);
     setError('');
-    setEmptyState(false);
     setResult(null);
 
+    const params = !isMixedCategory && selectedTestId
+      ? { test_id: selectedTestId }
+      : undefined;
+
     api
-      .get(`/api/tests/${category}`)
+      .get(`/api/tests/${category}`, { params })
       .then((res) => {
         const incoming = res.data.questions || [];
         setQuestions(incoming);
         setAnswers(new Array(incoming.length).fill(null));
-        setEmptyState(incoming.length === 0);
+        setEmptyState(incoming.length === 0 && (isMixedCategory || availableTests.length === 0));
       })
       .catch((err) => {
+        setQuestions([]);
+        setAnswers([]);
         setError(err.response?.data?.error || 'Savollarni olishda xatolik');
       })
       .finally(() => setLoading(false));
-  }, [category]);
+  }, [availableTests.length, category, isMixedCategory, selectedTestId, user]);
 
   const categoryInfo = useMemo(
     () => CATEGORIES.find((item) => item.key === category),
     [category]
+  );
+
+  const selectedTest = useMemo(
+    () => availableTests.find((item) => String(item.id) === String(selectedTestId)) || null,
+    [availableTests, selectedTestId]
   );
 
   const handleSelect = (questionIndex, optionIndex) => {
@@ -86,12 +157,14 @@ const TestsPage = () => {
     try {
       const res = await api.post(`/api/tests/${category}/submit`, {
         answers,
-        question_ids: questions.map((q) => q.id).filter(Boolean),
+        question_ids: questions.map((q) => q.id).filter(Boolean)
       });
       setResult(res.data);
       trackEvent('test_submit', {
         meta: {
           category,
+          test_id: selectedTestId || '',
+          test_title: selectedTest?.title || '',
           score: res.data?.score || 0,
           correct: res.data?.correct || 0,
           total: res.data?.total || 0,
@@ -105,13 +178,68 @@ const TestsPage = () => {
     }
   };
 
+  const renderCatalog = () => {
+    if (isMixedCategory) return null;
+
+    return (
+      <section className="glass-card card-pad">
+        <div className="flex items-center justify-between" style={{ gap: 12, flexWrap: 'wrap' }}>
+          <div>
+            <h2 style={{ margin: 0, fontSize: '1.1rem' }}>Mavjud testlar</h2>
+            <p className="subtle" style={{ marginTop: 8 }}>
+              Import qilingan testlar shu yerda nomi bilan ko&apos;rinadi.
+            </p>
+          </div>
+          {catalogLoading && <span className="subtle">Yuklanmoqda...</span>}
+        </div>
+
+        {availableTests.length > 0 ? (
+          <div className="category-grid" style={{ marginTop: 18 }}>
+            {availableTests.map((test) => (
+              <button
+                key={test.id}
+                type="button"
+                className="category-item"
+                onClick={() => {
+                  if (!user) {
+                    navigate('/auth');
+                    return;
+                  }
+                  setSelectedTestId(String(test.id));
+                }}
+                style={{
+                  textAlign: 'left',
+                  borderColor: String(test.id) === String(selectedTestId) ? 'var(--law-blue)' : undefined
+                }}
+              >
+                <div className="icon-badge blue" style={{ marginBottom: 10 }}>
+                  <ListChecks size={22} weight="fill" />
+                </div>
+                <h3 style={{ margin: 0 }}>{test.title}</h3>
+                <p className="subtle" style={{ marginTop: 8 }}>
+                  {test.question_count} ta savol | {test.difficulty}
+                </p>
+              </button>
+            ))}
+          </div>
+        ) : (
+          !catalogLoading && (
+            <div className="notice" style={{ marginTop: 16 }}>
+              Bu kategoriyada user uchun ko&apos;rinadigan test topilmadi.
+            </div>
+          )
+        )}
+      </section>
+    );
+  };
+
   if (!category) {
     return (
       <div className="site-container page-stack">
         <section className="glass-card card-pad">
           <h1 className="section-title">Test kategoriyalarini tanlang</h1>
           <p className="subtle" style={{ marginTop: 8 }}>
-            Har bir bo'lim bo'yicha savollar to'plami mavjud. Aralash test ham mavjud.
+            Har bir bo&apos;lim bo&apos;yicha savollar to&apos;plami mavjud. Aralash test ham mavjud.
           </p>
         </section>
 
@@ -158,7 +286,7 @@ const TestsPage = () => {
     return (
       <div className="site-container page-stack">
         <section className="glass-card card-pad">
-          <h1 className="section-title">Kirish talab etiladi</h1>
+          <h1 className="section-title">{categoryInfo?.title || 'Test'}</h1>
           <p className="subtle" style={{ marginTop: 8 }}>
             Test ishlash va natijani saqlash uchun tizimga kiring.
           </p>
@@ -166,6 +294,7 @@ const TestsPage = () => {
             <Link to="/auth" className="btn btn-primary">Kirish</Link>
           </div>
         </section>
+        {renderCatalog()}
       </div>
     );
   }
@@ -184,7 +313,7 @@ const TestsPage = () => {
         <section className="glass-card card-pad">
           <h1 className="section-title">Natijangiz</h1>
           <ul className="result-list">
-            <li className="result-item"><b>To'g'ri javoblar:</b> {result.correct} / {result.total}</li>
+            <li className="result-item"><b>To&apos;g&apos;ri javoblar:</b> {result.correct} / {result.total}</li>
             <li className="result-item"><b>Foiz:</b> {result.score}%</li>
             <li className="result-item"><b>Olingan ball:</b> {result.points_earned}</li>
             <li className="result-item"><b>Streak:</b> {result.streak_days} kun</li>
@@ -206,7 +335,7 @@ const TestsPage = () => {
                         : 'Javob belgilanmagan'}
                     </p>
                     <p className="mistake-answer correct">
-                      <b>To'g'ri javob:</b> {mistake.correct_option}) {mistake.correct_answer}
+                      <b>To&apos;g&apos;ri javob:</b> {mistake.correct_option}) {mistake.correct_answer}
                     </p>
                   </article>
                 ))}
@@ -232,7 +361,9 @@ const TestsPage = () => {
       <section className="glass-card card-pad">
         <h1 className="section-title">{categoryInfo?.title || 'Test'}</h1>
         <p className="subtle" style={{ marginTop: 8 }}>
-          Savollar soni: {questions.length}
+          {selectedTest
+            ? `${selectedTest.title} | ${questions.length} ta savol`
+            : `Savollar soni: ${questions.length}`}
         </p>
         <div className="actions" style={{ marginTop: 12 }}>
           <Link to="/blog" className="btn btn-soft">Blog postlarni ko&apos;rish</Link>
@@ -242,6 +373,19 @@ const TestsPage = () => {
         </div>
         {error && <p className="notice error" style={{ marginTop: 10 }}>{error}</p>}
       </section>
+
+      {renderCatalog()}
+
+      {!isMixedCategory && selectedTestId && (
+        <section className="glass-card card-pad">
+          <h2 style={{ margin: 0, fontSize: '1.05rem' }}>
+            Tanlangan test: {selectedTest?.title || 'Test'}
+          </h2>
+          <p className="subtle" style={{ marginTop: 8 }}>
+            Shu testning savollari quyida ko&apos;rsatiladi.
+          </p>
+        </section>
+      )}
 
       <section className="page-stack">
         {questions.map((q, qIndex) => (
@@ -269,7 +413,7 @@ const TestsPage = () => {
 
       {emptyState && (
         <section className="glass-card card-pad">
-          Bu bo'limda hozircha e'lon qilingan savollar yo'q.
+          Bu bo&apos;limda hozircha e&apos;lon qilingan savollar yo&apos;q.
         </section>
       )}
 

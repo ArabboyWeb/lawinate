@@ -25,8 +25,13 @@ Set real values before production:
 - `APP_BASE_URL` and/or `CLIENT_URL`
 - `CORS_ORIGIN` (comma-separated allowed origins)
 - `DATABASE_URL` (required for Neon/PostgreSQL production)
-- `DB_CLIENT` (optional override, default: `postgres` when `DATABASE_URL` is set)
-- `SQLITE_DB_FILE` (optional fallback only when running SQLite mode)
+- `DB_CLIENT=postgres`
+
+Production safety rule:
+
+- use external PostgreSQL/Neon via `DATABASE_URL`
+- backend redeploy is safe only when app data lives in PostgreSQL/Neon
+- app runtime is PostgreSQL-only now; local SQLite fallback is disabled
 
 ## 3. Build frontend
 
@@ -43,21 +48,6 @@ npm --prefix fullstack_app/server start
 ## 5. Health check
 
 `GET /api/health` should return status `ok`.
-
-## 6. Move old SQLite data to Neon (one-time)
-
-If your old data is in a local `database.db`, run:
-
-```bash
-set DATABASE_URL=postgresql://...
-set SQLITE_SOURCE_FILE=C:\path\to\database.db
-npm --prefix fullstack_app/server run db:migrate:sqlite-to-postgres
-```
-
-Notes:
-
-- migration uses `ON CONFLICT DO NOTHING` (safe to re-run)
-- after migration, restart backend with `DB_CLIENT=postgres`
 
 ## Render Backend Deploy
 
@@ -96,7 +86,12 @@ Recommended production values:
 - `DATABASE_URL=postgresql://...` (Neon)
 - `DB_CLIENT=postgres`
 - `GOOGLE_REDIRECT_URI=https://lawinate-sc7t.onrender.com/api/auth/google/callback`
-- `SQLITE_DB_FILE=/var/data/database.db` (optional fallback mode only)
+
+Important:
+
+- frontend redeploy on Netlify does not delete PostgreSQL data
+- backend redeploy on Render also does not delete PostgreSQL data
+- this app now refuses to start if `DATABASE_URL` is missing or `DB_CLIENT` is not `postgres`
 
 ## Netlify Frontend Deploy
 

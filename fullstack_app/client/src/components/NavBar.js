@@ -22,8 +22,7 @@ const NavBar = () => {
   const { user, logout } = useContext(AuthContext);
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
-  const hasAdminSession = ['admin', 'moderator'].includes(user?.role)
-    || (typeof window !== 'undefined' && !!localStorage.getItem('admin_token'));
+  const hasAdminAccess = ['admin', 'moderator'].includes(user?.role);
   const profileLabel = user?.full_name?.split(' ')[0] || 'Profil';
 
   const handleLogout = () => {
@@ -65,7 +64,7 @@ const NavBar = () => {
             <Sparkle size={16} weight="bold" />
             AI Assistant
           </NavLink>
-          {hasAdminSession && (
+          {hasAdminAccess && (
             <NavLink
               to="/admin/dashboard"
               className={({ isActive }) =>
@@ -168,7 +167,7 @@ const NavBar = () => {
           AI Assistant
         </NavLink>
 
-        {hasAdminSession && (
+        {hasAdminAccess && (
           <NavLink
             to="/admin/dashboard"
             onClick={closeMenu}

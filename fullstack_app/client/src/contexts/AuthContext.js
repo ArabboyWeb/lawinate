@@ -24,6 +24,8 @@ export const AuthProvider = ({ children }) => {
     return JSON.parse(jsonText);
   };
 
+  const getStoredToken = () => localStorage.getItem('token') || localStorage.getItem('admin_token');
+
   const applyAuthToken = (token) => {
     if (!token) return;
     localStorage.setItem('token', token);
@@ -54,6 +56,7 @@ export const AuthProvider = ({ children }) => {
 
     if (error) {
       localStorage.removeItem('token');
+      localStorage.removeItem('admin_token');
       setUser(null);
       const authUrl = new URL('/auth', window.location.origin);
       authUrl.searchParams.set('error', error);
@@ -77,6 +80,7 @@ export const AuthProvider = ({ children }) => {
         return true;
       } catch (_err) {
         localStorage.removeItem('token');
+        localStorage.removeItem('admin_token');
         setUser(null);
         const authUrl = new URL('/auth', window.location.origin);
         authUrl.searchParams.set('error', 'Google login data is invalid');
@@ -97,7 +101,7 @@ export const AuthProvider = ({ children }) => {
       return;
     }
 
-    const token = localStorage.getItem('token');
+    const token = getStoredToken();
     if (token) {
       api
         .get('/api/profile')
@@ -112,6 +116,7 @@ export const AuthProvider = ({ children }) => {
         })
         .catch(() => {
           localStorage.removeItem('token');
+          localStorage.removeItem('admin_token');
           setUser(null);
         })
         .finally(() => setLoading(false));

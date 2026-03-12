@@ -27,14 +27,20 @@ const createAdminSettingsRouter = require('./src/routes/adminSettings');
 const PORT = process.env.PORT || 3001;
 
 function validateEnv() {
-  if (process.env.NODE_ENV !== 'production') return;
-
   const missing = [];
   if (!process.env.JWT_SECRET) missing.push('JWT_SECRET');
-  if (!process.env.APP_BASE_URL && !process.env.CLIENT_URL) missing.push('APP_BASE_URL or CLIENT_URL');
+  if (!process.env.DATABASE_URL) missing.push('DATABASE_URL');
+  if (process.env.NODE_ENV === 'production' && !process.env.APP_BASE_URL && !process.env.CLIENT_URL) {
+    missing.push('APP_BASE_URL or CLIENT_URL');
+  }
 
   if (missing.length > 0) {
-    throw new Error(`Missing required environment variables for production: ${missing.join(', ')}`);
+    throw new Error(`Missing required environment variables: ${missing.join(', ')}`);
+  }
+
+  const explicitDbClient = String(process.env.DB_CLIENT || '').trim().toLowerCase();
+  if (explicitDbClient && explicitDbClient !== 'postgres') {
+    throw new Error('Only PostgreSQL/Neon is supported. Remove DB_CLIENT=sqlite and use DATABASE_URL.');
   }
 }
 
@@ -60,14 +66,10 @@ function getCorsConfig() {
 async function createServer() {
   validateEnv();
   const db = await initDb();
-  const dbDriver = db.meta?.driver || 'sqlite';
+  await checkPostgresConnection();
 
-  if (dbDriver === 'postgres') {
-    await checkPostgresConnection();
-  } else if (process.env.DATABASE_URL) {
-    console.warn('DB_CLIENT=sqlite is active. PostgreSQL connection checks are skipped.');
-  } else if (process.env.NODE_ENV === 'production') {
-    console.warn('DATABASE_URL is not set. PostgreSQL checks are disabled.');
+  if (!process.env.OPENROUTER_API_KEY) {
+    console.warn('OPENROUTER_API_KEY is not set. AI endpoint /api/ai will return 503 until you add a real key.');
   }
 
   const app = express();
@@ -100,32 +102,10 @@ async function createServer() {
     '/api',
     createPublicRouter(db, authRequired, async () => {
       await db.get('SELECT 1 AS ok');
-
-      if (dbDriver === 'postgres') {
-        const postgres = await checkPostgresConnection();
-        return {
-          primary: 'postgres',
-          postgres
-        };
-      }
-
-      if (process.env.DATABASE_URL) {
-        const postgres = await checkPostgresConnection();
-        return {
-          primary: 'sqlite',
-          sqlite: { ok: true },
-          postgres
-        };
-      }
-
+      const postgres = await checkPostgresConnection();
       return {
-        primary: 'sqlite',
-        sqlite: { ok: true },
-        postgres: {
-          ok: null,
-          skipped: true,
-          message: 'DATABASE_URL is not configured'
-        }
+        primary: 'postgres',
+        postgres
       };
     })
   );
