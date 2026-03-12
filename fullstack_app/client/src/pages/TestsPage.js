@@ -11,6 +11,7 @@ import {
 } from '@phosphor-icons/react';
 import { AuthContext } from '../contexts/AuthContext';
 import api from '../api';
+import { trackEvent } from '../shared/analytics';
 
 const CATEGORIES = [
   { key: 'konstitutsiya', title: 'Konstitutsiya testlari', icon: ListChecks },
@@ -88,6 +89,15 @@ const TestsPage = () => {
         question_ids: questions.map((q) => q.id).filter(Boolean),
       });
       setResult(res.data);
+      trackEvent('test_submit', {
+        meta: {
+          category,
+          score: res.data?.score || 0,
+          correct: res.data?.correct || 0,
+          total: res.data?.total || 0,
+          points_earned: res.data?.points_earned || 0
+        }
+      });
     } catch (err) {
       setError(err.response?.data?.error || 'Natijani yuborishda xatolik');
     } finally {

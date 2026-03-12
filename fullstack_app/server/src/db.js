@@ -370,6 +370,39 @@ function getSchemaSql(client) {
       updated_at TEXT DEFAULT CURRENT_TIMESTAMP,
       FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE
     );
+
+    CREATE TABLE IF NOT EXISTS analytics_events (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      user_id INTEGER,
+      visitor_id TEXT NOT NULL,
+      session_id TEXT NOT NULL,
+      event_name TEXT NOT NULL,
+      path TEXT NOT NULL,
+      page_title TEXT,
+      referrer TEXT,
+      source TEXT,
+      medium TEXT,
+      campaign TEXT,
+      term TEXT,
+      content TEXT,
+      device_type TEXT,
+      browser TEXT,
+      os TEXT,
+      meta_json TEXT,
+      created_at TEXT DEFAULT CURRENT_TIMESTAMP,
+      FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE SET NULL
+    );
+
+    CREATE INDEX IF NOT EXISTS idx_analytics_events_created_at
+      ON analytics_events(created_at);
+    CREATE INDEX IF NOT EXISTS idx_analytics_events_event_name
+      ON analytics_events(event_name);
+    CREATE INDEX IF NOT EXISTS idx_analytics_events_path
+      ON analytics_events(path);
+    CREATE INDEX IF NOT EXISTS idx_analytics_events_visitor_id
+      ON analytics_events(visitor_id);
+    CREATE INDEX IF NOT EXISTS idx_analytics_events_session_id
+      ON analytics_events(session_id);
   `;
 
   if (client === 'postgres') {
@@ -643,6 +676,45 @@ async function migrateLegacySchema(db) {
       );
     `);
   }
+
+  if (!(await hasTable(db, 'analytics_events'))) {
+    await db.exec(`
+      CREATE TABLE analytics_events (
+        id ${autoPk},
+        user_id INTEGER,
+        visitor_id TEXT NOT NULL,
+        session_id TEXT NOT NULL,
+        event_name TEXT NOT NULL,
+        path TEXT NOT NULL,
+        page_title TEXT,
+        referrer TEXT,
+        source TEXT,
+        medium TEXT,
+        campaign TEXT,
+        term TEXT,
+        content TEXT,
+        device_type TEXT,
+        browser TEXT,
+        os TEXT,
+        meta_json TEXT,
+        created_at ${timestampType} DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE SET NULL
+      );
+    `);
+  }
+
+  await db.exec(`
+    CREATE INDEX IF NOT EXISTS idx_analytics_events_created_at
+      ON analytics_events(created_at);
+    CREATE INDEX IF NOT EXISTS idx_analytics_events_event_name
+      ON analytics_events(event_name);
+    CREATE INDEX IF NOT EXISTS idx_analytics_events_path
+      ON analytics_events(path);
+    CREATE INDEX IF NOT EXISTS idx_analytics_events_visitor_id
+      ON analytics_events(visitor_id);
+    CREATE INDEX IF NOT EXISTS idx_analytics_events_session_id
+      ON analytics_events(session_id);
+  `);
 
   // books table migration from old schema (link -> file_url)
   await ensureColumn(db, 'books', 'file_url', 'TEXT');

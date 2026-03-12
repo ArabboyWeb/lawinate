@@ -1,6 +1,7 @@
 ﻿import React, { useEffect, useState } from 'react';
 import { Books, DownloadSimple, MagnifyingGlass } from '@phosphor-icons/react';
 import api from '../api';
+import { trackEvent } from '../shared/analytics';
 
 const CATEGORIES = [
   { key: '', title: 'Barchasi' },
@@ -130,7 +131,21 @@ const LibraryPage = () => {
 
                 <footer style={{ marginTop: 'auto' }}>
                   {book.link ? (
-                    <a href={book.link} target="_blank" rel="noopener noreferrer" className="btn btn-soft">
+                    <a
+                      href={book.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn btn-soft"
+                      onClick={() => {
+                        trackEvent('book_download', {
+                          meta: {
+                            book_id: book.id,
+                            title: book.title,
+                            category: book.category
+                          }
+                        });
+                      }}
+                    >
                       <DownloadSimple size={16} weight="bold" /> Yuklab olish
                     </a>
                   ) : (

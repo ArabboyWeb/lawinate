@@ -1,5 +1,6 @@
 import React, { createContext, useState, useEffect } from 'react';
 import api from '../api';
+import { trackEvent } from '../shared/analytics';
 
 // Authentication context encapsulates the logic for logging in,
 // registering, storing and removing the JWT token and user object.
@@ -67,6 +68,12 @@ export const AuthProvider = ({ children }) => {
 
         const cleanUrl = new URL('/dashboard', window.location.origin);
         window.history.replaceState({}, '', cleanUrl.toString());
+        trackEvent('login_success', {
+          path: '/dashboard',
+          meta: {
+            provider: 'google'
+          }
+        });
         return true;
       } catch (_err) {
         localStorage.removeItem('token');

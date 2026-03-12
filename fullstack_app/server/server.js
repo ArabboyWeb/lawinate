@@ -4,9 +4,15 @@ const express = require('express');
 const cors = require('cors');
 const { query } = require('./db');
 const { initDb, ADMIN_SEED_EMAIL } = require('./src/db');
-const { sanitizeBody, createAuth, errorHandler, asyncHandler } = require('./src/middleware');
+const {
+  sanitizeBody,
+  createAuth,
+  createOptionalAuth,
+  errorHandler
+} = require('./src/middleware');
 const { checkPostgresConnection } = require('./src/pg');
 
+const createAnalyticsRouter = require('./src/routes/analytics');
 const createPublicRouter = require('./src/routes/public');
 const createPublicChatRouter = require('./src/routes/publicChat');
 const createAdminAuthRouter = require('./src/routes/adminAuth');
@@ -87,7 +93,9 @@ async function createServer() {
 
   const authRequired = createAuth(db);
   const adminRequired = createAuth(db, { adminOnly: true });
+  const optionalAuth = createOptionalAuth(db);
 
+  app.use('/api/analytics', createAnalyticsRouter(db, optionalAuth));
   app.use(
     '/api',
     createPublicRouter(db, authRequired, async () => {

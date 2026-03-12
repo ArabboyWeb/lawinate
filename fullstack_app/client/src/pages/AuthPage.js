@@ -3,6 +3,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import { LockKey, ShieldCheck, UserPlus } from '@phosphor-icons/react';
 import api from '../api';
 import { AuthContext } from '../contexts/AuthContext';
+import { trackEvent } from '../shared/analytics';
 
 const MAX_PROFILE_IMAGE_SIZE = 4 * 1024 * 1024;
 
@@ -96,8 +97,18 @@ const AuthPage = () => {
     try {
       if (mode === 'login') {
         await login(form.email, form.password);
+        trackEvent('login_success', {
+          meta: {
+            provider: 'local'
+          }
+        });
       } else {
         await register(form);
+        trackEvent('register_success', {
+          meta: {
+            provider: 'local'
+          }
+        });
       }
       navigate('/dashboard');
     } catch (err) {
@@ -112,6 +123,7 @@ const AuthPage = () => {
     setGoogleLoading(true);
 
     try {
+      trackEvent('login_google_click');
       await loginWithGoogle('/dashboard');
     } catch (err) {
       setError(resolveErrorMessage(err, 'Google login failed'));

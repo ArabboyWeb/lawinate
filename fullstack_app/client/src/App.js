@@ -1,5 +1,6 @@
 ﻿import React, { useContext } from 'react';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
+import AnalyticsTracker from './components/AnalyticsTracker';
 import NavBar from './components/NavBar';
 import { AuthContext, AuthProvider } from './contexts/AuthContext';
 import AiPage from './pages/AiPage';
@@ -103,6 +104,7 @@ const AppRouter = () => {
 function App() {
   return (
     <AuthProvider>
+      <AnalyticsTracker />
       <AppRouter />
     </AuthProvider>
   );

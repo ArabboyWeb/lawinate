@@ -53,6 +53,128 @@ function createAdminDashboardRouter(db) {
       ORDER BY count DESC
     `);
 
+    const trafficSummary = await db.get(`
+      SELECT
+        COUNT(*) as tracked_events,
+        COALESCE(SUM(CASE WHEN event_name = 'page_view' THEN 1 ELSE 0 END), 0) as page_views,
+        COUNT(DISTINCT CASE
+          WHEN COALESCE(CAST(user_id AS TEXT), visitor_id, '') <> ''
+          THEN COALESCE(CAST(user_id AS TEXT), visitor_id)
+          ELSE NULL
+        END) as unique_visitors,
+        COUNT(DISTINCT CASE
+          WHEN COALESCE(session_id, '') <> ''
+          THEN session_id
+          ELSE NULL
+        END) as sessions
+      FROM analytics_events
+      WHERE DATE(created_at) >= ?
+    `, [fromDay]);
+
+    const trafficRows = await db.all(`
+      SELECT
+        DATE(created_at) as day,
+        COALESCE(SUM(CASE WHEN event_name = 'page_view' THEN 1 ELSE 0 END), 0) as page_views,
+        COUNT(DISTINCT CASE
+          WHEN COALESCE(CAST(user_id AS TEXT), visitor_id, '') <> ''
+          THEN COALESCE(CAST(user_id AS TEXT), visitor_id)
+          ELSE NULL
+        END) as visitors,
+        COUNT(DISTINCT CASE
+          WHEN COALESCE(session_id, '') <> ''
+          THEN session_id
+          ELSE NULL
+        END) as sessions
+      FROM analytics_events
+      WHERE DATE(created_at) >= ?
+      GROUP BY DATE(created_at)
+      ORDER BY DATE(created_at) ASC
+    `, [fromDay]);
+
+    const trafficTemplate = last7Days.reduce((acc, day) => {
+      acc[day] = { day, page_views: 0, visitors: 0, sessions: 0 };
+      return acc;
+    }, {});
+
+    trafficRows.forEach((row) => {
+      trafficTemplate[row.day] = {
+        day: row.day,
+        page_views: row.page_views || 0,
+        visitors: row.visitors || 0,
+        sessions: row.sessions || 0
+      };
+    });
+
+    const topPages = await db.all(`
+      SELECT
+        path,
+        COUNT(*) as views,
+        COUNT(DISTINCT CASE
+          WHEN COALESCE(CAST(user_id AS TEXT), visitor_id, '') <> ''
+          THEN COALESCE(CAST(user_id AS TEXT), visitor_id)
+          ELSE NULL
+        END) as visitors
+      FROM analytics_events
+      WHERE event_name = 'page_view' AND DATE(created_at) >= ?
+      GROUP BY path
+      ORDER BY views DESC, visitors DESC, path ASC
+      LIMIT 8
+    `, [fromDay]);
+
+    const topSources = await db.all(`
+      SELECT
+        CASE
+          WHEN source IS NULL OR TRIM(source) = '' THEN 'direct'
+          ELSE source
+        END as source_name,
+        CASE
+          WHEN medium IS NULL OR TRIM(medium) = '' THEN '(none)'
+          ELSE medium
+        END as medium_name,
+        COUNT(*) as visits
+      FROM analytics_events
+      WHERE event_name = 'page_view' AND DATE(created_at) >= ?
+      GROUP BY
+        CASE
+          WHEN source IS NULL OR TRIM(source) = '' THEN 'direct'
+          ELSE source
+        END,
+        CASE
+          WHEN medium IS NULL OR TRIM(medium) = '' THEN '(none)'
+          ELSE medium
+        END
+      ORDER BY visits DESC, source_name ASC, medium_name ASC
+      LIMIT 8
+    `, [fromDay]);
+
+    const topReferrers = await db.all(`
+      SELECT referrer, COUNT(*) as views
+      FROM analytics_events
+      WHERE event_name = 'page_view'
+        AND DATE(created_at) >= ?
+        AND referrer IS NOT NULL
+        AND TRIM(referrer) <> ''
+      GROUP BY referrer
+      ORDER BY views DESC, referrer ASC
+      LIMIT 8
+    `, [fromDay]);
+
+    const topEvents = await db.all(`
+      SELECT event_name, COUNT(*) as count
+      FROM analytics_events
+      WHERE event_name <> 'page_view' AND DATE(created_at) >= ?
+      GROUP BY event_name
+      ORDER BY count DESC, event_name ASC
+      LIMIT 8
+    `, [fromDay]);
+
+    const recentTraffic = await db.all(`
+      SELECT event_name, path, source, medium, referrer, created_at
+      FROM analytics_events
+      ORDER BY created_at DESC
+      LIMIT 12
+    `);
+
     const recent = await db.all(`
       SELECT l.id, l.action, l.entity_type, l.entity_id, l.meta_json, l.created_at,
              u.full_name as admin_name, u.email as admin_email
@@ -72,6 +194,44 @@ function createAdminDashboardRouter(db) {
       charts: {
         daily_active_users: Object.entries(template).map(([day, users]) => ({ day, users })),
         tests_by_category: testsByCategory.map((item) => ({ category: item.category, count: item.count }))
+      },
+      traffic: {
+        kpi: {
+          unique_visitors: trafficSummary?.unique_visitors || 0,
+          page_views: trafficSummary?.page_views || 0,
+          sessions: trafficSummary?.sessions || 0,
+          tracked_events: trafficSummary?.tracked_events || 0
+        },
+        charts: {
+          daily: Object.values(trafficTemplate),
+          top_pages: topPages.map((item) => ({
+            path: item.path,
+            views: item.views || 0,
+            visitors: item.visitors || 0
+          })),
+          top_sources: topSources.map((item) => ({
+            source: item.source_name,
+            medium: item.medium_name,
+            label: `${item.source_name} / ${item.medium_name}`,
+            visits: item.visits || 0
+          })),
+          top_referrers: topReferrers.map((item) => ({
+            referrer: item.referrer,
+            views: item.views || 0
+          })),
+          top_events: topEvents.map((item) => ({
+            event_name: item.event_name,
+            count: item.count || 0
+          }))
+        },
+        recent_events: recentTraffic.map((item) => ({
+          event_name: item.event_name,
+          path: item.path,
+          source: item.source || 'direct',
+          medium: item.medium || '(none)',
+          referrer: item.referrer || '',
+          created_at: item.created_at
+        }))
       },
       recent_activity: recent.map((item) => ({
         id: item.id,

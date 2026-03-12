@@ -85,6 +85,28 @@ function createAuth(db, opts = {}) {
   });
 }
 
+function createOptionalAuth(db) {
+  return asyncHandler(async (req, _res, next) => {
+    const token = getBearerToken(req);
+    if (!token) {
+      next();
+      return;
+    }
+
+    try {
+      const payload = jwt.verify(token, JWT_SECRET);
+      const user = await db.get('SELECT * FROM users WHERE id = ?', [payload.id]);
+      if (user && !user.is_banned) {
+        req.authUser = user;
+      }
+    } catch (_err) {
+      // Ignore invalid tokens on public endpoints.
+    }
+
+    next();
+  });
+}
+
 function errorHandler(err, _req, res, _next) {
   console.error('[API ERROR]', err);
   const msg = typeof err?.message === 'string' ? err.message : 'Server error';
@@ -96,5 +118,6 @@ module.exports = {
   createAsyncRouter,
   sanitizeBody,
   createAuth,
+  createOptionalAuth,
   errorHandler
 };

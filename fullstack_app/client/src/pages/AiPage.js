@@ -10,6 +10,7 @@ import {
 } from '@phosphor-icons/react';
 import { AuthContext } from '../contexts/AuthContext';
 import api from '../api';
+import { trackEvent } from '../shared/analytics';
 
 const STORAGE_KEY = 'lawinate_ultra_v1';
 const GLM_MODEL_ID = 'z-ai/glm-4.5-air:free';
@@ -99,6 +100,13 @@ const AiPage = () => {
           model_name: res.data.model_name || GLM_MODEL_NAME,
         },
       ]);
+      trackEvent('ai_prompt', {
+        meta: {
+          model: res.data?.model || GLM_MODEL_ID,
+          model_name: res.data?.model_name || GLM_MODEL_NAME,
+          tokens_used: res.data?.tokens_used || 0
+        }
+      });
     } catch (err) {
       setError(err.response?.data?.error || 'Xatolik yuz berdi');
     } finally {
