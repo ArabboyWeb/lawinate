@@ -6,7 +6,7 @@ import { AuthContext } from '../contexts/AuthContext';
 import api from '../api';
 
 const DashboardPage = () => {
-  const { user } = useContext(AuthContext);
+  const { user, setUser } = useContext(AuthContext);
   const [history, setHistory] = useState([]);
   const [myPosts, setMyPosts] = useState([]);
   const [themeVersion, setThemeVersion] = useState(0);
@@ -31,16 +31,36 @@ const DashboardPage = () => {
   useEffect(() => {
     if (!user) return;
 
-    api
-      .get('/api/history')
-      .then((res) => setHistory(res.data.history || []))
-      .catch(() => setHistory([]));
+    let active = true;
 
-    api
-      .get('/api/blog/my-posts')
-      .then((res) => setMyPosts(res.data.posts || []))
-      .catch(() => setMyPosts([]));
-  }, [user]);
+    Promise.allSettled([
+      api.get('/api/profile'),
+      api.get('/api/history'),
+      api.get('/api/blog/my-posts')
+    ]).then(([profileRes, historyRes, postsRes]) => {
+      if (!active) return;
+
+      if (profileRes.status === 'fulfilled') {
+        setUser(profileRes.value.data.user || null);
+      }
+
+      if (historyRes.status === 'fulfilled') {
+        setHistory(historyRes.value.data.history || []);
+      } else {
+        setHistory([]);
+      }
+
+      if (postsRes.status === 'fulfilled') {
+        setMyPosts(postsRes.value.data.posts || []);
+      } else {
+        setMyPosts([]);
+      }
+    });
+
+    return () => {
+      active = false;
+    };
+  }, [setUser, user?.id]);
 
   useEffect(() => {
     if (!chartRef.current) return;

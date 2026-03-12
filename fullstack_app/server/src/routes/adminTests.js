@@ -1,6 +1,7 @@
 const { createAsyncRouter } = require('../middleware');
 const {
   sanitizeText,
+  sanitizeMultilineText,
   pickDifficulty,
   pickStatus,
   pickCorrectOption,
@@ -171,13 +172,13 @@ function createAdminTestsRouter(db) {
     const test = await db.get('SELECT * FROM tests WHERE id = ?', [testId]);
     if (!test) return res.status(404).json({ error: 'Test topilmadi' });
 
-    const questionText = sanitizeText(req.body.question_text, 1200);
+    const questionText = sanitizeMultilineText(req.body.question_text, 1200);
     const optionA = sanitizeText(req.body.option_a, 400);
     const optionB = sanitizeText(req.body.option_b, 400);
     const optionC = sanitizeText(req.body.option_c, 400);
     const optionD = sanitizeText(req.body.option_d, 400);
     const correctOption = pickCorrectOption(req.body.correct_option);
-    const explanation = sanitizeText(req.body.explanation, 1600);
+    const explanation = sanitizeMultilineText(req.body.explanation, 1600);
     const status = pickStatus(sanitizeText(req.body.status || test.status, 20).toLowerCase(), 'draft');
 
     if (!questionText || !optionA || !optionB || !optionC || !optionD) {
@@ -205,13 +206,22 @@ function createAdminTestsRouter(db) {
     if (!existing) return res.status(404).json({ error: 'Savol topilmadi' });
 
     const testId = Number(req.body.test_id || existing.test_id);
-    const questionText = sanitizeText(req.body.question_text || existing.question_text, 1200);
+    if (Number.isNaN(testId) || testId <= 0) {
+      return res.status(400).json({ error: 'test_id notogri' });
+    }
+
+    const targetTest = await db.get('SELECT id FROM tests WHERE id = ?', [testId]);
+    if (!targetTest) {
+      return res.status(404).json({ error: 'Test topilmadi' });
+    }
+
+    const questionText = sanitizeMultilineText(req.body.question_text || existing.question_text, 1200);
     const optionA = sanitizeText(req.body.option_a || existing.option_a, 400);
     const optionB = sanitizeText(req.body.option_b || existing.option_b, 400);
     const optionC = sanitizeText(req.body.option_c || existing.option_c, 400);
     const optionD = sanitizeText(req.body.option_d || existing.option_d, 400);
     const correctOption = pickCorrectOption(req.body.correct_option || existing.correct_option);
-    const explanation = sanitizeText(req.body.explanation || existing.explanation, 1600);
+    const explanation = sanitizeMultilineText(req.body.explanation || existing.explanation, 1600);
     const status = pickStatus(sanitizeText(req.body.status || existing.status, 20).toLowerCase(), existing.status);
 
     await db.run(
@@ -222,6 +232,9 @@ function createAdminTestsRouter(db) {
     );
 
     await db.run('UPDATE tests SET updated_at = ? WHERE id = ?', [nowIso(), testId]);
+    if (Number(existing.test_id) !== testId) {
+      await db.run('UPDATE tests SET updated_at = ? WHERE id = ?', [nowIso(), existing.test_id]);
+    }
     await logAdminAction(db, req.authUser.id, 'questions:update', 'question', id, { test_id: testId });
 
     const question = await db.get('SELECT * FROM questions WHERE id = ?', [id]);
@@ -347,13 +360,13 @@ function createAdminTestsRouter(db) {
       if (Number.isNaN(testId)) testId = idMap[String(item.test_id)] || null;
       if (!testId) continue;
 
-      const questionText = sanitizeText(item.question_text, 1200);
+      const questionText = sanitizeMultilineText(item.question_text, 1200);
       const optionA = sanitizeText(item.option_a, 400);
       const optionB = sanitizeText(item.option_b, 400);
       const optionC = sanitizeText(item.option_c, 400);
       const optionD = sanitizeText(item.option_d, 400);
       const correctOption = pickCorrectOption(item.correct_option);
-      const explanation = sanitizeText(item.explanation, 1600);
+      const explanation = sanitizeMultilineText(item.explanation, 1600);
       const status = pickStatus(sanitizeText(item.status, 20).toLowerCase(), 'draft');
 
       if (!questionText || !optionA || !optionB || !optionC || !optionD) continue;

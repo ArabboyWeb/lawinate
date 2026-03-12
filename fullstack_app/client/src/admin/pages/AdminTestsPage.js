@@ -105,26 +105,13 @@ const AdminTestsPage = () => {
     }
     try {
       if (editingQuestion) {
-        const res = await adminApi.put(`/api/admin/questions/${editingQuestion.id}`, questionForm);
-        const updated = res.data.question;
-        setQuestions((prev) => prev.map((item) => (item.id === updated.id ? { ...item, ...updated } : item)));
+        await adminApi.put(`/api/admin/questions/${editingQuestion.id}`, questionForm);
         pushToast('Savol yangilandi', 'success');
       } else {
-        const res = await adminApi.post('/api/admin/questions', questionForm);
-        const created = res.data.question;
-        const linkedTest = tests.find((item) => item.id === Number(created.test_id));
-        setQuestions((prev) => [{
-          ...created,
-          test_title: linkedTest?.title || 'Test',
-          test_category: linkedTest?.category || '',
-        }, ...prev]);
-        setTests((prev) => prev.map((item) => (
-          item.id === Number(created.test_id)
-            ? { ...item, question_count: (item.question_count || 0) + 1 }
-            : item
-        )));
+        await adminApi.post('/api/admin/questions', questionForm);
         pushToast('Savol yaratildi', 'success');
       }
+      await fetchAll();
       setShowQuestionModal(false);
       setEditingQuestion(null);
       setQuestionForm(defaultQuestionForm);
@@ -150,17 +137,9 @@ const AdminTestsPage = () => {
 
   const deleteQuestion = async (id) => {
     try {
-      const question = questions.find((item) => item.id === id);
       await adminApi.delete(`/api/admin/questions/${id}`);
       pushToast('Savol ochirildi', 'success');
-      setQuestions((prev) => prev.filter((item) => item.id !== id));
-      if (question) {
-        setTests((prev) => prev.map((item) => (
-          Number(item.id) === Number(question.test_id)
-            ? { ...item, question_count: Math.max(0, (item.question_count || 0) - 1) }
-            : item
-        )));
-      }
+      await fetchAll();
     } catch (err) {
       pushToast(err.response?.data?.error || 'Savol ochirilmadi', 'error');
     }

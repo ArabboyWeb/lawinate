@@ -1,5 +1,5 @@
 const { createAsyncRouter } = require('../middleware');
-const { sanitizeText, nowIso } = require('../utils');
+const { sanitizeText, sanitizeMultilineText, nowIso } = require('../utils');
 
 const ALLOWED_VOICE_MIMES = ['audio/webm', 'audio/ogg', 'audio/mp4', 'audio/mpeg'];
 
@@ -174,7 +174,7 @@ function createPublicChatRouter(db) {
     const group = await ensureMembership(db, groupId, req.authUser.id);
     if (!group) return res.status(404).json({ error: 'Group not found' });
 
-    const messageText = sanitizeText(req.body.message, 3000);
+    const messageText = sanitizeMultilineText(req.body.message, 3000);
     const rawVoiceB64 = typeof req.body.voice_blob_base64 === 'string' ? req.body.voice_blob_base64.trim() : '';
     const voiceMimeType = sanitizeText(req.body.voice_mime_type, 60).toLowerCase();
     const voiceDuration = Number(req.body.voice_duration_sec) || 0;

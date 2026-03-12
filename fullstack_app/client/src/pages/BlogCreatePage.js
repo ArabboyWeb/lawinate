@@ -30,7 +30,7 @@ const BlogCreatePage = () => {
   const { user } = useContext(AuthContext);
   const [step, setStep] = useState(1);
   const [saving, setSaving] = useState(false);
-  const [message, setMessage] = useState('');
+  const [feedback, setFeedback] = useState({ text: '', tone: 'success' });
   const [status, setStatus] = useState('draft');
   const [savedPostId, setSavedPostId] = useState(null);
   const [savedLink, setSavedLink] = useState('');
@@ -83,23 +83,31 @@ const BlogCreatePage = () => {
     setForm((prev) => ({ ...prev, [name]: value }));
   };
 
+  const showFeedback = (text, tone = 'success') => {
+    setFeedback({ text, tone });
+  };
+
+  const clearFeedback = () => {
+    setFeedback({ text: '', tone: 'success' });
+  };
+
   const goStep = (nextStep) => {
     if (nextStep === 2 && !form.title.trim()) {
-      setMessage('Step 2 ga o‘tish uchun sarlavha kiriting.');
+      showFeedback("Step 2 ga o'tish uchun sarlavha kiriting.", 'error');
       return;
     }
     if (nextStep === 3 && !form.content.trim()) {
-      setMessage('Step 3 ga o‘tish uchun post matnini kiriting.');
+      showFeedback("Step 3 ga o'tish uchun post matnini kiriting.", 'error');
       return;
     }
-    setMessage('');
+    clearFeedback();
     setStep(nextStep);
   };
 
   const loadDraft = () => {
     const raw = localStorage.getItem(draftKey);
     if (!raw) {
-      setMessage('Draft topilmadi.');
+      showFeedback('Draft topilmadi.', 'error');
       return;
     }
 
@@ -115,9 +123,9 @@ const BlogCreatePage = () => {
       setStatus(parsed.status === 'published' ? 'published' : 'draft');
       setSavedPostId(parsed.saved_post_id || null);
       setSavedLink(String(parsed.saved_link || ''));
-      setMessage('Draft yuklandi.');
+      showFeedback('Draft yuklandi.');
     } catch (_err) {
-      setMessage('Draft noto‘g‘ri formatda.');
+      showFeedback("Draft noto'g'ri formatda.", 'error');
     }
   };
 
@@ -132,7 +140,7 @@ const BlogCreatePage = () => {
     setStatus('draft');
     setSavedPostId(null);
     setSavedLink('');
-    setMessage('Forma tozalandi.');
+    showFeedback('Forma tozalandi.');
     localStorage.removeItem(draftKey);
   };
 
@@ -141,18 +149,18 @@ const BlogCreatePage = () => {
     if (!file) return;
 
     if (!file.type.startsWith('image/')) {
-      setMessage('Faqat rasm fayl yuklang.');
+      showFeedback('Faqat rasm fayl yuklang.', 'error');
       return;
     }
 
     if (file.size > COVER_MAX_SIZE) {
-      setMessage('Cover rasm hajmi 4MB dan katta bo‘lmasligi kerak.');
+      showFeedback("Cover rasm hajmi 4MB dan katta bo'lmasligi kerak.", 'error');
       return;
     }
 
     const reader = new FileReader();
     reader.onload = () => onField('cover_image', String(reader.result || ''));
-    reader.onerror = () => setMessage('Cover rasmni o‘qishda xatolik.');
+    reader.onerror = () => showFeedback("Cover rasmni o'qishda xatolik.", 'error');
     reader.readAsDataURL(file);
   };
 
@@ -160,12 +168,12 @@ const BlogCreatePage = () => {
     const title = form.title.trim();
     const content = form.content.trim();
     if (!title || !content) {
-      setMessage('Sarlavha va matn majburiy.');
+      showFeedback('Sarlavha va matn majburiy.', 'error');
       return;
     }
 
     setSaving(true);
-    setMessage('');
+    clearFeedback();
 
     try {
       const payload = {
@@ -185,19 +193,19 @@ const BlogCreatePage = () => {
       setStatus(targetStatus);
 
       if (targetStatus === 'published') {
-        setMessage('Post publish qilindi. Link tayyor.');
+        showFeedback('Post publish qilindi. Link tayyor.');
       } else {
-        setMessage('Draft serverda saqlandi.');
+        showFeedback('Draft serverda saqlandi.');
       }
     } catch (err) {
       const backendError = err.response?.data?.error;
       const isNetwork = err?.code === 'ERR_NETWORK' || /Network Error/i.test(String(err?.message || ''));
       if (backendError) {
-        setMessage(backendError);
+        showFeedback(backendError, 'error');
       } else if (isNetwork) {
-        setMessage("Server bilan aloqa yo'q. 5-10 soniyadan keyin qayta urinib ko'ring.");
+        showFeedback("Server bilan aloqa yo'q. 5-10 soniyadan keyin qayta urinib ko'ring.", 'error');
       } else {
-        setMessage('Postni saqlashda xatolik.');
+        showFeedback('Postni saqlashda xatolik.', 'error');
       }
     } finally {
       setSaving(false);
@@ -370,7 +378,7 @@ const BlogCreatePage = () => {
             </div>
           )}
 
-          {message && <p className={message.includes('xatolik') ? 'notice error' : 'notice success'}>{message}</p>}
+          {feedback.text && <p className={feedback.tone === 'error' ? 'notice error' : 'notice success'}>{feedback.text}</p>}
         </article>
 
         <article className="glass-card card-pad blog-preview-card">

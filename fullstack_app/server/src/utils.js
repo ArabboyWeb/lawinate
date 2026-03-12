@@ -1,3 +1,5 @@
+const { randomBytes } = require('crypto');
+
 const JWT_SECRET = process.env.JWT_SECRET || 'change-this-secret';
 const ADMIN_ROLES = ['admin', 'moderator'];
 const TEST_STATUSES = ['draft', 'published', 'unpublished'];
@@ -13,10 +15,13 @@ function nowIso() {
 
 function randomString(size = 32) {
   const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  const bytes = randomBytes(Math.max(1, size));
   let out = '';
+
   for (let i = 0; i < size; i += 1) {
-    out += chars[Math.floor(Math.random() * chars.length)];
+    out += chars[bytes[i] % chars.length];
   }
+
   return out;
 }
 
@@ -29,6 +34,16 @@ function sanitizeText(value, maxLength = 2000) {
     .slice(0, maxLength);
 }
 
+function sanitizeMultilineText(value, maxLength = 2000) {
+  if (typeof value !== 'string') return '';
+  return value
+    .replace(/[<>]/g, '')
+    .replace(/\r\n?/g, '\n')
+    .replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g, ' ')
+    .trim()
+    .slice(0, maxLength);
+}
+
 function sanitizePayload(value, maxLength = 1000000) {
   if (Array.isArray(value)) return value.map((item) => sanitizePayload(item, maxLength));
   if (value && typeof value === 'object') {
@@ -37,7 +52,7 @@ function sanitizePayload(value, maxLength = 1000000) {
       return acc;
     }, {});
   }
-  if (typeof value === 'string') return sanitizeText(value, maxLength);
+  if (typeof value === 'string') return sanitizeMultilineText(value, maxLength);
   return value;
 }
 
@@ -230,6 +245,7 @@ module.exports = {
   nowIso,
   randomString,
   sanitizeText,
+  sanitizeMultilineText,
   sanitizePayload,
   toBoolean,
   clampNumber,

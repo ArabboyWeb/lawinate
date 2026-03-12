@@ -1,5 +1,5 @@
 const { createAsyncRouter } = require('../middleware');
-const { sanitizeText, clampNumber, toBoolean, nowIso } = require('../utils');
+const { sanitizeText, sanitizeMultilineText, clampNumber, toBoolean, nowIso } = require('../utils');
 const { logAdminAction } = require('../db');
 
 function createAdminAIRouter(db) {
@@ -71,8 +71,8 @@ function createAdminAIRouter(db) {
 
   router.post('/faqs', async (req, res) => {
     const title = sanitizeText(req.body.title, 150);
-    const questionTemplate = sanitizeText(req.body.question_template, 600);
-    const answerTemplate = sanitizeText(req.body.answer_template, 2000);
+    const questionTemplate = sanitizeMultilineText(req.body.question_template, 600);
+    const answerTemplate = sanitizeMultilineText(req.body.answer_template, 2000);
     const isActive = toBoolean(req.body.is_active) ? 1 : 0;
 
     if (!title || !questionTemplate || !answerTemplate) {
@@ -99,8 +99,8 @@ function createAdminAIRouter(db) {
     if (!existing) return res.status(404).json({ error: 'FAQ topilmadi' });
 
     const title = sanitizeText(req.body.title || existing.title, 150);
-    const questionTemplate = sanitizeText(req.body.question_template || existing.question_template, 600);
-    const answerTemplate = sanitizeText(req.body.answer_template || existing.answer_template, 2000);
+    const questionTemplate = sanitizeMultilineText(req.body.question_template || existing.question_template, 600);
+    const answerTemplate = sanitizeMultilineText(req.body.answer_template || existing.answer_template, 2000);
     const isActive = req.body.is_active === undefined ? existing.is_active : (toBoolean(req.body.is_active) ? 1 : 0);
 
     await db.run(

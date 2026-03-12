@@ -7,6 +7,7 @@ const {
   GOOGLE_OAUTH_TOKEN_URL,
   GOOGLE_USERINFO_URL,
   sanitizeText,
+  sanitizeMultilineText,
   clampNumber,
   getTodayDate,
   shuffleArray,
@@ -163,7 +164,7 @@ function normalizeConversationMessages(payloadMessages = []) {
   return payloadMessages
     .map((item) => ({
       role: item?.role === 'assistant' ? 'assistant' : 'user',
-      content: sanitizeText(item?.text || item?.content || '', 6000)
+      content: sanitizeMultilineText(item?.text || item?.content || '', 6000)
     }))
     .filter((item) => item.content)
     .slice(-14);
@@ -207,7 +208,7 @@ async function callOpenRouter(modelId, messages) {
       : '';
 
     return {
-      text: sanitizeText(textResponse, 12000),
+      text: sanitizeMultilineText(textResponse, 12000),
       tokens: Number(payload?.usage?.total_tokens) || 0
     };
   } finally {
@@ -477,7 +478,7 @@ function createPublicRouter(db, authRequired, checkDatabaseHealth = async () => 
     const university = sanitizeText(req.body.university, 180);
     const course = sanitizeText(req.body.course, 60);
     const city = sanitizeText(req.body.city, 80);
-    const bio = sanitizeText(req.body.bio, 500);
+    const bio = sanitizeMultilineText(req.body.bio, 500);
     const profileImage = sanitizeText(req.body.profile_image, 800000);
 
     if (!fullName || !email || !password || !phone || !university || !course || !city || !bio || !profileImage) {
@@ -662,7 +663,7 @@ function createPublicRouter(db, authRequired, checkDatabaseHealth = async () => 
     const title = sanitizeText(req.body.title, 160);
     const category = pickBlogCategory(req.body.category);
     const tags = normalizeBlogTags(req.body.tags).join(',');
-    const content = sanitizeText(req.body.content, 30000);
+    const content = sanitizeMultilineText(req.body.content, 30000);
     const status = pickBlogStatus(req.body.status);
     const coverImage = sanitizeText(req.body.cover_image, 900000);
 
@@ -721,7 +722,7 @@ function createPublicRouter(db, authRequired, checkDatabaseHealth = async () => 
     const title = sanitizeText(req.body.title, 160) || existing.title;
     const category = req.body.category ? pickBlogCategory(req.body.category) : existing.category;
     const tags = req.body.tags !== undefined ? normalizeBlogTags(req.body.tags).join(',') : (existing.tags || '');
-    const content = req.body.content !== undefined ? sanitizeText(req.body.content, 30000) : existing.content;
+    const content = req.body.content !== undefined ? sanitizeMultilineText(req.body.content, 30000) : existing.content;
     const status = req.body.status !== undefined ? pickBlogStatus(req.body.status) : existing.status;
     const coverImage = req.body.cover_image !== undefined ? sanitizeText(req.body.cover_image, 900000) : (existing.cover_image || '');
     const now = nowIso();
@@ -1047,7 +1048,7 @@ function createPublicRouter(db, authRequired, checkDatabaseHealth = async () => 
   });
 
   router.post('/ai', authRequired, async (req, res) => {
-    const prompt = sanitizeText(req.body.prompt, 6000);
+    const prompt = sanitizeMultilineText(req.body.prompt, 6000);
     if (!prompt) return res.status(400).json({ error: 'Prompt is required' });
 
     if (!OPENROUTER_API_KEY) {
@@ -1091,7 +1092,7 @@ function createPublicRouter(db, authRequired, checkDatabaseHealth = async () => 
       return res.status(502).json({ error: `AI provider error: ${sanitizeText(err?.message || 'Unknown error', 300)}` });
     }
 
-    const responseText = aiResult.text || 'AI javob bera olmadi, iltimos qayta urinib ko‘ring.';
+    const responseText = aiResult.text || "AI javob bera olmadi, iltimos qayta urinib ko'ring.";
     const tokens = aiResult.tokens || Math.max(1, Math.ceil((prompt.length + responseText.length) / 4));
 
     await db.run(

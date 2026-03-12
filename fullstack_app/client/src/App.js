@@ -8,6 +8,7 @@ import AuthPage from './pages/AuthPage';
 import BlogCreatePage from './pages/BlogCreatePage';
 import BlogListPage from './pages/BlogListPage';
 import BlogPostPage from './pages/BlogPostPage';
+import ChatPage from './pages/ChatPage';
 import DashboardPage from './pages/DashboardPage';
 import HomePage from './pages/HomePage';
 import LibraryPage from './pages/LibraryPage';
@@ -57,6 +58,14 @@ const PublicAppLayout = () => {
           )}
         />
         <Route path="/blog/:slug" element={<BlogPostPage />} />
+        <Route
+          path="/chat"
+          element={(
+            <PrivateRoute>
+              <ChatPage />
+            </PrivateRoute>
+          )}
+        />
         <Route path="/library" element={<LibraryPage />} />
         <Route path="/ranking" element={<RankingPage />} />
         <Route
@@ -86,7 +95,7 @@ const PublicAppLayout = () => {
             <div className="footer-links">
               <span>Full-stack</span>
               <span>•</span>
-              <span>React + Express + SQLite</span>
+              <span>React + Express + PostgreSQL</span>
             </div>
           </div>
         </footer>
