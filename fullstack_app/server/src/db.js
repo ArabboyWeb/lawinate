@@ -22,6 +22,7 @@ const DB_FILE = process.env.SQLITE_DB_FILE
   : path.join(__dirname, '..', 'database.db');
 const ADMIN_SEED_EMAIL = process.env.ADMIN_SEED_EMAIL || 'admin@lawinate.local';
 const ADMIN_SEED_PASSWORD = process.env.ADMIN_SEED_PASSWORD || 'ChangeMe123!';
+const ADMIN_SEED_FORCE_SYNC = String(process.env.ADMIN_SEED_FORCE_SYNC || '').trim().toLowerCase() === 'true';
 const MODERATOR_SEED_EMAIL = process.env.MODERATOR_SEED_EMAIL || 'moderator@lawinate.uz';
 const MODERATOR_SEED_PASSWORD = process.env.MODERATOR_SEED_PASSWORD || 'Moderator123$';
 const STUDENT_SEED_PASSWORD = process.env.STUDENT_SEED_PASSWORD || 'Student123$';
@@ -748,6 +749,46 @@ async function migrateLegacySchema(db) {
 async function seedData(db) {
   const now = nowIso();
 
+  async function ensureSeedUser({
+    email,
+    password,
+    role,
+    fullName,
+    university,
+    city,
+    rounds = 10,
+    forceSync = false
+  }) {
+    const existing = await db.get('SELECT * FROM users WHERE email = ?', [email]);
+    const shouldSync = forceSync && password;
+
+    if (!existing) {
+      const hash = await bcrypt.hash(password, rounds);
+      const created = await db.run(
+        `INSERT INTO users (full_name, email, password_hash, role, university, city, registration_date, created_at, updated_at)
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)` ,
+        [fullName, email, hash, role, university, city, now, now, now]
+      );
+      return { id: created.lastID };
+    }
+
+    if (shouldSync) {
+      const hash = await bcrypt.hash(password, rounds);
+      await db.run(
+        `UPDATE users
+         SET password_hash = ?,
+             role = ?,
+             provider = 'local',
+             is_banned = 0,
+             updated_at = ?
+         WHERE id = ?`,
+        [hash, role, now, existing.id]
+      );
+    }
+
+    return { id: existing.id };
+  }
+
   if (db.meta?.driver === 'postgres') {
     await db.run(
       `INSERT INTO ai_settings (id, rate_limit_per_minute, safe_mode_enabled, updated_at)
@@ -776,27 +817,28 @@ async function seedData(db) {
     );
   }
 
-  let admin = await db.get('SELECT id FROM users WHERE email = ?', [ADMIN_SEED_EMAIL]);
-  if (!admin) {
-    const hash = await bcrypt.hash(ADMIN_SEED_PASSWORD, 12);
-    const created = await db.run(
-      `INSERT INTO users (full_name, email, password_hash, role, university, city, registration_date, created_at, updated_at)
-       VALUES (?, ?, ?, 'admin', ?, ?, ?, ?, ?)` ,
-      ['Lawinate Super Admin', ADMIN_SEED_EMAIL, hash, 'Law Academy', 'Tashkent', now, now, now]
-    );
-    admin = { id: created.lastID };
-  }
+  const admin = await ensureSeedUser({
+    email: ADMIN_SEED_EMAIL,
+    password: ADMIN_SEED_PASSWORD,
+    role: 'admin',
+    fullName: 'Lawinate Super Admin',
+    university: 'Law Academy',
+    city: 'Tashkent',
+    rounds: 12,
+    forceSync: ADMIN_SEED_FORCE_SYNC
+  });
 
   const moderatorEmail = MODERATOR_SEED_EMAIL;
-  const mod = await db.get('SELECT id FROM users WHERE email = ?', [moderatorEmail]);
-  if (!mod) {
-    const hash = await bcrypt.hash(MODERATOR_SEED_PASSWORD, 10);
-    await db.run(
-      `INSERT INTO users (full_name, email, password_hash, role, university, city, registration_date, created_at, updated_at)
-       VALUES (?, ?, ?, 'moderator', ?, ?, ?, ?, ?)` ,
-      ['Platform Moderator', moderatorEmail, hash, 'TDTU', 'Samarqand', now, now, now]
-    );
-  }
+  await ensureSeedUser({
+    email: moderatorEmail,
+    password: MODERATOR_SEED_PASSWORD,
+    role: 'moderator',
+    fullName: 'Platform Moderator',
+    university: 'TDTU',
+    city: 'Samarqand',
+    rounds: 10,
+    forceSync: ADMIN_SEED_FORCE_SYNC
+  });
 
   const students = await db.get(`SELECT COUNT(*) as count FROM users WHERE role='student'`);
   if ((students.count || 0) === 0) {
