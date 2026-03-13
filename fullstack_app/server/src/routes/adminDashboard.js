@@ -168,8 +168,27 @@ function createAdminDashboardRouter(db) {
       LIMIT 8
     `, [fromDay]);
 
+    const engagementSummary = await db.get(`
+      SELECT
+        COALESCE(SUM(CASE WHEN event_name = 'page_exit' THEN 1 ELSE 0 END), 0) as page_exits,
+        COALESCE(SUM(CASE WHEN event_name = 'outbound_click' THEN 1 ELSE 0 END), 0) as outbound_clicks,
+        COALESCE(SUM(CASE WHEN event_name = 'download_click' THEN 1 ELSE 0 END), 0) as download_clicks,
+        COALESCE(SUM(CASE WHEN event_name IN ('js_error', 'unhandled_rejection') THEN 1 ELSE 0 END), 0) as errors
+      FROM analytics_events
+      WHERE DATE(created_at) >= ?
+    `, [fromDay]);
+
+    const topEventPaths = await db.all(`
+      SELECT path, event_name, COUNT(*) as count
+      FROM analytics_events
+      WHERE event_name <> 'page_view' AND DATE(created_at) >= ?
+      GROUP BY path, event_name
+      ORDER BY count DESC, path ASC, event_name ASC
+      LIMIT 12
+    `, [fromDay]);
+
     const recentTraffic = await db.all(`
-      SELECT event_name, path, source, medium, referrer, created_at
+      SELECT event_name, path, source, medium, referrer, meta_json, created_at
       FROM analytics_events
       ORDER BY created_at DESC
       LIMIT 12
@@ -200,7 +219,11 @@ function createAdminDashboardRouter(db) {
           unique_visitors: trafficSummary?.unique_visitors || 0,
           page_views: trafficSummary?.page_views || 0,
           sessions: trafficSummary?.sessions || 0,
-          tracked_events: trafficSummary?.tracked_events || 0
+          tracked_events: trafficSummary?.tracked_events || 0,
+          page_exits: engagementSummary?.page_exits || 0,
+          outbound_clicks: engagementSummary?.outbound_clicks || 0,
+          download_clicks: engagementSummary?.download_clicks || 0,
+          errors: engagementSummary?.errors || 0
         },
         charts: {
           daily: Object.values(trafficTemplate),
@@ -222,6 +245,11 @@ function createAdminDashboardRouter(db) {
           top_events: topEvents.map((item) => ({
             event_name: item.event_name,
             count: item.count || 0
+          })),
+          top_event_paths: topEventPaths.map((item) => ({
+            path: item.path,
+            event_name: item.event_name,
+            count: item.count || 0
           }))
         },
         recent_events: recentTraffic.map((item) => ({
@@ -230,6 +258,7 @@ function createAdminDashboardRouter(db) {
           source: item.source || 'direct',
           medium: item.medium || '(none)',
           referrer: item.referrer || '',
+          meta: safeParseMeta(item.meta_json),
           created_at: item.created_at
         }))
       },

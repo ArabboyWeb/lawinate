@@ -3,6 +3,7 @@ import { resolveApiBaseUrl } from './apiBase';
 const API_BASE = resolveApiBaseUrl();
 const VISITOR_KEY = 'lawinate_analytics_visitor_id';
 const SESSION_KEY = 'lawinate_analytics_session_id';
+const SESSION_STARTED_KEY = 'lawinate_analytics_session_started';
 const ATTRIBUTION_KEY = 'lawinate_analytics_attribution';
 const LANDING_REFERRER_KEY = 'lawinate_analytics_referrer';
 const LAST_PAGE_KEY = 'lawinate_analytics_last_page';
@@ -28,6 +29,19 @@ function writeStorage(storage, key, value) {
 }
 
 function randomId(prefix) {
+  const cryptoApi = typeof globalThis !== 'undefined' ? globalThis.crypto : undefined;
+
+  if (cryptoApi?.randomUUID) {
+    return `${prefix}_${cryptoApi.randomUUID().replace(/-/g, '')}`;
+  }
+
+  if (cryptoApi?.getRandomValues) {
+    const bytes = new Uint8Array(12);
+    cryptoApi.getRandomValues(bytes);
+    const part = Array.from(bytes, (byte) => byte.toString(16).padStart(2, '0')).join('');
+    return `${prefix}_${part}`;
+  }
+
   const part = `${Date.now().toString(36)}${Math.random().toString(36).slice(2, 10)}`;
   return `${prefix}_${part}`;
 }
@@ -214,6 +228,22 @@ function postAnalytics(payload) {
     body: JSON.stringify(payload),
     keepalive: true
   }).catch(() => undefined);
+}
+
+export function trackSessionStart(options = {}) {
+  if (!canUseBrowser()) return Promise.resolve();
+
+  const started = readStorage(window.sessionStorage, SESSION_STARTED_KEY);
+  if (started === '1') return Promise.resolve();
+
+  writeStorage(window.sessionStorage, SESSION_STARTED_KEY, '1');
+  return trackEvent('session_start', {
+    ...options,
+    meta: {
+      session_entry: true,
+      ...(options.meta || {})
+    }
+  });
 }
 
 export function trackPageView(options = {}) {

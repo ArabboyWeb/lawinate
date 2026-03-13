@@ -15,6 +15,15 @@ import { useToast } from '../components/ToastContext';
 
 const formatNumber = (value) => new Intl.NumberFormat('en-US').format(value || 0);
 const formatDateTime = (value) => (value ? new Date(value).toLocaleString() : '-');
+const formatMetaSummary = (meta) => {
+  if (!meta || typeof meta !== 'object') return '-';
+
+  return Object.entries(meta)
+    .slice(0, 3)
+    .map(([key, value]) => `${key}: ${typeof value === 'object' ? JSON.stringify(value) : value}`)
+    .join(' | ')
+    .slice(0, 220);
+};
 
 const AdminDashboardPage = () => {
   const { pushToast } = useToast();
@@ -215,9 +224,38 @@ const AdminDashboardPage = () => {
     ];
   }, [data]);
 
+  const engagementCards = useMemo(() => {
+    const traffic = data?.traffic?.kpi;
+    if (!traffic) return [];
+
+    return [
+      {
+        label: '7d exits',
+        value: formatNumber(traffic.page_exits),
+        icon: ArrowClockwise
+      },
+      {
+        label: 'Outbound clicks',
+        value: formatNumber(traffic.outbound_clicks),
+        icon: CursorClick
+      },
+      {
+        label: 'Download clicks',
+        value: formatNumber(traffic.download_clicks),
+        icon: DownloadSimple
+      },
+      {
+        label: 'Client errors',
+        value: formatNumber(traffic.errors),
+        icon: Eye
+      }
+    ];
+  }, [data]);
+
   const topSourceLabel = data?.traffic?.charts?.top_sources?.[0]?.label || 'direct / (none)';
   const topPages = data?.traffic?.charts?.top_pages || [];
   const topEvents = data?.traffic?.charts?.top_events || [];
+  const topEventPaths = data?.traffic?.charts?.top_event_paths || [];
   const topSources = data?.traffic?.charts?.top_sources || [];
   const topReferrers = data?.traffic?.charts?.top_referrers || [];
   const recentTraffic = data?.traffic?.recent_events || [];
@@ -269,6 +307,21 @@ const AdminDashboardPage = () => {
                 <div className="flex items-center justify-between text-sm text-slate-300">
                   <span>{item.label}</span>
                   <Icon size={18} className="text-emerald-300" />
+                </div>
+                <p className="mt-3 text-2xl font-bold text-white">{item.value}</p>
+              </article>
+            );
+          })}
+        </div>
+
+        <div className="mt-4 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+          {engagementCards.map((item) => {
+            const Icon = item.icon;
+            return (
+              <article key={item.label} className="rounded-2xl border border-white/10 bg-slate-950/30 p-4">
+                <div className="flex items-center justify-between text-sm text-slate-300">
+                  <span>{item.label}</span>
+                  <Icon size={18} className="text-sky-300" />
                 </div>
                 <p className="mt-3 text-2xl font-bold text-white">{item.value}</p>
               </article>
@@ -345,6 +398,35 @@ const AdminDashboardPage = () => {
               )}
             </div>
           </div>
+
+          <div className="mt-5">
+            <h5 className="text-xs font-semibold uppercase tracking-wide text-slate-400">Top event paths</h5>
+            <div className="mt-3 overflow-x-auto">
+              <table className="min-w-full text-sm">
+                <thead className="text-slate-400">
+                  <tr>
+                    <th className="px-2 py-2 text-left">Path</th>
+                    <th className="px-2 py-2 text-left">Event</th>
+                    <th className="px-2 py-2 text-left">Count</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {topEventPaths.map((item, index) => (
+                    <tr key={`${item.path}-${item.event_name}-${index}`} className="border-t border-white/10">
+                      <td className="px-2 py-2 text-slate-200">{item.path}</td>
+                      <td className="px-2 py-2 text-slate-100">{item.event_name}</td>
+                      <td className="px-2 py-2 text-slate-300">{formatNumber(item.count)}</td>
+                    </tr>
+                  ))}
+                  {topEventPaths.length === 0 && (
+                    <tr>
+                      <td colSpan="3" className="px-2 py-3 text-slate-400">Path-level event data hali yo&apos;q.</td>
+                    </tr>
+                  )}
+                </tbody>
+              </table>
+            </div>
+          </div>
         </article>
 
         <article className="admin-glass p-4">
@@ -400,6 +482,7 @@ const AdminDashboardPage = () => {
                   <th className="px-2 py-2 text-left">Event</th>
                   <th className="px-2 py-2 text-left">Path</th>
                   <th className="px-2 py-2 text-left">Source</th>
+                  <th className="px-2 py-2 text-left">Meta</th>
                 </tr>
               </thead>
               <tbody>
@@ -409,11 +492,12 @@ const AdminDashboardPage = () => {
                     <td className="px-2 py-2 text-slate-100">{item.event_name}</td>
                     <td className="px-2 py-2 text-slate-200">{item.path}</td>
                     <td className="px-2 py-2 text-slate-300">{item.source} / {item.medium}</td>
+                    <td className="px-2 py-2 text-slate-400">{formatMetaSummary(item.meta)}</td>
                   </tr>
                 ))}
                 {recentTraffic.length === 0 && (
                   <tr>
-                    <td colSpan="4" className="px-2 py-3 text-slate-400">Traffic eventlar hali kelmagan.</td>
+                    <td colSpan="5" className="px-2 py-3 text-slate-400">Traffic eventlar hali kelmagan.</td>
                   </tr>
                 )}
               </tbody>
