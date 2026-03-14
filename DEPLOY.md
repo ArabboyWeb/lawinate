@@ -76,29 +76,39 @@ Required env vars for startup:
 - `DATABASE_URL`
 - `JWT_SECRET`
 - `APP_BASE_URL` or `CLIENT_URL`
-- `CORS_ORIGIN` (for Netlify origin, can be comma-separated)
+- `CORS_ORIGIN` (frontend originlari, comma-separated)
 
 Recommended production values:
 
 - `APP_BASE_URL=https://lawinate.uz`
 - `CLIENT_URL=https://lawinate.uz`
-- `CORS_ORIGIN=https://lawinate.uz,https://www.lawinate.uz,https://lawinate.netlify.app`
+- `CORS_ORIGIN=https://lawinate.uz,https://www.lawinate.uz,https://your-project.vercel.app`
 - `DATABASE_URL=postgresql://...` (Neon)
 - `DB_CLIENT=postgres`
 - `GOOGLE_REDIRECT_URI=https://lawinate-sc7t.onrender.com/api/auth/google/callback`
 
 Important:
 
-- frontend redeploy on Netlify does not delete PostgreSQL data
+- frontend redeploy on Vercel does not delete PostgreSQL data
 - backend redeploy on Render also does not delete PostgreSQL data
 - this app now refuses to start if `DATABASE_URL` is missing or `DB_CLIENT` is not `postgres`
 
-## Netlify Frontend Deploy
+## Vercel Frontend Deploy
 
-- `netlify.toml` includes `/api/*` proxy to `https://lawinate-sc7t.onrender.com`.
-- If your Render URL is different, update that redirect target.
+Use Vercel for the frontend and keep the backend on Render.
+
+1. Push this repo to GitHub.
+2. In Vercel, click `Add New` -> `Project` and import the repo.
+3. Keep the project root at the repo root. `vercel.json` already points build output to `fullstack_app/client/build`.
+4. Deploy. No frontend env vars are required if you want same-origin `/api` proxying.
+
+Production notes:
+
+- `vercel.json` proxies `/api/*` to `https://lawinate-sc7t.onrender.com/api/*`.
+- If your Render backend URL changes, update that destination in [vercel.json](/c:/Users/user/Desktop/fullstack_app/vercel.json).
 - Preferred: leave `REACT_APP_API_URL` unset in production so the frontend uses the same-origin `/api` proxy.
-- Optional alternative: set Netlify env variable `REACT_APP_API_URL=https://lawinate-sc7t.onrender.com` only if direct cross-origin requests are required and CORS is configured correctly.
+- Optional alternative: set Vercel env variable `REACT_APP_API_URL=https://lawinate-sc7t.onrender.com` only if direct cross-origin requests are required and CORS is configured correctly.
+- Add your Vercel domain to backend `CORS_ORIGIN` on Render, for example `https://your-project.vercel.app`.
 
 ## Notes
 
