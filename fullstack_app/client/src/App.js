@@ -92,11 +92,7 @@ const PublicAppLayout = () => {
         <footer className="app-footer">
           <div className="site-container app-footer-inner">
             <span>© 2026 Lawinate Digital. Barcha huquqlar himoyalangan.</span>
-            <div className="footer-links">
-              <span>Full-stack</span>
-              <span>•</span>
-              <span>React + Express + PostgreSQL</span>
-            </div>
+            <span>Lawinate.uz</span>
           </div>
         </footer>
       )}

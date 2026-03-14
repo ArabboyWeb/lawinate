@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { LockKey, ShieldCheck, UserPlus } from '@phosphor-icons/react';
 import api from '../api';
 import { AuthContext } from '../contexts/AuthContext';
 import { trackEvent } from '../shared/analytics';
@@ -138,12 +137,13 @@ const AuthPage = () => {
         <article className="auth-form-card">
           <div className="auth-form-head">
             <div>
-              <p className="auth-kicker">{mode === 'login' ? 'Qaytganingiz yaxshi' : 'Yangi akkaunt'}</p>
               <h2 className="section-title" style={{ fontSize: '1.8rem' }}>
                 {mode === 'login' ? 'Akkauntingizga kiring' : "Ro'yxatdan o'ting"}
               </h2>
               <p className="subtle" style={{ marginTop: 10 }}>
-                Testlar, reyting va AI yordamchi bir kirish bilan sizga tayyor bo'ladi.
+                {mode === 'login'
+                  ? 'Davom etish uchun email va parolni kiriting.'
+                  : "Hisob yaratish uchun ma'lumotlarni to'ldiring."}
               </p>
             </div>
 
@@ -335,53 +335,6 @@ const AuthPage = () => {
               </div>
             )}
           </form>
-        </article>
-
-        <article className="auth-hero">
-          <div className="auth-badge">Lawinate</div>
-          <h3 className="section-title auth-hero-title">Bitta kirish bilan butun platforma ochiladi</h3>
-          <p className="subtle auth-hero-copy">
-            Natijalaringizni davom ettiring, reytingni kuzating va kerak paytda AI yordamchidan foydalaning.
-          </p>
-
-          <div className="auth-highlight-grid">
-            <div className="auth-highlight">
-              <span className="auth-highlight-icon auth-highlight-icon-ok">
-                <ShieldCheck size={18} weight="fill" />
-              </span>
-              <div>
-                <strong>Natijalar yo'qolmaydi</strong>
-                <p>Test tarixi va reytingdagi holatingiz bir joyda saqlanadi.</p>
-              </div>
-            </div>
-
-            <div className="auth-highlight">
-              <span className="auth-highlight-icon auth-highlight-icon-blue">
-                <UserPlus size={18} weight="fill" />
-              </span>
-              <div>
-                <strong>Profil doim tayyor</strong>
-                <p>Shaxsiy ma'lumotlaringiz va ko'rsatkichlaringiz avtomatik birikadi.</p>
-              </div>
-            </div>
-
-            <div className="auth-highlight">
-              <span className="auth-highlight-icon auth-highlight-icon-warn">
-                <LockKey size={18} weight="fill" />
-              </span>
-              <div>
-                <strong>Tez davom etish</strong>
-                <p>Kutubxona, testlar va AI yordamchiga ortiqcha qadamlarsiz o'tasiz.</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="auth-topic-list">
-            <span>Testlar</span>
-            <span>Reyting</span>
-            <span>Kutubxona</span>
-            <span>AI yordamchi</span>
-          </div>
         </article>
       </section>
     </div>
