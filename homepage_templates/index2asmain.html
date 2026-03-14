@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lawinate Homepage Preview - Index2 as Main</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #eef6f9;
+      --surface: rgba(255, 255, 255, 0.78);
+      --surface-strong: rgba(255, 255, 255, 0.92);
+      --ink: #09111f;
+      --muted: #5f6f83;
+      --line: rgba(9, 17, 31, 0.08);
+      --blue: #0d6cf2;
+      --cyan: #3cc8d9;
+      --green: #0d9f83;
+      --purple: #7c3aed;
+      --shadow: 0 25px 80px rgba(13, 24, 44, 0.1);
+      --radius: 26px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Inter", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 10% 10%, rgba(13, 108, 242, 0.15), transparent 24%),
+        radial-gradient(circle at 90% 18%, rgba(60, 200, 217, 0.18), transparent 24%),
+        radial-gradient(circle at 80% 82%, rgba(13, 159, 131, 0.1), transparent 28%),
+        var(--bg);
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .shell {
+      width: min(1240px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 24px 0 36px;
+      display: grid;
+      gap: 18px;
+    }
+
+    .glass {
+      border-radius: var(--radius);
+      background: var(--surface);
+      border: 1px solid rgba(255, 255, 255, 0.78);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(16px);
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 36px;
+      text-align: center;
+      background:
+        radial-gradient(circle at top center, rgba(13, 108, 242, 0.18), transparent 24%),
+        radial-gradient(circle at bottom right, rgba(60, 200, 217, 0.14), transparent 22%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(255, 255, 255, 0.82));
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 680px;
+      height: 680px;
+      left: 50%;
+      top: 46%;
+      transform: translate(-50%, -50%);
+      border-radius: 999px;
+      background: rgba(13, 108, 242, 0.12);
+      filter: blur(90px);
+      pointer-events: none;
+    }
+
+    .hero > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      width: fit-content;
+      padding: 9px 14px;
+      border-radius: 999px;
+      background: rgba(13, 108, 242, 0.1);
+      border: 1px solid rgba(13, 108, 242, 0.12);
+      color: var(--blue);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .chip-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #0d9f83;
+      box-shadow: 0 0 0 5px rgba(13, 159, 131, 0.12);
+    }
+
+    h1 {
+      margin: 20px auto 0;
+      max-width: 12ch;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: clamp(3.4rem, 7vw, 5.9rem);
+      line-height: 0.95;
+      letter-spacing: -0.06em;
+    }
+
+    h1 span { color: var(--blue); }
+
+    .hero p {
+      margin: 18px auto 0;
+      max-width: 740px;
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.75;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 28px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 52px;
+      padding: 0 22px;
+      border-radius: 999px;
+      font-size: 0.95rem;
+      font-weight: 800;
+      border: 1px solid transparent;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn:hover { transform: translateY(-2px); }
+
+    .btn-primary {
+      color: #fff;
+      background: linear-gradient(135deg, var(--blue), #0f87ff);
+      box-shadow: 0 20px 40px rgba(13, 108, 242, 0.25);
+    }
+
+    .btn-soft {
+      border-color: var(--line);
+      background: rgba(255, 255, 255, 0.72);
+    }
+
+    .section-head {
+      text-align: center;
+      padding: 8px 12px 0;
+    }
+
+    .section-head h2 {
+      margin: 0;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      letter-spacing: -0.05em;
+    }
+
+    .section-head p {
+      margin: 10px auto 0;
+      max-width: 620px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .feature-card {
+      position: relative;
+      overflow: hidden;
+      min-height: 228px;
+      padding: 22px;
+      border-radius: 24px;
+      background: var(--surface-strong);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+    }
+
+    .feature-card::after {
+      content: "";
+      position: absolute;
+      inset: auto -30px -30px auto;
+      width: 120px;
+      height: 120px;
+      border-radius: 999px;
+      background: rgba(13, 108, 242, 0.08);
+      filter: blur(6px);
+    }
+
+    .feature-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(13, 108, 242, 0.22);
+      box-shadow: 0 18px 36px -28px rgba(13, 108, 242, 0.26);
+    }
+
+    .icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 14px;
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .blue { background: linear-gradient(135deg, var(--blue), #4ca4ff); }
+    .purple { background: linear-gradient(135deg, var(--purple), #a78bfa); }
+    .green { background: linear-gradient(135deg, var(--green), #24c79f); }
+    .cyan { background: linear-gradient(135deg, var(--cyan), #69dff1); color: #072937; }
+
+    .feature-card h3 {
+      margin: 0;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 1.08rem;
+      letter-spacing: -0.03em;
+    }
+
+    .feature-card p {
+      margin: 10px 0 0;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .stats {
+      padding: 24px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      text-align: center;
+      background:
+        radial-gradient(circle at top left, rgba(60, 200, 217, 0.14), transparent 24%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.82));
+    }
+
+    .stat-item {
+      padding: 22px 18px;
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.76);
+      border: 1px solid var(--line);
+    }
+
+    .stat-item strong {
+      display: block;
+      margin-bottom: 6px;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 2rem;
+      letter-spacing: -0.06em;
+    }
+
+    .stat-item span {
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .preview-note {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
+    @media (max-width: 1080px) {
+      .features {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 760px) {
+      .hero,
+      .stats {
+        padding: 22px;
+      }
+
+      .features,
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        font-size: clamp(2.8rem, 15vw, 4.2rem);
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <section class="glass hero">
+      <div class="chip">
+        <span class="chip-dot"></span>
+        Yangi: AI Yordamchi ishga tushdi
+      </div>
+
+      <h1>
+        Huquqiy bilimlaringizni
+        <br />
+        <span>yangi darajaga olib chiqing</span>
+      </h1>
+
+      <p>
+        Abituriyentlar va talabalar uchun digital ta'lim platformasi.
+        Reytingda bellashing, kutubxonadan foydalaning va professional yurist
+        bo'lish yo'lini tezlashtiring.
+      </p>
+
+      <div class="actions">
+        <a class="btn btn-primary" href="#">Boshlash</a>
+        <button class="btn btn-soft" type="button">Ilovani yuklash</button>
+      </div>
+    </section>
+
+    <section class="section-head">
+      <h2>Siz uchun imkoniyatlar</h2>
+      <p>Lawinate shunchaki sayt emas, bu to'liq ekotizim.</p>
+    </section>
+
+    <section class="features">
+      <article class="feature-card">
+        <div class="icon blue">R</div>
+        <h3>Live Reyting</h3>
+        <p>Ball to'plang va O'zbekiston bo'yicha TOP foydalanuvchilar qatoriga kiring.</p>
+      </article>
+
+      <article class="feature-card">
+        <div class="icon purple">L</div>
+        <h3>Smart Kutubxona</h3>
+        <p>Huquqiy adabiyotlar, kodekslar va o'quv manbalarini tez toping.</p>
+      </article>
+
+      <article class="feature-card">
+        <div class="icon green">T</div>
+        <h3>Test Platformasi</h3>
+        <p>Konstitutsiya, jinoyat, mehnat va boshqa toifalarda bilimni tekshiring.</p>
+      </article>
+
+      <article class="feature-card">
+        <div class="icon cyan">AI</div>
+        <h3>AI Advokat</h3>
+        <p>AI orqali huquqiy savollarga tezkor javoblar oling.</p>
+      </article>
+    </section>
+
+    <section class="glass stats">
+      <article class="stat-item">
+        <strong>5,000+</strong>
+        <span>Foydalanuvchilar</span>
+      </article>
+      <article class="stat-item">
+        <strong>120+</strong>
+        <span>Kitoblar</span>
+      </article>
+      <article class="stat-item">
+        <strong>TOP #1</strong>
+        <span>Huquqiy platforma yo'nalishi</span>
+      </article>
+    </section>
+
+    <div class="preview-note">
+      Preview only: kontent va section tartibi saqlangan, faqat design `index2` yo'nalishida yangilangan.
+    </div>
+  </main>
+</body>
+</html>

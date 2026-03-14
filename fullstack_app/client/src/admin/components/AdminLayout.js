@@ -65,11 +65,11 @@ const AdminLayout = () => {
   };
 
   return (
-    <div className="font-inter min-h-screen bg-slate-100 text-slate-900 transition-colors dark:bg-slate-950 dark:text-slate-100">
-      <div className="pointer-events-none fixed inset-0 bg-[radial-gradient(circle_at_15%_15%,rgba(14,165,233,0.15),transparent_40%),radial-gradient(circle_at_85%_85%,rgba(59,130,246,0.14),transparent_45%)]" />
+    <div className="font-inter min-h-screen bg-[#eef6f9] text-slate-900 transition-colors dark:bg-[#08111d] dark:text-slate-100">
+      <div className="pointer-events-none fixed inset-0 bg-[radial-gradient(circle_at_12%_10%,rgba(13,108,242,0.16),transparent_28%),radial-gradient(circle_at_88%_16%,rgba(60,200,217,0.14),transparent_24%),radial-gradient(circle_at_82%_84%,rgba(13,159,131,0.10),transparent_26%)]" />
 
       <div className="relative z-10 flex min-h-screen">
-        <aside className={`fixed inset-y-0 left-0 z-40 w-72 border-r border-white/10 bg-slate-950/90 p-4 backdrop-blur-xl transition-transform dark:bg-slate-950/80 ${menuOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0`}>
+        <aside className={`fixed inset-y-0 left-0 z-40 w-72 border-r border-white/10 bg-[#061426]/92 p-4 backdrop-blur-2xl transition-transform dark:bg-[#061426]/84 ${menuOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0`}>
           <div className="mb-6 flex items-center justify-between">
             <div>
               <p className="text-xs uppercase tracking-[0.24em] text-slate-400">Lawinate.uz</p>
@@ -88,7 +88,7 @@ const AdminLayout = () => {
                   key={item.to}
                   to={item.to}
                   onClick={() => setMenuOpen(false)}
-                  className={({ isActive }) => `flex items-center gap-3 rounded-2xl border px-3 py-2.5 text-sm transition ${isActive ? 'border-sky-400/40 bg-sky-500/20 text-sky-200' : 'border-transparent text-slate-300 hover:border-white/20 hover:bg-white/10'}`}
+                  className={({ isActive }) => `flex items-center gap-3 rounded-[20px] border px-3 py-2.5 text-sm transition ${isActive ? 'border-sky-400/40 bg-sky-500/20 text-sky-200 shadow-[0_20px_40px_-30px_rgba(13,108,242,0.55)]' : 'border-transparent text-slate-300 hover:border-white/16 hover:bg-white/8'}`}
                 >
                   <Icon size={18} />
                   {item.label}
@@ -105,10 +105,10 @@ const AdminLayout = () => {
         </aside>
 
         <div className="flex w-full flex-1 flex-col lg:pl-72">
-          <header className="sticky top-0 z-30 border-b border-white/10 bg-slate-900/70 backdrop-blur-xl dark:bg-slate-950/60">
+          <header className="sticky top-0 z-30 border-b border-white/10 bg-[#08182f]/72 backdrop-blur-2xl dark:bg-[#08111d]/62">
             <div className="mx-auto flex h-16 w-full max-w-[1400px] items-center justify-between px-4 lg:px-8">
               <div className="flex items-center gap-3">
-                <button type="button" onClick={() => setMenuOpen(true)} className="rounded-xl border border-white/10 bg-white/5 p-2 text-slate-200 lg:hidden">
+                <button type="button" onClick={() => setMenuOpen(true)} className="rounded-2xl border border-white/10 bg-white/5 p-2 text-slate-200 lg:hidden">
                   <List size={20} />
                 </button>
                 <div>

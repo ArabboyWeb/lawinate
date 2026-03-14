@@ -1,31 +1,164 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  .font-inter {
+    font-family: 'Inter', sans-serif;
+  }
+
+  .font-inter h1,
+  .font-inter h2,
+  .font-inter h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    letter-spacing: -0.04em;
+  }
+}
+
 @layer components {
   .admin-glass {
-    @apply rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl shadow-glow;
+    @apply rounded-[28px] border backdrop-blur-xl;
+    border-color: rgba(255, 255, 255, 0.62);
+    background:
+      radial-gradient(circle at top right, rgba(13, 108, 242, 0.12), transparent 28%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(246, 250, 255, 0.82));
+    box-shadow: 0 28px 80px -48px rgba(13, 24, 44, 0.24);
+  }
+
+  .dark .admin-glass {
+    border-color: rgba(255, 255, 255, 0.1);
+    background:
+      radial-gradient(circle at top right, rgba(59, 130, 246, 0.14), transparent 30%),
+      linear-gradient(180deg, rgba(11, 19, 33, 0.9), rgba(8, 16, 30, 0.94));
+    box-shadow: 0 30px 84px -52px rgba(0, 0, 0, 0.62);
   }
 
   .admin-input {
-    @apply w-full rounded-2xl border border-white/20 bg-slate-900/50 px-3 py-2 text-sm text-slate-100 outline-none transition focus:border-sky-400;
+    @apply w-full rounded-2xl border px-3 py-2.5 text-sm outline-none transition;
+    border-color: rgba(9, 17, 31, 0.08);
+    background: rgba(255, 255, 255, 0.82);
+    color: #09111f;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.62);
+  }
+
+  .admin-input::placeholder {
+    color: #7d8ea3;
+  }
+
+  .admin-input:focus {
+    border-color: rgba(13, 108, 242, 0.42);
+    box-shadow:
+      0 0 0 4px rgba(13, 108, 242, 0.14),
+      0 18px 42px -30px rgba(13, 108, 242, 0.32);
+  }
+
+  .dark .admin-input {
+    border-color: rgba(255, 255, 255, 0.1);
+    background: rgba(8, 16, 30, 0.78);
+    color: #eef4ff;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  }
+
+  .dark .admin-input::placeholder {
+    color: #7589a4;
+  }
+
+  .dark .admin-input:focus {
+    border-color: rgba(78, 162, 255, 0.36);
+    box-shadow:
+      0 0 0 4px rgba(78, 162, 255, 0.14),
+      0 18px 42px -30px rgba(78, 162, 255, 0.32);
   }
 
   .admin-btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-2xl px-4 py-2 text-sm font-semibold transition;
+    @apply inline-flex items-center justify-center gap-2 rounded-2xl px-4 py-2.5 text-sm font-semibold transition;
   }
 
   .admin-btn-primary {
-    @apply admin-btn bg-sky-500 text-white hover:bg-sky-400;
+    @apply admin-btn text-white;
+    background-image: linear-gradient(135deg, #0d6cf2, #0f87ff);
+    box-shadow: 0 20px 38px -24px rgba(13, 108, 242, 0.42);
+  }
+
+  .admin-btn-primary:hover {
+    transform: translateY(-1px);
+    filter: brightness(1.05);
   }
 
   .admin-btn-soft {
-    @apply admin-btn border border-white/20 bg-white/5 text-slate-200 hover:bg-white/10;
+    @apply admin-btn border;
+    border-color: rgba(9, 17, 31, 0.08);
+    background: rgba(255, 255, 255, 0.72);
+    color: #12233c;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.68);
+  }
+
+  .admin-btn-soft:hover {
+    transform: translateY(-1px);
+    background: rgba(255, 255, 255, 0.9);
+  }
+
+  .dark .admin-btn-soft {
+    border-color: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.06);
+    color: #d8e6f7;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  }
+
+  .dark .admin-btn-soft:hover {
+    background: rgba(255, 255, 255, 0.1);
   }
 
   .admin-badge {
-    @apply inline-flex items-center rounded-full border px-2 py-0.5 text-xs font-medium;
+    @apply inline-flex items-center rounded-full border px-2.5 py-1 text-xs font-medium;
+    backdrop-filter: blur(10px);
+  }
+
+  .admin-glass table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 8px;
+  }
+
+  .admin-glass thead th {
+    padding: 0 0.75rem 0.25rem;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #7b90aa;
+  }
+
+  .dark .admin-glass thead th {
+    color: #9fb0c6;
+  }
+
+  .admin-glass tbody td {
+    padding: 0.8rem 0.75rem;
+    background: rgba(255, 255, 255, 0.74);
+    color: #09111f;
+  }
+
+  .admin-glass tbody tr td:first-child {
+    border-radius: 16px 0 0 16px;
+  }
+
+  .admin-glass tbody tr td:last-child {
+    border-radius: 0 16px 16px 0;
+  }
+
+  .dark .admin-glass tbody td {
+    background: rgba(255, 255, 255, 0.04);
+    color: #eef4ff;
+  }
+
+  .admin-glass tbody tr:hover td {
+    background: rgba(13, 108, 242, 0.08);
+  }
+
+  .dark .admin-glass tbody tr:hover td {
+    background: rgba(78, 162, 255, 0.12);
   }
 }

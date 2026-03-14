@@ -90,10 +90,10 @@ const AdminLoginPage = () => {
   };
 
   return (
-    <div className="font-inter min-h-screen bg-slate-950 text-slate-100">
+    <div className="font-inter min-h-screen bg-[#08111d] text-slate-100">
       <div className="mx-auto grid min-h-screen w-full max-w-[1100px] items-center gap-6 px-4 py-8 lg:grid-cols-[1.1fr,1fr]">
         <section className="admin-glass p-8">
-          <p className="mb-3 inline-flex items-center gap-2 rounded-full border border-sky-400/30 bg-sky-500/10 px-3 py-1 text-xs text-sky-200">
+          <p className="mb-3 inline-flex items-center gap-2 rounded-full border border-sky-400/30 bg-sky-500/10 px-3 py-1 text-xs font-semibold text-sky-200">
             <ShieldCheck size={14} />
             Premium Admin Workspace
           </p>
@@ -111,7 +111,7 @@ const AdminLoginPage = () => {
 
         <section className="admin-glass p-8">
           <div className="mb-5 flex items-center gap-2">
-            <div className="rounded-2xl border border-white/10 bg-white/5 p-2">
+            <div className="rounded-[18px] border border-white/10 bg-white/5 p-2">
               <UserCircle size={22} />
             </div>
             <div>
