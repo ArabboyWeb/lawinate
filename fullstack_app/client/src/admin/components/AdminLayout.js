@@ -113,7 +113,7 @@ const AdminLayout = () => {
                 </button>
                 <div className="min-w-0">
                   <h2 className="truncate text-base font-semibold text-white">{pageTitle}</h2>
-                  <p className="text-xs text-slate-400">Uzbekistan admin workspace</p>
+                  <p className="text-xs text-slate-400">Platforma boshqaruvi</p>
                 </div>
               </div>
 

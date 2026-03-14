@@ -219,7 +219,7 @@ const ChatPage = () => {
         <header className="chat-clean-header">
           <div>
             <h1>Global Chat</h1>
-            <p>Minimal group chat</p>
+            <p>Guruhlar bilan tez muloqot qiling</p>
           </div>
         </header>
 

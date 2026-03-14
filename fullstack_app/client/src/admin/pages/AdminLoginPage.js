@@ -18,7 +18,7 @@ const AdminLoginPage = () => {
   const [loading, setLoading] = useState(false);
   const [resetLoading, setResetLoading] = useState(false);
   const [googleLoading, setGoogleLoading] = useState(false);
-  const [googleEnabled, setGoogleEnabled] = useState(true);
+  const [googleEnabled, setGoogleEnabled] = useState(false);
   const queryError = searchParams.get('error');
 
   const resolveErrorMessage = (err, fallback) => {
@@ -38,7 +38,8 @@ const AdminLoginPage = () => {
         setGoogleEnabled(Boolean(res.data?.google?.enabled));
       })
       .catch(() => {
-        // Keep the fallback button visible when provider status cannot be loaded.
+        if (!active) return;
+        setGoogleEnabled(false);
       });
 
     return () => {
@@ -73,7 +74,7 @@ const AdminLoginPage = () => {
       const res = await adminApi.post('/api/admin/auth/forgot-password', { email });
       pushToast(res.data?.message || 'So`rov yuborildi', 'info');
     } catch (err) {
-      pushToast(resolveErrorMessage(err, 'Forgot password ishlamadi'), 'error');
+      pushToast(resolveErrorMessage(err, 'Parolni tiklash so`rovi yuborilmadi'), 'error');
     } finally {
       setResetLoading(false);
     }
@@ -91,32 +92,33 @@ const AdminLoginPage = () => {
 
   return (
     <div className="font-inter min-h-screen bg-[#08111d] text-slate-100">
-      <div className="mx-auto grid min-h-screen w-full max-w-[1100px] items-center gap-6 px-4 py-8 lg:grid-cols-[1.1fr,1fr]">
-        <section className="admin-glass p-8">
-          <p className="mb-3 inline-flex items-center gap-2 rounded-full border border-sky-400/30 bg-sky-500/10 px-3 py-1 text-xs font-semibold text-sky-200">
+      <div className="pointer-events-none fixed inset-0 bg-[radial-gradient(circle_at_12%_12%,rgba(13,108,242,0.18),transparent_26%),radial-gradient(circle_at_88%_16%,rgba(60,200,217,0.14),transparent_24%),radial-gradient(circle_at_84%_84%,rgba(13,159,131,0.12),transparent_26%)]" />
+      <div className="relative mx-auto grid min-h-screen w-full max-w-[1120px] items-center gap-4 px-4 py-4 sm:px-5 sm:py-6 lg:grid-cols-[0.94fr,1.06fr] lg:gap-6 lg:px-6 lg:py-8">
+        <section className="admin-glass admin-login-hero p-5 sm:p-6 lg:p-8">
+          <p className="admin-login-kicker mb-3 inline-flex items-center gap-2 rounded-full border border-sky-400/30 bg-sky-500/10 px-3 py-1 text-xs font-semibold text-sky-200">
             <ShieldCheck size={14} />
-            Premium Admin Workspace
+            Admin kirish
           </p>
-          <h1 className="text-3xl font-bold text-white">Lawinate.uz Admin Panel</h1>
+          <h1 className="text-3xl font-bold text-white">Lawinate.uz</h1>
           <p className="mt-4 text-sm text-slate-300">
-            Testlar, kutubxona, foydalanuvchilar, community va AI tizimini bir joydan boshqaring.
+            Platformani boshqarish uchun kirish oynasi. Asosiy bo'limlar bir joyda va mobil ekranda ham qulay.
           </p>
 
-          <div className="mt-6 grid gap-3 text-sm text-slate-300">
-            <div className="admin-glass p-4">JWT asosidagi xavfsiz kirish va role-based access.</div>
-            <div className="admin-glass p-4">Realtime dashboard, moderatsiya queue va audit loglar.</div>
-            <div className="admin-glass p-4">Dark/light mode, mobile responsive va premium UI.</div>
+          <div className="admin-login-points mt-6 grid gap-3 text-sm text-slate-300">
+            <div className="admin-login-point">Testlar va kutubxona ustida tez ishlang.</div>
+            <div className="admin-login-point">Foydalanuvchilar, chat va AI oqimini nazorat qiling.</div>
+            <div className="admin-login-point">Kundalik boshqaruv uchun toza va ixcham kirish oynasi.</div>
           </div>
         </section>
 
-        <section className="admin-glass p-8">
+        <section className="admin-glass admin-login-form p-5 sm:p-6 lg:p-8">
           <div className="mb-5 flex items-center gap-2">
             <div className="rounded-[18px] border border-white/10 bg-white/5 p-2">
               <UserCircle size={22} />
             </div>
             <div>
-              <h2 className="text-xl font-semibold">Admin Login</h2>
-              <p className="text-xs text-slate-400">Uzbek interface | JWT authentication</p>
+              <h2 className="text-xl font-semibold">Admin panelga kirish</h2>
+              <p className="text-xs text-slate-400">Email va parol bilan davom eting</p>
             </div>
           </div>
 
@@ -148,14 +150,14 @@ const AdminLoginPage = () => {
               </div>
             </div>
 
-            <div className="flex items-center justify-between text-sm text-slate-300">
+            <div className="admin-login-actions-row flex flex-wrap items-center justify-between gap-3 text-sm text-slate-300">
               <label className="inline-flex items-center gap-2">
                 <input
                   type="checkbox"
                   checked={rememberMe}
                   onChange={(e) => setRememberMe(e.target.checked)}
                 />
-                Remember me
+                Eslab qolish
               </label>
               <button
                 type="button"
@@ -163,7 +165,7 @@ const AdminLoginPage = () => {
                 className="text-sky-300 hover:text-sky-200"
                 disabled={resetLoading}
               >
-                {resetLoading ? 'Yuborilmoqda...' : 'Forgot password?'}
+                {resetLoading ? 'Yuborilmoqda...' : 'Parolni tiklash'}
               </button>
             </div>
 
@@ -171,14 +173,10 @@ const AdminLoginPage = () => {
               {loading ? 'Kirish tekshirilmoqda...' : 'Admin panelga kirish'}
             </button>
 
-            {googleEnabled ? (
+            {googleEnabled && (
               <button type="button" className="admin-btn-soft w-full" onClick={handleGoogleLogin} disabled={googleLoading}>
                 {googleLoading ? 'Googlega yo\'naltirilmoqda...' : 'Google bilan kirish'}
               </button>
-            ) : (
-              <div className="rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-slate-300">
-                Google auth hozircha sozlanmagan.
-              </div>
             )}
 
             {queryError && (
