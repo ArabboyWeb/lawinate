@@ -11,6 +11,7 @@ const {
   errorHandler
 } = require('./src/middleware');
 const { checkPostgresConnection } = require('./src/pg');
+const { getConfiguredFrontendOrigins, isAllowedFrontendOrigin } = require('./src/utils');
 
 const createAnalyticsRouter = require('./src/routes/analytics');
 const createPublicRouter = require('./src/routes/public');
@@ -45,15 +46,11 @@ function validateEnv() {
 }
 
 function getCorsConfig() {
-  const configured = (process.env.CORS_ORIGIN || '')
-    .split(',')
-    .map((value) => value.trim())
-    .filter(Boolean);
-  const allowedOrigins = new Set(configured);
+  const configured = getConfiguredFrontendOrigins();
 
   return {
     origin(origin, callback) {
-      if (!origin || configured.length === 0 || allowedOrigins.has(origin)) {
+      if (!origin || configured.length === 0 || isAllowedFrontendOrigin(origin)) {
         return callback(null, true);
       }
       return callback(null, false);

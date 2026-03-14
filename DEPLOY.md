@@ -83,6 +83,7 @@ Recommended production values:
 - `APP_BASE_URL=https://lawinate.uz`
 - `CLIENT_URL=https://lawinate.uz`
 - `CORS_ORIGIN=https://lawinate.uz,https://www.lawinate.uz,https://your-project.vercel.app`
+- `CORS_ORIGIN_REGEX=^https://lawinate(?:-[a-z0-9-]+)?-your-team-projects\.vercel\.app$`
 - `DATABASE_URL=postgresql://...` (Neon)
 - `DB_CLIENT=postgres`
 - `GOOGLE_REDIRECT_URI=https://lawinate-sc7t.onrender.com/api/auth/google/callback`
@@ -112,6 +113,7 @@ Production notes:
 - Preferred: leave `REACT_APP_API_URL` unset in production so the frontend uses the same-origin `/api` proxy.
 - Optional alternative: set Vercel env variable `REACT_APP_API_URL=https://lawinate-sc7t.onrender.com` only if direct cross-origin requests are required and CORS is configured correctly.
 - Add your Vercel domain to backend `CORS_ORIGIN` on Render, for example `https://your-project.vercel.app`.
+- If you use preview deployments, add a regex via `CORS_ORIGIN_REGEX` so branch and preview subdomains are accepted too.
 
 ## Notes
 

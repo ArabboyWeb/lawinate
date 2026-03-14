@@ -552,12 +552,14 @@ async function migrateLegacySchema(db) {
         state TEXT PRIMARY KEY,
         purpose TEXT NOT NULL,
         redirect_path TEXT,
+        redirect_origin TEXT,
         created_at ${timestampType} DEFAULT CURRENT_TIMESTAMP,
         expires_at ${timestampType} NOT NULL
       );
     `);
   }
 
+  await ensureColumn(db, 'oauth_states', 'redirect_origin', 'TEXT');
   await db.run(`DELETE FROM oauth_states WHERE expires_at <= ?`, [nowIso()]);
 
   if (!(await hasTable(db, 'chat_groups'))) {

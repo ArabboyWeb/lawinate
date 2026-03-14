@@ -16,7 +16,10 @@ const {
   serializeResult,
   toBoolean,
   nowIso,
-  randomString
+  randomString,
+  isAllowedFrontendOrigin,
+  normalizeOrigin,
+  resolveFrontendBaseUrl
 } = require('../utils');
 
 const GOOGLE_SCOPE = 'openid email profile';
@@ -239,20 +242,32 @@ function getGoogleFrontendRedirectPath(value, fallback = '/dashboard') {
   return cleaned;
 }
 
-async function createGoogleState(db, redirectPath) {
+function getRequestFrontendOrigin(req) {
+  const candidates = [req.get('origin'), req.get('referer')];
+
+  for (const value of candidates) {
+    if (isAllowedFrontendOrigin(value)) {
+      return normalizeOrigin(value);
+    }
+  }
+
+  return '';
+}
+
+async function createGoogleState(db, redirectPath, redirectOrigin = '') {
   const state = randomString(48);
   const expiresAt = new Date(Date.now() + 10 * 60 * 1000).toISOString();
   await db.run(
-    `INSERT INTO oauth_states (state, purpose, redirect_path, created_at, expires_at)
-     VALUES (?, 'google_login', ?, ?, ?)` ,
-    [state, redirectPath, nowIso(), expiresAt]
+    `INSERT INTO oauth_states (state, purpose, redirect_path, redirect_origin, created_at, expires_at)
+     VALUES (?, 'google_login', ?, ?, ?, ?)` ,
+    [state, redirectPath, redirectOrigin, nowIso(), expiresAt]
   );
   return state;
 }
 
 async function consumeGoogleState(db, state) {
   const row = await db.get(
-    `SELECT state, redirect_path, expires_at FROM oauth_states
+    `SELECT state, redirect_path, redirect_origin, expires_at FROM oauth_states
      WHERE state = ? AND purpose = 'google_login'`,
     [state]
   );
@@ -262,16 +277,16 @@ async function consumeGoogleState(db, state) {
   return row;
 }
 
-function buildGoogleErrorRedirect(path, message) {
+function buildGoogleErrorRedirect(path, message, origin = '') {
   const redirectPath = getGoogleFrontendRedirectPath(path, '/auth');
-  const target = new URL(redirectPath, APP_BASE_URL);
+  const target = new URL(redirectPath, resolveFrontendBaseUrl(origin || APP_BASE_URL));
   target.searchParams.set('error', message);
   return target.toString();
 }
 
-function buildGoogleSuccessRedirect(path, token, user) {
+function buildGoogleSuccessRedirect(path, token, user, origin = '') {
   const redirectPath = getGoogleFrontendRedirectPath(path, '/dashboard');
-  const target = new URL(redirectPath, APP_BASE_URL);
+  const target = new URL(redirectPath, resolveFrontendBaseUrl(origin || APP_BASE_URL));
   target.searchParams.set('token', token);
   target.searchParams.set('user', Buffer.from(JSON.stringify(serializeUser(user))).toString('base64url'));
   target.searchParams.set('auth_provider', 'google');
@@ -417,7 +432,7 @@ function createPublicRouter(db, authRequired, checkDatabaseHealth = async () => 
     }
 
     const redirectPath = getGoogleFrontendRedirectPath(req.query.redirect || '/dashboard', '/dashboard');
-    const state = await createGoogleState(db, redirectPath);
+    const state = await createGoogleState(db, redirectPath, getRequestFrontendOrigin(req));
     const url = new URL(GOOGLE_OAUTH_AUTHORIZE_URL);
     url.searchParams.set('response_type', 'code');
     url.searchParams.set('client_id', config.clientId);
@@ -437,15 +452,15 @@ function createPublicRouter(db, authRequired, checkDatabaseHealth = async () => 
     const stateRow = await consumeGoogleState(db, state);
 
     if (!stateRow) {
-      return res.redirect(buildGoogleErrorRedirect('/auth', 'Invalid or expired Google state'));
+      return res.redirect(buildGoogleErrorRedirect('/auth', 'Invalid or expired Google state', getRequestFrontendOrigin(req)));
     }
 
     if (!isGoogleAuthConfigured(config)) {
-      return res.redirect(buildGoogleErrorRedirect(stateRow.redirect_path, 'Google auth is not configured on server'));
+      return res.redirect(buildGoogleErrorRedirect(stateRow.redirect_path, 'Google auth is not configured on server', stateRow.redirect_origin));
     }
 
     if (!code) {
-      return res.redirect(buildGoogleErrorRedirect(stateRow.redirect_path, 'Google authorization code missing'));
+      return res.redirect(buildGoogleErrorRedirect(stateRow.redirect_path, 'Google authorization code missing', stateRow.redirect_origin));
     }
 
     try {
@@ -454,14 +469,14 @@ function createPublicRouter(db, authRequired, checkDatabaseHealth = async () => 
       const user = await upsertGoogleUser(db, profile);
 
       if (user.is_banned) {
-        return res.redirect(buildGoogleErrorRedirect(stateRow.redirect_path, 'Account is banned'));
+        return res.redirect(buildGoogleErrorRedirect(stateRow.redirect_path, 'Account is banned', stateRow.redirect_origin));
       }
 
       await db.run('UPDATE users SET last_login_at = ?, updated_at = ? WHERE id = ?', [nowIso(), nowIso(), user.id]);
       const token = createToken(jwt, user, true);
-      return res.redirect(buildGoogleSuccessRedirect(stateRow.redirect_path, token, user));
+      return res.redirect(buildGoogleSuccessRedirect(stateRow.redirect_path, token, user, stateRow.redirect_origin));
     } catch (_err) {
-      return res.redirect(buildGoogleErrorRedirect(stateRow.redirect_path, 'Google login failed'));
+      return res.redirect(buildGoogleErrorRedirect(stateRow.redirect_path, 'Google login failed', stateRow.redirect_origin));
     }
   });
 

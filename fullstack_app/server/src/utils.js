@@ -25,6 +25,61 @@ function randomString(size = 32) {
   return out;
 }
 
+function normalizeOrigin(value) {
+  const raw = String(value || '').trim();
+  if (!raw) return '';
+
+  try {
+    return new URL(raw).origin;
+  } catch (_err) {
+    return '';
+  }
+}
+
+function getConfiguredFrontendOrigins() {
+  const values = [
+    process.env.APP_BASE_URL,
+    process.env.CLIENT_URL,
+    ...(process.env.CORS_ORIGIN || '').split(',')
+  ];
+
+  return [...new Set(values.map((value) => normalizeOrigin(value)).filter(Boolean))];
+}
+
+function getConfiguredFrontendOriginRegexes() {
+  return String(process.env.CORS_ORIGIN_REGEX || '')
+    .split(',')
+    .map((value) => value.trim())
+    .filter(Boolean)
+    .flatMap((value) => {
+      try {
+        return [new RegExp(value)];
+      } catch (_err) {
+        return [];
+      }
+    });
+}
+
+function isAllowedFrontendOrigin(value) {
+  const origin = normalizeOrigin(value);
+  if (!origin) return false;
+
+  const exactOrigins = getConfiguredFrontendOrigins();
+  if (exactOrigins.includes(origin)) {
+    return true;
+  }
+
+  return getConfiguredFrontendOriginRegexes().some((pattern) => pattern.test(origin));
+}
+
+function resolveFrontendBaseUrl(value) {
+  if (isAllowedFrontendOrigin(value)) {
+    return normalizeOrigin(value);
+  }
+
+  return normalizeOrigin(APP_BASE_URL) || 'https://example.com';
+}
+
 function sanitizeText(value, maxLength = 2000) {
   if (typeof value !== 'string') return '';
   return value
@@ -244,17 +299,22 @@ module.exports = {
   GOOGLE_USERINFO_URL,
   nowIso,
   randomString,
+  normalizeOrigin,
   sanitizeText,
   sanitizeMultilineText,
   sanitizePayload,
   toBoolean,
   clampNumber,
   isAllowed,
+  getConfiguredFrontendOrigins,
+  getConfiguredFrontendOriginRegexes,
+  isAllowedFrontendOrigin,
   pickRole,
   pickStatus,
   pickDifficulty,
   pickCorrectOption,
   getTodayDate,
+  resolveFrontendBaseUrl,
   shuffleArray,
   createToken,
   serializeUser,
