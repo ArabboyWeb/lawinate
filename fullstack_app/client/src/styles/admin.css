@@ -162,3 +162,49 @@
     background: rgba(78, 162, 255, 0.12);
   }
 }
+
+@media (max-width: 1024px) {
+  .admin-glass {
+    border-radius: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .admin-glass {
+    border-radius: 20px;
+  }
+
+  .admin-glass,
+  .admin-glass.p-8,
+  .admin-glass.p-5,
+  .admin-glass.p-4 {
+    padding: 1rem;
+  }
+
+  .admin-btn,
+  .admin-btn-primary,
+  .admin-btn-soft {
+    min-height: 44px;
+  }
+
+  .admin-glass table {
+    min-width: 720px;
+  }
+}
+
+@media (max-width: 560px) {
+  .admin-btn,
+  .admin-btn-primary,
+  .admin-btn-soft {
+    width: 100%;
+  }
+
+  .admin-glass thead th {
+    font-size: 0.68rem;
+  }
+
+  .admin-glass tbody td {
+    padding: 0.72rem 0.68rem;
+    font-size: 0.82rem;
+  }
+}

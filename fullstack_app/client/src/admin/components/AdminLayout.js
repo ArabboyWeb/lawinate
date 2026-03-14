@@ -69,7 +69,7 @@ const AdminLayout = () => {
       <div className="pointer-events-none fixed inset-0 bg-[radial-gradient(circle_at_12%_10%,rgba(13,108,242,0.16),transparent_28%),radial-gradient(circle_at_88%_16%,rgba(60,200,217,0.14),transparent_24%),radial-gradient(circle_at_82%_84%,rgba(13,159,131,0.10),transparent_26%)]" />
 
       <div className="relative z-10 flex min-h-screen">
-        <aside className={`fixed inset-y-0 left-0 z-40 w-72 border-r border-white/10 bg-[#061426]/92 p-4 backdrop-blur-2xl transition-transform dark:bg-[#061426]/84 ${menuOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0`}>
+        <aside className={`fixed inset-y-0 left-0 z-40 w-[86vw] max-w-[320px] border-r border-white/10 bg-[#061426]/92 p-4 backdrop-blur-2xl transition-transform dark:bg-[#061426]/84 ${menuOpen ? 'translate-x-0' : '-translate-x-full'} lg:w-72 lg:max-w-none lg:translate-x-0`}>
           <div className="mb-6 flex items-center justify-between">
             <div>
               <p className="text-xs uppercase tracking-[0.24em] text-slate-400">Lawinate.uz</p>
@@ -106,18 +106,18 @@ const AdminLayout = () => {
 
         <div className="flex w-full flex-1 flex-col lg:pl-72">
           <header className="sticky top-0 z-30 border-b border-white/10 bg-[#08182f]/72 backdrop-blur-2xl dark:bg-[#08111d]/62">
-            <div className="mx-auto flex h-16 w-full max-w-[1400px] items-center justify-between px-4 lg:px-8">
-              <div className="flex items-center gap-3">
+            <div className="mx-auto flex min-h-16 w-full max-w-[1400px] flex-wrap items-center justify-between gap-y-3 px-4 py-3 lg:flex-nowrap lg:px-8">
+              <div className="flex min-w-0 items-center gap-3">
                 <button type="button" onClick={() => setMenuOpen(true)} className="rounded-2xl border border-white/10 bg-white/5 p-2 text-slate-200 lg:hidden">
                   <List size={20} />
                 </button>
-                <div>
-                  <h2 className="text-base font-semibold text-white">{pageTitle}</h2>
+                <div className="min-w-0">
+                  <h2 className="truncate text-base font-semibold text-white">{pageTitle}</h2>
                   <p className="text-xs text-slate-400">Uzbekistan admin workspace</p>
                 </div>
               </div>
 
-              <div className="flex items-center gap-2">
+              <div className="flex w-full flex-wrap items-center justify-end gap-2 sm:w-auto sm:flex-nowrap">
                 <button
                   type="button"
                   onClick={() => setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'))}
