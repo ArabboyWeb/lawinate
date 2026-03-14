@@ -2,6 +2,7 @@
   "scripts": {
     "start": "concurrently \"npm run server:start\" \"npm run client:start\"",
     "dev": "concurrently \"npm run server:start\" \"npm run client:start\"",
+    "build": "npm --prefix fullstack_app/client run build",
     "client:start": "npm --prefix fullstack_app/client start",
     "client:build": "npm --prefix fullstack_app/client run build",
     "server:start": "npm --prefix fullstack_app/server start"

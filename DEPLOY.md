@@ -99,14 +99,16 @@ Use Vercel for the frontend and keep the backend on Render.
 
 1. Push this repo to GitHub.
 2. In Vercel, click `Add New` -> `Project` and import the repo.
-3. In `Root Directory`, select `fullstack_app/client`.
-4. Leave the Framework Preset on `Create React App` (or let Vercel auto-detect it).
-5. Deploy. No frontend env vars are required if you want same-origin `/api` proxying.
+3. Recommended: leave `Root Directory` at the repo root. Root-level [vercel.json](/c:/Users/user/Desktop/fullstack_app/vercel.json) already builds `fullstack_app/client`.
+4. Alternative: if you prefer, you can instead set `Root Directory` to `fullstack_app/client` and use [fullstack_app/client/vercel.json](/c:/Users/user/Desktop/fullstack_app/fullstack_app/client/vercel.json).
+5. Leave the Framework Preset on `Other` or let Vercel auto-detect it.
+6. Deploy. No frontend env vars are required if you want same-origin `/api` proxying.
 
 Production notes:
 
+- Root deploys use [vercel.json](/c:/Users/user/Desktop/fullstack_app/vercel.json) and run `npm --prefix fullstack_app/client run build`.
 - [fullstack_app/client/vercel.json](/c:/Users/user/Desktop/fullstack_app/fullstack_app/client/vercel.json) proxies `/api/*` to `https://lawinate-sc7t.onrender.com/api/*`.
-- If your Render backend URL changes, update that destination in [fullstack_app/client/vercel.json](/c:/Users/user/Desktop/fullstack_app/fullstack_app/client/vercel.json).
+- If your Render backend URL changes, update that destination in [vercel.json](/c:/Users/user/Desktop/fullstack_app/vercel.json) and, if used, [fullstack_app/client/vercel.json](/c:/Users/user/Desktop/fullstack_app/fullstack_app/client/vercel.json).
 - Preferred: leave `REACT_APP_API_URL` unset in production so the frontend uses the same-origin `/api` proxy.
 - Optional alternative: set Vercel env variable `REACT_APP_API_URL=https://lawinate-sc7t.onrender.com` only if direct cross-origin requests are required and CORS is configured correctly.
 - Add your Vercel domain to backend `CORS_ORIGIN` on Render, for example `https://your-project.vercel.app`.
