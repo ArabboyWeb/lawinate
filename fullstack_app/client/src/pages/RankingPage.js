@@ -1,4 +1,5 @@
-﻿import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Crown, MagnifyingGlass, Trophy } from '@phosphor-icons/react';
 import api from '../api';
 
@@ -30,8 +31,24 @@ const RankingPage = () => {
       <section className="glass-card card-pad">
         <h1 className="section-title">Live Reyting</h1>
         <p className="subtle" style={{ marginTop: 8 }}>
-          Test natijalari bo'yicha eng yaxshi foydalanuvchilar.
+          Test natijalari bo&apos;yicha eng yaxshi foydalanuvchilar.
         </p>
+
+        <div className="ranking-game-banner">
+          <div className="ranking-game-copy">
+            <p className="ranking-game-kicker">Game Zone</p>
+            <h2>Reytingdan keyin tezkor mini o&apos;yinlarni sinab ko&apos;ring</h2>
+            <p>
+              Hozircha birinchi o&apos;yin live. Keyingi o&apos;yinlar bosqichma-bosqich shu bo&apos;limga qo&apos;shiladi.
+            </p>
+          </div>
+          <div className="actions">
+            <Link to="/game-zone" className="btn btn-primary">
+              Game Zone&apos;ga o&apos;tish
+            </Link>
+          </div>
+        </div>
+
         <div className="form-group" style={{ marginTop: 14 }}>
           <label htmlFor="ranking-search">Foydalanuvchi qidirish</label>
           <div style={{ position: 'relative' }}>
@@ -45,7 +62,7 @@ const RankingPage = () => {
               id="ranking-search"
               className="input"
               style={{ paddingLeft: 36 }}
-              placeholder="Ism bo'yicha qidiring"
+              placeholder="Ism bo&apos;yicha qidiring"
               value={search}
               onChange={(event) => setSearch(event.target.value)}
             />

@@ -15,7 +15,6 @@ const links = [
   { to: '/ranking', label: 'Reyting' },
   { to: '/library', label: 'Kutubxona' },
   { to: '/tests', label: 'Testlar' },
-  { to: '/chat', label: 'Chat' },
   { to: '/dashboard', label: 'Kabinet' },
 ];
 

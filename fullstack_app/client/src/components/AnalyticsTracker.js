@@ -17,9 +17,9 @@ function getRouteGroup(path) {
   if (path.startsWith('/blog')) return 'blog';
   if (path.startsWith('/library')) return 'library';
   if (path.startsWith('/ranking')) return 'ranking';
+  if (path.startsWith('/game-zone')) return 'game_zone';
   if (path.startsWith('/dashboard')) return 'dashboard';
   if (path.startsWith('/ai')) return 'ai';
-  if (path.startsWith('/chat')) return 'chat';
   return 'other';
 }
 

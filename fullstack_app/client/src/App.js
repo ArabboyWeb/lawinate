@@ -8,8 +8,8 @@ import AuthPage from './pages/AuthPage';
 import BlogCreatePage from './pages/BlogCreatePage';
 import BlogListPage from './pages/BlogListPage';
 import BlogPostPage from './pages/BlogPostPage';
-import ChatPage from './pages/ChatPage';
 import DashboardPage from './pages/DashboardPage';
+import GameZonePage from './pages/GameZonePage';
 import HomePage from './pages/HomePage';
 import LibraryPage from './pages/LibraryPage';
 import RankingPage from './pages/RankingPage';
@@ -58,14 +58,8 @@ const PublicAppLayout = () => {
           )}
         />
         <Route path="/blog/:slug" element={<BlogPostPage />} />
-        <Route
-          path="/chat"
-          element={(
-            <PrivateRoute>
-              <ChatPage />
-            </PrivateRoute>
-          )}
-        />
+        <Route path="/chat" element={<Navigate to="/game-zone" replace />} />
+        <Route path="/game-zone" element={<GameZonePage />} />
         <Route path="/library" element={<LibraryPage />} />
         <Route path="/ranking" element={<RankingPage />} />
         <Route
