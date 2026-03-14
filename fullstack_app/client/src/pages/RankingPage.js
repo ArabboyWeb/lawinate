@@ -37,9 +37,9 @@ const RankingPage = () => {
         <div className="ranking-game-banner">
           <div className="ranking-game-copy">
             <p className="ranking-game-kicker">Game Zone</p>
-            <h2>Reytingdan keyin tezkor mini o&apos;yinlarni sinab ko&apos;ring</h2>
+            <h2>Tanaffus uchun 2 ta mini o&apos;yin tayyor</h2>
             <p>
-              Hozircha birinchi o&apos;yin live. Keyingi o&apos;yinlar bosqichma-bosqich shu bo&apos;limga qo&apos;shiladi.
+              Direct link orqali ochiladi va natijalar brauzerda saqlanadi.
             </p>
           </div>
           <div className="actions">
